@@ -201,7 +201,7 @@ p { margin: 0; }
 .plano .num { font-family: var(--display); font-weight: 500; font-size: 30px; line-height: 1; }
 .plano .num b { font-weight: 800; font-size: 60px; letter-spacing: -0.03em; }
 .mockup { position: relative; width: 100%; height: 210px; }
-.mockup video { position: absolute; top: 10px; width: 108px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 12px; border: 3px solid #0B0A12; box-shadow: 0 20px 40px -14px rgba(0,0,0,.7); }
+.mockup video { will-change: transform; background: #0B0A12; position: absolute; top: 10px; width: 108px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 12px; border: 3px solid #0B0A12; box-shadow: 0 20px 40px -14px rgba(0,0,0,.7); }
 .mockup video:nth-child(1) { left: calc(50% - 150px); transform: rotate(-9deg); }
 .mockup video:nth-child(2) { left: calc(50% - 54px); top: 0; z-index: 2; }
 .mockup video:nth-child(3) { left: calc(50% + 42px); transform: rotate(9deg); }
@@ -342,14 +342,14 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
       <h2>Ainda está com dúvidas?<br><span class="hl">Veja o que já foi entregue...</span></h2>
     </div>
     <div class="carrossel">
-      <figure><video data-lazy data-src="assets/e1.mp4" muted loop playsinline preload="none"></video><figcaption><b>Growth Publicidade</b><span>Agência de publicidade</span></figcaption></figure>
-      <figure><video data-lazy data-src="assets/d2.mp4" muted loop playsinline preload="none"></video><figcaption><b>OmniPrime</b><span>CRM com IA</span></figcaption></figure>
-      <figure><video data-lazy data-src="assets/e2.mp4" muted loop playsinline preload="none"></video><figcaption><b>Ensaio de Aniversário</b><span>Ensaio fotográfico</span></figcaption></figure>
-      <figure><video data-lazy data-src="assets/d5.mp4" muted loop playsinline preload="none"></video><figcaption><b>PSD de Elite</b><span>Produto digital</span></figcaption></figure>
-      <figure><video data-lazy data-src="assets/d7.mp4" muted loop playsinline preload="none"></video><figcaption><b>Sérgio Galpão</b><span>Imobiliária</span></figcaption></figure>
-      <figure><video data-lazy data-src="assets/e5.mp4" muted loop playsinline preload="none"></video><figcaption><b>Click Mágico</b><span>Eventos</span></figcaption></figure>
-      <figure><video data-lazy data-src="assets/e3.mp4" muted loop playsinline preload="none"></video><figcaption><b>PSD de Elite</b><span>Design</span></figcaption></figure>
-      <figure><video data-lazy data-src="assets/d3.mp4" muted loop playsinline preload="none"></video><figcaption><b>Woman Experience</b><span>Evento feminino</span></figcaption></figure>
+      <figure><video data-lazy poster="assets/e1.jpg" data-src="assets/e1.mp4" muted loop playsinline preload="none"></video><figcaption><b>Growth Publicidade</b><span>Agência de publicidade</span></figcaption></figure>
+      <figure><video data-lazy poster="assets/d2.jpg" data-src="assets/d2.mp4" muted loop playsinline preload="none"></video><figcaption><b>OmniPrime</b><span>CRM com IA</span></figcaption></figure>
+      <figure><video data-lazy poster="assets/e2.jpg" data-src="assets/e2.mp4" muted loop playsinline preload="none"></video><figcaption><b>Ensaio de Aniversário</b><span>Ensaio fotográfico</span></figcaption></figure>
+      <figure><video data-lazy poster="assets/d5.jpg" data-src="assets/d5.mp4" muted loop playsinline preload="none"></video><figcaption><b>PSD de Elite</b><span>Produto digital</span></figcaption></figure>
+      <figure><video data-lazy poster="assets/d7.jpg" data-src="assets/d7.mp4" muted loop playsinline preload="none"></video><figcaption><b>Sérgio Galpão</b><span>Imobiliária</span></figcaption></figure>
+      <figure><video data-lazy poster="assets/e5.jpg" data-src="assets/e5.mp4" muted loop playsinline preload="none"></video><figcaption><b>Click Mágico</b><span>Eventos</span></figcaption></figure>
+      <figure><video data-lazy poster="assets/e3.jpg" data-src="assets/e3.mp4" muted loop playsinline preload="none"></video><figcaption><b>PSD de Elite</b><span>Design</span></figcaption></figure>
+      <figure><video data-lazy poster="assets/d3.jpg" data-src="assets/d3.mp4" muted loop playsinline preload="none"></video><figcaption><b>Woman Experience</b><span>Evento feminino</span></figcaption></figure>
     </div>
     <div class="centro" style="margin-top: 80px">
       <h2 style="font-size: clamp(24px, 3.4vw, 32px)">E o que os clientes disseram <span class="hl">quando receberam</span></h2>
@@ -385,7 +385,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
       <div class="card"><div class="vis marca-v"><span class="n">01</span><span class="aa">Aa</span><div class="cores"><span><i style="background:#D8473A"></i>#D8473A</span><span><i style="background:#F6C453"></i>#F6C453</span><span><i style="background:#F4EDE2"></i>#F4EDE2</span></div><span class="tag">@pizzariabella</span></div><h3>A skill estuda a marca</h3><p>Pega as cores, as letras e o jeito de falar do cliente para o vídeo ter a cara dele.</p></div>
       <div class="card"><div class="vis"><span class="n">02</span><div class="roteiro-v" style="margin-top:18px"><div><b>0:00</b><em>Abertura</em><span>pizza sai do forno</span></div><div class="on"><b>0:04</b><em>Oferta</em><span>R$ 49 grande na tela</span></div><div><b>0:12</b><em>Fecho</em><span>logo e endereço</span></div></div></div><h3>Roteiro pronto</h3><p>Cada cena com o tempo, a fala e o que aparece na tela. Você aprova antes de seguir.</p></div>
       <div class="card"><div class="vis voz-v"><span class="n">03</span><div class="onda"><i style="height:18px;animation-delay:-0.00s"></i><i style="height:30px;animation-delay:-0.13s"></i><i style="height:44px;animation-delay:-0.26s"></i><i style="height:26px;animation-delay:-0.39s"></i><i style="height:52px;animation-delay:-0.52s"></i><i style="height:38px;animation-delay:-0.65s"></i><i style="height:22px;animation-delay:-0.78s"></i><i style="height:48px;animation-delay:-0.91s"></i><i style="height:34px;animation-delay:-1.04s"></i><i style="height:54px;animation-delay:-1.17s"></i><i style="height:28px;animation-delay:-1.30s"></i><i style="height:40px;animation-delay:-1.43s"></i><i style="height:20px;animation-delay:-1.56s"></i><i style="height:46px;animation-delay:-1.69s"></i><i style="height:32px;animation-delay:-1.82s"></i><i style="height:50px;animation-delay:-1.95s"></i><i style="height:24px;animation-delay:-2.08s"></i><i style="height:36px;animation-delay:-2.21s"></i><i style="height:16px;animation-delay:-2.34s"></i><i style="height:42px;animation-delay:-2.47s"></i><i style="height:30px;animation-delay:-2.60s"></i><i style="height:22px;animation-delay:-2.73s"></i></div><code><b>[excited]</b> Terça é dia de pizza</code></div><h3>Narração</h3><p>Texto pronto para o ElevenLabs. Com a sua chave, a voz já sai gravada.</p></div>
-      <div class="card"><div class="vis video-v"><span class="n">04</span><video data-lazy data-src="assets/e7.mp4" muted loop playsinline preload="none"></video><span class="linha-t"><i></i></span></div><h3>Vídeo montado</h3><p>A animação é feita no Remotion, no ritmo da voz, palavra por palavra.</p></div>
+      <div class="card"><div class="vis video-v"><span class="n">04</span><video data-lazy poster="assets/e7.jpg" data-src="assets/e7.mp4" muted loop playsinline preload="none"></video><span class="linha-t"><i></i></span></div><h3>Vídeo montado</h3><p>A animação é feita no Remotion, no ritmo da voz, palavra por palavra.</p></div>
       <div class="card"><div class="vis"><span class="n">05</span><div class="trilha-v" style="margin-top:16px"><div class="pista">trilha<div><i class="l" style="left:2%;right:3%"></i></div></div><div class="pista">whoosh<div><i style="left:8%;width:9%"></i><i style="left:46%;width:9%"></i><i style="left:78%;width:9%"></i></div></div><div class="pista">pop<div><i style="left:22%;width:5%"></i><i style="left:58%;width:5%"></i><i style="left:66%;width:5%"></i></div></div><div class="pista">voz<div><i style="left:6%;width:28%;opacity:.45"></i><i style="left:40%;width:44%;opacity:.45"></i></div></div></div></div><h3>Trilha e efeitos</h3><p>Música e sons sem direitos autorais, um diferente para cada cena.</p></div>
       <div class="card"><div class="vis"><span class="n">06</span><div class="painel-v" style="margin-top:18px"><div class="col"><span>Em produção</span><div class="c">Studio Pilates</div><div class="c">Ótica Visão</div></div><div class="col"><span>Esperando você</span><div class="c voce">Pizzaria Bella</div></div><div class="col"><span>Entregue</span><div class="c ok">Hamburgueria</div><div class="c ok">Imobiliária</div></div></div></div><h3>Painel de clientes</h3><p>Você vê quem está em produção e quem está esperando a sua resposta.</p></div>
     </div>
@@ -409,9 +409,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
           <span class="por">Pagamento único de</span>
           <span class="num">R$<b>37</b>,00</span>
           <div class="mockup" aria-hidden="true">
-            <video data-lazy data-src="assets/d6.mp4" muted loop playsinline preload="none"></video>
-            <video data-lazy data-src="assets/d4.mp4" muted loop playsinline preload="none"></video>
-            <video data-lazy data-src="assets/d1.mp4" muted loop playsinline preload="none"></video>
+            <video data-lazy poster="assets/plano1.jpg" data-src="assets/plano1.mp4" muted loop playsinline preload="none"></video>
+            <video data-lazy poster="assets/plano2.jpg" data-src="assets/plano2.mp4" muted loop playsinline preload="none"></video>
+            <video data-lazy poster="assets/plano3.jpg" data-src="assets/plano3.mp4" muted loop playsinline preload="none"></video>
           </div>
           <ul class="checks">
             <li><span class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Skill Fábrica de Motion:</b> tudo o que você viu acima.</span></li>
@@ -519,7 +519,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
   const vObs = 'IntersectionObserver' in window ? new IntersectionObserver(es => es.forEach(e => {
     const v = e.target;
     if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else if (v.src) v.pause();
-  }), {rootMargin: '200px'}) : null;
+  }), {rootMargin: '600px 0px'}) : null;
   document.querySelectorAll('video[data-lazy]').forEach(v => { v.muted = true; v.loop = true; if (vObs) vObs.observe(v); else { v.src = v.dataset.src; v.autoplay = true; } });
 </script>
 </body>
