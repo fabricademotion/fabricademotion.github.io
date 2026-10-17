@@ -77,6 +77,17 @@ p { margin: 0; }
 .economia { font-size: 14px; color: var(--muted); }
 .compra { display: grid; justify-items: center; gap: 10px; margin-top: 14px; width: min(100%, 360px); }
 .compra .cta { width: 100%; }
+.cta-meio { display: grid; justify-items: center; gap: 10px; margin: 36px auto 0; width: min(100%, 380px); }
+.cta-meio .cta { width: 100%; }
+.cta-meio.esq { justify-items: start; margin-left: 0; }
+.barra-compra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); background: rgba(8,7,13,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .25s ease; }
+.barra-compra.on { transform: none; }
+.bc-preco { display: grid; line-height: 1.1; }
+.bc-preco b { font-family: var(--display); font-weight: 800; font-size: 22px; color: var(--ink); }
+.bc-preco span { font-size: 12px; color: var(--muted); }
+.barra-compra .cta { min-height: 50px; padding: 0 22px; font-size: 14px; flex: 1; max-width: 260px; }
+@media (min-width: 761px) { .barra-compra { justify-content: center; gap: 28px; } }
+body { padding-bottom: 84px; }
 
 .extrato { padding-block: 0 clamp(56px, 8vw, 80px); }
 .telas-pix { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 1fr); gap: 14px; margin-top: 32px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; scrollbar-color: var(--accent) transparent; }
@@ -286,7 +297,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
       <span class="economia">O primeiro motion vendido já paga a skill</span>
     </div>
     <div class="compra">
-      <a class="cta" href="#planos">Quero a skill agora</a>
+      <a class="cta" href="#planos" data-link="checkout">Quero a skill agora</a>
       <span class="seguro"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Compra segura</span>
     </div>
   </div>
@@ -305,6 +316,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
       <img src="assets/pix2.jpg" alt="Mais notificações de transferências de R$ 57 e R$ 67" loading="lazy">
       <img src="assets/pix3.jpg" alt="Notificações de transferências de R$ 57, R$ 67 e R$ 114" loading="lazy">
     </div>
+    <div class="cta-meio"><a class="cta" href="#planos" data-link="checkout">Quero vender motions também</a><span class="seguro"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Pagamento único de R$ 37 · 7 dias de garantia</span></div>
   </div>
 </section>
 
@@ -331,6 +343,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
       <div class="passo"><div class="foto-p"><img src="assets/passo6-q.jpg" alt="" loading="lazy"><span class="np">Passo 6</span></div><h3>Vídeo pronto para entregar</h3><p>O vídeo aparece na conversa, conferido e salvo na pasta do cliente. É só baixar e mandar.</p></div>
     </div>
     <div class="setas"><button type="button" id="ant-p" aria-label="Passo anterior"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="prox-p" aria-label="Próximo passo"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+    <div class="cta-meio"><a class="cta" href="#planos" data-link="checkout">Quero a skill agora</a><span class="seguro"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Pagamento único de R$ 37 · 7 dias de garantia</span></div>
   </div>
 </section>
 
@@ -434,6 +447,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
       <p>Queremos garantir ao máximo a sua satisfação, por isso você tem 7 dias, a partir da data da compra, para decidir se a skill vale a pena para você ou não.</p>
       <p>Caso decida que não vale a pena, basta entrar em contato dentro desse prazo e devolvemos 100% do dinheiro.</p>
       <p>Sem letras miúdas ou perguntas chatas!</p>
+      <div class="cta-meio esq"><a class="cta" href="#planos" data-link="checkout">Quero testar sem risco</a><span class="seguro"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Se não gostar, devolvemos 100%</span></div>
     </div>
   </div>
 </section>
@@ -471,6 +485,11 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
 </section>
 
 <!-- 10. Rodapé -->
+<div class="barra-compra" id="barra-compra" aria-hidden="true">
+  <div class="bc-preco"><b>R$ 37</b><span>pagamento único</span></div>
+  <a class="cta" href="#planos" data-link="checkout" tabindex="-1">Quero a skill</a>
+</div>
+
 <footer>
   <div class="wrap">
     <span>© 2026 Fábrica de Motion · CNPJ 61.451.359/0001-70</span>
@@ -521,6 +540,18 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
     if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else if (v.src) v.pause();
   }), {rootMargin: '600px 0px'}) : null;
   document.querySelectorAll('video[data-lazy]').forEach(v => { v.muted = true; v.loop = true; if (vObs) vObs.observe(v); else { v.src = v.dataset.src; v.autoplay = true; } });
+</script>
+<script>
+(() => {
+  const barra = document.getElementById('barra-compra');
+  const topo = document.querySelector('.topo .compra');
+  const plano = document.querySelector('#planos .cta');
+  if (!barra || !topo || !('IntersectionObserver' in window)) return;
+  let passouTopo = false, planoVisivel = false;
+  const atualiza = () => { const on = passouTopo && !planoVisivel; barra.classList.toggle('on', on); barra.setAttribute('aria-hidden', on ? 'false' : 'true'); barra.querySelector('a').tabIndex = on ? 0 : -1; };
+  new IntersectionObserver(([e]) => { passouTopo = !e.isIntersecting && e.boundingClientRect.top < 0; atualiza(); }).observe(topo);
+  if (plano) new IntersectionObserver(([e]) => { planoVisivel = e.isIntersecting; atualiza(); }).observe(plano);
+})();
 </script>
 </body>
 </html>
