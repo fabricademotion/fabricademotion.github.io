@@ -511,7 +511,8 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
   if (CONFIG.pixel) {
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', CONFIG.pixel); fbq('track', 'PageView');
-    document.querySelectorAll('[data-link="checkout"]').forEach(a => a.addEventListener('click', () => fbq('track', 'InitiateCheckout', {value: 37, currency: 'BRL'})));
+    // o InitiateCheckout fica só com a Kiwify (dispara quando o checkout abre); aqui o clique no botão vira um evento próprio, para não contar a mesma pessoa duas vezes
+    document.querySelectorAll('[data-link="checkout"]').forEach(a => a.addEventListener('click', () => fbq('trackCustom', 'CliqueComprar', {value: 37, currency: 'BRL'})));
   }
 
   // faixas: a logo repetida, duas vezes seguidas para o loop não ter emenda
