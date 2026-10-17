@@ -474,7 +474,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
   const CONFIG = {
     checkout: "https://pay.kiwify.com.br/5FbH3XS",   // link do checkout da Kiwify / Hotmart / Cakto (ex.: "https://pay.kiwify.com.br/XXXX")
     whatsapp: "5511968155528",   // número do suporte só com dígitos, com DDI e DDD (ex.: "5511999999999")
-    pixel: "",      // ID do pixel do Meta (ex.: "123456789012345")
+    pixel: "1106806325550548",      // ID do pixel do Meta (ex.: "123456789012345")
   };
   document.querySelectorAll('[data-link="checkout"]').forEach(a => { if (CONFIG.checkout) a.href = CONFIG.checkout; });
   document.querySelectorAll('[data-link="whatsapp"]').forEach(a => { if (CONFIG.whatsapp) a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Oi! Tenho uma dúvida sobre a skill da Fábrica de Motion."); });
