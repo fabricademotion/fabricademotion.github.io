@@ -1,0 +1,507 @@
+<title>Skill Fábrica de Motion</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: cópia da estrutura da página do Box do Editor, bloco por bloco e na mesma ordem (topo com vídeo, faixas cruzadas,
+   grade 3x3, prova, bônus em linhas e cards, dois planos, garantia, quem é, suporte + perguntas, rodapé).
+   Identidade do vídeo novo da skill: fundo quase preto, texto branco, destaque roxo, brilho roxo no pé. Tema escuro único. */
+:root {
+  color-scheme: dark;
+  --bg: #08070D;
+  --band: #0E0C16;
+  --surface: #14121E;
+  --surface-2: #1B1830;
+  --line: rgba(242, 240, 250, 0.09);
+  --ink: #F2F0FA;
+  --muted: #9C97B5;
+  --accent: #7C66FF;
+  --accent-deep: #4B32D6;
+  --accent-soft: rgba(124, 102, 255, 0.15);
+  --glow: rgba(110, 80, 255, 0.35);
+  --ok: #25D366;
+  --compra: #1FB85A;
+  --compra-brilho: rgba(31, 184, 90, 0.45);
+  --risco: #FF4D57;
+  --display: "Montserrat", "Arial", system-ui, sans-serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img, video { max-width: 100%; display: block; }
+a { color: inherit; }
+.wrap { width: 100%; max-width: 860px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+section { position: relative; padding-block: clamp(56px, 9vw, 96px); }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; letter-spacing: -0.025em; line-height: 1.12; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(28px, 4.6vw, 40px); }
+h2 { font-size: clamp(28px, 4.6vw, 42px); }
+p { margin: 0; }
+.hl { color: var(--accent); }
+.centro { text-align: center; display: grid; justify-items: center; gap: 16px; }
+.sub { color: var(--muted); font-size: clamp(16px, 1.9vw, 18px); max-width: 56ch; }
+.selo-topo { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); background: var(--surface); border: 1px solid var(--line); padding: 7px 14px; border-radius: 8px; }
+.selo-topo i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+
+.cta { display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 30px; border-radius: 10px; background: var(--compra); color: #fff; text-decoration: none; font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .04em; text-transform: uppercase; box-shadow: 0 0 0 1px rgba(255,255,255,.18) inset, 0 16px 44px -14px var(--compra-brilho); transition: transform .15s ease, filter .15s ease; }
+.cta:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.cta:focus-visible, summary:focus-visible, .play:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.seguro { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.seguro svg { width: 14px; height: 14px; stroke: var(--muted); fill: none; stroke-width: 2; }
+
+/* 1. topo: logo, título, vídeo, preço, botão */
+.topo { padding-block: clamp(36px, 6vw, 60px) clamp(56px, 8vw, 80px); overflow: hidden; }
+.topo::after { content: ""; position: absolute; left: 50%; bottom: -220px; width: min(900px, 150vw); height: 380px; transform: translateX(-50%); background: radial-gradient(closest-side, var(--glow), transparent); pointer-events: none; }
+.topo .wrap { position: relative; z-index: 1; }
+.topo .logo { width: 170px; }
+.player { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; background: #000; border: 1px solid var(--line); box-shadow: 0 40px 90px -30px var(--glow); margin-top: 12px; }
+.player video { width: 100%; height: 100%; object-fit: cover; }
+.play { position: absolute; inset: 0; border: 0; cursor: pointer; background: linear-gradient(180deg, rgba(8,7,13,0) 40%, rgba(8,7,13,.75)); display: grid; place-items: center; color: var(--ink); font: 600 15px var(--body); }
+.play span { display: grid; justify-items: center; gap: 12px; }
+.play b { width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,.14); backdrop-filter: blur(6px); display: grid; place-items: center; }
+.play svg { width: 26px; height: 26px; fill: #fff; margin-left: 4px; }
+.player.tocando .play { display: none; }
+.precos { display: grid; justify-items: center; gap: 6px; margin-top: 18px; }
+.de { color: var(--muted); font-size: 15px; }
+.de s { color: var(--risco); text-decoration-thickness: 2px; }
+.valor { font-family: var(--display); font-weight: 800; font-size: clamp(54px, 9vw, 76px); letter-spacing: -0.04em; line-height: 1; color: var(--ink); }
+.economia { font-size: 14px; color: var(--muted); }
+.compra { display: grid; justify-items: center; gap: 10px; margin-top: 14px; width: min(100%, 360px); }
+.compra .cta { width: 100%; }
+
+.extrato { padding-block: 0 clamp(56px, 8vw, 80px); }
+.telas-pix { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 1fr); gap: 14px; margin-top: 32px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; scrollbar-color: var(--accent) transparent; }
+.telas-pix img { width: 100%; height: 420px; object-fit: cover; object-position: top; border-radius: 18px; border: 1px solid var(--line); scroll-snap-align: start; box-shadow: 0 30px 70px -40px var(--glow); }
+/* 2. faixas cruzadas com a logo */
+.faixas { position: relative; height: 150px; overflow: hidden; }
+.fita { position: absolute; left: -10%; width: 120%; height: 44px; background: var(--accent); display: flex; align-items: center; overflow: hidden; box-shadow: 0 10px 30px -10px var(--glow); }
+.fita.um { top: 30px; transform: rotate(-4deg); }
+.fita.dois { top: 72px; transform: rotate(3deg); background: var(--accent-deep); }
+.fita .trilho { display: flex; gap: 38px; align-items: center; flex: none; animation: corre 26s linear infinite; padding-right: 38px; }
+.fita.dois .trilho { animation-direction: reverse; }
+.fita img { height: 18px; width: auto; flex: none; opacity: .95; filter: brightness(0) invert(1); }
+@keyframes corre { to { transform: translateX(-50%); } }
+
+/* 3. um pouco de tudo */
+.grade { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(260px, 300px); gap: 12px; margin-top: 36px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-block: 6px 12px; scrollbar-color: var(--accent) transparent; }
+.grade .card { scroll-snap-align: start; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 10px 10px 22px; display: grid; gap: 8px; align-content: start; transition: border-color .2s ease, transform .2s ease; }
+.card:hover { border-color: rgba(124,102,255,.45); transform: translateY(-3px); }
+.card h3 { font-size: 18px; padding: 10px 12px 0; }
+.card p { color: var(--muted); font-size: 14.5px; padding: 0 12px; }
+.vis { position: relative; height: 168px; border-radius: 12px; overflow: hidden; background: radial-gradient(120% 90% at 50% 120%, rgba(110,80,255,.28), transparent 60%), var(--band); border: 1px solid var(--line); display: grid; place-items: center; }
+.vis .n { position: absolute; top: 10px; left: 10px; font-family: var(--display); font-weight: 700; font-size: 11px; letter-spacing: .08em; color: var(--muted); background: rgba(8,7,13,.6); border: 1px solid var(--line); padding: 3px 8px; border-radius: 999px; }
+.marca-v { display: flex; align-items: center; gap: 18px; }
+.marca-v .aa { font-family: Georgia, "Times New Roman", serif; font-size: 58px; line-height: 1; color: var(--ink); }
+.marca-v .cores { display: grid; gap: 8px; }
+.marca-v .cores span { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.marca-v .cores i { width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(255,255,255,.15); }
+.marca-v .tag { position: absolute; bottom: 12px; right: 12px; font-size: 11px; color: var(--ink); background: var(--accent-soft); border: 1px solid rgba(124,102,255,.4); padding: 4px 9px; border-radius: 999px; }
+.roteiro-v { width: calc(100% - 28px); display: grid; gap: 6px; font-size: 11.5px; }
+.roteiro-v div { display: grid; grid-template-columns: 38px 70px minmax(0, 1fr); gap: 8px; padding: 7px 10px; border-radius: 8px; background: rgba(255,255,255,.04); color: var(--muted); }
+.roteiro-v div b { color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
+.roteiro-v div em { font-style: normal; color: var(--ink); }
+.roteiro-v div.on { background: var(--accent-soft); outline: 1px solid rgba(124,102,255,.4); }
+.voz-v { display: grid; justify-items: center; gap: 14px; width: 100%; }
+.onda { display: flex; align-items: center; gap: 3px; height: 54px; }
+.onda i { width: 4px; border-radius: 2px; background: var(--accent); animation: onda 1.1s ease-in-out infinite alternate; }
+@keyframes onda { from { transform: scaleY(.35); } to { transform: scaleY(1); } }
+.voz-v code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11.5px; color: var(--muted); background: rgba(255,255,255,.04); padding: 6px 10px; border-radius: 8px; }
+.voz-v code b { color: var(--accent); font-weight: 500; }
+.video-v video { width: 78px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 10px; border: 3px solid #0B0A12; box-shadow: 0 20px 40px -14px rgba(0,0,0,.8), 0 0 0 1px var(--line); transform: rotate(-4deg); }
+.video-v .linha-t { position: absolute; left: 14px; right: 14px; bottom: 12px; height: 4px; border-radius: 2px; background: rgba(255,255,255,.08); overflow: hidden; }
+.video-v .linha-t i { display: block; height: 100%; width: 40%; background: var(--accent); animation: corre-t 3s linear infinite; }
+@keyframes corre-t { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+.trilha-v { width: calc(100% - 28px); display: grid; gap: 8px; font-size: 10.5px; color: var(--muted); }
+.trilha-v .pista { display: grid; grid-template-columns: 46px minmax(0, 1fr); align-items: center; gap: 8px; }
+.trilha-v .pista div { position: relative; height: 18px; border-radius: 5px; background: rgba(255,255,255,.04); }
+.trilha-v .pista div i { position: absolute; top: 2px; bottom: 2px; border-radius: 4px; background: var(--accent); opacity: .85; }
+.trilha-v .pista div i.l { background: linear-gradient(90deg, var(--accent-deep), var(--accent)); }
+.painel-v { width: calc(100% - 24px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; font-size: 10px; color: var(--muted); }
+.painel-v .col { display: grid; gap: 5px; align-content: start; }
+.painel-v .col > span { font-weight: 600; letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.painel-v .c { padding: 7px; border-radius: 6px; background: rgba(255,255,255,.05); color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.painel-v .c.voce { background: var(--accent-soft); outline: 1px solid rgba(124,102,255,.5); }
+.painel-v .c.ok::before { content: "✓ "; color: var(--ok); }
+
+.passos { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 340px); gap: 14px; margin-top: 36px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-block: 6px 12px; scrollbar-color: var(--accent) transparent; }
+.passo { scroll-snap-align: start; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 10px 10px 22px; display: grid; gap: 8px; align-content: start; }
+.passo .foto-p { position: relative; aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: var(--band); }
+.passo .foto-p img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.passo .np { position: absolute; top: 10px; left: 10px; font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: .06em; color: #fff; background: var(--accent); padding: 5px 11px; border-radius: 999px; box-shadow: 0 6px 18px -6px var(--glow); }
+.passo h3 { font-size: 18px; padding: 10px 12px 0; }
+.passo p { color: var(--muted); font-size: 14.5px; padding: 0 12px; }
+.passo p b { color: var(--ink); font-weight: 600; }
+/* 4. ainda está com dúvidas: vídeos entregues */
+.prova { background: var(--band); border-block: 1px solid var(--line); }
+.carrossel { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(180px, 220px); gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; margin-top: 36px; scrollbar-color: var(--accent) transparent; }
+.carrossel figure { margin: 0; scroll-snap-align: start; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 10px; display: grid; gap: 10px; }
+.carrossel video { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 10px; background: #000; }
+.carrossel figcaption { display: grid; gap: 2px; padding: 0 4px 4px; }
+.carrossel figcaption b { font-size: 14px; }
+.carrossel figcaption span { font-size: 13px; color: var(--muted); }
+
+.prints-wrap { position: relative; margin-top: 32px; }
+.prints { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 280px); gap: 14px; align-items: start; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-bottom: 12px; scrollbar-color: var(--accent) transparent; }
+.prints figure { scroll-snap-align: start; margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 8px; display: grid; gap: 8px; }
+.prints img { width: 100%; max-height: 420px; object-fit: cover; object-position: top; border-radius: 10px; }
+.prints figcaption { font-size: 13px; color: var(--muted); padding: 0 6px 4px; }
+.prints figcaption b { color: var(--ink); font-weight: 600; }
+.setas { display: flex; justify-content: center; gap: 10px; margin-top: 14px; }
+.setas button { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; display: grid; place-items: center; }
+.setas button:hover { border-color: var(--accent); }
+.setas button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.setas svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+/* 5. bônus */
+.bonus-linha { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; margin-top: 16px; }
+.bonus-linha .txt { padding: clamp(22px, 4vw, 32px); display: grid; gap: 10px; align-content: center; justify-items: start; min-width: 0; }
+.bonus-linha .midia { min-height: 220px; background: var(--band); }
+.bonus-linha .midia img, .bonus-linha .midia video { width: 100%; height: 100%; object-fit: cover; }
+.marca { width: 26px; height: 26px; border-radius: 7px; background: var(--accent); display: grid; place-items: center; }
+.marca svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.bonus-linha h3, .bonus-card h3 { font-size: 22px; font-weight: 600; }
+.valor-b { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; }
+.valor-b s { color: var(--muted); }
+.valor-b b { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 4px 10px; border-radius: 999px; }
+.disp { font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); padding: 6px 10px; border-radius: 6px; }
+.bonus-linha p, .bonus-card p { color: var(--muted); font-size: 14.5px; }
+.bonus-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+.bonus-card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 10px 10px 24px; display: grid; gap: 10px; align-content: start; justify-items: start; }
+.bonus-card > :not(.vis) { margin-inline: 14px; }
+.bonus-card .vis { width: 100%; height: 200px; margin-bottom: 6px; }
+.bonus-card .vis video { height: 170px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 12px; border: 3px solid #0B0A12; box-shadow: 0 20px 40px -14px rgba(0,0,0,.8); }
+.precos-v { width: calc(100% - 40px); display: grid; gap: 8px; }
+.precos-v div { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 10px; background: rgba(255,255,255,.04); font-size: 14px; color: var(--muted); }
+.precos-v div b { font-family: var(--display); color: var(--ink); font-variant-numeric: tabular-nums; }
+.precos-v div.top { background: var(--accent-soft); outline: 1px solid rgba(124,102,255,.45); color: var(--ink); }
+
+/* 6. planos */
+.controles { display: inline-flex; gap: 4px; padding: 5px 10px; border-radius: 6px; background: var(--surface); border: 1px solid var(--line); }
+.controles svg { width: 12px; height: 12px; fill: var(--muted); }
+.planos { display: grid; grid-template-columns: minmax(0, 1fr); max-width: 460px; margin: 36px auto 0; }
+.plano { border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+.plano .aba { background: var(--surface-2); text-align: center; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 10px; color: var(--muted); }
+.plano.top { border-color: var(--accent); background: linear-gradient(180deg, var(--accent-deep) 0%, #2A1C8A 55%, var(--surface) 100%); }
+.plano.top .aba { background: var(--ink); color: var(--accent-deep); }
+.plano .corpo { padding: 26px 24px 28px; display: grid; gap: 18px; justify-items: center; text-align: center; }
+.plano .nome { font-family: var(--display); font-weight: 500; font-size: clamp(26px, 3.6vw, 32px); letter-spacing: .01em; text-transform: uppercase; }
+.plano hr { width: 60%; border: 0; border-top: 1px solid rgba(255,255,255,.2); margin: 0; }
+.plano .por { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: rgba(242,240,250,.8); }
+.plano .por s { color: var(--risco); text-decoration-thickness: 2px; }
+.plano .num { font-family: var(--display); font-weight: 500; font-size: 30px; line-height: 1; }
+.plano .num b { font-weight: 800; font-size: 60px; letter-spacing: -0.03em; }
+.mockup { position: relative; width: 100%; height: 210px; }
+.mockup video { position: absolute; top: 10px; width: 108px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 12px; border: 3px solid #0B0A12; box-shadow: 0 20px 40px -14px rgba(0,0,0,.7); }
+.mockup video:nth-child(1) { left: calc(50% - 150px); transform: rotate(-9deg); }
+.mockup video:nth-child(2) { left: calc(50% - 54px); top: 0; z-index: 2; }
+.mockup video:nth-child(3) { left: calc(50% + 42px); transform: rotate(9deg); }
+.checks { list-style: none; margin: 0; padding: 0; display: grid; width: 100%; text-align: left; }
+.checks li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 10px; padding-block: 11px; border-bottom: 1px solid rgba(255,255,255,.12); font-size: 14px; color: rgba(242,240,250,.85); }
+.checks li:last-child { border-bottom: 0; }
+.checks b { color: var(--ink); }
+.checks .ok { width: 16px; height: 16px; margin-top: 2px; border-radius: 4px; background: var(--ok); display: grid; place-items: center; }
+.checks .ok svg { width: 11px; height: 11px; stroke: #062; fill: none; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+.checks .x { background: #E5484D; }
+.checks .x svg { stroke: #fff; }
+.mais-bonus { font-family: var(--display); font-weight: 700; font-size: 20px; }
+.plano.top .cta { width: 100%; }
+.plano .cta { width: 100%; }
+
+/* 7. garantia */
+.garantia { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 48px); align-items: center; }
+.selo { justify-self: center; width: min(100%, 300px); aspect-ratio: 1; border-radius: 50%; display: grid; place-content: center; text-align: center; background: radial-gradient(circle, var(--surface-2) 0%, var(--band) 70%); border: 1px solid var(--line); box-shadow: inset 0 0 0 14px var(--bg), inset 0 0 0 15px var(--accent); }
+.selo b { font-family: var(--display); font-weight: 800; font-size: 96px; line-height: .9; letter-spacing: -0.04em; }
+.selo span { font-size: 13px; font-weight: 700; letter-spacing: .2em; color: var(--accent); }
+.garantia .txt { display: grid; gap: 14px; }
+.garantia .txt p { color: var(--muted); }
+
+/* 8. quem é */
+.quem { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 5vw, 48px); align-items: center; }
+.quem .foto { justify-self: center; width: min(100%, 340px); aspect-ratio: 3 / 4; border-radius: 22px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 40px 90px -40px var(--glow); }
+.quem .foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
+.quem .nome { display: grid; gap: 2px; padding-top: 4px; border-top: 1px solid var(--line); }
+.quem .nome b { font-family: var(--display); font-weight: 700; font-size: 17px; padding-top: 12px; }
+.quem .nome span { font-size: 14px; color: var(--muted); }
+.quem .txt { display: grid; gap: 14px; min-width: 0; }
+.quem .txt p { color: var(--muted); }
+.assina { display: flex; align-items: center; gap: 14px; margin-top: 6px; }
+.assina img { width: 120px; }
+.assina i { flex: 1; height: 1px; background: var(--line); }
+
+/* 9. suporte + perguntas */
+.ajuda { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 24px; align-items: start; }
+.suporte { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 28px 24px; display: grid; gap: 16px; justify-items: center; text-align: center; }
+.suporte img { width: 160px; }
+.suporte p { color: var(--muted); font-size: 14.5px; }
+.zap { display: inline-flex; align-items: center; gap: 10px; min-height: 50px; padding: 0 22px; border-radius: 10px; background: var(--ok); color: #04210f; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; }
+.zap svg { width: 18px; height: 18px; fill: #04210f; }
+.faq { display: grid; gap: 8px; }
+.faq h2 { font-size: 26px; margin-bottom: 12px; }
+.faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 0 16px; }
+.faq summary { cursor: pointer; list-style: none; padding-block: 15px; font-size: 14.5px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; width: 20px; height: 20px; border-radius: 4px; background: var(--accent); color: #fff; display: grid; place-items: center; font-weight: 700; line-height: 1; }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { color: var(--muted); padding-bottom: 16px; font-size: 14.5px; }
+
+footer { border-top: 1px solid var(--line); padding-block: 28px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; font-size: 13px; color: var(--muted); }
+
+@media (max-width: 760px) {
+  .bonus-cards { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .planos, .garantia, .quem, .ajuda, .bonus-linha { grid-template-columns: minmax(0, 1fr); }
+  .bonus-linha .midia { min-height: 200px; }
+}
+@media (max-width: 480px) { .bonus-cards { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .onda i, .video-v .linha-t i { animation: none; } .fita .trilho { animation: none; } .cta { transition: none; } .cta:hover { transform: none; } }
+</style>
+
+<!-- Antes de publicar, preencha só o CONFIG no fim deste arquivo: link do checkout, WhatsApp do suporte e ID do pixel do Meta. -->
+
+<!-- 1. Topo -->
+<section class="topo">
+  <div class="wrap centro">
+    <img class="logo" src="assets/logo-branco.png" alt="Fábrica de Motion">
+    <h1>A skill que me fez <span class="hl">faturar R$ 6 mil em uma semana</span> entregando motions de R$ 57</h1>
+    <p class="sub">Agora você leva o mesmo processo, do roteiro à entrega, direto no seu Claude.</p>
+    <div class="player" id="player">
+      <video id="demo" src="assets/vsl.mp4" poster="assets/vsl-capa.jpg" playsinline preload="metadata"></video>
+      <button class="play" id="play" type="button"><span><b><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></b>Assista um breve resumo da skill</span></button>
+    </div>
+    <div class="precos">
+      <span class="de">Um motion de cliente sai por <b style="color: var(--ink)">R$ 57</b>. A skill, por apenas:</span>
+      <span class="valor">R$37,00</span>
+      <span class="economia">O primeiro motion vendido já paga a skill</span>
+    </div>
+    <div class="compra">
+      <a class="cta" href="#planos">Quero o desconto agora</a>
+      <span class="seguro"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Compra segura</span>
+    </div>
+  </div>
+</section>
+
+<!-- 1b. Prova da promessa: notificações reais da conta PJ -->
+<section class="extrato">
+  <div class="wrap">
+    <div class="centro">
+      <span class="selo-topo"><i></i>Prova real</span>
+      <h2 style="font-size: clamp(24px, 3.6vw, 34px)">Motions de R$ 57 <span class="hl">caindo na conta</span>, um atrás do outro</h2>
+      <p class="sub">Notificações da conta PJ da Fábrica de Motion. Os nomes dos clientes estão borrados para proteger quem comprou.</p>
+    </div>
+    <div class="telas-pix">
+      <img src="assets/pix1.jpg" alt="Notificações do Nubank: transferências de R$ 57 e R$ 67 recebidas" loading="lazy">
+      <img src="assets/pix2.jpg" alt="Mais notificações de transferências de R$ 57 e R$ 67" loading="lazy">
+      <img src="assets/pix3.jpg" alt="Notificações de transferências de R$ 57, R$ 67 e R$ 114" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- 2. Faixas cruzadas -->
+<div class="faixas" aria-hidden="true">
+  <div class="fita um"><div class="trilho" id="trilho1"></div></div>
+  <div class="fita dois"><div class="trilho" id="trilho2"></div></div>
+</div>
+
+<!-- 3. Passo a passo: do primeiro acesso ao vídeo pronto -->
+<section>
+  <div class="wrap">
+    <div class="centro">
+      <span class="selo-topo"><i></i>Oferta de lançamento</span>
+      <h2>Do primeiro acesso ao <span class="hl">vídeo pronto</span></h2>
+      <p class="sub">O que você faz dentro do painel, passo a passo, até ter o primeiro vídeo finalizado.</p>
+    </div>
+    <div class="passos" id="passos">
+      <div class="passo"><div class="foto-p"><img src="assets/passo1-q.jpg" alt="" loading="lazy"><span class="np">Passo 1</span></div><h3>Abra o painel</h3><p>Depois de instalar com o vídeo de instalação, você abre o painel da Fábrica de Motion na tela de clientes.</p></div>
+      <div class="passo"><div class="foto-p"><img src="assets/passo2-q.jpg" alt="" loading="lazy"><span class="np">Passo 2</span></div><h3>Cadastre o cliente</h3><p>Clique em <b>+ Novo cliente</b>, coloque o nome e o que ele faz. Cada cliente ganha a sua ficha.</p></div>
+      <div class="passo"><div class="foto-p"><img src="assets/passo3-q.jpg" alt="" loading="lazy"><span class="np">Passo 3</span></div><h3>Escolha um modelo</h3><p>Em <b>Modelos</b>, escolha um estilo pronto. O Claude segue o ritmo do modelo com a identidade do seu cliente.</p></div>
+      <div class="passo"><div class="foto-p"><img src="assets/passo4-q.jpg" alt="" loading="lazy"><span class="np">Passo 4</span></div><h3>Mande o material e peça o vídeo</h3><p>Anexe o logo e as fotos e escreva o pedido, do jeito que o cliente te passou.</p></div>
+      <div class="passo"><div class="foto-p"><img src="assets/passo5-q.jpg" alt="" loading="lazy"><span class="np">Passo 5</span></div><h3>Aprove o roteiro e a voz</h3><p>O Claude devolve o roteiro e a narração. Com a chave do ElevenLabs a voz já sai gravada; sem ela, você manda o mp3.</p></div>
+      <div class="passo"><div class="foto-p"><img src="assets/passo6-q.jpg" alt="" loading="lazy"><span class="np">Passo 6</span></div><h3>Vídeo pronto para entregar</h3><p>O vídeo aparece na conversa, conferido e salvo na pasta do cliente. É só baixar e mandar.</p></div>
+    </div>
+    <div class="setas"><button type="button" id="ant-p" aria-label="Passo anterior"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="prox-p" aria-label="Próximo passo"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+  </div>
+</section>
+
+<!-- 4. Ainda está com dúvidas? (vídeos entregues no lugar dos depoimentos) -->
+<section class="prova">
+  <div class="wrap">
+    <div class="centro">
+      <span class="selo-topo"><i></i>Vídeos entregues para clientes reais</span>
+      <h2>Ainda está com dúvidas?<br><span class="hl">Veja o que já foi entregue...</span></h2>
+    </div>
+    <div class="carrossel">
+      <figure><video src="assets/e1.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption><b>Growth Publicidade</b><span>Agência de publicidade</span></figcaption></figure>
+      <figure><video src="assets/d2.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption><b>OmniPrime</b><span>CRM com IA</span></figcaption></figure>
+      <figure><video src="assets/e2.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption><b>Ensaio de Aniversário</b><span>Ensaio fotográfico</span></figcaption></figure>
+      <figure><video src="assets/d5.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption><b>PSD de Elite</b><span>Produto digital</span></figcaption></figure>
+      <figure><video src="assets/d7.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption><b>Sérgio Galpão</b><span>Imobiliária</span></figcaption></figure>
+      <figure><video src="assets/e5.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption><b>Click Mágico</b><span>Eventos</span></figcaption></figure>
+      <figure><video src="assets/e3.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption><b>PSD de Elite</b><span>Design</span></figcaption></figure>
+      <figure><video src="assets/d3.mp4" autoplay muted loop playsinline preload="metadata"></video><figcaption><b>Woman Experience</b><span>Evento feminino</span></figcaption></figure>
+    </div>
+    <div class="centro" style="margin-top: 80px">
+      <h2 style="font-size: clamp(24px, 3.4vw, 32px)">E o que os clientes disseram <span class="hl">quando receberam</span></h2>
+      <p class="sub">Prints reais das conversas no WhatsApp, de clientes que compraram motions da Fábrica.</p>
+    </div>
+    <div class="prints-wrap">
+    <div class="prints" id="prints">
+      <figure><img src="assets/p01.jpg" alt="Conversa no WhatsApp com o cliente PSD de Elite" loading="lazy"><figcaption><b>PSD de Elite</b> · anúncio de produto digital</figcaption></figure>
+      <figure><img src="assets/p02.jpg" alt="Conversa no WhatsApp com o cliente Giro Money" loading="lazy"><figcaption><b>Giro Money</b> · vídeo de consórcio</figcaption></figure>
+      <figure><img src="assets/p03.jpg" alt="Conversa no WhatsApp com o cliente House Cleaning" loading="lazy"><figcaption><b>House Cleaning</b> · reação aos exemplos</figcaption></figure>
+      <figure><img src="assets/p04.jpg" alt="Conversa no WhatsApp com o cliente Othon" loading="lazy"><figcaption><b>Othon</b> · duas versões do anúncio</figcaption></figure>
+      <figure><img src="assets/p05.jpg" alt="Conversa no WhatsApp com o cliente Hippos" loading="lazy"><figcaption><b>Hippos</b> · vídeo para tráfego pago</figcaption></figure>
+      <figure><img src="assets/p06.jpg" alt="Conversa no WhatsApp com o cliente Tauros Produções" loading="lazy"><figcaption><b>Tauros Produções</b> · anúncio da produtora</figcaption></figure>
+      <figure><img src="assets/p07.jpg" alt="Conversa no WhatsApp com o cliente House Cleaning" loading="lazy"><figcaption><b>House Cleaning</b> · vídeo entregue</figcaption></figure>
+      <figure><img src="assets/p08.jpg" alt="Conversa no WhatsApp com o cliente House Cleaning" loading="lazy"><figcaption><b>House Cleaning</b> · vídeo entregue</figcaption></figure>
+      <figure><img src="assets/p09.jpg" alt="Conversa no WhatsApp com o cliente Corte Jesus" loading="lazy"><figcaption><b>Corte Jesus</b> · corte final</figcaption></figure>
+      <figure><img src="assets/p10.jpg" alt="Conversa no WhatsApp com o cliente Cesar Imports" loading="lazy"><figcaption><b>Cesar Imports</b> · anúncio da loja</figcaption></figure>
+      <figure><img src="assets/p11.jpg" alt="Conversa no WhatsApp com o cliente Evolua" loading="lazy"><figcaption><b>Evolua</b> · criativos para anúncio</figcaption></figure>
+    </div>
+    <div class="setas"><button type="button" id="ant" aria-label="Prints anteriores"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="prox" aria-label="Próximos prints"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Um pouco de tudo que você terá acesso (no lugar dos bônus) -->
+<section>
+  <div class="wrap">
+    <div class="centro">
+      <h2>Um pouco de <span class="hl">tudo que você terá acesso</span></h2>
+      <p class="sub">Do material do cliente ao vídeo entregue, a skill conduz cada etapa nessa ordem.</p>
+    </div>
+    <div class="grade" id="grade">
+      <div class="card"><div class="vis marca-v"><span class="n">01</span><span class="aa">Aa</span><div class="cores"><span><i style="background:#D8473A"></i>#D8473A</span><span><i style="background:#F6C453"></i>#F6C453</span><span><i style="background:#F4EDE2"></i>#F4EDE2</span></div><span class="tag">@pizzariabella</span></div><h3>A skill estuda a marca</h3><p>Pega as cores, as letras e o jeito de falar do cliente para o vídeo ter a cara dele.</p></div>
+      <div class="card"><div class="vis"><span class="n">02</span><div class="roteiro-v" style="margin-top:18px"><div><b>0:00</b><em>Abertura</em><span>pizza sai do forno</span></div><div class="on"><b>0:04</b><em>Oferta</em><span>R$ 49 grande na tela</span></div><div><b>0:12</b><em>Fecho</em><span>logo e endereço</span></div></div></div><h3>Roteiro pronto</h3><p>Cada cena com o tempo, a fala e o que aparece na tela. Você aprova antes de seguir.</p></div>
+      <div class="card"><div class="vis voz-v"><span class="n">03</span><div class="onda"><i style="height:18px;animation-delay:-0.00s"></i><i style="height:30px;animation-delay:-0.13s"></i><i style="height:44px;animation-delay:-0.26s"></i><i style="height:26px;animation-delay:-0.39s"></i><i style="height:52px;animation-delay:-0.52s"></i><i style="height:38px;animation-delay:-0.65s"></i><i style="height:22px;animation-delay:-0.78s"></i><i style="height:48px;animation-delay:-0.91s"></i><i style="height:34px;animation-delay:-1.04s"></i><i style="height:54px;animation-delay:-1.17s"></i><i style="height:28px;animation-delay:-1.30s"></i><i style="height:40px;animation-delay:-1.43s"></i><i style="height:20px;animation-delay:-1.56s"></i><i style="height:46px;animation-delay:-1.69s"></i><i style="height:32px;animation-delay:-1.82s"></i><i style="height:50px;animation-delay:-1.95s"></i><i style="height:24px;animation-delay:-2.08s"></i><i style="height:36px;animation-delay:-2.21s"></i><i style="height:16px;animation-delay:-2.34s"></i><i style="height:42px;animation-delay:-2.47s"></i><i style="height:30px;animation-delay:-2.60s"></i><i style="height:22px;animation-delay:-2.73s"></i></div><code><b>[excited]</b> Terça é dia de pizza</code></div><h3>Narração</h3><p>Texto pronto para o ElevenLabs. Com a sua chave, a voz já sai gravada.</p></div>
+      <div class="card"><div class="vis video-v"><span class="n">04</span><video src="assets/e7.mp4" autoplay muted loop playsinline preload="metadata"></video><span class="linha-t"><i></i></span></div><h3>Vídeo montado</h3><p>A animação é feita no Remotion, no ritmo da voz, palavra por palavra.</p></div>
+      <div class="card"><div class="vis"><span class="n">05</span><div class="trilha-v" style="margin-top:16px"><div class="pista">trilha<div><i class="l" style="left:2%;right:3%"></i></div></div><div class="pista">whoosh<div><i style="left:8%;width:9%"></i><i style="left:46%;width:9%"></i><i style="left:78%;width:9%"></i></div></div><div class="pista">pop<div><i style="left:22%;width:5%"></i><i style="left:58%;width:5%"></i><i style="left:66%;width:5%"></i></div></div><div class="pista">voz<div><i style="left:6%;width:28%;opacity:.45"></i><i style="left:40%;width:44%;opacity:.45"></i></div></div></div></div><h3>Trilha e efeitos</h3><p>Música e sons sem direitos autorais, um diferente para cada cena.</p></div>
+      <div class="card"><div class="vis"><span class="n">06</span><div class="painel-v" style="margin-top:18px"><div class="col"><span>Em produção</span><div class="c">Studio Pilates</div><div class="c">Ótica Visão</div></div><div class="col"><span>Esperando você</span><div class="c voce">Pizzaria Bella</div></div><div class="col"><span>Entregue</span><div class="c ok">Hamburgueria</div><div class="c ok">Imobiliária</div></div></div></div><h3>Painel de clientes</h3><p>Você vê quem está em produção e quem está esperando a sua resposta.</p></div>
+    </div>
+    <div class="setas"><button type="button" id="ant-g" aria-label="Etapas anteriores"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="prox-g" aria-label="Próximas etapas"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+  </div>
+</section>
+
+<!-- 6. Escolha com sabedoria a melhor oferta -->
+<section id="planos">
+  <div class="wrap">
+    <div class="centro">
+      <span class="controles" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5L9 12l11 7z"/></svg><svg viewBox="0 0 24 24"><path d="M12 5L1 12l11 7zM23 5l-11 7 11 7z"/></svg><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg><svg viewBox="0 0 24 24"><path d="M12 5l11 7-11 7zM1 5l11 7-11 7z"/></svg><svg viewBox="0 0 24 24"><path d="M4 5l11 7-11 7zM16 5h2v14h-2z"/></svg></span>
+      <h2>Garanta agora a <span class="hl">sua skill!</span></h2>
+    </div>
+    <div class="planos">
+      <div class="plano top">
+        <div class="aba">Oferta de lançamento</div>
+        <div class="corpo">
+          <span class="nome">Skill Completa</span>
+          <hr>
+          <span class="por">Pagamento único de</span>
+          <span class="num">R$<b>37</b>,00</span>
+          <div class="mockup" aria-hidden="true">
+            <video src="assets/d6.mp4" muted autoplay loop playsinline preload="metadata"></video>
+            <video src="assets/d4.mp4" muted autoplay loop playsinline preload="metadata"></video>
+            <video src="assets/d1.mp4" muted autoplay loop playsinline preload="metadata"></video>
+          </div>
+          <ul class="checks">
+            <li><span class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Skill Fábrica de Motion:</b> tudo o que você viu acima.</span></li>
+            <li><span class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Vídeo de instalação:</b> passo a passo para Windows e Mac.</span></li>
+          </ul>
+          <a class="cta" href="#planos" data-link="checkout">Quero o desconto agora</a>
+          <span class="seguro"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Compra segura</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. O risco é por nossa conta -->
+<section>
+  <div class="wrap garantia">
+    <div class="selo"><b>7</b><span>DIAS DE GARANTIA</span></div>
+    <div class="txt">
+      <h2><span class="hl">O risco é por nossa conta</span></h2>
+      <p>Queremos garantir ao máximo a sua satisfação, por isso você tem 7 dias, a partir da data da compra, para decidir se a skill vale a pena para você ou não.</p>
+      <p>Caso decida que não vale a pena, basta entrar em contato dentro desse prazo e devolvemos 100% do dinheiro.</p>
+      <p>Sem letras miúdas ou perguntas chatas!</p>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Quem é a Fábrica de Motion? -->
+<section class="prova">
+  <div class="wrap quem">
+    <div class="foto"><img src="assets/caique.jpg" alt="Caique Cesar, fundador da Fábrica de Motion" loading="lazy"></div>
+    <div class="txt">
+      <h2>Quem é a<br><span class="hl">Fábrica de Motion?</span></h2>
+      <p>Eu sou o Caique Cesar, videomaker e editor, e fundei a Fábrica de Motion para produzir vídeos em motion para negócios de vários ramos: agências, imobiliárias, academias, pizzarias, consórcios, eventos e produtos digitais.</p>
+      <p>A skill nasceu do meu dia a dia: quanto mais clientes chegavam, mais fácil era perder o contexto de alguém. Hoje cada cliente passa pelo mesmo caminho, e é esse caminho que você leva.</p>
+      <div class="nome"><b>Caique Cesar</b><span>Fundador da Fábrica de Motion · Videomaker e editor</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Suporte + perguntas frequentes -->
+<section>
+  <div class="wrap ajuda">
+    <div class="suporte">
+      <h3>Ficou alguma dúvida?</h3>
+      <p>Se você tiver alguma dúvida sobre a compra da skill, estamos à disposição no WhatsApp. A nossa equipe responde diretamente a todas as suas perguntas.</p>
+      <a class="zap" href="#" data-link="whatsapp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 000-.4c0-.1-.6-1.3-.8-1.8s-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.8 11.9 11.9 0 004.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 001.8-1.3 2.3 2.3 0 00.2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Falar com o suporte</a>
+    </div>
+    <div class="faq">
+      <h2>Perguntas Frequentes</h2>
+      <details><summary>Por que somente R$37?</summary><p>É o preço de lançamento. Queremos que mais gente comece a entregar motions de cliente com a skill, e um único motion vendido já paga o valor.</p></details>
+      <details><summary>Preciso ter o Claude pago?</summary><p>Sim. A skill roda dentro do Claude e precisa do plano Pro ou superior.</p></details>
+      <details><summary>Fiz o pagamento, quanto tempo levo para acessar?</summary><p>O acesso chega no e-mail da compra assim que o pagamento é confirmado. No Pix e no cartão, costuma ser na hora.</p></details>
+      <details><summary>O pagamento é único?</summary><p>Sim. Você paga uma vez, sem mensalidade.</p></details>
+      <details><summary>O pagamento é seguro?</summary><p>Sim. O pagamento é feito pela plataforma de checkout, que protege os seus dados. Nós não temos acesso ao seu cartão.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 10. Rodapé -->
+<footer>
+  <div class="wrap">
+    <span>© 2026 Fábrica de Motion · CNPJ 61.451.359/0001-70</span>
+    <a href="politica.html">Políticas de privacidade</a>
+    <a href="termos.html">Termos de uso</a>
+    <span style="flex-basis: 100%; text-align: center; font-size: 12px">Os resultados citados são do criador da skill e não são garantia de ganho. Claude é marca da Anthropic; esta skill não é um produto oficial da Anthropic.</span>
+  </div>
+</footer>
+
+<script>
+  // ===== CONFIG: preencha antes de subir a página =====
+  const CONFIG = {
+    checkout: "https://pay.kiwify.com.br/5FbH3XS",   // link do checkout da Kiwify / Hotmart / Cakto (ex.: "https://pay.kiwify.com.br/XXXX")
+    whatsapp: "5511968155528",   // número do suporte só com dígitos, com DDI e DDD (ex.: "5511999999999")
+    pixel: "",      // ID do pixel do Meta (ex.: "123456789012345")
+  };
+  document.querySelectorAll('[data-link="checkout"]').forEach(a => { if (CONFIG.checkout) a.href = CONFIG.checkout; });
+  document.querySelectorAll('[data-link="whatsapp"]').forEach(a => { if (CONFIG.whatsapp) a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Oi! Tenho uma dúvida sobre a skill da Fábrica de Motion."); });
+  if (CONFIG.pixel) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', CONFIG.pixel); fbq('track', 'PageView');
+    document.querySelectorAll('[data-link="checkout"]').forEach(a => a.addEventListener('click', () => fbq('track', 'InitiateCheckout', {value: 37, currency: 'BRL'})));
+  }
+
+  // faixas: a logo repetida, duas vezes seguidas para o loop não ter emenda
+  ["trilho1", "trilho2"].forEach(id => {
+    const t = document.getElementById(id);
+    t.innerHTML = Array(24).fill('<img src="assets/logo-branco.png" alt="">').join("");
+  });
+  const player = document.getElementById("player"), demo = document.getElementById("demo");
+  document.getElementById("play").addEventListener("click", () => {
+    player.classList.add("tocando");
+    demo.controls = true;
+    demo.play().catch(() => {});
+  });
+  const pr = document.getElementById("prints");
+  document.getElementById("ant").addEventListener("click", () => pr.scrollBy({left: -300, behavior: "smooth"}));
+  document.getElementById("prox").addEventListener("click", () => pr.scrollBy({left: 300, behavior: "smooth"}));
+  const gr = document.getElementById("grade");
+  document.getElementById("ant-g").addEventListener("click", () => gr.scrollBy({left: -312, behavior: "smooth"}));
+  document.getElementById("prox-g").addEventListener("click", () => gr.scrollBy({left: 312, behavior: "smooth"}));
+  const ps = document.getElementById("passos");
+  document.getElementById("ant-p").addEventListener("click", () => ps.scrollBy({left: -354, behavior: "smooth"}));
+  document.getElementById("prox-p").addEventListener("click", () => ps.scrollBy({left: 354, behavior: "smooth"}));
+</script>
