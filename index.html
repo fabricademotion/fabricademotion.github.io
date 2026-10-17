@@ -70,6 +70,15 @@ p { margin: 0; }
 .play b { width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,.14); backdrop-filter: blur(6px); display: grid; place-items: center; }
 .play svg { width: 26px; height: 26px; fill: #fff; margin-left: 4px; }
 .player.tocando .play { display: none; }
+.play .som { position: absolute; left: 50%; bottom: 16px; translate: -50% 0; display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; background: var(--compra); color: #fff; font: 700 14px var(--display); letter-spacing: .04em; text-transform: uppercase; box-shadow: 0 12px 30px -10px var(--compra-brilho); animation: pulsa 1.6s ease-in-out infinite; }
+.play .som svg { width: 20px; height: 20px; margin: 0; fill: #fff; }
+.play .som .onda { fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; }
+.play .pausado { display: none; }
+.player.parado .play .som { display: none; }
+.player.parado .play .pausado { display: grid; }
+.player:not(.parado) .play { background: linear-gradient(180deg, rgba(8,7,13,0) 60%, rgba(8,7,13,.55)); }
+@keyframes pulsa { 50% { scale: 1.06; } }
+@media (prefers-reduced-motion: reduce) { .play .som { animation: none; } }
 .precos { display: grid; justify-items: center; gap: 6px; margin-top: 18px; }
 .de { color: var(--muted); font-size: 15px; }
 .de s { color: var(--risco); text-decoration-thickness: 2px; }
@@ -288,8 +297,8 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
     <h1>A skill que me fez <span class="hl">faturar R$ 6 mil em uma semana</span> entregando motions de R$ 57</h1>
     <p class="sub">Agora você leva o mesmo processo, do roteiro à entrega, direto no seu Claude.</p>
     <div class="player" id="player">
-      <video id="demo" src="assets/vsl.mp4?v=5" poster="assets/vsl-capa.jpg?v=5" playsinline preload="metadata"></video>
-      <button class="play" id="play" type="button"><span><b><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></b>Assista um breve resumo da skill</span></button>
+      <video id="demo" src="assets/vsl.mp4?v=6" poster="assets/vsl-capa.jpg?v=6" muted autoplay loop playsinline preload="metadata"></video>
+      <button class="play" id="play" type="button" aria-label="Assistir com som"><span class="som"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="onda" d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12"/></svg>Toque para ouvir</span><span class="pausado"><b><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></b>Assista um breve resumo da skill</span></button>
     </div>
     <div class="precos">
       <span class="de">Um motion de cliente sai por <b style="color: var(--ink)">R$ 57</b>. A skill, por apenas:</span>
@@ -521,8 +530,14 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
     t.innerHTML = Array(24).fill('<img src="assets/logo-branco.png" alt="">').join("");
   });
   const player = document.getElementById("player"), demo = document.getElementById("demo");
+  // a VSL toca sozinha sem som; o toque volta para o começo com som. Se o navegador bloquear o autoplay
+  // (economia de bateria, por exemplo), mostra o botão de play como antes.
+  demo.play().catch(() => player.classList.add("parado"));
   document.getElementById("play").addEventListener("click", () => {
     player.classList.add("tocando");
+    demo.loop = false;
+    demo.muted = false;
+    demo.currentTime = 0;
     demo.controls = true;
     demo.play().catch(() => {});
   });
