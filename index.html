@@ -515,7 +515,17 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
     whatsapp: "5511968155528",   // número do suporte só com dígitos, com DDI e DDD (ex.: "5511999999999")
     pixel: "1106806325550548",      // ID do pixel do Meta (ex.: "123456789012345")
   };
-  document.querySelectorAll('[data-link="checkout"]').forEach(a => { if (CONFIG.checkout) a.href = CONFIG.checkout; });
+  // repassa a origem do anúncio (UTMs/fbclid) para o checkout, para a Kiwify mostrar de onde veio cada venda; guarda por 7 dias para quem volta depois direto
+  const RASTRO = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id', 'fbclid', 'src', 'sck'];
+  let rastro = {};
+  const daUrl = new URLSearchParams(location.search);
+  RASTRO.forEach(k => { if (daUrl.get(k)) rastro[k] = daUrl.get(k); });
+  try {
+    if (Object.keys(rastro).length) localStorage.setItem('fm_rastro', JSON.stringify({t: Date.now(), p: rastro}));
+    else { const g = JSON.parse(localStorage.getItem('fm_rastro') || 'null'); if (g && Date.now() - g.t < 7 * 864e5) rastro = g.p; }
+  } catch (e) {}
+  const linkCheckout = () => { const u = new URL(CONFIG.checkout); Object.entries(rastro).forEach(([k, v]) => u.searchParams.set(k, v)); return u.toString(); };
+  document.querySelectorAll('[data-link="checkout"]').forEach(a => { if (CONFIG.checkout) a.href = linkCheckout(); });
   document.querySelectorAll('[data-link="whatsapp"]').forEach(a => { if (CONFIG.whatsapp) a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Oi! Tenho uma dúvida sobre a skill da Fábrica de Motion."); });
   if (CONFIG.pixel) {
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
