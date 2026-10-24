@@ -132,6 +132,12 @@ h2.tit { font-size: clamp(32px, 5.4vw, 48px); }
 .selo b.circulo { flex: 0 0 96px; height: 96px; border-radius: 50%; border: 4px solid var(--ink); display: grid; place-items: center; text-align: center;
   font-family: var(--font-tit); font-size: 22px; line-height: 1; transform: rotate(-10deg); background: var(--surface); color: var(--escuro); }
 .selo p { margin: 0; font-size: 16px; }
+.opcoes { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; max-width: 640px; margin: 40px auto 0; }
+.opcao { display: grid; gap: 10px; align-content: start; }
+.opcao p { margin: 0; font-size: 16px; }
+.opcao .etiqueta { justify-self: start; }
+.preco-op { font-family: var(--font-tit); font-weight: 800; font-size: 56px; line-height: 1; color: var(--escuro); margin-top: 6px; }
+.cta-sec { min-height: 52px; font-size: 18px; padding: 10px 20px; }
 
 /* perguntas */
 details { border-bottom: 2px solid var(--line); padding: 16px 0; }
@@ -151,6 +157,7 @@ footer { padding: 40px 0 120px; font-size: 14px; color: var(--ink-muted); }
 footer a { margin-right: 14px; }
 
 @media (min-width: 860px) {
+  .opcoes { grid-template-columns: 1fr 1fr; max-width: 900px; }
   .heroi .grade { grid-template-columns: 1.15fr .85fr; }
   .dupla { grid-template-columns: 1fr 1fr; }
   .caminhos { grid-template-columns: 1fr 1fr; }
@@ -177,7 +184,7 @@ footer a { margin-right: 14px; }
       <h1 class="tit" style="margin-top: 18px">Faltam <span class="marca-texto" data-dias>15 dias</span>. E aquele assunto ainda não entrou.</h1>
       <p class="apoio">Você não precisa rever a matéria inteira. Precisa fixar o assunto em que você trava. A gente transforma ele num vídeo de 1 minuto, feito para você assistir todo dia até a prova.</p>
       <a class="cta largo" href="#oferta" data-checkout="kit">Quero meu resumo</a>
-      <p class="nota-cta">A partir de R$ 27, uma vez só. Entrega em até 24h no WhatsApp.</p>
+      <p class="nota-cta">A partir de R$ 37, uma vez só. Entrega em até 24h no WhatsApp.</p>
     </div>
     <div class="celular" id="celular" aria-label="Exemplo de vídeo: Estequiometria em 60 segundos">
       <img class="on" src="../assets/enem/exemplo-1.jpg" alt="Abertura: Estequiometria sem travar, em 60 segundos">
@@ -280,7 +287,7 @@ footer a { margin-right: 14px; }
         <tr><td>Rever uma videoaula de 40 min, 3 vezes por dia</td><td>2 horas</td></tr>
         <tr><td>Rever o seu resumo de 1 min, 3 vezes por dia</td><td>3 minutos</td></tr>
         <tr><td>Dias até o 1º dia de prova</td><td><span data-dias>15 dias</span></td></tr>
-        <tr class="nosso"><td>Kit com 3 assuntos, até a prova</td><td>R$ 57</td></tr>
+        <tr class="nosso"><td>Kit com 3 assuntos, até a prova</td><td>R$ 67</td></tr>
       </table>
       <p style="margin: 16px 0 0">Você paga uma vez e usa exatamente no período que importa. O tempo que sobra vai para o resto da matéria.</p>
     </div>
@@ -292,22 +299,35 @@ footer a { margin-right: 14px; }
   <div class="env">
     <div class="caixa oferta">
       <span class="etiqueta">Pedidos até 05/11 · vagas limitadas por dia</span>
-      <span class="de">de R$ 81</span>
-      <div class="por">R$ 57</div>
-      <p style="margin: 6px 0 0; font-weight: 600">Kit com 3 assuntos · uma vez só</p>
+      <span class="de">de R$ 111</span>
+      <div class="por">R$ 67</div>
+      <p style="margin: 6px 0 0; font-weight: 600">Kit reta final: 3 assuntos · uma vez só</p>
       <ul class="leva">
         <li>3 vídeos-resumo, um para cada assunto em que você trava</li>
         <li>Conceito, pontos-chave, pegadinha e macete em cada um</li>
-        <li>Vertical, de 45 a 75 segundos, feito para o celular</li>
+        <li>Cada vídeo com até 1 minuto, feito para o celular</li>
         <li>Conteúdo conferido antes da entrega: fórmulas, datas e conceitos</li>
         <li>Entrega em até 24h no seu WhatsApp</li>
       </ul>
       <div class="bonus"><b>Mais um assunto?</b> No checkout, você pode somar +1 assunto por R$ 19,90.</div>
-      <a class="cta largo" href="#oferta" data-checkout="kit">Garantir meu kit por R$ 57<small>Depois é só mandar os assuntos no WhatsApp</small></a>
-      <a class="link-sec" href="#oferta" data-checkout="um">Prefiro só 1 assunto por R$ 27 →</a>
+      <a class="cta largo" href="#oferta" data-checkout="kit">Garantir meu kit por R$ 67<small>Depois é só mandar os assuntos no WhatsApp</small></a>
       <div class="selo">
         <b class="circulo">24h</b>
         <p><b>Rápido e conferido.</b> Cada vídeo é montado e revisado um a um antes de chegar. Por isso abrimos poucas vagas por dia.</p>
+      </div>
+    </div>
+    <div class="opcoes">
+      <div class="caixa opcao">
+        <span class="etiqueta">Só um assunto</span>
+        <div class="preco-op">R$ 37</div>
+        <p>1 vídeo-resumo de até 1 minuto, com pegadinha e macete.</p>
+        <a class="cta largo cta-sec" href="#oferta" data-checkout="um">Quero 1 assunto</a>
+      </div>
+      <div class="caixa opcao">
+        <span class="etiqueta">Trava em várias matérias</span>
+        <div class="preco-op">R$ 97</div>
+        <p>Kit completo: 5 vídeos-resumo, um para cada assunto. Sai a R$ 19 por vídeo.</p>
+        <a class="cta largo cta-sec" href="#oferta" data-checkout="completo">Quero o kit com 5</a>
       </div>
     </div>
   </div>
@@ -331,7 +351,7 @@ footer a { margin-right: 14px; }
       <h2 class="tit" style="font-size: clamp(30px, 4.6vw, 42px)">Daqui a <span class="marca-texto" data-dias>15 dias</span> você vai estar sentado na prova.</h2>
       <p>A pergunta é uma só: quando aparecer aquele assunto, você vai lembrar?</p>
       <a class="cta largo" href="#oferta" data-checkout="kit">Sim, quero meu resumo</a>
-      <p class="nota-cta">Kit com 3 assuntos por R$ 57. Entrega em até 24h.</p>
+      <p class="nota-cta">Kit com 3 assuntos por R$ 67. Entrega em até 24h.</p>
     </div>
   </div>
 </section>
@@ -344,7 +364,7 @@ footer a { margin-right: 14px; }
 </footer>
 
 <div class="barra-compra" id="barra-compra" aria-hidden="true">
-  <div class="preco"><s>R$ 81</s><br>R$ 57 · kit com 3</div>
+  <div class="preco"><s>R$ 111</s><br>R$ 67 · kit com 3</div>
   <a class="cta" href="#oferta" data-checkout="kit" tabindex="-1">Garantir agora</a>
 </div>
 
@@ -352,8 +372,9 @@ footer a { margin-right: 14px; }
   // ===== CONFIG: preencha antes de publicar =====
   const CONFIG = {
     checkout: {
-      um: "",    // link da Kiwify do Resumo único (R$ 27)
-      kit: "",   // link da Kiwify do Kit 3 assuntos (R$ 57)
+      um: "",        // link da Kiwify do Resumo único (R$ 37)
+      kit: "",       // link da Kiwify do Kit reta final, 3 assuntos (R$ 67)
+      completo: "",  // link da Kiwify do Kit completo, 5 assuntos (R$ 97)
     },
     whatsapp: "5511968155528",   // dúvidas antes da compra
     pixel: "1106806325550548",
@@ -374,7 +395,8 @@ footer a { margin-right: 14px; }
   } catch (e) {}
   const link = url => { const u = new URL(url); Object.entries(rastro).forEach(([k, v]) => u.searchParams.set(k, v)); return u.toString(); };
   // sem link da Kiwify ainda: o botão abre o WhatsApp já com o plano escolhido
-  const NOME = { um: "Resumo único (1 assunto, R$ 27)", kit: "Kit 3 assuntos (R$ 57)" };
+  const NOME = { um: "Resumo único (1 assunto, R$ 37)", kit: "Kit reta final (3 assuntos, R$ 67)", completo: "Kit completo (5 assuntos, R$ 97)" };
+  const VALOR = { um: 37, kit: 67, completo: 97 };
   const ref = [rastro.utm_campaign, rastro.utm_content].filter(Boolean).join(" / ");
   document.querySelectorAll('[data-checkout]').forEach(a => {
     const url = CONFIG.checkout[a.dataset.checkout];
@@ -386,7 +408,7 @@ footer a { margin-right: 14px; }
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', CONFIG.pixel); fbq('track', 'PageView');
     document.querySelectorAll('[data-checkout]').forEach(a => a.addEventListener('click', () => {
-      const dados = {content_name: 'Resumo ENEM ' + a.dataset.checkout, value: a.dataset.checkout === 'kit' ? 57 : 27, currency: 'BRL'};
+      const dados = {content_name: 'Resumo ENEM ' + a.dataset.checkout, value: VALOR[a.dataset.checkout], currency: 'BRL'};
       // com checkout, o InitiateCheckout fica com a Kiwify; sem checkout, o clique vai para o WhatsApp e vira Contact
       if (CONFIG.checkout[a.dataset.checkout]) fbq('trackCustom', 'CliqueComprarEnem', dados); else fbq('track', 'Contact', dados);
     }));
