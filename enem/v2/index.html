@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="O assunto que você mais trava no ENEM, num vídeo de 1 minuto para revisar todo dia até a prova. Feito sob medida, entrega em até 24h.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Resumo ENEM em Motion · Fábrica de Motion">
+<meta property="og:image" content="../../assets/enem/exemplo-1.jpg">
+<title>Resumo ENEM em Motion · Fábrica de Motion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..800&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,700..900,100,1;1,9..144,700..900,100,1&family=VT323&display=swap">
+<style>
+/* Identidade inspirada na Fábrica de Personagens (céu com nuvens, creme, contorno grosso com sombra dura, Fraunces
+   arredondada, ingresso de preço, selo estrelado), com o roxo da Fábrica de Motion no lugar do coral e um roxo-marinho
+   no lugar do azul-marinho. O amarelo-manteiga continua como cor de apoio. */
+:root {
+  --ceu-1: #E2D9FF; --ceu-2: #EEE9FF; --ceu-3: #F8F6FF;
+  --papel: #FFFAF0; --creme: #FFF3D6; --creme-2: #FBE9BD; --manteiga: #EACD78; --manteiga-2: #F5DC8F;
+  --roxo: #7C66FF; --roxo-d: #5B3FE0; --roxo-l: #A99BFF;
+  --marinho: #1A1446; --marinho-2: #2B2366; --tinta: #1D1840; --cinza: #5C5880;
+  --verde: #1E9E5A; --vermelho: #FF3B30;
+  --pop: 0 6px 0 var(--marinho); --pop-lg: 0 10px 0 var(--marinho);
+  --f-tit: "Fraunces", "Cooper Black", Georgia, serif;
+  --f-corpo: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-pixel: "VT323", ui-monospace, monospace;
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+html { overflow-x: clip; }
+body { background: var(--papel); color: var(--tinta); font-family: var(--f-corpo); font-size: 18px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+[hidden] { display: none !important; }
+.env { width: min(1180px, 100% - 2 * max(16px, 4vw)); margin-inline: auto; }
+.tit { font-family: var(--f-tit); font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144; font-weight: 900; letter-spacing: -.02em; line-height: .98; margin: 0; text-wrap: balance; }
+.h1 { font-size: clamp(42px, 7vw, 88px); }
+.h2 { font-size: clamp(36px, 5.4vw, 66px); }
+.it { font-style: italic; color: var(--roxo); }
+.contorno { color: var(--roxo); text-shadow: 3px 3px 0 var(--marinho), -1.5px -1.5px 0 var(--marinho), 1.5px -1.5px 0 var(--marinho), -1.5px 1.5px 0 var(--marinho), 0 3px 0 var(--marinho), 3px 0 0 var(--marinho), 5px 6px 0 var(--marinho); }
+.apoio { font-size: clamp(18px, 1.6vw, 21px); color: var(--cinza); max-width: 640px; margin: 0; }
+.selo-pill { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; background: #fff; color: var(--marinho); border: 2px solid var(--marinho); border-radius: 999px; padding: 8px 16px 8px 12px; box-shadow: 0 4px 0 var(--marinho); }
+.ao-vivo { width: 10px; height: 10px; border-radius: 50%; background: var(--vermelho); position: relative; flex: none; }
+.ao-vivo::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid var(--vermelho); animation: ping 1.6s ease-out infinite; }
+@keyframes ping { 0% { transform: scale(.4); opacity: 1; } 100% { transform: scale(1.4); opacity: 0; } }
+.cabeca { display: grid; gap: 18px; justify-items: center; text-align: center; margin-bottom: clamp(36px, 6vw, 60px); }
+
+/* botões */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 32px; min-height: 64px; text-align: center;
+  font-family: var(--f-tit); font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 72; font-weight: 900; font-size: clamp(19px, 1.8vw, 23px);
+  color: #fff; background: linear-gradient(180deg, var(--roxo-l) -40%, var(--roxo) 45%, var(--roxo-d) 120%); text-decoration: none;
+  border: 3px solid var(--marinho); border-radius: 999px; box-shadow: var(--pop); transition: transform .18s, box-shadow .18s; }
+.btn:hover { transform: translateY(-2px) rotate(-1deg); box-shadow: 0 8px 0 var(--marinho); }
+.btn:active { transform: translateY(5px); box-shadow: 0 1px 0 var(--marinho); }
+.btn:focus-visible { outline: 3px solid var(--roxo-d); outline-offset: 4px; }
+.btn .seta { transition: transform .25s; }
+.btn:hover .seta { transform: translateX(5px); }
+.btn.creme { background: var(--creme); color: var(--marinho); }
+.btn.largo { width: 100%; }
+.btn small { display: block; font-family: var(--f-corpo); font-weight: 700; font-size: 13px; opacity: .9; }
+.btn:has(small) { flex-direction: column; gap: 2px; }
+
+/* faixa correndo */
+.faixa { background: var(--marinho); color: var(--manteiga); overflow: hidden; white-space: nowrap; font-family: var(--f-tit); font-weight: 900; font-size: 17px; letter-spacing: .06em; text-transform: uppercase; padding: 8px 0; }
+.faixa div { display: inline-flex; gap: 22px; animation: correr 26s linear infinite; padding-right: 22px; }
+.faixa i { font-style: normal; color: var(--roxo-l); }
+@keyframes correr { to { transform: translateX(-50%); } }
+
+/* céu e nuvens */
+.ceu { position: relative; isolation: isolate; overflow: clip; background: linear-gradient(180deg, var(--ceu-1), var(--ceu-2) 55%, var(--ceu-3)); }
+.nuvem { position: absolute; z-index: -1; color: #fff; pointer-events: none; }
+.nuvem svg { width: 100%; height: auto; }
+.nuvem .c-body { fill: currentColor; }
+.nuvem .c-shade { fill: #E5DEFF; }
+.flutua { animation: flutua 9s ease-in-out infinite alternate; }
+@keyframes flutua { to { transform: translateX(30px); } }
+.banco { position: absolute; left: 0; right: 0; bottom: -1px; height: 90px; z-index: -1;
+  background: radial-gradient(60px 50px at 40px 90px, #fff 98%, transparent) 0 0 / 120px 90px repeat-x, radial-gradient(80px 60px at 100px 90px, var(--papel) 98%, transparent) 0 10px / 170px 90px repeat-x; }
+
+/* herói */
+.heroi { padding: 36px 0 150px; }
+.heroi .grade { display: grid; gap: 40px; align-items: center; }
+.logo-txt { display: inline-block; transform: rotate(-3deg); margin-bottom: 18px; }
+.logo-txt b { display: block; font-family: var(--f-tit); font-variation-settings: "SOFT" 100, "WONK" 1; font-weight: 900; font-style: italic; line-height: .9; }
+.logo-txt .l1 { font-size: 34px; color: var(--marinho); }
+.logo-txt .l2 { font-size: clamp(54px, 8vw, 84px); }
+.heroi .txt { display: grid; gap: 22px; justify-items: start; }
+.heroi .nota { font-size: 14px; color: var(--cinza); margin: -6px 0 0; }
+.fones { display: flex; gap: clamp(8px, 2vw, 18px); justify-content: center; align-items: flex-end; }
+.fone { position: relative; width: clamp(92px, 25vw, 220px); aspect-ratio: 9 / 18.5; border-radius: 34px; border: 8px solid var(--marinho); background: var(--marinho); box-shadow: var(--pop-lg); overflow: hidden; flex: none; }
+.fone img { width: 100%; height: 100%; object-fit: cover; }
+.fone:nth-child(1) { transform: rotate(-7deg) translateY(16px); }
+.fone:nth-child(3) { transform: rotate(7deg) translateY(16px); }
+.fone:nth-child(2) { width: clamp(110px, 30vw, 250px); z-index: 2; }
+.fone .ilha { position: absolute; top: 8px; left: 50%; translate: -50% 0; width: 38%; height: 16px; border-radius: 999px; background: var(--marinho); }
+.estrela { position: absolute; display: grid; place-items: center; text-align: center; font-family: var(--f-tit); font-weight: 900; color: #fff; text-shadow: 0 2px 0 var(--marinho); z-index: 3; }
+.estrela svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.estrela span { position: relative; line-height: .9; }
+.estrela small { display: block; font-family: var(--f-corpo); font-size: 11px; font-weight: 800; letter-spacing: .06em; }
+.fones .estrela { width: clamp(80px, 22vw, 112px); height: clamp(80px, 22vw, 112px); right: 2%; top: -20px; font-size: clamp(24px, 6vw, 32px); transform: rotate(10deg); }
+
+/* seções */
+.secao { padding: clamp(80px, 10vw, 120px) 0; position: relative; }
+.creme { background: var(--creme); border-block: 3px solid var(--marinho); }
+.trilho { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 260px); gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px 4px 26px; scrollbar-width: none; }
+.trilho::-webkit-scrollbar { display: none; }
+.cartao-q { scroll-snap-align: center; background: var(--manteiga); border: 3px solid var(--marinho); border-radius: 26px; padding: 12px 12px 18px; box-shadow: var(--pop); display: grid; gap: 12px; }
+.cartao-q:nth-child(even) { transform: rotate(1.5deg); }
+.cartao-q:nth-child(odd) { transform: rotate(-1.5deg); }
+.cartao-q img { border-radius: 16px; border: 3px solid var(--marinho); aspect-ratio: 9 / 13; object-fit: cover; object-position: top; width: 100%; }
+.cartao-q b { justify-self: center; background: #fff; border: 2px solid var(--marinho); border-radius: 999px; padding: 4px 16px; font-size: 15px; }
+.cartao-q p { margin: 0; font-size: 15px; text-align: center; color: var(--marinho-2); }
+.arraste { text-align: center; font-family: var(--f-pixel); font-size: 22px; color: var(--cinza); margin: 6px 0 0; }
+.dores { list-style: none; padding: 0; margin: 0 auto 40px; display: grid; gap: 12px; max-width: 720px; }
+.dores li { display: flex; gap: 12px; align-items: flex-start; font-weight: 600; font-size: 19px; background: #fff; border: 3px solid var(--marinho); border-radius: 20px; padding: 14px 18px; box-shadow: 0 4px 0 var(--marinho); }
+.dores li::before { content: "✕"; flex: 0 0 28px; height: 28px; border-radius: 50%; background: var(--vermelho); color: #fff; display: grid; place-items: center; font-size: 15px; font-weight: 800; }
+.numeros { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 760px; margin: 40px auto 0; }
+.numeros div { background: #fff; border: 3px solid var(--marinho); border-radius: 22px; padding: 18px; text-align: center; box-shadow: var(--pop); }
+.numeros b { display: block; font-family: var(--f-tit); font-weight: 900; font-size: clamp(34px, 5vw, 52px); color: var(--roxo); line-height: 1; }
+.numeros span { font-size: 15px; font-weight: 700; color: var(--marinho-2); }
+.passos { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+.passo { background: #fff; border: 3px solid var(--marinho); border-radius: 26px; padding: 24px; box-shadow: var(--pop); display: grid; gap: 10px; align-content: start; }
+.passo .n { width: 52px; height: 52px; border-radius: 50%; background: var(--roxo); color: #fff; border: 3px solid var(--marinho); display: grid; place-items: center; font-family: var(--f-tit); font-weight: 900; font-size: 26px; box-shadow: 0 3px 0 var(--marinho); }
+.passo h3 { margin: 0; font-family: var(--f-tit); font-weight: 900; font-size: 24px; }
+.passo p { margin: 0; color: var(--cinza); font-size: 16px; }
+
+/* preços em ingresso */
+.precos { position: relative; }
+.trilho.ingressos { grid-auto-columns: minmax(290px, 340px); align-items: center; padding: 26px 8px 34px; }
+.ingresso { scroll-snap-align: center; background: #fff; border: 3px solid var(--marinho); border-radius: 30px; box-shadow: var(--pop-lg); overflow: hidden; display: grid; }
+.ingresso .faixa-top { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: var(--marinho-2); color: #fff; font-family: var(--f-pixel); font-size: 22px; letter-spacing: .08em; text-transform: uppercase; border-bottom: 3px solid var(--marinho); }
+.ingresso .faixa-top i { width: 32px; height: 22px; border-radius: 6px; background: var(--manteiga); border: 2px solid var(--marinho); }
+.ingresso .corpo { padding: 20px 22px 22px; display: grid; gap: 14px; }
+.ingresso h3 { margin: 0; font-family: var(--f-tit); font-weight: 900; font-size: 30px; line-height: 1; }
+.ingresso .desc { margin: 0; font-size: 15px; color: var(--cinza); }
+.preco { display: flex; align-items: flex-end; gap: 10px; }
+.preco b { font-family: var(--f-tit); font-weight: 900; font-size: 76px; line-height: .85; color: var(--marinho); letter-spacing: -.03em; }
+.preco b sup { font-size: .38em; vertical-align: top; position: relative; top: .2em; margin-right: 2px; }
+.preco span { font-weight: 700; color: var(--cinza); font-size: 14px; line-height: 1.25; padding-bottom: 6px; }
+.preco s { display: block; color: var(--cinza); font-weight: 600; }
+.leva { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 15px; font-weight: 600; }
+.leva li { display: flex; gap: 8px; }
+.leva li::before { content: "✓"; flex: 0 0 22px; height: 22px; border-radius: 50%; background: var(--verde); color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 800; }
+.codigo { height: 32px; border-radius: 4px; opacity: .85; background: repeating-linear-gradient(90deg, var(--marinho) 0 2px, transparent 2px 4px, var(--marinho) 4px 7px, transparent 7px 9px, var(--marinho) 9px 10px, transparent 10px 14px); }
+.validade { font-family: var(--f-pixel); font-size: 20px; letter-spacing: .08em; color: var(--marinho-2); margin-top: -6px; }
+.ingresso.top { border-width: 4px; box-shadow: 0 12px 0 var(--marinho); transform: scale(1.04); position: relative; }
+.ingresso.top .faixa-top { background: linear-gradient(90deg, var(--roxo-d), var(--roxo)); }
+.ingresso.top .preco b { color: var(--roxo-d); }
+.ingresso.top .estrela { width: 92px; height: 92px; right: 14px; top: 84px; font-size: 22px; transform: rotate(12deg); }
+.setas { display: flex; justify-content: center; gap: 12px; }
+.setas button { width: 48px; height: 48px; border-radius: 50%; border: 3px solid var(--marinho); background: #fff; box-shadow: 0 4px 0 var(--marinho); font-size: 20px; font-weight: 800; cursor: pointer; color: var(--marinho); }
+.bump { max-width: 640px; margin: 22px auto 0; text-align: center; background: #fff; border: 3px dashed var(--roxo-d); border-radius: 18px; padding: 14px 18px; font-size: 16px; }
+
+/* selo de entrega */
+.selo-sec { background: var(--manteiga-2); border: 3px solid var(--marinho); border-radius: 36px; box-shadow: var(--pop-lg); padding: clamp(28px, 5vw, 48px); max-width: 820px; margin: 0 auto; text-align: center; display: grid; gap: 14px; justify-items: center; }
+.selo-sec .estrela { position: relative; width: 150px; height: 150px; font-size: 48px; transform: rotate(-6deg); }
+.selo-sec .pixel { font-family: var(--f-pixel); font-size: 24px; letter-spacing: .08em; color: var(--roxo-d); text-transform: uppercase; }
+.selo-sec p { margin: 0; max-width: 580px; }
+
+/* perguntas */
+.faq { display: grid; gap: 40px; }
+.faq .lista { display: grid; gap: 12px; }
+.faq details { background: #fff; border: 3px solid var(--marinho); border-radius: 20px; padding: 0 20px; }
+.faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 18px 0; font-weight: 700; font-size: 18px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: 0 0 32px; height: 32px; border-radius: 50%; border: 2.5px solid var(--marinho); display: grid; place-items: center; font-weight: 800; }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { margin: 0 0 18px; color: var(--cinza); }
+.zap { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: var(--roxo-d); }
+.zap svg { width: 20px; height: 20px; fill: currentColor; }
+
+.final { padding: clamp(90px, 11vw, 130px) 0; text-align: center; }
+.final .cabeca { margin-bottom: 28px; }
+footer { padding: 36px 0 120px; font-size: 14px; color: var(--cinza); background: var(--papel); }
+footer a { margin-right: 14px; }
+.barra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--marinho); padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); display: flex; gap: 12px; align-items: center; justify-content: space-between; transform: translateY(110%); transition: transform .25s; }
+.barra.visivel { transform: none; }
+.barra .p { color: #fff; font-weight: 700; line-height: 1.1; font-size: 15px; }
+.barra .p s { opacity: .7; font-weight: 500; font-size: 13px; }
+.barra .btn { min-height: 48px; font-size: 17px; padding: 8px 18px; box-shadow: none; border-color: #fff; }
+
+@media (min-width: 860px) {
+  .heroi .grade { grid-template-columns: 1.05fr .95fr; }
+  .numeros { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .passos { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .faq { grid-template-columns: .8fr 1.2fr; align-items: start; }
+  .trilho.ingressos { justify-content: center; grid-auto-columns: minmax(300px, 340px); overflow: visible; }
+  .precos .setas { display: none; }
+  .barra { display: none; }
+  footer { padding-bottom: 40px; }
+}
+@media (prefers-reduced-motion: reduce) { .faixa div, .flutua, .ao-vivo::after { animation: none; } .btn, .barra { transition: none; } }
+</style>
+</head>
+<body>
+
+<div class="faixa" aria-hidden="true"><div>
+  <span>Faltam <span data-dias-n>15</span> dias</span><i>★</i><span>Vagas limitadas por dia</span><i>★</i><span>Entrega em 24h</span><i>★</i><span>Faltam <span data-dias-n>15</span> dias</span><i>★</i><span>Vagas limitadas por dia</span><i>★</i><span>Entrega em 24h</span><i>★</i><span>Faltam <span data-dias-n>15</span> dias</span><i>★</i><span>Vagas limitadas por dia</span><i>★</i><span>Entrega em 24h</span><i>★</i><span>Faltam <span data-dias-n>15</span> dias</span><i>★</i><span>Vagas limitadas por dia</span><i>★</i><span>Entrega em 24h</span><i>★</i>
+</div></div>
+
+<!-- herói -->
+<section class="ceu heroi">
+  <div class="nuvem flutua" style="width:220px;left:-40px;top:40px"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div><div class="nuvem flutua" style="width:300px;right:-60px;top:120px;animation-delay:-4s"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div><div class="nuvem " style="width:180px;left:40%;top:10px;opacity:.8"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div>
+  <div class="env grade">
+    <div class="txt">
+      <div class="logo-txt"><b class="l1">Resumo</b><b class="l2 contorno">ENEM em Motion</b></div>
+      <span class="selo-pill"><span class="ao-vivo"></span>Vídeos de 1 minuto do seu assunto</span>
+      <h1 class="tit h1">O assunto que você trava, em <span class="it">1 minuto</span>.</h1>
+      <p class="apoio">Você escolhe o assunto. A gente transforma num resumo animado, com a pegadinha e o macete, para você assistir todo dia até a prova.</p>
+      <a class="btn" href="#precos" data-checkout="completo">Quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
+      <p class="nota">A partir de R$ 37 · entrega em até 24h no WhatsApp</p>
+    </div>
+    <div class="fones" style="position: relative">
+      <div class="fone"><span class="ilha"></span><img src="../../assets/enem/exemplo-2.jpg" alt="Quadro do exemplo: balanceie a equação"></div>
+      <div class="fone"><span class="ilha"></span><img src="../../assets/enem/exemplo-1.jpg" alt="Abertura do exemplo: Estequiometria sem travar"></div>
+      <div class="fone"><span class="ilha"></span><img src="../../assets/enem/exemplo-5.jpg" alt="Quadro do exemplo: a pegadinha do ENEM"></div>
+      <div class="estrela"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon fill="var(--roxo)" stroke="var(--marinho)" stroke-width="3" points="50,2 61,18 80,10 80,30 98,38 86,54 96,72 76,76 72,96 54,88 40,100 32,82 12,86 14,66 0,52 16,40 8,20 28,18 34,0"/></svg><span>60s<small>POR VÍDEO</small></span></div>
+    </div>
+  </div>
+  <div class="banco"></div>
+</section>
+
+<!-- dor + quadros -->
+<section class="secao">
+  <div class="env">
+    <div class="cabeca">
+      <h2 class="tit h2">Faltam <span class="it" data-dias>15 dias</span>. E aquele assunto <span class="contorno">ainda não entrou?</span></h2>
+    </div>
+    <ul class="dores">
+      <li>Lê o resumo, entende na hora e no dia seguinte a fórmula sumiu.</li>
+      <li>Abre uma videoaula de 40 minutos e não termina.</li>
+      <li>O assunto aparece no simulado e dá branco. De novo.</li>
+    </ul>
+    <div class="cabeca" style="margin-bottom: 24px"><p class="apoio">Cada vídeo segue o mesmo formato, feito para grudar na memória:</p></div>
+    <div class="trilho" id="trilho-quadros">
+      <div class="cartao-q"><img src="../../assets/enem/exemplo-1.jpg" alt=""><b>Abertura</b><p>O assunto e o tempo: 1 minuto.</p></div>
+      <div class="cartao-q"><img src="../../assets/enem/exemplo-3.jpg" alt=""><b>Pontos-chave</b><p>Só o que o ENEM cobra.</p></div>
+      <div class="cartao-q"><img src="../../assets/enem/exemplo-4.jpg" alt=""><b>Exemplo resolvido</b><p>A conta passo a passo.</p></div>
+      <div class="cartao-q"><img src="../../assets/enem/exemplo-5.jpg" alt=""><b>A pegadinha</b><p>O detalhe que derruba.</p></div>
+      <div class="cartao-q"><img src="../../assets/enem/exemplo-6.jpg" alt=""><b>O macete</b><p>Para lembrar na hora.</p></div>
+    </div>
+    <p class="arraste">← arraste os quadros →</p>
+  </div>
+</section>
+
+<!-- números -->
+<section class="ceu secao" style="border-top: 3px solid var(--marinho)">
+  <div class="nuvem flutua" style="width:260px;left:-60px;top:60px"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div><div class="nuvem flutua" style="width:200px;right:-30px;bottom:40px;animation-delay:-3s"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div>
+  <div class="env">
+    <div class="cabeca">
+      <h2 class="tit h2">Não é aula. <span class="it">É revisão que gruda.</span></h2>
+      <p class="apoio">Curto o bastante para repetir todo dia. Do seu assunto, não de um resumo genérico.</p>
+    </div>
+    <div class="numeros">
+      <div><b>1 min</b><span>por vídeo</span></div>
+      <div><b>3 min</b><span>por dia de revisão</span></div>
+      <div><b>24h</b><span>para entregar</span></div>
+      <div><b>4 áreas</b><span>do ENEM</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- como funciona -->
+<section class="secao creme">
+  <div class="env">
+    <div class="cabeca"><h2 class="tit h2">Como <span class="it">funciona</span></h2></div>
+    <div class="passos">
+      <div class="passo"><span class="n">1</span><h3>Escolha o kit</h3><p>1, 3 ou 5 assuntos. Pagamento único.</p></div>
+      <div class="passo"><span class="n">2</span><h3>Mande o assunto</h3><p>No WhatsApp, com onde você trava ou uma foto do seu resumo.</p></div>
+      <div class="passo"><span class="n">3</span><h3>A gente cria e confere</h3><p>Fórmulas, datas e conceitos revisados antes de entregar.</p></div>
+      <div class="passo"><span class="n">4</span><h3>Assista todo dia</h3><p>Chega em até 24h. Ao acordar, no intervalo e antes de dormir.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- preços -->
+<section class="ceu secao precos" id="precos">
+  <div class="nuvem flutua" style="width:280px;left:-70px;top:80px"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div><div class="nuvem flutua" style="width:240px;right:-50px;top:30%;animation-delay:-5s"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div>
+  <div class="env">
+    <div class="cabeca">
+      <span class="selo-pill"><span class="ao-vivo"></span>Pedidos até 05/11</span>
+      <h2 class="tit h2">Escolha seu kit e <span class="contorno">revise até a prova</span></h2>
+    </div>
+    <div class="trilho ingressos" id="trilho-precos">
+      <article class="ingresso">
+        <div class="faixa-top">Resumo único <i></i></div>
+        <div class="corpo">
+          <h3>1 assunto</h3>
+          <p class="desc">Para aquele assunto que não entra de jeito nenhum.</p>
+          <div class="preco"><b><sup>R$</sup>37</b><span>pagamento<br>único</span></div>
+          <ul class="leva"><li>1 vídeo de até 1 minuto</li><li>Pegadinha e macete</li><li>Entrega em até 24h</li></ul>
+          <a class="btn creme largo" href="#precos" data-checkout="um">Quero 1 assunto</a>
+          <div class="codigo"></div><div class="validade">VALIDADE: ATÉ A PROVA</div>
+        </div>
+      </article>
+      <article class="ingresso top">
+        <div class="faixa-top">Mais completo ★ <i></i></div>
+        <div class="estrela"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon fill="var(--manteiga)" stroke="var(--marinho)" stroke-width="3" points="50,2 61,18 80,10 80,30 98,38 86,54 96,72 76,76 72,96 54,88 40,100 32,82 12,86 14,66 0,52 16,40 8,20 28,18 34,0"/></svg><span style="color: var(--marinho); text-shadow: none">R$19<small>POR VÍDEO</small></span></div>
+        <div class="corpo">
+          <h3>Kit completo<br>5 assuntos</h3>
+          <p class="desc">Para quem trava em várias matérias.</p>
+          <div class="preco"><b><sup>R$</sup>97</b><span><s>de R$ 185</s>pagamento único</span></div>
+          <ul class="leva"><li>5 vídeos de até 1 minuto</li><li>Um para cada assunto</li><li>Pegadinha e macete em cada um</li><li>Entrega em até 24h</li></ul>
+          <a class="btn largo" href="#precos" data-checkout="completo">Quero o kit com 5<small>Liberado no seu WhatsApp</small></a>
+          <div class="codigo"></div><div class="validade">VALIDADE: ATÉ A PROVA</div>
+        </div>
+      </article>
+      <article class="ingresso">
+        <div class="faixa-top">Reta final <i></i></div>
+        <div class="corpo">
+          <h3>3 assuntos</h3>
+          <p class="desc">Os três pontos fracos que mais pesam.</p>
+          <div class="preco"><b><sup>R$</sup>67</b><span><s>de R$ 111</s>pagamento único</span></div>
+          <ul class="leva"><li>3 vídeos de até 1 minuto</li><li>Pegadinha e macete em cada</li><li>Entrega em até 24h</li></ul>
+          <a class="btn creme largo" href="#precos" data-checkout="kit">Quero o kit com 3</a>
+          <div class="codigo"></div><div class="validade">VALIDADE: ATÉ A PROVA</div>
+        </div>
+      </article>
+    </div>
+    <div class="setas"><button type="button" data-rolar="trilho-precos" data-dir="-1" aria-label="Ver kit anterior">←</button><button type="button" data-rolar="trilho-precos" data-dir="1" aria-label="Ver próximo kit">→</button></div>
+    <p class="bump"><b>Mais um assunto?</b> No checkout, você pode somar +1 assunto por R$ 19,90.</p>
+  </div>
+</section>
+
+<!-- selo de entrega -->
+<section class="secao">
+  <div class="env">
+    <div class="selo-sec">
+      <div class="estrela"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon fill="var(--roxo)" stroke="var(--marinho)" stroke-width="3" points="50,2 61,18 80,10 80,30 98,38 86,54 96,72 76,76 72,96 54,88 40,100 32,82 12,86 14,66 0,52 16,40 8,20 28,18 34,0"/></svg><span>24h<small>ENTREGA</small></span></div>
+      <span class="pixel">Feito e conferido um a um</span>
+      <h2 class="tit" style="font-size: clamp(30px, 4.4vw, 46px)">Rápido, sem errar o conteúdo.</h2>
+      <p>Cada vídeo é montado e revisado antes de chegar: fórmulas, datas e conceitos. Por isso abrimos poucas vagas por dia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- perguntas -->
+<section class="secao creme">
+  <div class="env faq">
+    <div style="display: grid; gap: 18px; justify-items: start">
+      <h2 class="tit h2">As dúvidas <span class="it">que todo mundo tem</span></h2>
+      <a class="btn" href="#precos" data-checkout="completo">Quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
+      <a class="zap" href="#" data-link="whatsapp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 000-.4c0-.1-.6-1.3-.8-1.8s-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.8 11.9 11.9 0 004.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 001.8-1.3 2.3 2.3 0 00.2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Tirar uma dúvida no WhatsApp</a>
+    </div>
+    <div class="lista">
+      <details><summary>Já é tarde demais?</summary><p>Não para um assunto. Com 1 minuto por vez, dá para rever o mesmo assunto dezenas de vezes até a prova.</p></details>
+      <details><summary>Quais assuntos posso pedir?</summary><p>Qualquer assunto das quatro áreas: Matemática, Ciências da Natureza, Ciências Humanas e Linguagens. Quanto mais específico, melhor fica o vídeo.</p></details>
+      <details><summary>Tem coisa grátis no YouTube.</summary><p>Tem, e é genérica. O seu resumo é do assunto que você escolheu, curto o bastante para repetir todo dia.</p></details>
+      <details><summary>Como vocês garantem que o conteúdo está certo?</summary><p>Antes de entregar, conferimos fórmulas, datas e conceitos de cada vídeo.</p></details>
+      <details><summary>Vocês garantem que eu passo?</summary><p>Não. Nenhum material garante aprovação ou nota. O vídeo é uma ferramenta de revisão para fixar o assunto que mais trava.</p></details>
+      <details><summary>Sou pai ou mãe. Posso comprar para meu filho?</summary><p>Pode. Depois da compra, você ou seu filho mandam os assuntos no WhatsApp.</p></details>
+      <details><summary>Como recebo depois de pagar?</summary><p>Você manda o assunto no WhatsApp e recebe o vídeo lá mesmo, em até 24h.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- final -->
+<section class="ceu final">
+  <div class="nuvem flutua" style="width:260px;left:-50px;top:40px"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div><div class="nuvem flutua" style="width:220px;right:-40px;bottom:30px;animation-delay:-4s"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div>
+  <div class="env">
+    <div class="cabeca">
+      <h2 class="tit h2">Daqui a <span class="contorno" data-dias>15 dias</span> você vai estar na prova.</h2>
+      <p class="apoio">Quando aparecer aquele assunto, você vai lembrar?</p>
+    </div>
+    <a class="btn" href="#precos" data-checkout="completo">Sim, quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<footer>
+  <div class="env">
+    <p>Resumo ENEM em Motion é um material de revisão independente da Fábrica de Motion, sem vínculo com o INEP ou com o MEC. Não prometemos aprovação nem nota.</p>
+    <p>© 2026 Fábrica de Motion · CNPJ 61.451.359/0001-70 · <a href="../../politica.html">Políticas de privacidade</a><a href="../../termos.html">Termos de uso</a></p>
+  </div>
+</footer>
+
+<div class="barra barra-compra" id="barra-compra" aria-hidden="true">
+  <div class="p"><s>R$ 185</s><br>R$ 97 · kit com 5</div>
+  <a class="btn" href="#precos" data-checkout="completo" tabindex="-1">Garantir agora</a>
+</div>
+
+<script>
+  // ===== CONFIG: preencha antes de publicar =====
+  const CONFIG = {
+    checkout: {
+      um: "",        // link da Kiwify do Resumo único (R$ 37)
+      kit: "",       // link da Kiwify do Kit reta final, 3 assuntos (R$ 67)
+      completo: "",  // link da Kiwify do Kit completo, 5 assuntos (R$ 97)
+    },
+    whatsapp: "5511968155528",   // dúvidas antes da compra
+    pixel: "1106806325550548",
+    prova: "2026-11-08T13:00:00-03:00",
+  };
+  // dias até a prova
+  const dias = Math.max(0, Math.ceil((new Date(CONFIG.prova) - new Date()) / 864e5));
+  document.querySelectorAll("[data-dias]").forEach(el => el.textContent = dias === 1 ? "1 dia" : dias + " dias");
+  document.querySelectorAll("[data-dias-n]").forEach(el => el.textContent = dias);
+  // repassa as UTMs do anúncio para o checkout
+  const RASTRO = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id', 'fbclid', 'src', 'sck'];
+  let rastro = {};
+  const daUrl = new URLSearchParams(location.search);
+  RASTRO.forEach(k => { if (daUrl.get(k)) rastro[k] = daUrl.get(k); });
+  try {
+    if (Object.keys(rastro).length) localStorage.setItem('fm_rastro_enem', JSON.stringify({t: Date.now(), p: rastro}));
+    else { const g = JSON.parse(localStorage.getItem('fm_rastro_enem') || 'null'); if (g && Date.now() - g.t < 7 * 864e5) rastro = g.p; }
+  } catch (e) {}
+  const link = url => { const u = new URL(url); Object.entries(rastro).forEach(([k, v]) => u.searchParams.set(k, v)); return u.toString(); };
+  // sem link da Kiwify ainda: o botão abre o WhatsApp já com o plano escolhido
+  const NOME = { um: "Resumo único (1 assunto, R$ 37)", kit: "Kit reta final (3 assuntos, R$ 67)", completo: "Kit completo (5 assuntos, R$ 97)" };
+  const VALOR = { um: 37, kit: 67, completo: 97 };
+  const ref = [rastro.utm_campaign, rastro.utm_content].filter(Boolean).join(" / ");
+  document.querySelectorAll('[data-checkout]').forEach(a => {
+    const url = CONFIG.checkout[a.dataset.checkout];
+    if (url) a.href = link(url);
+    else { a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Oi! Quero o Resumo ENEM em Motion: " + NOME[a.dataset.checkout] + "." + (ref ? "\n\n(anúncio: " + ref + ")" : "")); a.target = "_blank"; a.rel = "noopener"; }
+  });
+  document.querySelectorAll('[data-link="whatsapp"]').forEach(a => a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Oi! Tenho uma dúvida sobre o Resumo ENEM em Motion."));
+  if (CONFIG.pixel) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', CONFIG.pixel); fbq('track', 'PageView');
+    document.querySelectorAll('[data-checkout]').forEach(a => a.addEventListener('click', () => {
+      const dados = {content_name: 'Resumo ENEM ' + a.dataset.checkout, value: VALOR[a.dataset.checkout], currency: 'BRL'};
+      // com checkout, o InitiateCheckout fica com a Kiwify; sem checkout, o clique vai para o WhatsApp e vira Contact
+      if (CONFIG.checkout[a.dataset.checkout]) fbq('trackCustom', 'CliqueComprarEnem', dados); else fbq('track', 'Contact', dados);
+    }));
+  }
+  // celular do topo: passa pelos quadros do exemplo
+  const quadros = [];
+  if (quadros.length && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let q = 0;
+    setInterval(() => { quadros[q].classList.remove('on'); q = (q + 1) % quadros.length; quadros[q].classList.add('on'); }, 2200);
+  }
+  // barra fixa: aparece depois do topo e some na oferta
+  (() => {
+    const barra = document.getElementById('barra-compra');
+    const topo = document.querySelector('.heroi .btn');
+    const planos = document.getElementById('precos');
+    if (!('IntersectionObserver' in window)) return;
+    let passouTopo = false, planosVisiveis = false;
+    const atualiza = () => { const on = passouTopo && !planosVisiveis; barra.classList.toggle('visivel', on); barra.setAttribute('aria-hidden', on ? 'false' : 'true'); barra.querySelector('a').tabIndex = on ? 0 : -1; };
+    new IntersectionObserver(([e]) => { passouTopo = !e.isIntersecting && e.boundingClientRect.top < 0; atualiza(); }).observe(topo);
+    new IntersectionObserver(([e]) => { planosVisiveis = e.isIntersecting; atualiza(); }).observe(planos);
+  })();
+  // carrossel de preços: no celular começa no kit em destaque
+  const trilho = document.getElementById("trilho-precos"), destaque = document.querySelector(".ingresso.top");
+  if (trilho && destaque && trilho.scrollWidth > trilho.clientWidth) trilho.scrollLeft = destaque.offsetLeft - (trilho.clientWidth - destaque.clientWidth) / 2;
+  document.querySelectorAll("[data-rolar]").forEach(b => b.addEventListener("click", () => {
+    const alvo = document.getElementById(b.dataset.rolar); alvo.scrollBy({ left: (b.dataset.dir === "1" ? 1 : -1) * alvo.clientWidth * 0.8, behavior: "smooth" });
+  }));
+</script>
+</body>
+</html>
