@@ -6,7 +6,7 @@
 <meta name="description" content="Vídeo em motion para o seu negócio por R$ 57, pronto em 3 a 4 horas. Roteiro, narração, animação e trilha, tudo pelo WhatsApp.">
 <meta property="og:title" content="Motion para o seu negócio · Fábrica de Motion">
 <meta property="og:description" content="Seu vídeo em motion por R$ 57, pronto em 3 a 4 horas.">
-<meta property="og:image" content="../assets/e1.jpg">
+<meta property="og:image" content="../assets/vsl-motion-capa.jpg">
 <style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Motion para o seu negócio · Fábrica de Motion</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: mesma identidade da página da skill (fundo quase preto, destaque roxo, botão verde), agora vendendo o serviço:
-   topo com vitrine de vídeos, portfólio, como funciona, o que vem no vídeo, prints, para quem é, oferta, quem é, perguntas. */
+   topo com a VSL do serviço, portfólio, como funciona, o que vem no vídeo, prints, para quem é, oferta, quem é, perguntas. */
 :root {
   color-scheme: dark;
   --bg: #08070D;
@@ -286,11 +286,6 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
 </style>
 <style>
 /* peças só desta página */
-.vitrine { position: relative; width: 100%; height: clamp(300px, 52vw, 420px); margin-top: 8px; }
-.vitrine video { position: absolute; top: 24px; width: clamp(130px, 22vw, 190px); aspect-ratio: 9 / 16; object-fit: cover; border-radius: 16px; border: 3px solid #0B0A12; background: #0B0A12; box-shadow: 0 30px 60px -20px rgba(0,0,0,.8), 0 0 0 1px var(--line); }
-.vitrine video:nth-child(1) { left: calc(50% - clamp(130px, 22vw, 190px) * 1.45); transform: rotate(-8deg); }
-.vitrine video:nth-child(2) { left: calc(50% - clamp(130px, 22vw, 190px) / 2); top: 0; z-index: 2; box-shadow: 0 40px 90px -30px var(--glow), 0 0 0 1px var(--line); }
-.vitrine video:nth-child(3) { left: calc(50% + clamp(130px, 22vw, 190px) * .45); transform: rotate(8deg); }
 .prazo { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink); background: var(--accent-soft); border: 1px solid rgba(124,102,255,.4); padding: 7px 14px; border-radius: 999px; }
 .prazo svg { width: 16px; height: 16px; stroke: var(--accent); fill: none; stroke-width: 2.2; stroke-linecap: round; }
 .cta.zapcta { gap: 10px; }
@@ -301,6 +296,10 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
 .etapa h3 { font-size: 18px; }
 .etapa p { color: var(--muted); font-size: 14.5px; }
 .etapa p b { color: var(--ink); font-weight: 600; }
+.numeros { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+.numeros div { display: grid; justify-items: center; gap: 2px; min-width: 150px; padding: 16px 22px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.numeros b { font-family: var(--display); font-weight: 800; font-size: clamp(36px, 6vw, 48px); line-height: 1; color: var(--accent); letter-spacing: -0.03em; }
+.numeros span { font-size: 14px; color: var(--muted); }
 .ramos { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 28px; }
 .ramos span { font-size: 15px; padding: 10px 16px; border-radius: 999px; background: var(--surface); border: 1px solid var(--line); }
 @media (max-width: 760px) { .etapas { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
@@ -315,15 +314,14 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
     <img class="logo" src="../assets/logo-branco.png" alt="Fábrica de Motion">
     <h1>Um vídeo em motion para o seu negócio, <span class="hl">pronto em 3 a 4 horas</span></h1>
     <p class="sub">Roteiro, narração, animação e trilha. Você manda o logo e as fotos pelo WhatsApp e recebe o vídeo pronto para postar ou anunciar.</p>
-    <div class="vitrine" aria-hidden="true">
-      <video data-lazy poster="../assets/d7.jpg" data-src="../assets/d7.mp4" muted loop playsinline preload="none"></video>
-      <video data-lazy poster="../assets/e1.jpg" data-src="../assets/e1.mp4" muted loop playsinline preload="none"></video>
-      <video data-lazy poster="../assets/e5.jpg" data-src="../assets/e5.mp4" muted loop playsinline preload="none"></video>
+    <div class="player" id="player">
+      <video id="demo" src="../assets/vsl-motion.mp4?v=1" poster="../assets/vsl-motion-capa.jpg?v=1" muted autoplay loop playsinline preload="metadata"></video>
+      <button class="play" id="play" type="button" aria-label="Assistir com som"><span class="som"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path class="onda" d="M16 8.5a5 5 0 010 7M18.5 6a8.5 8.5 0 010 12"/></svg>Toque para ouvir</span><span class="pausado"><b><svg viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z"/></svg></b>Veja como funciona em 49 segundos</span></button>
     </div>
     <div class="precos">
-      <span class="de">Vídeo completo, do roteiro à entrega, por</span>
+      <span class="de">Não é R$ 300, nem R$ 150. Vídeo completo, do roteiro à entrega, por</span>
       <span class="valor">R$57</span>
-      <span class="prazo"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Entrega em 3 a 4 horas</span>
+      <span class="prazo" style="flex-wrap:wrap;justify-content:center"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Entrega em 3 a 4 horas · 1 alteração inclusa</span>
     </div>
     <div class="compra">
       <a class="cta zapcta" href="#oferta" data-link="pedido" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 000-.4c0-.1-.6-1.3-.8-1.8s-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.8 11.9 11.9 0 004.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 001.8-1.3 2.3 2.3 0 00.2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Quero meu vídeo</a>
@@ -339,6 +337,8 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
       <span class="selo-topo"><i></i>Vídeos entregues para clientes reais</span>
       <h2>Veja o que <span class="hl">já entregamos</span></h2>
       <p class="sub">Agências, imobiliárias, eventos, produtos digitais. Cada vídeo com a identidade do cliente.</p>
+      <div class="numeros"><div><b>156</b><span>vídeos entregues</span></div><div><b>78</b><span>clientes atendidos</span></div></div>
+      <p class="sub" style="font-size:15px">em menos de 3 semanas.</p>
     </div>
     <div class="carrossel">
       <figure><video data-lazy poster="../assets/e1.jpg" data-src="../assets/e1.mp4" muted loop playsinline preload="none"></video><figcaption><b>Growth Publicidade</b><span>Agência de publicidade</span></figcaption></figure>
@@ -452,6 +452,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
             <li><span class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Animação</b> com o seu logo, as suas cores e as suas fotos.</span></li>
             <li><span class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Trilha e efeitos</b> sem direitos autorais.</span></li>
             <li><span class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Entrega em 3 a 4 horas</b> direto no seu WhatsApp.</span></li>
+            <li><span class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>1 alteração inclusa</b> depois da entrega.</span></li>
           </ul>
           <a class="cta zapcta" href="#oferta" data-link="pedido" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 000-.4c0-.1-.6-1.3-.8-1.8s-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.8 11.9 11.9 0 004.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 001.8-1.3 2.3 2.3 0 00.2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Quero meu vídeo</a>
           <span class="seguro">Atendimento direto no WhatsApp · entrega em 3 a 4 horas</span>
@@ -485,6 +486,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
     <div class="faq">
       <h2>Perguntas Frequentes</h2>
       <details><summary>Em quanto tempo recebo o vídeo?</summary><p>Em 3 a 4 horas depois que você envia o material e aprova o roteiro.</p></details>
+      <details><summary>E se eu quiser mudar alguma coisa?</summary><p>Uma alteração já está inclusa no valor. É só pedir no WhatsApp depois de receber o vídeo.</p></details>
       <details><summary>O que eu preciso mandar?</summary><p>O logo, as fotos que quer usar e o que o vídeo precisa dizer. Se não tiver tudo, a gente te ajuda no WhatsApp.</p></details>
       <details><summary>Em que formato o vídeo vem?</summary><p>Vertical, pronto para Reels, Stories, TikTok e anúncios.</p></details>
       <details><summary>Como faço o pagamento?</summary><p>Direto no WhatsApp, depois de combinar o vídeo.</p></details>
@@ -532,6 +534,14 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
     document.querySelectorAll('[data-link="pedido"]').forEach(a => a.addEventListener('click', () => fbq('track', 'Contact', {content_name: 'Motion R$ 57', value: 57, currency: 'BRL'})));
   }
 
+  const player = document.getElementById("player"), demo = document.getElementById("demo");
+  // a VSL toca sozinha sem som; o toque volta para o começo com som. Se o navegador bloquear o autoplay, mostra o play
+  demo.play().catch(() => player.classList.add("parado"));
+  document.getElementById("play").addEventListener("click", () => {
+    player.classList.add("tocando");
+    demo.loop = false; demo.muted = false; demo.currentTime = 0; demo.controls = true;
+    demo.play().catch(() => {});
+  });
   const pr = document.getElementById("prints");
   document.getElementById("ant").addEventListener("click", () => pr.scrollBy({left: -300, behavior: "smooth"}));
   document.getElementById("prox").addEventListener("click", () => pr.scrollBy({left: 300, behavior: "smooth"}));
