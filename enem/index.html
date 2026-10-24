@@ -590,12 +590,23 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
     else { const g = JSON.parse(localStorage.getItem('fm_rastro_enem') || 'null'); if (g && Date.now() - g.t < 7 * 864e5) rastro = g.p; }
   } catch (e) {}
   const link = url => { const u = new URL(url); Object.entries(rastro).forEach(([k, v]) => u.searchParams.set(k, v)); return u.toString(); };
-  document.querySelectorAll('[data-checkout]').forEach(a => { const url = CONFIG.checkout[a.dataset.checkout]; if (url) a.href = link(url); });
+  // sem link da Kiwify ainda: o botão abre o WhatsApp já com o plano escolhido
+  const NOME = { um: "Resumo único (1 assunto, R$ 27)", kit: "Kit 3 assuntos (R$ 57)" };
+  const ref = [rastro.utm_campaign, rastro.utm_content].filter(Boolean).join(" / ");
+  document.querySelectorAll('[data-checkout]').forEach(a => {
+    const url = CONFIG.checkout[a.dataset.checkout];
+    if (url) a.href = link(url);
+    else { a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Oi! Quero o Resumo ENEM em Motion: " + NOME[a.dataset.checkout] + "." + (ref ? "\n\n(anúncio: " + ref + ")" : "")); a.target = "_blank"; a.rel = "noopener"; }
+  });
   document.querySelectorAll('[data-link="whatsapp"]').forEach(a => a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Oi! Tenho uma dúvida sobre o Resumo ENEM em Motion."));
   if (CONFIG.pixel) {
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', CONFIG.pixel); fbq('track', 'PageView');
-    document.querySelectorAll('[data-checkout]').forEach(a => a.addEventListener('click', () => { if (CONFIG.checkout[a.dataset.checkout]) fbq('trackCustom', 'CliqueComprarEnem', {plano: a.dataset.checkout, value: a.dataset.checkout === 'kit' ? 57 : 27, currency: 'BRL'}); }));
+    document.querySelectorAll('[data-checkout]').forEach(a => a.addEventListener('click', () => {
+      const dados = {content_name: 'Resumo ENEM ' + a.dataset.checkout, value: a.dataset.checkout === 'kit' ? 57 : 27, currency: 'BRL'};
+      // com checkout, o InitiateCheckout fica com a Kiwify; sem checkout, o clique vai para o WhatsApp e vira Contact
+      if (CONFIG.checkout[a.dataset.checkout]) fbq('trackCustom', 'CliqueComprarEnem', dados); else fbq('track', 'Contact', dados);
+    }));
   }
   // faixas com a logo
   ["trilho1", "trilho2"].forEach(id => { document.getElementById(id).innerHTML = Array(24).fill('<img src="../assets/logo-branco.png" alt="">').join(""); });
