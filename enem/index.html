@@ -203,7 +203,7 @@ footer a { margin-right: 14px; }
   .heroi .txt { gap: 22px; }
   .heroi .h1 { font-size: clamp(48px, 5vw, 70px); }
   .logo-txt { margin-bottom: 14px; }
-  .cta-heroi { margin-top: 36px; }
+  .cta-heroi { margin-top: 30px; }
   .fitas { height: 200px; }
   .fita.um { top: 52px; transform: rotate(-2deg); }
   .fita.dois { top: 98px; transform: rotate(1.8deg); }
@@ -214,6 +214,13 @@ footer a { margin-right: 14px; }
   .precos .setas { display: none; }
   .barra { display: none; }
   footer { padding-bottom: 40px; }
+}
+/* computador largo: preço e botão lado a lado, para o vídeo ficar na altura do título */
+@media (min-width: 1180px) {
+  .cta-heroi { grid-template-columns: auto 1fr; align-items: center; justify-items: start; text-align: left; column-gap: 28px; row-gap: 10px; }
+  .preco-heroi { justify-items: start; font-size: 76px; }
+  .cta-heroi .btn.largo { grid-column: 2; grid-row: 1; width: 100%; }
+  .cta-heroi .nota { grid-column: 1 / -1; grid-row: 2; margin: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .fita-trilho, .faixa div, .flutua, .ao-vivo::after { animation: none; } .btn, .barra { transition: none; } }
 </style>
