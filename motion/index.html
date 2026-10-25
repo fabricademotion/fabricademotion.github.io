@@ -572,7 +572,8 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
     fbq('init', CONFIG.pixel); fbq('track', 'PageView');
     // clique para o WhatsApp vira o evento padrão Contact, que o Meta consegue otimizar
     document.querySelectorAll('[data-link="pedido"]').forEach(a => a.addEventListener('click', () => fbq('track', 'Contact', {content_name: 'Motion R$ 57', value: 57, currency: 'BRL'})));
-    document.querySelectorAll('[data-link="comprar"]').forEach(a => a.addEventListener('click', () => fbq('track', 'InitiateCheckout', {content_name: 'Motion R$ 57', value: 57, currency: 'BRL'})));
+    // o InitiateCheckout fica só com a Kiwify (dispara quando o checkout abre); aqui o clique no botão vira um evento próprio, para não contar a mesma pessoa duas vezes
+    document.querySelectorAll('[data-link="comprar"]').forEach(a => a.addEventListener('click', () => fbq('trackCustom', 'CliqueComprarMotion', {content_name: 'Motion R$ 57', value: 57, currency: 'BRL'})));
   }
 
   // faixas: a logo repetida, duas vezes seguidas para o loop não ter emenda
