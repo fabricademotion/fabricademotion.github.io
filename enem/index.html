@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="O assunto que você mais trava no ENEM, num vídeo de 1 minuto para revisar todo dia até a prova. Feito sob medida, entrega em até 24h.">
 <meta property="og:title" content="Resumo ENEM em Motion · Fábrica de Motion">
-<meta property="og:image" content="../assets/enem/exemplo-1.jpg">
+<meta property="og:image" content="../assets/enem/exemplo-1.jpg?v=2">
 <title>Resumo ENEM em Motion · Fábrica de Motion</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,12 +88,11 @@ a { color: inherit; }
 .heroi .txt { display: grid; gap: 22px; justify-items: start; }
 .heroi .nota { font-size: 14px; color: var(--cinza); margin: -6px 0 0; }
 .fones { display: flex; gap: clamp(8px, 2vw, 18px); justify-content: center; align-items: flex-end; }
-.fone { position: relative; width: clamp(92px, 25vw, 220px); aspect-ratio: 9 / 18.5; border-radius: 34px; border: 8px solid var(--marinho); background: var(--marinho); box-shadow: var(--pop-lg); overflow: hidden; flex: none; }
-.fone img { width: 100%; height: 100%; object-fit: cover; }
+.fone { position: relative; width: clamp(92px, 25vw, 220px); border-radius: 34px; border: 8px solid var(--marinho); background: var(--marinho); box-shadow: var(--pop-lg); overflow: hidden; flex: none; }
+.fone img, .fone video { width: 100%; height: auto; aspect-ratio: 9 / 16; display: block; border-radius: 24px; background: #0d0b18; }
 .fone:nth-child(1) { transform: rotate(-7deg) translateY(16px); }
 .fone:nth-child(3) { transform: rotate(7deg) translateY(16px); }
 .fone:nth-child(2) { width: clamp(110px, 30vw, 250px); z-index: 2; }
-.fone .ilha { position: absolute; top: 8px; left: 50%; translate: -50% 0; width: 38%; height: 16px; border-radius: 999px; background: var(--marinho); }
 .estrela { position: absolute; display: grid; place-items: center; text-align: center; font-family: var(--f-tit); font-weight: 900; color: #fff; text-shadow: 0 2px 0 var(--marinho); z-index: 3; }
 .estrela svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .estrela span { position: relative; line-height: .9; }
@@ -108,9 +107,11 @@ a { color: inherit; }
 .cartao-q { scroll-snap-align: center; background: var(--manteiga); border: 3px solid var(--marinho); border-radius: 26px; padding: 12px 12px 18px; box-shadow: var(--pop); display: grid; gap: 12px; }
 .cartao-q:nth-child(even) { transform: rotate(1.5deg); }
 .cartao-q:nth-child(odd) { transform: rotate(-1.5deg); }
-.cartao-q img { border-radius: 16px; border: 3px solid var(--marinho); aspect-ratio: 9 / 13; object-fit: cover; object-position: top; width: 100%; }
+.cartao-q img { border-radius: 16px; border: 3px solid var(--marinho); aspect-ratio: 9 / 16; width: 100%; height: auto; }
 .cartao-q b { justify-self: center; background: #fff; border: 2px solid var(--marinho); border-radius: 999px; padding: 4px 16px; font-size: 15px; }
 .cartao-q p { margin: 0; font-size: 15px; text-align: center; color: var(--marinho-2); }
+.exemplo { width: min(320px, 82vw); margin: 0 auto; border: 8px solid var(--marinho); border-radius: 34px; background: var(--marinho); box-shadow: var(--pop-lg); overflow: hidden; }
+.exemplo video { display: block; width: 100%; aspect-ratio: 9 / 16; border-radius: 26px; background: #0d0b18; }
 .arraste { text-align: center; font-family: var(--f-pixel); font-size: 22px; color: var(--cinza); margin: 6px 0 0; }
 .dores { list-style: none; padding: 0; margin: 0 auto 40px; display: grid; gap: 12px; max-width: 720px; }
 .dores li { display: flex; gap: 12px; align-items: flex-start; font-weight: 600; font-size: 19px; background: #fff; border: 3px solid var(--marinho); border-radius: 20px; padding: 14px 18px; box-shadow: 0 4px 0 var(--marinho); }
@@ -138,7 +139,7 @@ a { color: inherit; }
 .preco b { font-family: var(--f-tit); font-weight: 900; font-size: 76px; line-height: .85; color: var(--marinho); letter-spacing: -.03em; }
 .preco b sup { font-size: .38em; vertical-align: top; position: relative; top: .2em; margin-right: 2px; }
 .preco span { font-weight: 700; color: var(--cinza); font-size: 14px; line-height: 1.25; padding-bottom: 6px; }
-.preco s { display: block; color: var(--cinza); font-weight: 600; }
+.avulso { margin: -6px 0 0; font-size: 14px; font-weight: 700; color: var(--cinza); }
 .leva { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 15px; font-weight: 600; }
 .leva li { display: flex; gap: 8px; }
 .leva li::before { content: "✓"; flex: 0 0 22px; height: 22px; border-radius: 50%; background: var(--verde); color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 800; }
@@ -147,7 +148,6 @@ a { color: inherit; }
 .ingresso.top { border-width: 4px; box-shadow: 0 12px 0 var(--marinho); transform: scale(1.04); position: relative; }
 .ingresso.top .faixa-top { background: linear-gradient(90deg, var(--roxo-d), var(--roxo)); }
 .ingresso.top .preco b { color: var(--roxo-d); }
-.ingresso.top .estrela { width: 92px; height: 92px; right: 14px; top: 84px; font-size: 22px; transform: rotate(12deg); }
 .setas { display: flex; justify-content: center; gap: 12px; }
 .setas button { width: 48px; height: 48px; border-radius: 50%; border: 3px solid var(--marinho); background: #fff; box-shadow: 0 4px 0 var(--marinho); font-size: 20px; font-weight: 800; cursor: pointer; color: var(--marinho); }
 .bump { max-width: 640px; margin: 22px auto 0; text-align: center; background: #fff; border: 3px dashed var(--roxo-d); border-radius: 18px; padding: 14px 18px; font-size: 16px; }
@@ -177,7 +177,7 @@ footer a { margin-right: 14px; }
 .barra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--marinho); padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); display: flex; gap: 12px; align-items: center; justify-content: space-between; transform: translateY(110%); transition: transform .25s; }
 .barra.visivel { transform: none; }
 .barra .p { color: #fff; font-weight: 700; line-height: 1.1; font-size: 15px; }
-.barra .p s { opacity: .7; font-weight: 500; font-size: 13px; }
+.barra .p s { text-decoration: none; opacity: .7; font-weight: 500; font-size: 13px; }
 .barra .btn { min-height: 48px; font-size: 17px; padding: 8px 18px; box-shadow: none; border-color: #fff; }
 
 @media (min-width: 860px) {
@@ -196,7 +196,7 @@ footer a { margin-right: 14px; }
 <body>
 
 <div class="faixa" aria-hidden="true"><div>
-  <span>Faltam <span data-dias-n>15</span> dias</span><i>★</i><span>Vagas limitadas por dia</span><i>★</i><span>Entrega em 24h</span><i>★</i><span>Faltam <span data-dias-n>15</span> dias</span><i>★</i><span>Vagas limitadas por dia</span><i>★</i><span>Entrega em 24h</span><i>★</i><span>Faltam <span data-dias-n>15</span> dias</span><i>★</i><span>Vagas limitadas por dia</span><i>★</i><span>Entrega em 24h</span><i>★</i><span>Faltam <span data-dias-n>15</span> dias</span><i>★</i><span>Vagas limitadas por dia</span><i>★</i><span>Entrega em 24h</span><i>★</i>
+  <span>Faltam <span data-dias-n>14</span> dias</span><i>★</i><span>Vagas limitadas por dia</span><i>★</i><span>Entrega em 24h</span><i>★</i><span>Faltam <span data-dias-n>14</span> dias</span><i>★</i><span>Vagas limitadas por dia</span><i>★</i><span>Entrega em 24h</span><i>★</i><span>Faltam <span data-dias-n>14</span> dias</span><i>★</i><span>Vagas limitadas por dia</span><i>★</i><span>Entrega em 24h</span><i>★</i><span>Faltam <span data-dias-n>14</span> dias</span><i>★</i><span>Vagas limitadas por dia</span><i>★</i><span>Entrega em 24h</span><i>★</i>
 </div></div>
 
 <!-- herói -->
@@ -208,13 +208,13 @@ footer a { margin-right: 14px; }
       <span class="selo-pill"><span class="ao-vivo"></span>Vídeos de 1 minuto do seu assunto</span>
       <h1 class="tit h1">O assunto que você trava, em <span class="it">1 minuto</span>.</h1>
       <p class="apoio">Você escolhe o assunto. A gente transforma num resumo animado, com a pegadinha e o macete, para você assistir todo dia até a prova.</p>
-      <a class="btn" href="#precos" data-checkout="completo">Quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
+      <a class="btn" href="#precos">Quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
       <p class="nota">A partir de R$ 37 · entrega em até 24h no WhatsApp</p>
     </div>
     <div class="fones" style="position: relative">
-      <div class="fone"><span class="ilha"></span><img src="../assets/enem/exemplo-2.jpg" alt="Quadro do exemplo: balanceie a equação"></div>
-      <div class="fone"><span class="ilha"></span><img src="../assets/enem/exemplo-1.jpg" alt="Abertura do exemplo: Estequiometria sem travar"></div>
-      <div class="fone"><span class="ilha"></span><img src="../assets/enem/exemplo-5.jpg" alt="Quadro do exemplo: a pegadinha do ENEM"></div>
+      <div class="fone"><img src="../assets/enem/exemplo-2.jpg?v=2" alt="Quadro do exemplo: balanceie a equação primeiro"></div>
+      <div class="fone"><video src="../assets/enem/estequiometria-60s.mp4" poster="../assets/enem/exemplo-1.jpg?v=2" autoplay muted loop playsinline aria-label="Exemplo: Estequiometria em 60 segundos"></video></div>
+      <div class="fone"><img src="../assets/enem/exemplo-5.jpg?v=2" alt="Quadro do exemplo: a pegadinha do ENEM"></div>
       <div class="estrela"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon fill="var(--roxo)" stroke="var(--marinho)" stroke-width="3" points="50,2 61,18 80,10 80,30 98,38 86,54 96,72 76,76 72,96 54,88 40,100 32,82 12,86 14,66 0,52 16,40 8,20 28,18 34,0"/></svg><span>60s<small>POR VÍDEO</small></span></div>
     </div>
   </div>
@@ -225,20 +225,22 @@ footer a { margin-right: 14px; }
 <section class="secao">
   <div class="env">
     <div class="cabeca">
-      <h2 class="tit h2">Faltam <span class="it" data-dias>15 dias</span>. E aquele assunto <span class="contorno">ainda não entrou?</span></h2>
+      <h2 class="tit h2">Faltam <span class="it" data-dias>14 dias</span>. E aquele assunto <span class="contorno">ainda não entrou?</span></h2>
     </div>
     <ul class="dores">
       <li>Lê o resumo, entende na hora e no dia seguinte a fórmula sumiu.</li>
       <li>Abre uma videoaula de 40 minutos e não termina.</li>
       <li>O assunto aparece no simulado e dá branco. De novo.</li>
     </ul>
-    <div class="cabeca" style="margin-bottom: 24px"><p class="apoio">Cada vídeo segue o mesmo formato, feito para grudar na memória:</p></div>
+    <div class="cabeca" style="margin-bottom: 24px"><h3 class="tit" style="font-size: clamp(28px, 4vw, 40px)">Assista a um exemplo: <span class="it">Estequiometria em 60 segundos</span></h3></div>
+    <div class="exemplo"><video src="../assets/enem/estequiometria-60s.mp4" poster="../assets/enem/exemplo-1.jpg?v=2" autoplay muted loop playsinline controls preload="metadata" aria-label="Exemplo completo: Estequiometria em 60 segundos"></video></div>
+    <div class="cabeca" style="margin: 48px 0 24px"><p class="apoio">Cada vídeo segue o mesmo formato, feito para grudar na memória:</p></div>
     <div class="trilho" id="trilho-quadros">
-      <div class="cartao-q"><img src="../assets/enem/exemplo-1.jpg" alt=""><b>Abertura</b><p>O assunto e o tempo: 1 minuto.</p></div>
-      <div class="cartao-q"><img src="../assets/enem/exemplo-3.jpg" alt=""><b>Pontos-chave</b><p>Só o que o ENEM cobra.</p></div>
-      <div class="cartao-q"><img src="../assets/enem/exemplo-4.jpg" alt=""><b>Exemplo resolvido</b><p>A conta passo a passo.</p></div>
-      <div class="cartao-q"><img src="../assets/enem/exemplo-5.jpg" alt=""><b>A pegadinha</b><p>O detalhe que derruba.</p></div>
-      <div class="cartao-q"><img src="../assets/enem/exemplo-6.jpg" alt=""><b>O macete</b><p>Para lembrar na hora.</p></div>
+      <div class="cartao-q"><img src="../assets/enem/exemplo-1.jpg?v=2" alt=""><b>Abertura</b><p>O assunto e o tempo: 1 minuto.</p></div>
+      <div class="cartao-q"><img src="../assets/enem/exemplo-3.jpg?v=2" alt=""><b>Pontos-chave</b><p>Só o que o ENEM cobra.</p></div>
+      <div class="cartao-q"><img src="../assets/enem/exemplo-4.jpg?v=2" alt=""><b>Exemplo resolvido</b><p>A conta passo a passo.</p></div>
+      <div class="cartao-q"><img src="../assets/enem/exemplo-5.jpg?v=2" alt=""><b>A pegadinha</b><p>O detalhe que derruba.</p></div>
+      <div class="cartao-q"><img src="../assets/enem/exemplo-6.jpg?v=2" alt=""><b>O macete</b><p>Para lembrar na hora.</p></div>
     </div>
     <p class="arraste">← arraste os quadros →</p>
   </div>
@@ -296,11 +298,11 @@ footer a { margin-right: 14px; }
       </article>
       <article class="ingresso top">
         <div class="faixa-top">Mais completo ★ <i></i></div>
-        <div class="estrela"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon fill="var(--manteiga)" stroke="var(--marinho)" stroke-width="3" points="50,2 61,18 80,10 80,30 98,38 86,54 96,72 76,76 72,96 54,88 40,100 32,82 12,86 14,66 0,52 16,40 8,20 28,18 34,0"/></svg><span style="color: var(--marinho); text-shadow: none">R$19<small>POR VÍDEO</small></span></div>
         <div class="corpo">
           <h3>Kit completo<br>5 assuntos</h3>
           <p class="desc">Para quem trava em várias matérias.</p>
-          <div class="preco"><b><sup>R$</sup>97</b><span><s>de R$ 185</s>pagamento único</span></div>
+          <div class="preco"><b><sup>R$</sup>97</b><span>pagamento<br>único</span></div>
+          <p class="avulso">R$ 185 se comprar avulso · sai R$ 19,40 por vídeo</p>
           <ul class="leva"><li>5 vídeos de até 1 minuto</li><li>Um para cada assunto</li><li>Pegadinha e macete em cada um</li><li>Entrega em até 24h</li></ul>
           <a class="btn largo" href="#precos" data-checkout="completo">Quero o kit com 5<small>Liberado no seu WhatsApp</small></a>
           <div class="codigo"></div><div class="validade">VALIDADE: ATÉ A PROVA</div>
@@ -311,7 +313,8 @@ footer a { margin-right: 14px; }
         <div class="corpo">
           <h3>3 assuntos</h3>
           <p class="desc">Os três pontos fracos que mais pesam.</p>
-          <div class="preco"><b><sup>R$</sup>67</b><span><s>de R$ 111</s>pagamento único</span></div>
+          <div class="preco"><b><sup>R$</sup>67</b><span>pagamento<br>único</span></div>
+          <p class="avulso">R$ 111 se comprar avulso</p>
           <ul class="leva"><li>3 vídeos de até 1 minuto</li><li>Pegadinha e macete em cada</li><li>Entrega em até 24h</li></ul>
           <a class="btn creme largo" href="#precos" data-checkout="kit">Quero o kit com 3</a>
           <div class="codigo"></div><div class="validade">VALIDADE: ATÉ A PROVA</div>
@@ -319,7 +322,7 @@ footer a { margin-right: 14px; }
       </article>
     </div>
     <div class="setas"><button type="button" data-rolar="trilho-precos" data-dir="-1" aria-label="Ver kit anterior">←</button><button type="button" data-rolar="trilho-precos" data-dir="1" aria-label="Ver próximo kit">→</button></div>
-    <p class="bump"><b>Mais um assunto?</b> No checkout, você pode somar +1 assunto por R$ 19,90.</p>
+    <p class="bump" id="bump" hidden><b>Mais um assunto?</b> No checkout, você pode somar +1 assunto por R$ 19,90.</p>
   </div>
 </section>
 
@@ -340,7 +343,7 @@ footer a { margin-right: 14px; }
   <div class="env faq">
     <div style="display: grid; gap: 18px; justify-items: start">
       <h2 class="tit h2">As dúvidas <span class="it">que todo mundo tem</span></h2>
-      <a class="btn" href="#precos" data-checkout="completo">Quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
+      <a class="btn" href="#precos">Quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
       <a class="zap" href="#" data-link="whatsapp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 000-.4c0-.1-.6-1.3-.8-1.8s-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.8 11.9 11.9 0 004.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 001.8-1.3 2.3 2.3 0 00.2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Tirar uma dúvida no WhatsApp</a>
     </div>
     <div class="lista">
@@ -360,10 +363,10 @@ footer a { margin-right: 14px; }
   <div class="nuvem flutua" style="width:260px;left:-50px;top:40px"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div><div class="nuvem flutua" style="width:220px;right:-40px;bottom:30px;animation-delay:-4s"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div>
   <div class="env">
     <div class="cabeca">
-      <h2 class="tit h2">Daqui a <span class="contorno" data-dias>15 dias</span> você vai estar na prova.</h2>
+      <h2 class="tit h2">Daqui a <span class="contorno" data-dias>14 dias</span> você vai estar na prova.</h2>
       <p class="apoio">Quando aparecer aquele assunto, você vai lembrar?</p>
     </div>
-    <a class="btn" href="#precos" data-checkout="completo">Sim, quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
+    <a class="btn" href="#precos">Sim, quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
   </div>
 </section>
 
@@ -375,7 +378,7 @@ footer a { margin-right: 14px; }
 </footer>
 
 <div class="barra barra-compra" id="barra-compra" aria-hidden="true">
-  <div class="p"><s>R$ 185</s><br>R$ 97 · kit com 5</div>
+  <div class="p">R$ 97 · kit com 5<br><s>R$ 185 se comprar avulso</s></div>
   <a class="btn" href="#precos" data-checkout="completo" tabindex="-1">Garantir agora</a>
 </div>
 
@@ -390,9 +393,11 @@ footer a { margin-right: 14px; }
     whatsapp: "5511968155528",   // dúvidas antes da compra
     pixel: "1106806325550548",
     prova: "2026-11-08T13:00:00-03:00",
+    bump: false,   // ligue quando o order bump de +1 assunto (R$ 19,90) existir na Kiwify
   };
-  // dias até a prova
-  const dias = Math.max(0, Math.ceil((new Date(CONFIG.prova) - new Date()) / 864e5));
+  // dias até a prova, contados por data no fuso de Brasília (25/10 → 08/11 = 14)
+  const diaBr = d => d.toLocaleDateString('en-CA', {timeZone: 'America/Sao_Paulo'});
+  const dias = Math.max(0, Math.round((Date.parse(diaBr(new Date(CONFIG.prova))) - Date.parse(diaBr(new Date()))) / 864e5));
   document.querySelectorAll("[data-dias]").forEach(el => el.textContent = dias === 1 ? "1 dia" : dias + " dias");
   document.querySelectorAll("[data-dias-n]").forEach(el => el.textContent = dias);
   // repassa as UTMs do anúncio para o checkout
@@ -414,6 +419,7 @@ footer a { margin-right: 14px; }
     if (url) a.href = link(url);
     else { a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Oi! Quero o Resumo ENEM em Motion: " + NOME[a.dataset.checkout] + "." + (ref ? "\n\n(anúncio: " + ref + ")" : "")); a.target = "_blank"; a.rel = "noopener"; }
   });
+  if (CONFIG.bump) document.getElementById('bump').hidden = false;
   document.querySelectorAll('[data-link="whatsapp"]').forEach(a => a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Oi! Tenho uma dúvida sobre o Resumo ENEM em Motion."));
   if (CONFIG.pixel) {
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
