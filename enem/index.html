@@ -69,7 +69,7 @@ a { color: inherit; }
 
 /* faixas cruzadas (mesma ideia da página do motion, no visual desta página) */
 .fitas { position: relative; height: 170px; overflow: hidden; background: var(--papel); }
-.fita { position: absolute; left: -10%; width: 120%; height: 52px; display: flex; align-items: center; overflow: hidden; border-block: 3px solid var(--marinho); box-shadow: 0 6px 0 var(--marinho); }
+.fita { position: absolute; left: -25%; width: 150%; height: 52px; display: flex; align-items: center; overflow: hidden; border-block: 3px solid var(--marinho); box-shadow: 0 6px 0 var(--marinho); }
 .fita.um { top: 34px; transform: rotate(-4deg); background: var(--roxo); color: #fff; }
 .fita.dois { top: 86px; transform: rotate(3deg); background: var(--manteiga-2); color: var(--marinho); }
 .fita-trilho { display: flex; gap: 30px; align-items: center; flex: none; padding-right: 30px; animation: correr 30s linear infinite; white-space: nowrap; font-family: var(--f-tit); font-weight: 900; font-size: 20px; letter-spacing: .05em; text-transform: uppercase; }
@@ -198,7 +198,15 @@ footer a { margin-right: 14px; }
 .barra .btn { min-height: 48px; font-size: 17px; padding: 8px 18px; box-shadow: none; border-color: #fff; }
 
 @media (min-width: 860px) {
-  .heroi .grade { grid-template-columns: 1.05fr .95fr; }
+  .heroi { padding-top: 48px; }
+  .heroi .grade { grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .heroi .txt { gap: 22px; }
+  .heroi .h1 { font-size: clamp(48px, 5vw, 70px); }
+  .logo-txt { margin-bottom: 14px; }
+  .cta-heroi { margin-top: 36px; }
+  .fitas { height: 200px; }
+  .fita.um { top: 52px; transform: rotate(-2deg); }
+  .fita.dois { top: 98px; transform: rotate(1.8deg); }
   .numeros { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .passos { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .faq { grid-template-columns: .8fr 1.2fr; align-items: start; }
