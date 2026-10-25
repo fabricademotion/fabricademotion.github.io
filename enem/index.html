@@ -67,6 +67,17 @@ a { color: inherit; }
 .faixa i { font-style: normal; color: var(--roxo-l); }
 @keyframes correr { to { transform: translateX(-50%); } }
 
+/* faixas cruzadas (mesma ideia da página do motion, no visual desta página) */
+.fitas { position: relative; height: 170px; overflow: hidden; background: var(--papel); }
+.fita { position: absolute; left: -10%; width: 120%; height: 52px; display: flex; align-items: center; overflow: hidden; border-block: 3px solid var(--marinho); box-shadow: 0 6px 0 var(--marinho); }
+.fita.um { top: 34px; transform: rotate(-4deg); background: var(--roxo); color: #fff; }
+.fita.dois { top: 86px; transform: rotate(3deg); background: var(--manteiga-2); color: var(--marinho); }
+.fita-trilho { display: flex; gap: 30px; align-items: center; flex: none; padding-right: 30px; animation: correr 30s linear infinite; white-space: nowrap; font-family: var(--f-tit); font-weight: 900; font-size: 20px; letter-spacing: .05em; text-transform: uppercase; }
+.fita.dois .fita-trilho { animation-direction: reverse; }
+.fita-trilho img { height: 26px; width: auto; flex: none; filter: brightness(0) invert(1); }
+.fita-trilho i { font-style: normal; color: var(--roxo-d); }
+.fita.um .fita-trilho i { color: var(--manteiga-2); }
+
 /* céu e nuvens */
 .ceu { position: relative; isolation: isolate; overflow: clip; background: linear-gradient(180deg, var(--ceu-1), var(--ceu-2) 55%, var(--ceu-3)); }
 .nuvem { position: absolute; z-index: -1; color: #fff; pointer-events: none; }
@@ -193,7 +204,7 @@ footer a { margin-right: 14px; }
   .barra { display: none; }
   footer { padding-bottom: 40px; }
 }
-@media (prefers-reduced-motion: reduce) { .faixa div, .flutua, .ao-vivo::after { animation: none; } .btn, .barra { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .fita-trilho, .faixa div, .flutua, .ao-vivo::after { animation: none; } .btn, .barra { transition: none; } }
 </style>
 </head>
 <body>
@@ -223,6 +234,11 @@ footer a { margin-right: 14px; }
   </div>
   <div class="banco"></div>
 </section>
+
+<div class="fitas" aria-hidden="true">
+  <div class="fita um"><div class="fita-trilho" id="fita1"></div></div>
+  <div class="fita dois"><div class="fita-trilho" id="fita2"></div></div>
+</div>
 
 <!-- dor + quadros -->
 <section class="secao">
@@ -407,6 +423,10 @@ footer a { margin-right: 14px; }
   const dias = Math.max(0, Math.round((Date.parse(diaBr(new Date(CONFIG.prova))) - Date.parse(diaBr(new Date()))) / 864e5));
   document.querySelectorAll("[data-dias]").forEach(el => el.textContent = dias === 1 ? "1 dia" : dias + " dias");
   document.querySelectorAll("[data-dias-n]").forEach(el => el.textContent = dias);
+  // faixas cruzadas: o conteúdo repetido duas vezes seguidas para o loop não ter emenda
+  const repete = (html, n) => Array(n).fill(html).join("");
+  document.getElementById("fita1").innerHTML = repete('<img src="../assets/logo-branco.png" alt=""><span>Resumo ENEM</span><i>★</i>', 16);
+  document.getElementById("fita2").innerHTML = repete(`<span>Faltam ${dias} ${dias === 1 ? "dia" : "dias"}</span><i>★</i><span>1 minuto por dia</span><i>★</i><span>Fixa o assunto</span><i>★</i><span>Entrega em 24h</span><i>★</i>`, 8);
   // repassa as UTMs do anúncio para o checkout
   const RASTRO = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id', 'fbclid', 'src', 'sck'];
   let rastro = {};
