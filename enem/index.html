@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="O assunto que você mais trava no ENEM, num vídeo de 1 minuto para revisar todo dia até a prova. Feito sob medida, entrega em até 24h.">
 <meta property="og:title" content="Resumo ENEM em Motion · Fábrica de Motion">
-<meta property="og:image" content="../assets/enem/exemplo-1.jpg?v=2">
+<meta property="og:image" content="../assets/enem/rt-1.jpg">
 <title>Resumo ENEM em Motion · Fábrica de Motion</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,31 +87,30 @@ a { color: inherit; }
 .logo-txt .l2 { font-size: clamp(54px, 8vw, 84px); }
 .heroi .txt { display: grid; gap: 22px; justify-items: start; }
 .heroi .nota { font-size: 14px; color: var(--cinza); margin: -6px 0 0; }
-.fones { display: flex; gap: clamp(8px, 2vw, 18px); justify-content: center; align-items: flex-end; }
-.fone { position: relative; width: clamp(92px, 25vw, 220px); border-radius: 34px; border: 8px solid var(--marinho); background: var(--marinho); box-shadow: var(--pop-lg); overflow: hidden; flex: none; }
-.fone img, .fone video { width: 100%; height: auto; aspect-ratio: 9 / 16; display: block; border-radius: 24px; background: #0d0b18; }
-.fone:nth-child(1) { transform: rotate(-7deg) translateY(16px); }
-.fone:nth-child(3) { transform: rotate(7deg) translateY(16px); }
-.fone:nth-child(2) { width: clamp(110px, 30vw, 250px); z-index: 2; }
+.tela-heroi { position: relative; }
+.tela { border: 6px solid var(--marinho); border-radius: 22px; background: var(--marinho); box-shadow: var(--pop-lg); overflow: hidden; }
+.tela video, .tela img { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto; border-radius: 16px; background: #e9e1d1; }
+.tela-heroi .estrela { width: clamp(80px, 20vw, 112px); height: clamp(80px, 20vw, 112px); right: -10px; top: -40px; font-size: clamp(24px, 6vw, 32px); transform: rotate(10deg); }
 .estrela { position: absolute; display: grid; place-items: center; text-align: center; font-family: var(--f-tit); font-weight: 900; color: #fff; text-shadow: 0 2px 0 var(--marinho); z-index: 3; }
 .estrela svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .estrela span { position: relative; line-height: .9; }
 .estrela small { display: block; font-family: var(--f-corpo); font-size: 11px; font-weight: 800; letter-spacing: .06em; }
-.fones .estrela { width: clamp(80px, 22vw, 112px); height: clamp(80px, 22vw, 112px); right: 2%; top: -20px; font-size: clamp(24px, 6vw, 32px); transform: rotate(10deg); }
 
 /* seções */
 .secao { padding: clamp(80px, 10vw, 120px) 0; position: relative; }
 .creme { background: var(--creme); border-block: 3px solid var(--marinho); }
-.trilho { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(230px, 260px); gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px 4px 26px; scrollbar-width: none; }
+.trilho { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 340px); gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px 4px 26px; scrollbar-width: none; }
 .trilho::-webkit-scrollbar { display: none; }
 .cartao-q { scroll-snap-align: center; background: var(--manteiga); border: 3px solid var(--marinho); border-radius: 26px; padding: 12px 12px 18px; box-shadow: var(--pop); display: grid; gap: 12px; }
 .cartao-q:nth-child(even) { transform: rotate(1.5deg); }
 .cartao-q:nth-child(odd) { transform: rotate(-1.5deg); }
-.cartao-q img { border-radius: 16px; border: 3px solid var(--marinho); aspect-ratio: 9 / 16; width: 100%; height: auto; }
+.cartao-q img { border-radius: 14px; border: 3px solid var(--marinho); aspect-ratio: 16 / 9; width: 100%; height: auto; }
 .cartao-q b { justify-self: center; background: #fff; border: 2px solid var(--marinho); border-radius: 999px; padding: 4px 16px; font-size: 15px; }
 .cartao-q p { margin: 0; font-size: 15px; text-align: center; color: var(--marinho-2); }
-.exemplo { width: min(320px, 82vw); margin: 0 auto; border: 8px solid var(--marinho); border-radius: 34px; background: var(--marinho); box-shadow: var(--pop-lg); overflow: hidden; }
-.exemplo video { display: block; width: 100%; aspect-ratio: 9 / 16; border-radius: 26px; background: #0d0b18; }
+.exemplos { display: grid; gap: 22px; max-width: 1080px; margin: 0 auto; }
+.exemplos figure { margin: 0; display: grid; gap: 10px; }
+.exemplos figcaption { text-align: center; font-weight: 700; font-size: 15px; color: var(--marinho-2); }
+@media (min-width: 860px) { .exemplos { grid-template-columns: 1fr 1fr; } }
 .arraste { text-align: center; font-family: var(--f-pixel); font-size: 22px; color: var(--cinza); margin: 6px 0 0; }
 .dores { list-style: none; padding: 0; margin: 0 auto 40px; display: grid; gap: 12px; max-width: 720px; }
 .dores li { display: flex; gap: 12px; align-items: flex-start; font-weight: 600; font-size: 19px; background: #fff; border: 3px solid var(--marinho); border-radius: 20px; padding: 14px 18px; box-shadow: 0 4px 0 var(--marinho); }
@@ -211,10 +210,8 @@ footer a { margin-right: 14px; }
       <a class="btn" href="#precos">Quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
       <p class="nota">A partir de R$ 37 · entrega em até 24h no WhatsApp</p>
     </div>
-    <div class="fones" style="position: relative">
-      <div class="fone"><img src="../assets/enem/exemplo-2.jpg?v=2" alt="Quadro do exemplo: balanceie a equação primeiro"></div>
-      <div class="fone"><video src="../assets/enem/estequiometria-60s.mp4" poster="../assets/enem/exemplo-1.jpg?v=2" autoplay muted loop playsinline aria-label="Exemplo: Estequiometria em 60 segundos"></video></div>
-      <div class="fone"><img src="../assets/enem/exemplo-5.jpg?v=2" alt="Quadro do exemplo: a pegadinha do ENEM"></div>
+    <div class="tela-heroi">
+      <div class="tela"><video src="../assets/enem/regra-de-tres.mp4" poster="../assets/enem/rt-1.jpg" autoplay muted loop playsinline aria-label="Exemplo: Razão, proporção e regra de três em 1 minuto"></video></div>
       <div class="estrela"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon fill="var(--roxo)" stroke="var(--marinho)" stroke-width="3" points="50,2 61,18 80,10 80,30 98,38 86,54 96,72 76,76 72,96 54,88 40,100 32,82 12,86 14,66 0,52 16,40 8,20 28,18 34,0"/></svg><span>60s<small>POR VÍDEO</small></span></div>
     </div>
   </div>
@@ -232,15 +229,18 @@ footer a { margin-right: 14px; }
       <li>Abre uma videoaula de 40 minutos e não termina.</li>
       <li>O assunto aparece no simulado e dá branco. De novo.</li>
     </ul>
-    <div class="cabeca" style="margin-bottom: 24px"><h3 class="tit" style="font-size: clamp(28px, 4vw, 40px)">Assista a um exemplo: <span class="it">Estequiometria em 60 segundos</span></h3></div>
-    <div class="exemplo"><video src="../assets/enem/estequiometria-60s.mp4" poster="../assets/enem/exemplo-1.jpg?v=2" autoplay muted loop playsinline controls preload="metadata" aria-label="Exemplo completo: Estequiometria em 60 segundos"></video></div>
+    <div class="cabeca" style="margin-bottom: 24px"><h3 class="tit" style="font-size: clamp(28px, 4vw, 40px)">Assista a dois exemplos <span class="it">com som</span></h3></div>
+    <div class="exemplos">
+      <figure><div class="tela"><video src="../assets/enem/regra-de-tres.mp4" poster="../assets/enem/rt-1.jpg" controls playsinline preload="none"></video></div><figcaption>Matemática · Razão, proporção e regra de três</figcaption></figure>
+      <figure><div class="tela"><video src="../assets/enem/estequiometria.mp4" poster="../assets/enem/eq-1.jpg" controls playsinline preload="none"></video></div><figcaption>Química · Estequiometria</figcaption></figure>
+    </div>
     <div class="cabeca" style="margin: 48px 0 24px"><p class="apoio">Cada vídeo segue o mesmo formato, feito para grudar na memória:</p></div>
     <div class="trilho" id="trilho-quadros">
-      <div class="cartao-q"><img src="../assets/enem/exemplo-1.jpg?v=2" alt=""><b>Abertura</b><p>O assunto e o tempo: 1 minuto.</p></div>
-      <div class="cartao-q"><img src="../assets/enem/exemplo-3.jpg?v=2" alt=""><b>Pontos-chave</b><p>Só o que o ENEM cobra.</p></div>
-      <div class="cartao-q"><img src="../assets/enem/exemplo-4.jpg?v=2" alt=""><b>Exemplo resolvido</b><p>A conta passo a passo.</p></div>
-      <div class="cartao-q"><img src="../assets/enem/exemplo-5.jpg?v=2" alt=""><b>A pegadinha</b><p>O detalhe que derruba.</p></div>
-      <div class="cartao-q"><img src="../assets/enem/exemplo-6.jpg?v=2" alt=""><b>O macete</b><p>Para lembrar na hora.</p></div>
+      <div class="cartao-q"><img src="../assets/enem/rt-1.jpg" alt=""><b>Abertura</b><p>O assunto e o tempo: 1 minuto.</p></div>
+      <div class="cartao-q"><img src="../assets/enem/rt-2.jpg" alt=""><b>Pontos-chave</b><p>Só o que o ENEM cobra.</p></div>
+      <div class="cartao-q"><img src="../assets/enem/rt-3.jpg" alt=""><b>Exemplo resolvido</b><p>A conta passo a passo.</p></div>
+      <div class="cartao-q"><img src="../assets/enem/rt-4.jpg" alt=""><b>A pegadinha</b><p>O detalhe que derruba.</p></div>
+      <div class="cartao-q"><img src="../assets/enem/rt-5.jpg" alt=""><b>O macete</b><p>Para lembrar na hora.</p></div>
     </div>
     <p class="arraste">← arraste os quadros →</p>
   </div>
