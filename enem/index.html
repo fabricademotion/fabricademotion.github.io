@@ -81,6 +81,8 @@ a { color: inherit; }
 /* herói */
 .heroi { padding: 36px 0 150px; }
 .heroi .grade { display: grid; gap: 40px; align-items: center; }
+.logo-fab { width: clamp(150px, 40vw, 200px); height: auto; }
+.logo-fab.rodape { width: 150px; margin-bottom: 8px; }
 .logo-txt { display: inline-block; transform: rotate(-3deg); margin-bottom: 18px; }
 .logo-txt b { display: block; font-family: var(--f-tit); font-variation-settings: "SOFT" 100, "WONK" 1; font-weight: 900; font-style: italic; line-height: .9; }
 .logo-txt .l1 { font-size: 34px; color: var(--marinho); }
@@ -205,6 +207,7 @@ footer a { margin-right: 14px; }
   <div class="nuvem flutua" style="width:220px;left:-40px;top:40px"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div><div class="nuvem flutua" style="width:300px;right:-60px;top:120px;animation-delay:-4s"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div><div class="nuvem " style="width:180px;left:40%;top:10px;opacity:.8"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div>
   <div class="env grade">
     <div class="txt">
+      <img class="logo-fab" src="../assets/enem/logo-fabrica.png" alt="Fábrica de Motion" width="640" height="171">
       <div class="logo-txt"><b class="l1">Resumo</b><b class="l2 contorno">ENEM em Motion</b></div>
       <span class="selo-pill"><span class="ao-vivo"></span>Vídeos de 1 minuto do seu assunto</span>
       <h1 class="tit h1">O assunto que você trava, em <span class="it">1 minuto</span>.</h1>
@@ -376,6 +379,7 @@ footer a { margin-right: 14px; }
 
 <footer>
   <div class="env">
+    <img class="logo-fab rodape" src="../assets/enem/logo-fabrica.png" alt="Fábrica de Motion" width="640" height="171" loading="lazy">
     <p>Resumo ENEM em Motion é um material de revisão independente da Fábrica de Motion, sem vínculo com o INEP ou com o MEC. Não prometemos aprovação nem nota.</p>
     <p>© 2026 Fábrica de Motion · CNPJ 61.451.359/0001-70 · <a href="../politica.html">Políticas de privacidade</a><a href="../termos.html">Termos de uso</a></p>
   </div>
