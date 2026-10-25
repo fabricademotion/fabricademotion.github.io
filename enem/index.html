@@ -88,6 +88,8 @@ a { color: inherit; }
 .heroi .txt { display: grid; gap: 22px; justify-items: start; }
 .heroi .nota { font-size: 14px; color: var(--cinza); margin: -6px 0 0; }
 .tela-heroi { position: relative; }
+.cta-heroi { display: grid; gap: 14px; justify-items: center; text-align: center; margin-top: 30px; }
+.cta-heroi .nota { margin: 0; }
 .tela { border: 6px solid var(--marinho); border-radius: 22px; background: var(--marinho); box-shadow: var(--pop-lg); overflow: hidden; }
 .tela video, .tela img { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto; border-radius: 16px; background: #e9e1d1; }
 .tela-heroi .estrela { width: clamp(80px, 20vw, 112px); height: clamp(80px, 20vw, 112px); right: -10px; top: -40px; font-size: clamp(24px, 6vw, 32px); transform: rotate(10deg); }
@@ -207,12 +209,14 @@ footer a { margin-right: 14px; }
       <span class="selo-pill"><span class="ao-vivo"></span>Vídeos de 1 minuto do seu assunto</span>
       <h1 class="tit h1">O assunto que você trava, em <span class="it">1 minuto</span>.</h1>
       <p class="apoio">Você escolhe o assunto. A gente transforma num resumo animado, com a pegadinha e o macete, para você assistir todo dia até a prova.</p>
-      <a class="btn" href="#precos">Quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
-      <p class="nota">A partir de R$ 37 · entrega em até 24h no WhatsApp</p>
     </div>
     <div class="tela-heroi">
       <div class="tela"><video src="../assets/enem/regra-de-tres.mp4" poster="../assets/enem/rt-1.jpg" autoplay muted loop playsinline aria-label="Exemplo: Razão, proporção e regra de três em 1 minuto"></video></div>
       <div class="estrela"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon fill="var(--roxo)" stroke="var(--marinho)" stroke-width="3" points="50,2 61,18 80,10 80,30 98,38 86,54 96,72 76,76 72,96 54,88 40,100 32,82 12,86 14,66 0,52 16,40 8,20 28,18 34,0"/></svg><span>60s<small>POR VÍDEO</small></span></div>
+      <div class="cta-heroi">
+        <a class="btn" href="#precos">Quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
+        <p class="nota">A partir de R$ 37 · entrega em até 24h no WhatsApp</p>
+      </div>
     </div>
   </div>
   <div class="banco"></div>
