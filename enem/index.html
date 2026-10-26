@@ -435,14 +435,14 @@ footer a { margin-right: 14px; }
   // ===== CONFIG: preencha antes de publicar =====
   const CONFIG = {
     checkout: {
-      um: "",        // link da Kiwify do Resumo único (R$ 37)
-      kit: "",       // link da Kiwify do Kit reta final, 3 assuntos (R$ 67)
-      completo: "",  // link da Kiwify do Kit completo, 5 assuntos (R$ 97)
+      um: "https://pay.kiwify.com.br/idbe3KU",        // link da Kiwify do Resumo único (R$ 37)
+      kit: "https://pay.kiwify.com.br/4bKO0xt",       // link da Kiwify do Kit reta final, 3 assuntos (R$ 67)
+      completo: "https://pay.kiwify.com.br/aRuqczb",  // link da Kiwify do Kit completo, 5 assuntos (R$ 97)
     },
     whatsapp: "5511968155528",   // dúvidas antes da compra
     pixel: "1106806325550548",
     prova: "2026-11-08T13:00:00-03:00",
-    bump: false,   // ligue quando o order bump de +1 assunto (R$ 19,90) existir na Kiwify
+    bump: true,    // ligue quando o order bump de +1 assunto (R$ 19,90) existir na Kiwify
   };
   // dias até a prova, contados por data no fuso de Brasília (25/10 → 08/11 = 14)
   const diaBr = d => d.toLocaleDateString('en-CA', {timeZone: 'America/Sao_Paulo'});
