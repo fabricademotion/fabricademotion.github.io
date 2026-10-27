@@ -163,6 +163,8 @@ a { color: inherit; }
 .leva li::before { content: "✓"; flex: 0 0 22px; height: 22px; border-radius: 50%; background: var(--verde); color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 800; }
 .codigo { height: 32px; border-radius: 4px; opacity: .85; background: repeating-linear-gradient(90deg, var(--marinho) 0 2px, transparent 2px 4px, var(--marinho) 4px 7px, transparent 7px 9px, var(--marinho) 9px 10px, transparent 10px 14px); }
 .validade { font-family: var(--f-pixel); font-size: 20px; letter-spacing: .08em; color: var(--marinho-2); margin-top: -6px; }
+.ingresso-unico { display: flex; justify-content: center; padding: 26px 0 34px; }
+.ingresso-unico .ingresso { width: min(380px, 100%); }
 .ingresso.top { border-width: 4px; box-shadow: 0 12px 0 var(--marinho); transform: scale(1.04); position: relative; }
 .ingresso.top .faixa-top { background: linear-gradient(90deg, var(--roxo-d), var(--roxo)); }
 .ingresso.top .preco b { color: var(--roxo-d); }
@@ -251,9 +253,9 @@ footer a { margin-right: 14px; }
       <div class="tela"><video src="../assets/enem/regra-de-tres.mp4" poster="../assets/enem/rt-1.jpg" autoplay muted loop playsinline aria-label="Exemplo: Razão, proporção e regra de três em 1 minuto"></video></div>
       <div class="estrela"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon fill="var(--roxo)" stroke="var(--marinho)" stroke-width="3" points="50,2 61,18 80,10 80,30 98,38 86,54 96,72 76,76 72,96 54,88 40,100 32,82 12,86 14,66 0,52 16,40 8,20 28,18 34,0"/></svg><span>60s<small>POR VÍDEO</small></span></div>
       <div class="cta-heroi">
-        <p class="preco-heroi"><small>a partir de</small>R$ 37</p>
+        <p class="preco-heroi"><small>seu resumo por</small>R$ 37</p>
         <p class="nota">Pagamento único · entrega em até 24h no WhatsApp</p>
-        <a class="btn largo" href="#precos">Quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
+        <a class="btn largo" href="#precos" data-checkout="um">Quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
       </div>
     </div>
   </div>
@@ -315,7 +317,7 @@ footer a { margin-right: 14px; }
   <div class="env">
     <div class="cabeca"><h2 class="tit h2">Como <span class="it">funciona</span></h2></div>
     <div class="passos">
-      <div class="passo"><span class="n">1</span><h3>Escolha o kit</h3><p>1, 3 ou 5 assuntos. Pagamento único.</p></div>
+      <div class="passo"><span class="n">1</span><h3>Garanta o seu</h3><p>R$ 37, pagamento único.</p></div>
       <div class="passo"><span class="n">2</span><h3>Mande o assunto</h3><p>No WhatsApp, com onde você trava ou uma foto do seu resumo.</p></div>
       <div class="passo"><span class="n">3</span><h3>A gente cria e confere</h3><p>Fórmulas, datas e conceitos revisados antes de entregar.</p></div>
       <div class="passo"><span class="n">4</span><h3>Assista todo dia</h3><p>Chega em até 24h. Ao acordar, no intervalo e antes de dormir.</p></div>
@@ -329,46 +331,21 @@ footer a { margin-right: 14px; }
   <div class="env">
     <div class="cabeca">
       <span class="selo-pill"><span class="ao-vivo"></span>Pedidos até 05/11</span>
-      <h2 class="tit h2">Escolha seu kit e <span class="contorno">revise até a prova</span></h2>
+      <h2 class="tit h2">Seu resumo, <span class="contorno">até a prova</span></h2>
     </div>
-    <div class="trilho ingressos" id="trilho-precos">
-      <article class="ingresso">
-        <div class="faixa-top">Resumo único <i></i></div>
-        <div class="corpo">
-          <h3>1 assunto</h3>
-          <p class="desc">Para aquele assunto que não entra de jeito nenhum.</p>
-          <div class="preco"><b><sup>R$</sup>37</b><span>pagamento<br>único</span></div>
-          <ul class="leva"><li>1 vídeo de até 1 minuto</li><li>Pegadinha e macete</li><li>Entrega em até 24h</li></ul>
-          <a class="btn creme largo" href="#precos" data-checkout="um">Quero 1 assunto</a>
-          <div class="codigo"></div><div class="validade">VALIDADE: ATÉ A PROVA</div>
-        </div>
-      </article>
+    <div class="ingresso-unico" id="trilho-precos">
       <article class="ingresso top">
-        <div class="faixa-top">Recomendado ★ <i></i></div>
+        <div class="faixa-top">Seu resumo ★ <i></i></div>
         <div class="corpo">
-          <h3>Reta final<br>3 assuntos</h3>
-          <p class="desc">Os três pontos fracos que mais pesam.</p>
-          <div class="preco"><b><sup>R$</sup>67</b><span>pagamento<br>único</span></div>
-          <p class="avulso">R$ 111 se comprar avulso · sai R$ 22,33 por vídeo</p>
-          <ul class="leva"><li>3 vídeos de até 1 minuto</li><li>Um para cada assunto</li><li>Pegadinha e macete em cada um</li><li>Entrega em até 24h</li></ul>
-          <a class="btn largo" href="#precos" data-checkout="kit">Quero o kit com 3<small>Liberado no seu WhatsApp</small></a>
-          <div class="codigo"></div><div class="validade">VALIDADE: ATÉ A PROVA</div>
-        </div>
-      </article>
-      <article class="ingresso">
-        <div class="faixa-top">Mais completo <i></i></div>
-        <div class="corpo">
-          <h3>5 assuntos</h3>
-          <p class="desc">Para quem trava em várias matérias.</p>
-          <div class="preco"><b><sup>R$</sup>97</b><span>pagamento<br>único</span></div>
-          <p class="avulso">R$ 185 se comprar avulso · sai R$ 19,40 por vídeo</p>
-          <ul class="leva"><li>5 vídeos de até 1 minuto</li><li>Pegadinha e macete em cada</li><li>Entrega em até 24h</li></ul>
-          <a class="btn creme largo" href="#precos" data-checkout="completo">Quero o kit com 5</a>
+          <h3>O assunto<br>que você trava</h3>
+          <p class="desc">Em vídeo, feito sob medida, para revisar todo dia.</p>
+          <div class="preco"><b><sup>R$</sup>37</b><span>pagamento<br>único</span></div>
+          <ul class="leva"><li>1 vídeo animado de até 1 minuto</li><li>Conceito, exemplo, pegadinha e macete</li><li>Entrega em até 24h no WhatsApp</li><li>Para assistir até a prova</li></ul>
+          <a class="btn largo" href="#precos" data-checkout="um">Quero meu resumo<small>Liberado no seu WhatsApp</small></a>
           <div class="codigo"></div><div class="validade">VALIDADE: ATÉ A PROVA</div>
         </div>
       </article>
     </div>
-    <div class="setas"><button type="button" data-rolar="trilho-precos" data-dir="-1" aria-label="Ver kit anterior">←</button><button type="button" data-rolar="trilho-precos" data-dir="1" aria-label="Ver próximo kit">→</button></div>
     <p class="bump" id="bump" hidden><b>Quer no papel também?</b> No checkout, você pode levar o resumo em PDF por R$ 9,90.</p>
   </div>
 </section>
@@ -390,7 +367,7 @@ footer a { margin-right: 14px; }
   <div class="env faq">
     <div style="display: grid; gap: 18px; justify-items: start">
       <h2 class="tit h2">As dúvidas <span class="it">que todo mundo tem</span></h2>
-      <a class="btn" href="#precos">Quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
+      <a class="btn" href="#precos" data-checkout="um">Quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
       <a class="zap" href="#" data-link="whatsapp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 000-.4c0-.1-.6-1.3-.8-1.8s-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.8 11.9 11.9 0 004.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 001.8-1.3 2.3 2.3 0 00.2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Tirar uma dúvida no WhatsApp</a>
     </div>
     <div class="lista">
@@ -399,7 +376,8 @@ footer a { margin-right: 14px; }
       <details><summary>Tem coisa grátis no YouTube.</summary><p>Tem, e é genérica. O seu resumo é do assunto que você escolheu, curto o bastante para repetir todo dia.</p></details>
       <details><summary>Como vocês garantem que o conteúdo está certo?</summary><p>Antes de entregar, conferimos fórmulas, datas e conceitos de cada vídeo.</p></details>
       <details><summary>Vocês garantem que eu passo?</summary><p>Não. Nenhum material garante aprovação ou nota. O vídeo é uma ferramenta de revisão para fixar o assunto que mais trava.</p></details>
-      <details><summary>Sou pai ou mãe. Posso comprar para meu filho?</summary><p>Pode. Depois da compra, você ou seu filho mandam os assuntos no WhatsApp.</p></details>
+      <details><summary>Sou pai ou mãe. Posso comprar para meu filho?</summary><p>Pode. Depois da compra, você ou seu filho mandam o assunto no WhatsApp.</p></details>
+      <details><summary>Travo em mais de um assunto. E agora?</summary><p>Comece pelo que mais pesa. Depois que o primeiro vídeo chegar, é só chamar no WhatsApp que a gente faz os próximos.</p></details>
       <details><summary>Como recebo depois de pagar?</summary><p>Você manda o assunto no WhatsApp e recebe o vídeo lá mesmo, em até 24h.</p></details>
     </div>
   </div>
@@ -413,7 +391,7 @@ footer a { margin-right: 14px; }
       <h2 class="tit h2">Daqui a <span class="contorno" data-dias>14 dias</span> você vai estar na prova.</h2>
       <p class="apoio">Quando aparecer aquele assunto, você vai lembrar?</p>
     </div>
-    <a class="btn" href="#precos">Sim, quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
+    <a class="btn" href="#precos" data-checkout="um">Sim, quero meu resumo <span class="seta" aria-hidden="true">→</span></a>
   </div>
 </section>
 
@@ -426,8 +404,8 @@ footer a { margin-right: 14px; }
 </footer>
 
 <div class="barra barra-compra" id="barra-compra" aria-hidden="true">
-  <div class="p">A partir de R$ 37<br><s>1, 3 ou 5 assuntos</s></div>
-  <a class="btn" href="#precos" tabindex="-1">Escolher meu kit</a>
+  <div class="p">R$ 37<br><s>seu resumo em vídeo</s></div>
+  <a class="btn" href="#precos" data-checkout="um" tabindex="-1">Quero o meu</a>
 </div>
 <a class="duvida" href="#" data-link="whatsapp" target="_blank" rel="noopener" aria-label="Tirar dúvidas no WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 000-.4c0-.1-.6-1.3-.8-1.8s-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.8 11.9 11.9 0 004.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 001.8-1.3 2.3 2.3 0 00.2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Dúvidas?</a>
 
