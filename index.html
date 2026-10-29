@@ -235,6 +235,11 @@ body { padding-bottom: 84px; }
 .checks .x svg { stroke: #fff; }
 .mais-bonus { font-family: var(--display); font-weight: 700; font-size: 20px; }
 .plano.top .cta { width: 100%; }
+.requisitos { width: 100%; text-align: left; background: rgba(8,7,13,.45); border: 1px solid rgba(255,255,255,.16); border-radius: 12px; padding: 16px 16px 6px; }
+.requisitos h4 { margin: 0 0 4px; font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
+.requisitos .checks li { font-size: 13.5px; }
+.aviso-topo { font-size: 13px; color: var(--muted); max-width: 46ch; text-align: center; }
+.aviso-topo b { color: var(--ink); font-weight: 600; }
 .plano .cta { width: 100%; }
 
 /* 7. garantia */
@@ -310,6 +315,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
     <div class="compra">
       <a class="cta" href="#planos" data-link="checkout">Quero a skill agora</a>
       <span class="seguro"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Compra segura</span>
+      <span class="aviso-topo">Precisa de <b>computador</b> e do <b>Claude Pro</b> (pago à parte). Não é um pack de CapCut.</span>
     </div>
   </div>
 </section>
@@ -441,6 +447,14 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
             <li><span class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Skill Fábrica de Motion:</b> tudo o que você viu acima.</span></li>
             <li><span class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Vídeo de instalação:</b> passo a passo para Windows e Mac.</span></li>
           </ul>
+          <div class="requisitos">
+            <h4>Antes de comprar, confira</h4>
+            <ul class="checks">
+              <li><span class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Computador com Windows ou Mac.</b> A skill não funciona no celular.</span></li>
+              <li><span class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Claude Pro (pago).</b> A skill roda dentro do Claude, que tem assinatura própria, a partir de US$ 20 por mês, cobrada à parte.</span></li>
+              <li><span class="ok x"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span><b>Não é um pack de CapCut.</b> É uma skill do Claude que monta os vídeos para você, por código.</span></li>
+            </ul>
+          </div>
           <a class="cta" href="#planos" data-link="checkout">Quero a skill agora</a>
           <span class="seguro"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Compra segura</span>
         </div>
@@ -487,7 +501,9 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
     <div class="faq">
       <h2>Perguntas Frequentes</h2>
       <details><summary>Por que somente R$37?</summary><p>É o preço de lançamento. Queremos que mais gente comece a entregar motions de cliente com a skill, e um único motion vendido já paga o valor.</p></details>
-      <details><summary>Preciso ter o Claude pago?</summary><p>Sim. A skill roda dentro do Claude e precisa do plano Pro ou superior.</p></details>
+      <details><summary>Preciso ter o Claude pago?</summary><p>Sim. A skill roda dentro do Claude e precisa do plano Pro ou superior. A assinatura do Claude é separada da skill: custa a partir de US$ 20 por mês e é cobrada pela Anthropic.</p></details>
+      <details><summary>Funciona no celular?</summary><p>Não. A skill precisa de um computador com Windows ou Mac. O vídeo de instalação mostra o passo a passo nos dois.</p></details>
+      <details><summary>É um pack de vídeos para o CapCut?</summary><p>Não. É uma skill do Claude: você manda o material do cliente e ela faz o roteiro, a narração e monta o vídeo por código, no Remotion. Não é um arquivo para editar no CapCut.</p></details>
       <details><summary>Fiz o pagamento, quanto tempo levo para acessar?</summary><p>O acesso chega no e-mail da compra assim que o pagamento é confirmado. No Pix e no cartão, costuma ser na hora.</p></details>
       <details><summary>O pagamento é único?</summary><p>Sim. Você paga uma vez, sem mensalidade.</p></details>
       <details><summary>O pagamento é seguro?</summary><p>Sim. O pagamento é feito pela plataforma de checkout, que protege os seus dados. Nós não temos acesso ao seu cartão.</p></details>
