@@ -9,295 +9,340 @@
 <title>Blindagem Digital em 30 min · Fábrica de Motion</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400..800&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,700..900,100,1;1,9..144,700..900,100,1&family=VT323&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
-/* Mesma identidade da página do ENEM (céu lilás, nuvens, Fraunces, contorno com sombra dura), com vermelho de alerta
-   para os riscos. A página é um quiz de 2 minutos que termina na oferta do checklist. */
+/* Linha visual "código hacker": fundo preto, brilho roxo neon, fonte técnica em caixa alta, código correndo no fundo,
+   cacos de vidro e barra vertical roxa nas listas. Vermelho só para alerta (portas abertas). Tema escuro único. */
 :root {
-  --ceu-1: #E2D9FF; --ceu-2: #EEE9FF; --ceu-3: #F8F6FF;
-  --papel: #FFFAF0; --creme: #FFF3D6; --creme-2: #FBE9BD; --manteiga: #EACD78; --manteiga-2: #F5DC8F;
-  --roxo: #7C66FF; --roxo-d: #5B3FE0; --roxo-l: #A99BFF;
-  --marinho: #1A1446; --marinho-2: #2B2366; --tinta: #1D1840; --cinza: #5C5880;
-  --verde: #1E9E5A; --vermelho: #FF3B30; --alerta: #E5484D; --alerta-soft: #FFE8E6; --ok-soft: #E3F6EA;
-  --pop: 0 6px 0 var(--marinho); --pop-lg: 0 10px 0 var(--marinho);
-  --f-tit: "Fraunces", "Cooper Black", Georgia, serif;
-  --f-corpo: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --f-pixel: "VT323", ui-monospace, monospace;
-  color-scheme: light;
+  --preto: #07060C; --preto-2: #0E0B18; --vidro: rgba(26, 20, 48, .62); --linha: rgba(167, 139, 250, .22); --linha-forte: rgba(167, 139, 250, .55);
+  --roxo: #8B5CF6; --roxo-l: #B9A4FF; --roxo-neon: #A78BFA; --brilho: rgba(139, 92, 246, .55);
+  --texto: #ECE8FF; --cinza: #A59FC4; --apagado: #6B6590;
+  --alerta: #FF4D5E; --alerta-soft: rgba(255, 77, 94, .12); --ok: #3EE08F; --ok-soft: rgba(62, 224, 143, .12);
+  --f-tit: "Rajdhani", "Arial Narrow", system-ui, sans-serif; --f-corpo: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif; --f-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
 }
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; }
 html { overflow-x: clip; }
-body { background: var(--papel); color: var(--tinta); font-family: var(--f-corpo); font-size: 18px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
-img { max-width: 100%; display: block; }
+body { background: var(--preto); color: var(--texto); font-family: var(--f-corpo); font-size: 18px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
 a { color: inherit; }
 [hidden] { display: none !important; }
-.env { width: min(1180px, 100% - 2 * max(16px, 4vw)); margin-inline: auto; }
-.tit { font-family: var(--f-tit); font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144; font-weight: 900; letter-spacing: -.02em; line-height: .98; margin: 0; text-wrap: balance; }
-.h1 { font-size: clamp(42px, 7vw, 88px); }
-.h2 { font-size: clamp(36px, 5.4vw, 66px); }
-.it { font-style: italic; color: var(--roxo); }
-.contorno { color: var(--roxo); text-shadow: 3px 3px 0 var(--marinho), -1.5px -1.5px 0 var(--marinho), 1.5px -1.5px 0 var(--marinho), -1.5px 1.5px 0 var(--marinho), 0 3px 0 var(--marinho), 3px 0 0 var(--marinho), 5px 6px 0 var(--marinho); }
-.apoio { font-size: clamp(18px, 1.6vw, 21px); color: var(--cinza); max-width: 640px; margin: 0; }
-.selo-pill { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; background: #fff; color: var(--marinho); border: 2px solid var(--marinho); border-radius: 999px; padding: 8px 16px 8px 12px; box-shadow: 0 4px 0 var(--marinho); }
-.ao-vivo { width: 10px; height: 10px; border-radius: 50%; background: var(--vermelho); position: relative; flex: none; }
-.ao-vivo::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px solid var(--vermelho); animation: ping 1.6s ease-out infinite; }
-@keyframes ping { 0% { transform: scale(.4); opacity: 1; } 100% { transform: scale(1.4); opacity: 0; } }
-.cabeca { display: grid; gap: 18px; justify-items: center; text-align: center; margin-bottom: clamp(36px, 6vw, 60px); }
+.env { width: min(1180px, 100% - 2 * max(16px, 4vw)); margin-inline: auto; position: relative; z-index: 1; }
+.tit { font-family: var(--f-tit); font-weight: 700; text-transform: uppercase; letter-spacing: .01em; line-height: .98; margin: 0; text-wrap: balance; }
+.h1 { font-size: clamp(46px, 7.4vw, 96px); }
+.h2 { font-size: clamp(36px, 5.2vw, 64px); }
+.neon { color: var(--roxo-neon); text-shadow: 0 0 18px var(--brilho), 0 0 44px rgba(139, 92, 246, .35); }
+.alerta-t { color: var(--alerta); text-shadow: 0 0 18px rgba(255, 77, 94, .45); }
+.apoio { font-size: clamp(18px, 1.6vw, 21px); color: var(--cinza); max-width: 620px; margin: 0; }
+.mono { font-family: var(--f-mono); }
+.rotulo { font-family: var(--f-mono); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--roxo-l); }
+.cabeca { display: grid; gap: 16px; justify-items: center; text-align: center; margin-bottom: clamp(36px, 6vw, 60px); }
+.secao { padding: clamp(80px, 10vw, 120px) 0; position: relative; overflow: clip; }
+.secao.escura { background: var(--preto-2); border-block: 1px solid var(--linha); }
 
 /* botões */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 18px 32px; min-height: 64px; text-align: center;
-  font-family: var(--f-tit); font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 72; font-weight: 900; font-size: clamp(19px, 1.8vw, 23px);
-  color: #fff; background: linear-gradient(180deg, #6EEDA6 -40%, #1DC165 45%, #12A04F 120%); text-decoration: none;
-  border: 3px solid var(--marinho); border-radius: 999px; box-shadow: var(--pop); transition: transform .18s, box-shadow .18s; }
-.btn:hover { transform: translateY(-2px) rotate(-1deg); box-shadow: 0 8px 0 var(--marinho); }
-.btn:active { transform: translateY(5px); box-shadow: 0 1px 0 var(--marinho); }
-.btn:focus-visible { outline: 3px solid var(--roxo-d); outline-offset: 4px; }
-.btn .seta { transition: transform .25s; }
-.btn:hover .seta { transform: translateX(5px); }
-.btn.creme { background: var(--creme); color: var(--marinho); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 16px 32px; min-height: 60px; text-align: center; text-decoration: none; cursor: pointer;
+  font-family: var(--f-tit); font-weight: 700; font-size: clamp(20px, 1.8vw, 23px); letter-spacing: .06em; text-transform: uppercase; color: #fff;
+  background: linear-gradient(180deg, #9F7BFF, #6D3FE8); border: 1px solid var(--roxo-l); border-radius: 12px; box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset, 0 10px 34px -8px var(--brilho), 0 0 24px -6px var(--brilho); transition: transform .15s, box-shadow .15s; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(255,255,255,.1) inset, 0 14px 44px -8px var(--brilho), 0 0 34px -4px var(--brilho); }
+.btn:focus-visible { outline: 2px solid var(--roxo-l); outline-offset: 4px; }
 .btn.largo { width: 100%; }
-.btn small { display: block; font-family: var(--f-corpo); font-weight: 700; font-size: 13px; opacity: .9; }
+.btn small { display: block; font-family: var(--f-corpo); font-weight: 600; font-size: 13px; letter-spacing: 0; text-transform: none; opacity: .9; }
 .btn:has(small) { flex-direction: column; gap: 2px; }
+.btn.vazado { background: transparent; }
 
-/* faixa correndo */
-.faixa { background: var(--marinho); color: var(--manteiga); overflow: hidden; white-space: nowrap; font-family: var(--f-tit); font-weight: 900; font-size: 17px; letter-spacing: .06em; text-transform: uppercase; padding: 8px 0; }
-.faixa div { display: inline-flex; gap: 22px; animation: correr 26s linear infinite; padding-right: 22px; }
-.faixa i { font-style: normal; color: var(--roxo-l); }
+/* faixa */
+.faixa { background: #000; border-bottom: 1px solid var(--linha); color: var(--roxo-l); overflow: hidden; white-space: nowrap; font-family: var(--f-mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; padding: 9px 0; }
+.faixa div { display: inline-flex; gap: 28px; animation: correr 30s linear infinite; padding-right: 28px; }
+.faixa i { font-style: normal; color: var(--alerta); }
 @keyframes correr { to { transform: translateX(-50%); } }
 
-/* faixas cruzadas (mesma ideia da página do motion, no visual desta página) */
-.fitas { position: relative; height: 170px; overflow: hidden; background: var(--papel); }
-.fita { position: absolute; left: -25%; width: 150%; height: 52px; display: flex; align-items: center; overflow: hidden; border-block: 3px solid var(--marinho); box-shadow: 0 6px 0 var(--marinho); }
-.fita.um { top: 34px; transform: rotate(-4deg); background: var(--roxo); color: #fff; }
-.fita.dois { top: 86px; transform: rotate(3deg); background: var(--manteiga-2); color: var(--marinho); }
-.fita-trilho { display: flex; gap: 30px; align-items: center; flex: none; padding-right: 30px; animation: correr 30s linear infinite; white-space: nowrap; font-family: var(--f-tit); font-weight: 900; font-size: 20px; letter-spacing: .05em; text-transform: uppercase; }
-.fita.dois .fita-trilho { animation-direction: reverse; }
-.fita-trilho img { height: 26px; width: auto; flex: none; filter: brightness(0) invert(1); }
-.fita-trilho i { font-style: normal; color: var(--roxo-d); }
-.fita.um .fita-trilho i { color: var(--manteiga-2); }
-
-/* céu e nuvens */
-.ceu { position: relative; isolation: isolate; overflow: clip; background: linear-gradient(180deg, var(--ceu-1), var(--ceu-2) 55%, var(--ceu-3)); }
-.nuvem { position: absolute; z-index: -1; color: #fff; pointer-events: none; }
-.nuvem svg { width: 100%; height: auto; }
-.nuvem .c-body { fill: currentColor; }
-.nuvem .c-shade { fill: #E5DEFF; }
-.flutua { animation: flutua 9s ease-in-out infinite alternate; }
-@keyframes flutua { to { transform: translateX(30px); } }
-.banco { position: absolute; left: 0; right: 0; bottom: -1px; height: 90px; z-index: -1;
-  background: radial-gradient(60px 50px at 40px 90px, #fff 98%, transparent) 0 0 / 120px 90px repeat-x, radial-gradient(80px 60px at 100px 90px, var(--papel) 98%, transparent) 0 10px / 170px 90px repeat-x; }
-
 /* herói */
-.heroi { padding: 22px 0 104px; }
-.heroi .grade { display: grid; gap: 30px; align-items: center; }
-.icone-fab { display: inline-block; height: 1.15em; width: auto; vertical-align: -0.2em; margin-right: 10px; }
-.logo-fab.rodape { width: 150px; height: auto; margin-bottom: 8px; }
-.logo-txt { display: inline-block; transform: rotate(-3deg); margin-bottom: 4px; }
-.logo-txt b { display: block; font-family: var(--f-tit); font-variation-settings: "SOFT" 100, "WONK" 1; font-weight: 900; font-style: italic; line-height: .9; }
-.logo-txt .l1 { font-size: 34px; color: var(--marinho); }
-.logo-txt .l2 { font-size: clamp(54px, 8vw, 84px); }
-.heroi .txt { display: grid; gap: 16px; justify-items: center; text-align: center; }
-.heroi .apoio { margin-inline: auto; }
-.heroi .nota { font-size: 14px; color: var(--cinza); margin: -6px 0 0; }
-.tela-heroi { position: relative; }
-.cta-heroi { display: grid; gap: 14px; justify-items: center; text-align: center; margin-top: 56px; }
-.cta-heroi .nota { margin: -4px 0 8px; }
-.cta-heroi .btn.largo { max-width: 420px; }
-.preco-heroi { margin: 0; font-family: var(--f-tit); font-variation-settings: "SOFT" 100, "WONK" 1, "opsz" 144; font-weight: 900; font-size: clamp(72px, 18vw, 104px); line-height: .9; letter-spacing: -.03em; color: var(--marinho); display: grid; justify-items: center; }
-.preco-heroi small { font-family: var(--f-corpo); font-size: 15px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--roxo-d); margin-bottom: 6px; }
-.tela { border: 6px solid var(--marinho); border-radius: 22px; background: var(--marinho); box-shadow: var(--pop-lg); overflow: hidden; }
-.tela video, .tela img { display: block; width: 100%; aspect-ratio: 16 / 9; height: auto; border-radius: 16px; background: #e9e1d1; }
-.tela-heroi .estrela { width: clamp(72px, 19vw, 104px); height: clamp(72px, 19vw, 104px); right: 6px; top: -26px; font-size: clamp(22px, 5.6vw, 30px); transform: rotate(10deg); }
-.estrela { position: absolute; display: grid; place-items: center; text-align: center; font-family: var(--f-tit); font-weight: 900; color: #fff; text-shadow: 0 2px 0 var(--marinho); z-index: 3; }
-.estrela svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.estrela span { position: relative; line-height: .9; }
-.estrela small { display: block; font-family: var(--f-corpo); font-size: 11px; font-weight: 800; letter-spacing: .06em; }
+.heroi { position: relative; overflow: clip; padding: 60px 0 90px; background: radial-gradient(700px 520px at 72% 42%, rgba(139, 92, 246, .38), transparent 70%), radial-gradient(500px 400px at 75% 45%, rgba(185, 164, 255, .18), transparent 70%), var(--preto); }
+.codigo { position: absolute; inset: 0; z-index: 0; margin: 0; padding: 20px 0 0 52%; font: 13px/1.6 var(--f-mono); color: rgba(185, 164, 255, .16); white-space: pre; overflow: hidden; pointer-events: none; mask-image: linear-gradient(90deg, transparent, #000 30%, #000 80%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%, #000 80%, transparent); }
+.codigo span { display: block; animation: subir 40s linear infinite; }
+@keyframes subir { to { transform: translateY(-50%); } }
+.heroi .grade { display: grid; gap: 40px; align-items: center; }
+.marca { display: flex; align-items: center; gap: 14px; color: var(--roxo-neon); }
+.marca svg { width: 52px; height: 58px; filter: drop-shadow(0 0 10px var(--brilho)); }
+.marca b { font-family: var(--f-tit); font-weight: 600; font-size: 30px; line-height: .95; text-transform: uppercase; letter-spacing: .02em; color: var(--roxo-l); }
+.heroi .txt { display: grid; gap: 24px; justify-items: start; }
+.lista-v { list-style: none; margin: 0; padding: 4px 0 4px 18px; border-left: 3px solid var(--roxo); display: grid; gap: 10px; box-shadow: -8px 0 18px -12px var(--brilho); }
+.lista-v li { font-family: var(--f-tit); font-weight: 600; font-size: clamp(20px, 2.2vw, 26px); text-transform: uppercase; letter-spacing: .02em; }
+.heroi .nota { font-size: 14px; color: var(--apagado); margin: -8px 0 0; font-family: var(--f-mono); }
+.visual { position: relative; justify-self: center; width: min(100%, 460px); aspect-ratio: 6 / 7; }
+.cacos { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; z-index: 2; }
+.caco { fill: rgba(220, 210, 255, .07); stroke: rgba(220, 210, 255, .55); stroke-width: 1.5; filter: drop-shadow(0 0 6px var(--brilho)); }
+.c1 { animation: flut 7s ease-in-out infinite alternate; } .c2 { animation: flut 9s ease-in-out infinite alternate-reverse; } .c3 { animation: flut 8s ease-in-out infinite alternate; } .c4 { animation: flut 10s ease-in-out infinite alternate-reverse; }
+@keyframes flut { to { transform: translate(8px, -14px) rotate(2deg); } }
+.fone { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 52%; aspect-ratio: 9 / 18.5; border-radius: 34px; border: 2px solid var(--roxo-l); background: linear-gradient(180deg, #120E22, #07060C); box-shadow: 0 0 60px -10px var(--brilho), 0 0 0 8px rgba(26, 20, 48, .9), 0 0 0 9px var(--linha-forte); overflow: hidden; z-index: 1; display: grid; place-items: center; }
+.fone .escudo { width: 46%; color: var(--roxo-neon); filter: drop-shadow(0 0 16px var(--brilho)); }
+.fone .scan { position: absolute; left: 0; right: 0; height: 30%; background: linear-gradient(180deg, transparent, rgba(167, 139, 250, .35), transparent); border-bottom: 2px solid var(--roxo-l); animation: scan 3.2s ease-in-out infinite; }
+@keyframes scan { 0% { top: -30%; } 100% { top: 100%; } }
+.fone .status { position: absolute; bottom: 9%; left: 0; right: 0; text-align: center; font: 600 12px var(--f-mono); letter-spacing: .14em; color: var(--alerta); text-transform: uppercase; }
+.fone .status::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--alerta); margin-right: 8px; box-shadow: 0 0 10px var(--alerta); animation: pisca 1s steps(1) infinite; }
+@keyframes pisca { 50% { opacity: 0; } }
+.glitch { position: relative; display: inline-block; }
+.glitch::before, .glitch::after { content: attr(data-t); position: absolute; inset: 0; pointer-events: none; }
+.glitch::before { color: #FF4D9A; clip-path: inset(0 0 62% 0); transform: translate(-2px, -1px); opacity: .7; animation: g1 3.6s infinite steps(1); }
+.glitch::after { color: #4DE1FF; clip-path: inset(58% 0 0 0); transform: translate(2px, 1px); opacity: .7; animation: g2 3.6s infinite steps(1); }
+@keyframes g1 { 0%, 92%, 100% { transform: translate(0); opacity: 0; } 93% { transform: translate(-4px, -1px); opacity: .8; } 96% { transform: translate(3px, 1px); opacity: .8; } }
+@keyframes g2 { 0%, 92%, 100% { transform: translate(0); opacity: 0; } 94% { transform: translate(4px, 1px); opacity: .8; } 97% { transform: translate(-3px, -1px); opacity: .8; } }
 
-/* seções */
-.secao { padding: clamp(80px, 10vw, 120px) 0; position: relative; }
-.creme { background: var(--creme); border-block: 3px solid var(--marinho); }
-.trilho { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 340px); gap: 22px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px 4px 26px; scrollbar-width: none; }
-.trilho::-webkit-scrollbar { display: none; }
-.cartao-q { scroll-snap-align: center; background: var(--manteiga); border: 3px solid var(--marinho); border-radius: 26px; padding: 12px 12px 18px; box-shadow: var(--pop); display: grid; gap: 12px; }
-.cartao-q:nth-child(even) { transform: rotate(1.5deg); }
-.cartao-q:nth-child(odd) { transform: rotate(-1.5deg); }
-.cartao-q img { border-radius: 14px; border: 3px solid var(--marinho); aspect-ratio: 16 / 9; width: 100%; height: auto; }
-.cartao-q b { justify-self: center; background: #fff; border: 2px solid var(--marinho); border-radius: 999px; padding: 4px 16px; font-size: 15px; }
-.cartao-q p { margin: 0; font-size: 15px; text-align: center; color: var(--marinho-2); }
-.exemplos { display: grid; gap: 22px; max-width: 1080px; margin: 0 auto; }
-.exemplos figure { margin: 0; display: grid; gap: 10px; }
-.exemplos figcaption { text-align: center; font-weight: 700; font-size: 15px; color: var(--marinho-2); }
-@media (min-width: 860px) { .exemplos { grid-template-columns: 1fr 1fr; } }
-.arraste { text-align: center; font-family: var(--f-pixel); font-size: 22px; color: var(--cinza); margin: 6px 0 0; }
-.dores { list-style: none; padding: 0; margin: 0 auto 40px; display: grid; gap: 12px; max-width: 720px; }
-.dores li { display: flex; gap: 12px; align-items: flex-start; font-weight: 600; font-size: 19px; background: #fff; border: 3px solid var(--marinho); border-radius: 20px; padding: 14px 18px; box-shadow: 0 4px 0 var(--marinho); }
-.dores li::before { content: "✕"; flex: 0 0 28px; height: 28px; border-radius: 50%; background: var(--vermelho); color: #fff; display: grid; place-items: center; font-size: 15px; font-weight: 800; }
-.numeros { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 760px; margin: 40px auto 0; }
-.numeros div { background: #fff; border: 3px solid var(--marinho); border-radius: 22px; padding: 18px; text-align: center; box-shadow: var(--pop); }
-.numeros b { display: block; font-family: var(--f-tit); font-weight: 900; font-size: clamp(34px, 5vw, 52px); color: var(--roxo); line-height: 1; }
-.numeros span { font-size: 15px; font-weight: 700; color: var(--marinho-2); }
-.passos { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
-.passo { background: #fff; border: 3px solid var(--marinho); border-radius: 26px; padding: 24px; box-shadow: var(--pop); display: grid; gap: 10px; align-content: start; }
-.passo .n { width: 52px; height: 52px; border-radius: 50%; background: var(--roxo); color: #fff; border: 3px solid var(--marinho); display: grid; place-items: center; font-family: var(--f-tit); font-weight: 900; font-size: 26px; box-shadow: 0 3px 0 var(--marinho); }
-.passo h3 { margin: 0; font-family: var(--f-tit); font-weight: 900; font-size: 24px; }
+/* quiz como terminal */
+.quiz { max-width: 760px; margin: 0 auto; background: var(--vidro); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--linha-forte); border-radius: 18px; box-shadow: 0 0 60px -20px var(--brilho); overflow: hidden; }
+.quiz .topo-q { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 18px; border-bottom: 1px solid var(--linha); font: 600 13px var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--roxo-l); }
+.quiz .topo-q .pontos { display: inline-flex; gap: 6px; margin-right: 10px; }
+.quiz .topo-q .pontos i { width: 10px; height: 10px; border-radius: 50%; background: var(--apagado); }
+.quiz .topo-q .pontos i:first-child { background: var(--alerta); }
+.quiz .barra-q { height: 3px; background: rgba(167, 139, 250, .12); }
+.quiz .barra-q i { display: block; height: 100%; width: 0; background: var(--roxo-neon); box-shadow: 0 0 12px var(--roxo-neon); transition: width .35s; }
+.quiz .corpo-q { padding: clamp(22px, 4vw, 34px); display: grid; gap: 18px; }
+.quiz h3 { margin: 0; font-family: var(--f-tit); font-weight: 700; font-size: clamp(26px, 3.4vw, 34px); line-height: 1.08; }
+.quiz h3::before { content: "> "; color: var(--roxo-neon); font-family: var(--f-mono); font-size: .7em; }
+.quiz .dica { margin: -6px 0 0; color: var(--cinza); font-size: 16px; }
+.opcoes { display: grid; gap: 10px; }
+.opcoes button { text-align: left; font: 600 18px var(--f-corpo); color: var(--texto); background: rgba(7, 6, 12, .55); border: 1px solid var(--linha-forte); border-radius: 12px; padding: 15px 18px; cursor: pointer; transition: border-color .12s, background .12s, box-shadow .12s; }
+.opcoes button::before { content: "[ ] "; font-family: var(--f-mono); color: var(--apagado); }
+.opcoes button:hover { border-color: var(--roxo-l); background: rgba(139, 92, 246, .14); box-shadow: 0 0 20px -6px var(--brilho); }
+.opcoes button:hover::before { content: "[x] "; color: var(--roxo-neon); }
+.opcoes button:focus-visible { outline: 2px solid var(--roxo-l); outline-offset: 2px; }
+.voltar { justify-self: start; background: none; border: 0; color: var(--cinza); font: 500 14px var(--f-mono); cursor: pointer; padding: 0; text-decoration: underline; }
+.inicio-q { text-align: center; justify-items: center; }
+.inicio-q h3::before { content: ""; }
+.resultado .nota-r { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.medidor { position: relative; width: 140px; height: 140px; flex: none; }
+.medidor svg { width: 100%; height: 100%; transform: rotate(-90deg); filter: drop-shadow(0 0 10px rgba(255, 77, 94, .35)); }
+.medidor b { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--f-tit); font-weight: 700; font-size: 42px; }
+.nivel { display: inline-block; font: 600 15px var(--f-mono); letter-spacing: .12em; text-transform: uppercase; padding: 6px 14px; border-radius: 8px; border: 1px solid currentColor; }
+.nivel.alto { color: var(--alerta); background: var(--alerta-soft); box-shadow: 0 0 20px -6px var(--alerta); }
+.nivel.medio { color: #FFC14D; background: rgba(255, 193, 77, .1); }
+.nivel.baixo { color: var(--ok); background: var(--ok-soft); }
+.portas { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.portas li { background: var(--alerta-soft); border: 1px solid rgba(255, 77, 94, .5); border-left: 3px solid var(--alerta); border-radius: 10px; padding: 12px 16px; display: grid; gap: 4px; }
+.portas li b { font-family: var(--f-tit); font-weight: 700; font-size: 20px; text-transform: uppercase; color: #FFD6DA; }
+.portas li span { font-size: 15px; color: var(--cinza); }
+.portas li.ok { background: var(--ok-soft); border-color: rgba(62, 224, 143, .5); border-left-color: var(--ok); }
+
+/* oferta */
+.sete { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; max-width: 980px; margin: 0 auto; }
+.porta { display: grid; grid-template-columns: 60px minmax(0, 1fr); gap: 16px; align-items: start; background: var(--vidro); border: 1px solid var(--linha); border-left: 3px solid var(--roxo); border-radius: 12px; padding: 18px 20px; }
+.porta .n { font-family: var(--f-mono); font-weight: 600; font-size: 26px; color: var(--roxo-neon); text-shadow: 0 0 14px var(--brilho); }
+.porta h3 { margin: 0 0 4px; font-family: var(--f-tit); font-weight: 700; font-size: 24px; text-transform: uppercase; }
+.porta p { margin: 0; color: var(--cinza); font-size: 16px; }
+.passos { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.passo { background: var(--vidro); border: 1px solid var(--linha); border-radius: 14px; padding: 22px; display: grid; gap: 8px; align-content: start; }
+.passo .n { font: 600 13px var(--f-mono); letter-spacing: .14em; color: var(--roxo-l); }
+.passo h3 { margin: 0; font-family: var(--f-tit); font-weight: 700; font-size: 24px; text-transform: uppercase; }
 .passo p { margin: 0; color: var(--cinza); font-size: 16px; }
-
-/* preços em ingresso */
-.precos { position: relative; }
-.trilho.ingressos { grid-auto-columns: minmax(290px, 340px); align-items: center; padding: 26px 8px 34px; }
-.ingresso { scroll-snap-align: center; background: #fff; border: 3px solid var(--marinho); border-radius: 30px; box-shadow: var(--pop-lg); overflow: hidden; display: grid; }
-.ingresso .faixa-top { display: flex; justify-content: space-between; align-items: center; padding: 14px 20px; background: var(--marinho-2); color: #fff; font-family: var(--f-pixel); font-size: 22px; letter-spacing: .08em; text-transform: uppercase; border-bottom: 3px solid var(--marinho); }
-.ingresso .faixa-top i { width: 32px; height: 22px; border-radius: 6px; background: var(--manteiga); border: 2px solid var(--marinho); }
-.ingresso .corpo { padding: 20px 22px 22px; display: grid; gap: 14px; }
-.ingresso h3 { margin: 0; font-family: var(--f-tit); font-weight: 900; font-size: 30px; line-height: 1; }
-.ingresso .desc { margin: 0; font-size: 15px; color: var(--cinza); }
+.ingresso { max-width: 440px; margin: 0 auto; background: linear-gradient(180deg, rgba(139, 92, 246, .16), rgba(14, 11, 24, .9)); border: 1px solid var(--roxo-l); border-radius: 20px; box-shadow: 0 0 70px -20px var(--brilho); overflow: hidden; }
+.ingresso .faixa-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid var(--linha-forte); font: 600 13px var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--roxo-l); }
+.ingresso .faixa-top span:last-child { color: var(--ok); }
+.ingresso .corpo { padding: 24px; display: grid; gap: 16px; }
+.ingresso h3 { margin: 0; font-family: var(--f-tit); font-weight: 700; font-size: 32px; line-height: 1; text-transform: uppercase; }
+.ingresso .desc { margin: 0; color: var(--cinza); font-size: 16px; }
 .preco { display: flex; align-items: flex-end; gap: 10px; }
-.preco b { font-family: var(--f-tit); font-weight: 900; font-size: 76px; line-height: .85; color: var(--marinho); letter-spacing: -.03em; }
-.preco b sup { font-size: .38em; vertical-align: top; position: relative; top: .2em; margin-right: 2px; }
-.preco span { font-weight: 700; color: var(--cinza); font-size: 14px; line-height: 1.25; padding-bottom: 6px; }
-.avulso { margin: -6px 0 0; font-size: 14px; font-weight: 700; color: var(--cinza); }
-.leva { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 15px; font-weight: 600; }
-.leva li { display: flex; gap: 8px; }
-.leva li::before { content: "✓"; flex: 0 0 22px; height: 22px; border-radius: 50%; background: var(--verde); color: #fff; display: grid; place-items: center; font-size: 12px; font-weight: 800; }
-.codigo { height: 32px; border-radius: 4px; opacity: .85; background: repeating-linear-gradient(90deg, var(--marinho) 0 2px, transparent 2px 4px, var(--marinho) 4px 7px, transparent 7px 9px, var(--marinho) 9px 10px, transparent 10px 14px); }
-.validade { font-family: var(--f-pixel); font-size: 20px; letter-spacing: .08em; color: var(--marinho-2); margin-top: -6px; }
-.ingresso-unico { display: flex; justify-content: center; padding: 26px 0 34px; }
-.ingresso-unico .ingresso { width: min(380px, 100%); }
-.ingresso.top { border-width: 4px; box-shadow: 0 12px 0 var(--marinho); transform: scale(1.04); position: relative; }
-.ingresso.top .faixa-top { background: linear-gradient(90deg, var(--roxo-d), var(--roxo)); }
-.ingresso.top .preco b { color: var(--roxo-d); }
-.setas { display: flex; justify-content: center; gap: 12px; }
-.setas button { width: 48px; height: 48px; border-radius: 50%; border: 3px solid var(--marinho); background: #fff; box-shadow: 0 4px 0 var(--marinho); font-size: 20px; font-weight: 800; cursor: pointer; color: var(--marinho); }
-.bump { max-width: 640px; margin: 22px auto 0; text-align: center; background: #fff; border: 3px dashed var(--roxo-d); border-radius: 18px; padding: 14px 18px; font-size: 16px; }
-
-/* selo de entrega */
-.selo-sec { background: var(--manteiga-2); border: 3px solid var(--marinho); border-radius: 36px; box-shadow: var(--pop-lg); padding: clamp(28px, 5vw, 48px); max-width: 820px; margin: 0 auto; text-align: center; display: grid; gap: 14px; justify-items: center; }
-.selo-sec .estrela { position: relative; width: 150px; height: 150px; font-size: 48px; transform: rotate(-6deg); }
-.selo-sec .pixel { font-family: var(--f-pixel); font-size: 24px; letter-spacing: .08em; color: var(--roxo-d); text-transform: uppercase; }
-.selo-sec p { margin: 0; max-width: 580px; }
-
-/* perguntas */
+.preco b { font-family: var(--f-tit); font-weight: 700; font-size: 86px; line-height: .82; color: #fff; text-shadow: 0 0 30px var(--brilho); }
+.preco b sup { font-size: .36em; vertical-align: top; position: relative; top: .25em; margin-right: 4px; color: var(--roxo-l); }
+.preco span { font: 500 13px var(--f-mono); color: var(--cinza); line-height: 1.4; padding-bottom: 6px; text-transform: uppercase; letter-spacing: .08em; }
+.leva { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 16px; font-weight: 500; }
+.leva li { display: flex; gap: 10px; }
+.leva li::before { content: "✓"; color: var(--ok); font-weight: 700; }
+.hash { font: 500 11px var(--f-mono); color: var(--apagado); letter-spacing: .06em; overflow-wrap: anywhere; }
+.bump { max-width: 640px; margin: 22px auto 0; text-align: center; border: 1px dashed var(--linha-forte); border-radius: 12px; padding: 14px 18px; font-size: 16px; color: var(--cinza); }
+.bump b { color: var(--texto); }
+.garantia-l { display: flex; gap: 16px; align-items: center; justify-content: center; margin-top: 22px; font-size: 15px; color: var(--cinza); text-align: left; }
+.garantia-l .sel { width: 72px; height: 72px; flex: none; border-radius: 50%; border: 1px solid var(--roxo-l); display: grid; place-items: center; font-family: var(--f-tit); font-weight: 700; font-size: 30px; line-height: .8; text-align: center; box-shadow: 0 0 24px -6px var(--brilho); }
+.garantia-l .sel small { display: block; font: 600 9px var(--f-mono); letter-spacing: .14em; }
+.aviso-seg { max-width: 780px; margin: 0 auto; border: 1px solid rgba(255, 77, 94, .5); background: var(--alerta-soft); border-radius: 14px; padding: 18px 22px; display: flex; gap: 16px; align-items: flex-start; font-size: 16px; color: var(--cinza); }
+.aviso-seg svg { width: 40px; height: 44px; flex: none; color: var(--alerta); }
+.aviso-seg b { display: block; font-family: var(--f-tit); font-size: 22px; text-transform: uppercase; color: var(--texto); }
 .faq { display: grid; gap: 40px; }
-.faq .lista { display: grid; gap: 12px; }
-.faq details { background: #fff; border: 3px solid var(--marinho); border-radius: 20px; padding: 0 20px; }
-.faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 18px 0; font-weight: 700; font-size: 18px; }
+.faq .lista { display: grid; gap: 10px; }
+.faq details { background: var(--vidro); border: 1px solid var(--linha); border-radius: 12px; padding: 0 20px; }
+.faq details[open] { border-color: var(--linha-forte); }
+.faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 18px 0; font-weight: 600; font-size: 18px; }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; flex: 0 0 32px; height: 32px; border-radius: 50%; border: 2.5px solid var(--marinho); display: grid; place-items: center; font-weight: 800; }
-.faq details[open] summary::after { content: "–"; }
+.faq summary::after { content: "+"; font: 600 22px var(--f-mono); color: var(--roxo-neon); }
+.faq details[open] summary::after { content: "−"; }
 .faq details p { margin: 0 0 18px; color: var(--cinza); }
-.zap { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: var(--roxo-d); }
+.zap { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--roxo-l); }
 .zap svg { width: 20px; height: 20px; fill: currentColor; }
-
-.final { padding: clamp(90px, 11vw, 130px) 0; text-align: center; }
-.final .cabeca { margin-bottom: 28px; }
-footer { padding: 36px 0 120px; font-size: 14px; color: var(--cinza); background: var(--papel); }
+footer { padding: 36px 0 120px; font-size: 14px; color: var(--apagado); border-top: 1px solid var(--linha); }
 footer a { margin-right: 14px; }
-.barra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--marinho); padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); display: flex; gap: 12px; align-items: center; justify-content: space-between; transform: translateY(110%); transition: transform .25s; }
+.barra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: rgba(7, 6, 12, .94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-top: 1px solid var(--linha-forte); padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); display: flex; gap: 12px; align-items: center; justify-content: space-between; transform: translateY(110%); transition: transform .25s; }
 .barra.visivel { transform: none; }
-/* botão flutuante de dúvidas no WhatsApp: sobe quando a barra de compra aparece */
-.duvida { position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 21; display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px 10px 12px; border-radius: 999px; background: #25D366; color: #fff; font-weight: 800; font-size: 15px; text-decoration: none; border: 3px solid var(--marinho); box-shadow: 0 4px 0 var(--marinho); transition: bottom .25s, transform .18s; }
-.duvida svg { width: 24px; height: 24px; fill: currentColor; }
-.duvida:hover { transform: translateY(-2px); }
-.barra.visivel ~ .duvida { bottom: calc(84px + env(safe-area-inset-bottom, 0px)); }
-.barra .p { color: #fff; font-weight: 700; line-height: 1.1; font-size: 15px; }
-.barra .p s { text-decoration: none; opacity: .7; font-weight: 500; font-size: 13px; }
-.barra .btn { min-height: 48px; font-size: 17px; padding: 8px 18px; box-shadow: none; border-color: #fff; }
+.barra .p { font: 600 14px var(--f-mono); line-height: 1.3; color: var(--cinza); }
+.barra .p b { color: #fff; font-family: var(--f-tit); font-size: 22px; }
+.barra .btn { min-height: 48px; font-size: 18px; padding: 8px 18px; }
 
-@media (min-width: 860px) {
-  .heroi { padding-top: 48px; }
-  .heroi .grade { grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-  .heroi .txt { gap: 22px; }
-  .heroi .h1 { font-size: clamp(48px, 5vw, 70px); }
-  .logo-txt { margin-bottom: 14px; }
-  .cta-heroi { margin-top: 30px; }
-  .fitas { height: 200px; }
-  .fita.um { top: 52px; transform: rotate(-2deg); }
-  .fita.dois { top: 98px; transform: rotate(1.8deg); }
-  .numeros { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+@media (min-width: 900px) {
+  .heroi .grade { grid-template-columns: 1.05fr .95fr; }
+  .sete { grid-template-columns: 1fr 1fr; }
   .passos { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .faq { grid-template-columns: .8fr 1.2fr; align-items: start; }
-  .trilho.ingressos { justify-content: center; grid-auto-columns: minmax(300px, 340px); overflow: visible; }
-  .precos .setas { display: none; }
   .barra { display: none; }
   footer { padding-bottom: 40px; }
 }
-/* computador largo: preço e botão lado a lado, para o vídeo ficar na altura do título */
-@media (min-width: 1180px) {
-  .cta-heroi { grid-template-columns: auto 1fr; align-items: center; justify-items: start; text-align: left; column-gap: 28px; row-gap: 10px; }
-  .preco-heroi { justify-items: start; font-size: 76px; }
-  .cta-heroi .btn.largo { grid-column: 2; grid-row: 1; width: 100%; }
-  .cta-heroi .nota { grid-column: 1 / -1; grid-row: 2; margin: 0; }
-}
-@media (prefers-reduced-motion: reduce) { .fita-trilho, .faixa div, .flutua, .ao-vivo::after { animation: none; } .btn, .barra, .duvida { transition: none; } }
-</style>
-<style>
-/* quiz */
-.quiz { max-width: 720px; margin: 0 auto; background: #fff; border: 3px solid var(--marinho); border-radius: 30px; box-shadow: var(--pop-lg); overflow: hidden; }
-.quiz .topo-q { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 22px; background: var(--marinho-2); color: #fff; font-family: var(--f-pixel); font-size: 22px; letter-spacing: .06em; text-transform: uppercase; border-bottom: 3px solid var(--marinho); }
-.quiz .barra-q { height: 10px; background: var(--ceu-2); }
-.quiz .barra-q i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--roxo), var(--roxo-d)); transition: width .35s; }
-.quiz .corpo-q { padding: clamp(22px, 4vw, 34px); display: grid; gap: 18px; }
-.quiz h3 { margin: 0; font-family: var(--f-tit); font-variation-settings: "SOFT" 100, "WONK" 1; font-weight: 900; font-size: clamp(24px, 3.4vw, 32px); line-height: 1.1; }
-.quiz .dica { margin: -6px 0 0; color: var(--cinza); font-size: 16px; }
-.opcoes { display: grid; gap: 12px; }
-.opcoes button { text-align: left; font: 600 18px var(--f-corpo); color: var(--tinta); background: #fff; border: 3px solid var(--marinho); border-radius: 18px; padding: 16px 18px; box-shadow: 0 4px 0 var(--marinho); cursor: pointer; transition: transform .12s, box-shadow .12s, background .12s; }
-.opcoes button:hover { background: var(--ceu-3); transform: translateY(-1px); }
-.opcoes button:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--marinho); }
-.opcoes button:focus-visible { outline: 3px solid var(--roxo-d); outline-offset: 3px; }
-.voltar { justify-self: start; background: none; border: 0; color: var(--cinza); font: 600 15px var(--f-corpo); cursor: pointer; padding: 0; text-decoration: underline; }
-.inicio-q { text-align: center; justify-items: center; }
-.resultado .nota-r { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
-.medidor { position: relative; width: 140px; height: 140px; flex: none; }
-.medidor svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-.medidor b { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--f-tit); font-weight: 900; font-size: 40px; }
-.nivel { display: inline-block; font-family: var(--f-pixel); font-size: 24px; letter-spacing: .06em; text-transform: uppercase; padding: 2px 14px; border: 2px solid var(--marinho); border-radius: 999px; }
-.nivel.alto { background: var(--alerta); color: #fff; }
-.nivel.medio { background: var(--manteiga); }
-.nivel.baixo { background: #BFF0D2; }
-.portas { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
-.portas li { background: var(--alerta-soft); border: 3px solid var(--marinho); border-radius: 18px; padding: 14px 16px; display: grid; gap: 4px; }
-.portas li b { font-size: 17px; }
-.portas li span { font-size: 15px; color: var(--marinho-2); }
-.portas li.ok { background: var(--ok-soft); }
-/* oferta */
-.sete { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; max-width: 900px; margin: 0 auto; }
-.porta { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 14px; align-items: start; background: #fff; border: 3px solid var(--marinho); border-radius: 22px; padding: 16px 18px; box-shadow: var(--pop); }
-.porta .n { width: 56px; height: 56px; border-radius: 16px; background: var(--roxo); color: #fff; border: 3px solid var(--marinho); display: grid; place-items: center; font-family: var(--f-tit); font-weight: 900; font-size: 26px; }
-.porta h3 { margin: 0 0 4px; font-family: var(--f-tit); font-weight: 900; font-size: 22px; line-height: 1.1; }
-.porta p { margin: 0; color: var(--cinza); font-size: 16px; }
-.ingresso.unico { max-width: 420px; margin: 0 auto; }
-.garantia-l { display: flex; gap: 14px; align-items: center; justify-content: center; margin-top: 22px; font-size: 15px; color: var(--marinho-2); text-align: left; }
-.garantia-l .estrela { position: relative; width: 84px; height: 84px; font-size: 22px; flex: none; }
-.aviso-seg { max-width: 760px; margin: 0 auto; background: #fff; border: 3px solid var(--marinho); border-radius: 22px; padding: 18px 22px; display: flex; gap: 14px; align-items: flex-start; font-size: 16px; }
-.aviso-seg b { display: block; font-size: 17px; }
-@media (min-width: 860px) { .sete { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 899px) { .codigo { padding-left: 8%; color: rgba(185, 164, 255, .07); } .visual { width: min(100%, 360px); } }
+@media (prefers-reduced-motion: reduce) { .faixa div, .codigo span, .caco, .fone .scan, .glitch::before, .glitch::after, .fone .status::before { animation: none; } .btn, .barra { transition: none; } }
 </style>
 </head>
 <body>
 
 <div class="faixa" aria-hidden="true"><div>
-  <span>Depois de todo grande ataque, vem a onda de golpes</span><i>★</i><span>Quiz grátis em 2 minutos</span><i>★</i><span>Depois de todo grande ataque, vem a onda de golpes</span><i>★</i><span>Quiz grátis em 2 minutos</span><i>★</i><span>Depois de todo grande ataque, vem a onda de golpes</span><i>★</i><span>Quiz grátis em 2 minutos</span><i>★</i><span>Depois de todo grande ataque, vem a onda de golpes</span><i>★</i><span>Quiz grátis em 2 minutos</span><i>★</i>
+  <span>Depois de todo grande ataque, vem a onda de golpes</span><i>●</i><span>Quiz grátis em 2 minutos</span><i>●</i><span>Sem pedir nenhum dado</span><i>●</i><span>Depois de todo grande ataque, vem a onda de golpes</span><i>●</i><span>Quiz grátis em 2 minutos</span><i>●</i><span>Sem pedir nenhum dado</span><i>●</i><span>Depois de todo grande ataque, vem a onda de golpes</span><i>●</i><span>Quiz grátis em 2 minutos</span><i>●</i><span>Sem pedir nenhum dado</span><i>●</i><span>Depois de todo grande ataque, vem a onda de golpes</span><i>●</i><span>Quiz grátis em 2 minutos</span><i>●</i><span>Sem pedir nenhum dado</span><i>●</i>
 </div></div>
 
 <!-- herói -->
-<section class="ceu heroi" style="padding-bottom: 120px">
-  <div class="nuvem flutua" style="width:220px;left:-40px;top:40px"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div><div class="nuvem flutua" style="width:300px;right:-60px;top:120px;animation-delay:-4s"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div>
-  <div class="env" style="display: grid; gap: 22px; justify-items: center; text-align: center">
-    <span class="selo-pill"><span class="ao-vivo"></span>Os golpistas já estão usando as notícias de hoje</span>
-    <h1 class="tit h1">Você está <span class="contorno">vulnerável</span>?</h1>
-    <p class="apoio">Descubra em 2 minutos quais portas do seu celular, do seu banco e do seu WhatsApp estão abertas para golpistas. Grátis e sem pedir nenhum dado seu.</p>
-    <a class="btn" href="#quiz">Fazer o teste agora <span class="seta" aria-hidden="true">→</span></a>
-    <p class="heroi-nota" style="font-size: 14px; color: var(--cinza); margin: -6px 0 0">10 perguntas · sem cadastro · resultado na hora</p>
+<section class="heroi">
+  <pre class="codigo" aria-hidden="true"><span>200  root auth sudo #
+201  token await return sudo
+202  ssh 0x7F sha256 [] rm } auth
+203  PIN return true rm =>
+204  root ssh [] token
+205  key -- null } null # rm token root
+206  ssh root =>
+207  scan ssh scan 0101 { sha256
+208  true fn token fn 1100
+209  rm # key // => await ping =>
+210  0101 rm } :: scan otp => otp
+211  0x7F sha256 rm
+212  null 2FA key } ssh 1100 return fn ::
+213  token ssh otp return otp ssh otp //
+214  ping await ssh => 0101 ssh pix true --
+215  { key if [] fn 1100 {
+216  [] ssh auth 0101 PIN
+217  PIN 2FA 0x7F 0x7F 0x7F {
+218  // fn $ null otp fn 2FA
+219  ssh ping => # => null 0101 ping $
+220  sha256 ping 0101
+221  scan PIN $ =>
+222  fn true true
+223  PIN sha256 ping true
+224  otp 0x7F otp 2FA
+225  sudo fn $ -- token scan PIN
+226  { key ssh # otp ping PIN rm key
+227  $ await rm => fn sudo
+228  pix rm 0x7F { 1100 # sudo
+229  PIN if PIN { if true
+230  sudo -- sha256
+231  0x7F => { key # 0101 return
+232  fn 2FA $
+233  true pix fn [] token if root
+234  :: await token 1100 -- PIN root -- sha256
+235  $ sudo auth await 2FA [] scan ping 0101
+236  => root #
+237  2FA { [] { } //
+238  $ key true if {
+239  root 2FA 2FA
+240  # await null ping ssh ::
+241  } if 0x7F otp
+242  1100 root 0101 0101 sudo // true
+243  [] key pix scan token // } ssh []
+244  :: token await sudo
+245  } key [] otp } root return return
+246  token :: auth { } $ await
+247  2FA } # sha256 root sudo null $ sha256
+248  [] sha256 otp 0101 sudo
+249  sudo otp ssh 0101 ping if true
+250  1100 [] sudo --
+251  return // await 1100 :: root token
+252  true # sha256 # await // null await root
+253  0x7F { sudo true
+254  null { auth
+255  fn otp token 2FA
+256  0x7F ssh } // ping
+257  token [] if //
+258  ping // PIN root # await --
+259  { true sudo root
+200  root auth sudo #
+201  token await return sudo
+202  ssh 0x7F sha256 [] rm } auth
+203  PIN return true rm =>
+204  root ssh [] token
+205  key -- null } null # rm token root
+206  ssh root =>
+207  scan ssh scan 0101 { sha256
+208  true fn token fn 1100
+209  rm # key // => await ping =>
+210  0101 rm } :: scan otp => otp
+211  0x7F sha256 rm
+212  null 2FA key } ssh 1100 return fn ::
+213  token ssh otp return otp ssh otp //
+214  ping await ssh => 0101 ssh pix true --
+215  { key if [] fn 1100 {
+216  [] ssh auth 0101 PIN
+217  PIN 2FA 0x7F 0x7F 0x7F {
+218  // fn $ null otp fn 2FA
+219  ssh ping => # => null 0101 ping $
+220  sha256 ping 0101
+221  scan PIN $ =>
+222  fn true true
+223  PIN sha256 ping true
+224  otp 0x7F otp 2FA
+225  sudo fn $ -- token scan PIN
+226  { key ssh # otp ping PIN rm key
+227  $ await rm => fn sudo
+228  pix rm 0x7F { 1100 # sudo
+229  PIN if PIN { if true
+230  sudo -- sha256
+231  0x7F => { key # 0101 return
+232  fn 2FA $
+233  true pix fn [] token if root
+234  :: await token 1100 -- PIN root -- sha256
+235  $ sudo auth await 2FA [] scan ping 0101
+236  => root #
+237  2FA { [] { } //
+238  $ key true if {
+239  root 2FA 2FA
+240  # await null ping ssh ::
+241  } if 0x7F otp
+242  1100 root 0101 0101 sudo // true
+243  [] key pix scan token // } ssh []
+244  :: token await sudo
+245  } key [] otp } root return return
+246  token :: auth { } $ await
+247  2FA } # sha256 root sudo null $ sha256
+248  [] sha256 otp 0101 sudo
+249  sudo otp ssh 0101 ping if true
+250  1100 [] sudo --
+251  return // await 1100 :: root token
+252  true # sha256 # await // null await root
+253  0x7F { sudo true
+254  null { auth
+255  fn otp token 2FA
+256  0x7F ssh } // ping
+257  token [] if //
+258  ping // PIN root # await --
+259  { true sudo root</span></pre>
+  <div class="env grade">
+    <div class="txt">
+      <div class="marca"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 3 59 13v20c0 18-11.5 31-27 36C16.5 64 5 51 5 33V13z" fill="none" stroke="currentColor" stroke-width="4"/><rect x="21" y="32" width="22" height="18" rx="3" fill="currentColor"/><path d="M25 32v-6a7 7 0 0114 0v6" fill="none" stroke="currentColor" stroke-width="4"/></svg><b>Blindagem<br>Digital</b></div>
+      <h1 class="tit h1">Você está <span class="neon glitch" data-t="vulnerável?">vulnerável?</span></h1>
+      <p class="apoio">Descubra em 2 minutos quais portas do seu celular, do seu banco e do seu WhatsApp estão abertas para golpistas.</p>
+      <ul class="lista-v"><li>Quiz grátis</li><li>7 portas</li><li>30 minutos</li></ul>
+      <a class="btn" href="#quiz">Iniciar escaneamento <span aria-hidden="true">→</span></a>
+      <p class="nota">10 perguntas · sem cadastro · resultado na hora</p>
+    </div>
+    <div class="visual" aria-hidden="true">
+      <svg class="cacos" viewBox="0 0 600 700" aria-hidden="true">
+  <polygon class="caco c1" points="40,120 150,60 120,330 70,300"/>
+  <polygon class="caco c2" points="470,40 560,90 500,260"/>
+  <polygon class="caco c3" points="500,380 590,330 560,560 520,520"/>
+  <polygon class="caco c4" points="60,470 140,420 110,610"/>
+  <polygon class="caco c5" points="300,10 360,30 330,90"/>
+</svg>
+      <div class="fone"><div class="scan"></div><div class="escudo"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 3 59 13v20c0 18-11.5 31-27 36C16.5 64 5 51 5 33V13z" fill="none" stroke="currentColor" stroke-width="4"/><rect x="21" y="32" width="22" height="18" rx="3" fill="currentColor"/><path d="M25 32v-6a7 7 0 0114 0v6" fill="none" stroke="currentColor" stroke-width="4"/></svg></div><div class="status">escaneando</div></div>
+    </div>
   </div>
-  <div class="banco"></div>
 </section>
 
 <!-- quiz -->
-<section class="secao" id="quiz" style="padding-top: 40px">
+<section class="secao escura" id="quiz">
   <div class="env">
     <div class="quiz" aria-live="polite">
-      <div class="topo-q"><span id="q-titulo">Teste de risco</span><span id="q-conta"></span></div>
+      <div class="topo-q"><span><span class="pontos"><i></i><i></i><i></i></span><span id="q-titulo">scan_vulnerabilidade.sh</span></span><span id="q-conta"></span></div>
       <div class="barra-q"><i id="q-barra"></i></div>
       <div class="corpo-q" id="q-corpo"></div>
     </div>
@@ -305,65 +350,61 @@ footer a { margin-right: 14px; }
 </section>
 
 <!-- oferta -->
-<section class="ceu secao" id="oferta" style="border-top: 3px solid var(--marinho)">
-  <div class="nuvem flutua" style="width:260px;left:-60px;top:60px"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div><div class="nuvem flutua" style="width:220px;right:-40px;top:40%;animation-delay:-3s"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div>
+<section class="secao" id="oferta">
   <div class="env">
     <div class="cabeca">
-      <span class="selo-pill">Blindagem Digital em 30 min</span>
-      <h2 class="tit h2">Em 30 minutos, feche as <span class="contorno">7 portas</span> que os golpistas usam para tirar dinheiro da sua conta.</h2>
+      <span class="rotulo">// Blindagem Digital em 30 min</span>
+      <h2 class="tit h2">Em 30 minutos, feche as <span class="neon">7 portas</span> que os golpistas usam para tirar dinheiro da sua conta.</h2>
       <p class="apoio">Um passo a passo no seu celular, com prints de onde clicar no WhatsApp, no banco, no e-mail e na corretora. Sem saber nada de tecnologia.</p>
     </div>
-    <div class="sete"><div class="porta"><span class="n">1</span><div><h3>WhatsApp</h3><p>Verificação em duas etapas ligada e o que fazer se pedirem o código que chegou por SMS.</p></div></div><div class="porta"><span class="n">2</span><div><h3>Banco e Pix</h3><p>Limite de Pix à noite, aviso de toda transação e o celular cadastrado como o único que mexe na conta.</p></div></div><div class="porta"><span class="n">3</span><div><h3>E-mail</h3><p>A chave de todas as outras contas, protegida com aplicativo autenticador, não com SMS.</p></div></div><div class="porta"><span class="n">4</span><div><h3>Senhas</h3><p>Uma senha diferente para cada lugar sem decorar nada, e como ver se a sua já vazou.</p></div></div><div class="porta"><span class="n">5</span><div><h3>Celular</h3><p>Bloqueio, atualizações e por que nunca instalar aplicativo por link ou dar acesso remoto.</p></div></div><div class="porta"><span class="n">6</span><div><h3>Corretora e cripto</h3><p>Autenticador, lista de endereços de saque liberados e código anti-phishing nos e-mails.</p></div></div><div class="porta"><span class="n">7</span><div><h3>Golpes da vez</h3><p>Falsa central do banco, falso suporte, link de recuperação e a mão fantasma, com o que dizer e o que nunca fazer.</p></div></div></div>
+    <div class="sete"><div class="porta"><span class="n">01</span><div><h3>WhatsApp</h3><p>Verificação em duas etapas ligada e o que fazer se pedirem o código que chegou por SMS.</p></div></div><div class="porta"><span class="n">02</span><div><h3>Banco e Pix</h3><p>Limite de Pix à noite, aviso de toda transação e o celular cadastrado como o único que mexe na conta.</p></div></div><div class="porta"><span class="n">03</span><div><h3>E-mail</h3><p>A chave de todas as outras contas, protegida com aplicativo autenticador, não com SMS.</p></div></div><div class="porta"><span class="n">04</span><div><h3>Senhas</h3><p>Uma senha diferente para cada lugar sem decorar nada, e como ver se a sua já vazou.</p></div></div><div class="porta"><span class="n">05</span><div><h3>Celular</h3><p>Bloqueio, atualizações e por que nunca instalar aplicativo por link ou dar acesso remoto.</p></div></div><div class="porta"><span class="n">06</span><div><h3>Corretora e cripto</h3><p>Autenticador, lista de endereços de saque liberados e código anti-phishing nos e-mails.</p></div></div><div class="porta"><span class="n">07</span><div><h3>Golpes da vez</h3><p>Falsa central do banco, falso suporte, link de recuperação e a mão fantasma, com o que dizer e o que nunca fazer.</p></div></div></div>
   </div>
 </section>
 
-<section class="secao creme">
+<section class="secao escura">
   <div class="env">
-    <div class="cabeca"><h2 class="tit h2">Como você <span class="it">recebe</span></h2></div>
+    <div class="cabeca"><span class="rotulo">// entrega</span><h2 class="tit h2">Como você <span class="neon">recebe</span></h2></div>
     <div class="passos">
-      <div class="passo"><span class="n">1</span><h3>Checklist no celular</h3><p>Um passo por vez, com prints e uma barra mostrando quanto falta. Você marca e segue.</p></div>
-      <div class="passo"><span class="n">2</span><h3>Vídeos de 1 minuto</h3><p>Cada porta tem um vídeo curto mostrando exatamente onde tocar.</p></div>
-      <div class="passo"><span class="n">3</span><h3>PDF para imprimir</h3><p>Para guardar, ou para fazer junto com alguém da família.</p></div>
-      <div class="passo"><span class="n">4</span><h3>Plano de emergência</h3><p>O que fazer nos primeiros 30 minutos se você ou alguém da família cair num golpe.</p></div>
+      <div class="passo"><span class="n">01 / CHECKLIST</span><h3>No seu celular</h3><p>Um passo por vez, com prints e uma barra mostrando quanto falta.</p></div>
+      <div class="passo"><span class="n">02 / VÍDEOS</span><h3>De 1 minuto</h3><p>Cada porta tem um vídeo curto mostrando exatamente onde tocar.</p></div>
+      <div class="passo"><span class="n">03 / PDF</span><h3>Para imprimir</h3><p>Para guardar, ou para fazer junto com alguém da família.</p></div>
+      <div class="passo"><span class="n">04 / BÔNUS</span><h3>Plano de emergência</h3><p>O que fazer nos primeiros 30 minutos se você ou alguém da família cair num golpe.</p></div>
     </div>
   </div>
 </section>
 
-<section class="ceu secao precos" id="precos">
-  <div class="nuvem flutua" style="width:280px;left:-70px;top:80px"><svg viewBox="0 0 240 120" aria-hidden="true"><path class="c-body" d="M40 100c-22 0-34-14-34-30s14-30 34-28c4-20 22-34 44-32 14-18 44-20 60-2 20-8 46 4 50 28 22 0 36 14 36 32s-14 32-36 32z"/><path class="c-shade" d="M24 98c40 8 160 8 190-2-4 10-14 16-28 16H40c-8 0-12-6-16-14z"/></svg></div>
+<section class="secao" id="precos">
   <div class="env">
-    <div class="cabeca"><h2 class="tit h2">Feche as portas <span class="contorno">hoje</span></h2></div>
-    <article class="ingresso top unico">
-      <div class="faixa-top">Blindagem digital ★ <i></i></div>
+    <div class="cabeca"><h2 class="tit h2">Feche as portas <span class="neon">hoje</span></h2></div>
+    <article class="ingresso">
+      <div class="faixa-top"><span>Acesso · Blindagem Digital</span><span>● online</span></div>
       <div class="corpo">
-        <h3>Checklist completo<br>7 portas</h3>
-        <p class="desc">Para você proteger celular, banco, WhatsApp, e-mail e corretora em 30 minutos.</p>
+        <h3>Checklist completo · 7 portas</h3>
+        <p class="desc">Para proteger celular, banco, WhatsApp, e-mail e corretora em 30 minutos.</p>
         <div class="preco"><b><sup>R$</sup>27</b><span>pagamento<br>único</span></div>
         <ul class="leva"><li>Checklist passo a passo com prints</li><li>Vídeos curtos de cada porta</li><li>PDF para imprimir</li><li>Plano de emergência se cair num golpe</li></ul>
-        <a class="btn largo" href="#precos" data-checkout="kit">Quero fechar as 7 portas<small>Acesso na hora, no seu e-mail</small></a>
-        <div class="codigo"></div><div class="validade">ACESSO: VITALÍCIO</div>
+        <a class="btn largo" href="#precos" data-checkout="kit">Fechar as 7 portas<small>Acesso na hora, no seu e-mail</small></a>
+        <div class="hash">ACESSO: VITALÍCIO · ID 7F3A-29C1-BLD</div>
       </div>
     </article>
     <p class="bump"><b>Proteja seus pais também:</b> no checkout, some o <b>Kit Família</b> por R$ 19,90, a versão mais simples para fazer junto com eles por telefone.</p>
-    <div class="garantia-l"><div class="estrela"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon fill="var(--manteiga)" stroke="var(--marinho)" stroke-width="3" points="50,2 61,18 80,10 80,30 98,38 86,54 96,72 76,76 72,96 54,88 40,100 32,82 12,86 14,66 0,52 16,40 8,20 28,18 34,0"/></svg><span style="color: var(--marinho); text-shadow: none">7<small>DIAS</small></span></div><p style="margin: 0; max-width: 420px"><b>7 dias de garantia.</b> Se achar que não valeu, pede o dinheiro de volta pela plataforma de pagamento, sem perguntas.</p></div>
+    <div class="garantia-l"><div class="sel">7<small>DIAS</small></div><p style="margin: 0; max-width: 420px"><b style="color: var(--texto)">7 dias de garantia.</b> Se achar que não valeu, pede o dinheiro de volta pela plataforma de pagamento, sem perguntas.</p></div>
   </div>
 </section>
 
-<section class="secao">
+<section class="secao" style="padding-top: 0">
   <div class="env">
-    <div class="aviso-seg">
-      <div class="estrela" style="position: relative; width: 64px; height: 64px; font-size: 22px; flex: none"><svg viewBox="0 0 100 100" aria-hidden="true"><polygon fill="var(--alerta)" stroke="var(--marinho)" stroke-width="3" points="50,2 61,18 80,10 80,30 98,38 86,54 96,72 76,76 72,96 54,88 40,100 32,82 12,86 14,66 0,52 16,40 8,20 28,18 34,0"/></svg><span>!</span></div>
-      <div><b>A gente nunca pede senha, código ou acesso ao seu celular.</b> Você faz tudo sozinho, no seu aparelho. Se alguém disser que é da Fábrica de Motion e pedir isso, é golpe.</div>
-    </div>
+    <div class="aviso-seg"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 3 59 13v20c0 18-11.5 31-27 36C16.5 64 5 51 5 33V13z" fill="none" stroke="currentColor" stroke-width="4"/><rect x="21" y="32" width="22" height="18" rx="3" fill="currentColor"/><path d="M25 32v-6a7 7 0 0114 0v6" fill="none" stroke="currentColor" stroke-width="4"/></svg><div><b>A gente nunca pede senha, código ou acesso ao seu celular.</b> Você faz tudo sozinho, no seu aparelho. Se alguém disser que é da Fábrica de Motion e pedir isso, é golpe.</div></div>
   </div>
 </section>
 
 <!-- perguntas -->
-<section class="secao creme">
+<section class="secao escura">
   <div class="env faq">
     <div style="display: grid; gap: 18px; justify-items: start">
-      <h2 class="tit h2">As dúvidas <span class="it">que todo mundo tem</span></h2>
-      <a class="btn" href="#precos" data-checkout="kit">Quero fechar as portas <span class="seta" aria-hidden="true">→</span></a>
+      <span class="rotulo">// faq</span>
+      <h2 class="tit h2">As dúvidas <span class="neon">de todo mundo</span></h2>
+      <a class="btn" href="#precos" data-checkout="kit">Fechar as portas <span aria-hidden="true">→</span></a>
       <a class="zap" href="#" data-link="whatsapp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 000-.4c0-.1-.6-1.3-.8-1.8s-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.8 11.9 11.9 0 004.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 001.8-1.3 2.3 2.3 0 00.2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Tirar uma dúvida no WhatsApp</a>
     </div>
     <div class="lista">
@@ -385,7 +426,7 @@ footer a { margin-right: 14px; }
 </footer>
 
 <div class="barra barra-compra" id="barra-compra" aria-hidden="true">
-  <div class="p">Blindagem Digital<br>R$ 27 · 7 portas</div>
+  <div class="p">BLINDAGEM DIGITAL<br><b>R$ 27</b> · 7 portas</div>
   <a class="btn" href="#precos" data-checkout="kit" tabindex="-1">Quero agora</a>
 </div>
 
@@ -453,9 +494,9 @@ footer a { margin-right: 14px; }
     barra.style.width = "0%"; conta.textContent = "";
     corpo.className = "corpo-q inicio-q";
     corpo.replaceChildren(
-      el("h3", { text: "10 perguntas rápidas sobre o seu celular, banco e WhatsApp." }),
+      el("h3", { text: "10 perguntas sobre o seu celular, banco e WhatsApp." }),
       el("p", { class: "dica", text: "Responda com sinceridade. Ninguém vê suas respostas: elas não saem do seu celular." }),
-      el("button", { class: "btn", type: "button", onclick: () => { resp = []; pergunta(0); fbq_('trackCustom', 'QuizIniciado'); } }, "Começar o teste ", el("span", { class: "seta", "aria-hidden": "true", text: "→" })));
+      el("button", { class: "btn", type: "button", onclick: () => { resp = []; pergunta(0); fbq_('trackCustom', 'QuizIniciado'); } }, "Iniciar escaneamento ", el("span", { class: "seta", "aria-hidden": "true", text: "→" })));
   }
   function pergunta(i) {
     const P = PERGUNTAS[i];
@@ -466,15 +507,15 @@ footer a { margin-right: 14px; }
     ops.querySelector("button").focus({ preventScroll: true });
   }
   function resultado() {
-    barra.style.width = "100%"; conta.textContent = "pronto";
+    barra.style.width = "100%"; conta.textContent = "concluído";
     const porPorta = {}; let pts = 0, max = 0;
     PERGUNTAS.forEach((P, i) => { const v = resp[i]; if (v === null || v === undefined) return; pts += v; max += 2; porPorta[P.p] = (porPorta[P.p] || 0) + v; });
     const nota = Math.round(pts / max * 100);
     const nivel = nota >= 50 ? ["alto", "Risco alto"] : nota >= 20 ? ["medio", "Risco médio"] : ["baixo", "Risco baixo"];
     const abertas = Object.entries(porPorta).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
-    const C = 2 * Math.PI * 58, cor = nivel[0] === "alto" ? "var(--alerta)" : nivel[0] === "medio" ? "#D9A21B" : "var(--verde)";
+    const C = 2 * Math.PI * 58, cor = nivel[0] === "alto" ? "var(--alerta)" : nivel[0] === "medio" ? "#FFC14D" : "var(--ok)";
     const med = el("div", { class: "medidor" });
-    med.innerHTML = `<svg viewBox="0 0 140 140" aria-hidden="true"><circle cx="70" cy="70" r="58" fill="none" stroke="var(--ceu-2)" stroke-width="16"/><circle cx="70" cy="70" r="58" fill="none" stroke="${cor}" stroke-width="16" stroke-linecap="round" stroke-dasharray="${(C * nota / 100).toFixed(1)} ${C.toFixed(1)}"/></svg><b>${nota}%</b>`;
+    med.innerHTML = `<svg viewBox="0 0 140 140" aria-hidden="true"><circle cx="70" cy="70" r="58" fill="none" stroke="rgba(167,139,250,.15)" stroke-width="16"/><circle cx="70" cy="70" r="58" fill="none" stroke="${cor}" stroke-width="16" stroke-linecap="round" stroke-dasharray="${(C * nota / 100).toFixed(1)} ${C.toFixed(1)}"/></svg><b>${nota}%</b>`;
     const lista = el("ul", { class: "portas" });
     if (!abertas.length) lista.append(el("li", { class: "ok" }, el("b", { text: "Nenhuma porta aberta nas respostas." }), el("span", { text: "Ótimo começo. O checklist ajuda a manter assim e a proteger quem está perto de você." })));
     abertas.slice(0, 3).forEach(([k]) => lista.append(el("li", {}, el("b", { text: "Porta aberta: " + PORTAS[k][0] }), el("span", { text: PORTAS[k][1] }))));
