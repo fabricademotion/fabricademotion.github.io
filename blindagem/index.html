@@ -3,431 +3,361 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Descubra em 2 minutos se o seu dinheiro está vulnerável e feche, em 30 minutos, as 7 portas que os golpistas usam para tirar dinheiro da sua conta.">
-<meta property="og:title" content="Você está vulnerável? · Blindagem Digital em 30 min">
-<meta property="og:description" content="Quiz grátis de 2 minutos: descubra quais portas do seu celular, banco e WhatsApp estão abertas.">
-<title>Blindagem Digital em 30 min · Fábrica de Motion</title>
+<meta name="description" content="Em 30 minutos, feche as 7 portas que os golpistas usam para tirar dinheiro da sua conta. Passo a passo no celular, com prints de onde tocar.">
+<meta property="og:title" content="Blindagem Digital · Feche as 7 portas em 30 minutos">
+<meta property="og:description" content="O passo a passo para proteger WhatsApp, banco, Pix, e-mail e corretora, sem entender de tecnologia.">
+<title>Blindagem Digital</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap">
 <style>
-/* Linha visual "código hacker": fundo preto, brilho roxo neon, fonte técnica em caixa alta, código correndo no fundo,
-   cacos de vidro e barra vertical roxa nas listas. Vermelho só para alerta (portas abertas). Tema escuro único. */
+/* Dark premium: preto profundo, brilhos roxos suaves e localizados, bordas finas e cartões de vidro, muito respiro.
+   Títulos em Geist com destaque em Instrument Serif itálica; detalhes em Geist Mono. Tema escuro único. */
 :root {
-  --preto: #07060C; --preto-2: #0E0B18; --vidro: rgba(26, 20, 48, .62); --linha: rgba(167, 139, 250, .22); --linha-forte: rgba(167, 139, 250, .55);
-  --roxo: #8B5CF6; --roxo-l: #B9A4FF; --roxo-neon: #A78BFA; --brilho: rgba(139, 92, 246, .55);
-  --texto: #ECE8FF; --cinza: #A59FC4; --apagado: #6B6590;
-  --alerta: #FF4D5E; --alerta-soft: rgba(255, 77, 94, .12); --ok: #3EE08F; --ok-soft: rgba(62, 224, 143, .12);
-  --f-tit: "Rajdhani", "Arial Narrow", system-ui, sans-serif; --f-corpo: "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif; --f-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --fundo: #050507; --fundo-2: #0A0A10; --card: rgba(255, 255, 255, .028); --card-2: rgba(255, 255, 255, .045);
+  --borda: rgba(255, 255, 255, .08); --borda-2: rgba(255, 255, 255, .14);
+  --texto: #F4F2FA; --suave: #A7A3B8; --apagado: #6E6A80;
+  --roxo: #8B5CF6; --roxo-2: #A78BFA; --lilas: #D7CCFF; --brilho: rgba(124, 92, 246, .38);
+  --verde: #4ADE80; --alerta: #FF5C6C;
+  --f: "Geist", system-ui, -apple-system, "Segoe UI", sans-serif; --serif: "Instrument Serif", Georgia, serif; --mono: "Geist Mono", ui-monospace, Menlo, monospace;
   color-scheme: dark;
 }
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; }
-html { overflow-x: clip; }
-body { background: var(--preto); color: var(--texto); font-family: var(--f-corpo); font-size: 18px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+html { overflow-x: clip; scroll-behavior: smooth; }
+body { overflow-x: clip; background: var(--fundo); color: var(--texto); font-family: var(--f); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
 a { color: inherit; }
-[hidden] { display: none !important; }
-.env { width: min(1180px, 100% - 2 * max(16px, 4vw)); margin-inline: auto; position: relative; z-index: 1; }
-.tit { font-family: var(--f-tit); font-weight: 700; text-transform: uppercase; letter-spacing: .01em; line-height: .98; margin: 0; text-wrap: balance; }
-.h1 { font-size: clamp(46px, 7.4vw, 96px); }
-.h2 { font-size: clamp(36px, 5.2vw, 64px); }
-.neon { color: var(--roxo-neon); text-shadow: 0 0 18px var(--brilho), 0 0 44px rgba(139, 92, 246, .35); }
-.alerta-t { color: var(--alerta); text-shadow: 0 0 18px rgba(255, 77, 94, .45); }
-.apoio { font-size: clamp(18px, 1.6vw, 21px); color: var(--cinza); max-width: 620px; margin: 0; }
-.mono { font-family: var(--f-mono); }
-.rotulo { font-family: var(--f-mono); font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--roxo-l); }
-.cabeca { display: grid; gap: 16px; justify-items: center; text-align: center; margin-bottom: clamp(36px, 6vw, 60px); }
-.secao { padding: clamp(80px, 10vw, 120px) 0; position: relative; overflow: clip; }
-.secao.escura { background: var(--preto-2); border-block: 1px solid var(--linha); }
+.env { width: min(1160px, 100% - 2 * max(20px, 4vw)); margin-inline: auto; position: relative; z-index: 1; }
+h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -.035em; line-height: 1.04; text-wrap: balance; }
+h1 { font-size: clamp(42px, 5.2vw, 70px); }
+h2 { font-size: clamp(34px, 4.6vw, 56px); }
+.serif { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
+.grad { background: linear-gradient(180deg, #fff 30%, #C9BEF5); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.grad-roxo { background: linear-gradient(100deg, var(--lilas), var(--roxo-2) 55%, #7C5CF0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.suave { color: var(--suave); }
+.lead { font-size: clamp(17px, 1.5vw, 20px); color: var(--suave); max-width: 600px; margin: 0; font-weight: 300; }
+.rotulo { display: inline-flex; align-items: center; gap: 10px; font: 500 12px var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--lilas); padding: 7px 14px; border: 1px solid var(--borda-2); border-radius: 999px; background: rgba(139, 92, 246, .08); }
+.rotulo i { width: 6px; height: 6px; border-radius: 50%; background: var(--roxo-2); box-shadow: 0 0 10px var(--roxo-2); }
+.cabeca { display: grid; gap: 18px; justify-items: center; text-align: center; margin: 0 auto clamp(44px, 6vw, 72px); max-width: 780px; }
+.secao { padding: clamp(90px, 11vw, 140px) 0; position: relative; overflow: clip; }
+.linha-sep { height: 1px; background: linear-gradient(90deg, transparent, var(--borda-2), transparent); }
+.luz { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
 
 /* botões */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 16px 32px; min-height: 60px; text-align: center; text-decoration: none; cursor: pointer;
-  font-family: var(--f-tit); font-weight: 700; font-size: clamp(20px, 1.8vw, 23px); letter-spacing: .06em; text-transform: uppercase; color: #fff;
-  background: linear-gradient(180deg, #9F7BFF, #6D3FE8); border: 1px solid var(--roxo-l); border-radius: 12px; box-shadow: 0 0 0 1px rgba(255,255,255,.06) inset, 0 10px 34px -8px var(--brilho), 0 0 24px -6px var(--brilho); transition: transform .15s, box-shadow .15s; }
-.btn:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px rgba(255,255,255,.1) inset, 0 14px 44px -8px var(--brilho), 0 0 34px -4px var(--brilho); }
-.btn:focus-visible { outline: 2px solid var(--roxo-l); outline-offset: 4px; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 14px 26px; border-radius: 999px; text-decoration: none; font: 500 16px var(--f); letter-spacing: -.01em; cursor: pointer; transition: transform .2s, box-shadow .2s, background .2s; }
+.btn.prim { color: #fff; background: linear-gradient(180deg, #9873FF, #6B44EC); box-shadow: 0 0 0 1px rgba(255,255,255,.16) inset, 0 8px 30px -6px var(--brilho), 0 0 0 1px rgba(124,92,246,.5); }
+.btn.prim:hover { transform: translateY(-1px); box-shadow: 0 0 0 1px rgba(255,255,255,.22) inset, 0 12px 40px -6px rgba(124,92,246,.6), 0 0 0 1px rgba(167,139,250,.7); }
+.btn.sec { color: var(--texto); border: 1px solid var(--borda-2); background: rgba(255,255,255,.03); }
+.btn.sec:hover { background: rgba(255,255,255,.07); }
+.btn:focus-visible { outline: 2px solid var(--roxo-2); outline-offset: 3px; }
 .btn.largo { width: 100%; }
-.btn small { display: block; font-family: var(--f-corpo); font-weight: 600; font-size: 13px; letter-spacing: 0; text-transform: none; opacity: .9; }
-.btn:has(small) { flex-direction: column; gap: 2px; }
-.btn.vazado { background: transparent; }
+.btn .seta { transition: transform .2s; }
+.btn:hover .seta { transform: translateX(3px); }
 
-/* faixa */
-.faixa { background: #000; border-bottom: 1px solid var(--linha); color: var(--roxo-l); overflow: hidden; white-space: nowrap; font-family: var(--f-mono); font-size: 13px; letter-spacing: .12em; text-transform: uppercase; padding: 9px 0; }
-.faixa div { display: inline-flex; gap: 28px; animation: correr 30s linear infinite; padding-right: 28px; }
-.faixa i { font-style: normal; color: var(--alerta); }
-@keyframes correr { to { transform: translateX(-50%); } }
+/* topo */
+.aviso-topo { text-align: center; font: 400 13px var(--mono); letter-spacing: .04em; color: var(--suave); padding: 10px 16px; border-bottom: 1px solid var(--borda); background: rgba(139, 92, 246, .05); }
+.aviso-topo b { color: var(--lilas); font-weight: 500; }
+.nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; }
+.marca { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; letter-spacing: -.02em; font-size: 18px; text-decoration: none; }
+.marca svg { width: 26px; height: 29px; color: var(--roxo-2); filter: drop-shadow(0 0 8px var(--brilho)); }
+.nav .btn { min-height: 42px; padding: 8px 18px; font-size: 14px; }
 
 /* herói */
-.heroi { position: relative; overflow: clip; padding: 60px 0 90px; background: radial-gradient(700px 520px at 72% 42%, rgba(139, 92, 246, .38), transparent 70%), radial-gradient(500px 400px at 75% 45%, rgba(185, 164, 255, .18), transparent 70%), var(--preto); }
-.codigo { position: absolute; inset: 0; z-index: 0; margin: 0; padding: 20px 0 0 52%; font: 13px/1.6 var(--f-mono); color: rgba(185, 164, 255, .16); white-space: pre; overflow: hidden; pointer-events: none; mask-image: linear-gradient(90deg, transparent, #000 30%, #000 80%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 30%, #000 80%, transparent); }
-.codigo span { display: block; animation: subir 40s linear infinite; }
-@keyframes subir { to { transform: translateY(-50%); } }
-.heroi .grade { display: grid; gap: 40px; align-items: center; }
-.marca { display: flex; align-items: center; gap: 14px; color: var(--roxo-neon); }
-.marca svg { width: 52px; height: 58px; filter: drop-shadow(0 0 10px var(--brilho)); }
-.marca b { font-family: var(--f-tit); font-weight: 600; font-size: 30px; line-height: .95; text-transform: uppercase; letter-spacing: .02em; color: var(--roxo-l); }
-.heroi .txt { display: grid; gap: 24px; justify-items: start; }
-.lista-v { list-style: none; margin: 0; padding: 4px 0 4px 18px; border-left: 3px solid var(--roxo); display: grid; gap: 10px; box-shadow: -8px 0 18px -12px var(--brilho); }
-.lista-v li { font-family: var(--f-tit); font-weight: 600; font-size: clamp(20px, 2.2vw, 26px); text-transform: uppercase; letter-spacing: .02em; }
-.heroi .nota { font-size: 14px; color: var(--apagado); margin: -8px 0 0; font-family: var(--f-mono); }
-.visual { position: relative; justify-self: center; width: min(100%, 460px); aspect-ratio: 6 / 7; }
-.cacos { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; z-index: 2; }
-.caco { fill: rgba(220, 210, 255, .07); stroke: rgba(220, 210, 255, .55); stroke-width: 1.5; filter: drop-shadow(0 0 6px var(--brilho)); }
-.c1 { animation: flut 7s ease-in-out infinite alternate; } .c2 { animation: flut 9s ease-in-out infinite alternate-reverse; } .c3 { animation: flut 8s ease-in-out infinite alternate; } .c4 { animation: flut 10s ease-in-out infinite alternate-reverse; }
-@keyframes flut { to { transform: translate(8px, -14px) rotate(2deg); } }
-.fone { position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 52%; aspect-ratio: 9 / 18.5; border-radius: 34px; border: 2px solid var(--roxo-l); background: linear-gradient(180deg, #120E22, #07060C); box-shadow: 0 0 60px -10px var(--brilho), 0 0 0 8px rgba(26, 20, 48, .9), 0 0 0 9px var(--linha-forte); overflow: hidden; z-index: 1; display: grid; place-items: center; }
-.fone .escudo { width: 46%; color: var(--roxo-neon); filter: drop-shadow(0 0 16px var(--brilho)); }
-.fone .scan { position: absolute; left: 0; right: 0; height: 30%; background: linear-gradient(180deg, transparent, rgba(167, 139, 250, .35), transparent); border-bottom: 2px solid var(--roxo-l); animation: scan 3.2s ease-in-out infinite; }
-@keyframes scan { 0% { top: -30%; } 100% { top: 100%; } }
-.fone .status { position: absolute; bottom: 9%; left: 0; right: 0; text-align: center; font: 600 12px var(--f-mono); letter-spacing: .14em; color: var(--alerta); text-transform: uppercase; }
-.fone .status::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--alerta); margin-right: 8px; box-shadow: 0 0 10px var(--alerta); animation: pisca 1s steps(1) infinite; }
-@keyframes pisca { 50% { opacity: 0; } }
-.glitch { position: relative; display: inline-block; }
-.glitch::before, .glitch::after { content: attr(data-t); position: absolute; inset: 0; pointer-events: none; }
-.glitch::before { color: #FF4D9A; clip-path: inset(0 0 62% 0); transform: translate(-2px, -1px); opacity: .7; animation: g1 3.6s infinite steps(1); }
-.glitch::after { color: #4DE1FF; clip-path: inset(58% 0 0 0); transform: translate(2px, 1px); opacity: .7; animation: g2 3.6s infinite steps(1); }
-@keyframes g1 { 0%, 92%, 100% { transform: translate(0); opacity: 0; } 93% { transform: translate(-4px, -1px); opacity: .8; } 96% { transform: translate(3px, 1px); opacity: .8; } }
-@keyframes g2 { 0%, 92%, 100% { transform: translate(0); opacity: 0; } 94% { transform: translate(4px, 1px); opacity: .8; } 97% { transform: translate(-3px, -1px); opacity: .8; } }
+.heroi { position: relative; padding: 30px 0 110px; }
+.heroi::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(var(--borda) 1px, transparent 1px), linear-gradient(90deg, var(--borda) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(ellipse 70% 60% at 60% 30%, #000 20%, transparent 75%); -webkit-mask-image: radial-gradient(ellipse 70% 60% at 60% 30%, #000 20%, transparent 75%); opacity: .5; }
+.heroi .grade { display: grid; gap: 56px; align-items: center; }
+.heroi .txt { display: grid; gap: 26px; justify-items: start; }
+.acoes { display: flex; gap: 12px; flex-wrap: wrap; }
+.selos { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 14px; color: var(--suave); }
+.selos span { display: inline-flex; align-items: center; gap: 8px; }
+.selos span::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--verde); box-shadow: 0 0 8px var(--verde); }
+/* prévia do produto */
+.previa { position: relative; justify-self: center; width: min(100%, 380px); }
+.previa .halo { position: absolute; inset: -18% -22%; background: radial-gradient(closest-side, rgba(124,92,246,.55), rgba(124,92,246,.12) 60%, transparent); filter: blur(30px); z-index: 0; }
+.fone { position: relative; z-index: 1; border-radius: 44px; padding: 10px; background: linear-gradient(160deg, rgba(255,255,255,.22), rgba(255,255,255,.04) 40%, rgba(255,255,255,.12)); box-shadow: 0 40px 100px -30px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.08); }
+.tela { border-radius: 36px; background: linear-gradient(180deg, #100D1C, #08070D); padding: 26px 20px 22px; display: grid; gap: 16px; min-height: 600px; border: 1px solid rgba(255,255,255,.06); }
+.tela .ilha { justify-self: center; width: 96px; height: 26px; border-radius: 999px; background: #000; margin-top: -12px; }
+.tela .cab { display: flex; align-items: center; gap: 10px; }
+.tela .cab svg { width: 22px; height: 24px; color: var(--roxo-2); }
+.tela .cab b { font-weight: 600; font-size: 15px; letter-spacing: -.01em; }
+.tela .prog { display: grid; gap: 8px; padding: 16px; border-radius: 18px; background: var(--card-2); border: 1px solid var(--borda); }
+.tela .prog small { font: 400 11px var(--mono); letter-spacing: .1em; color: var(--suave); text-transform: uppercase; }
+.tela .prog strong { font-size: 26px; font-weight: 600; letter-spacing: -.03em; }
+.tela .prog strong span { color: var(--suave); font-weight: 400; font-size: 16px; }
+.barra-p { height: 6px; border-radius: 999px; background: rgba(255,255,255,.07); overflow: hidden; }
+.barra-p i { display: block; height: 100%; width: 57%; border-radius: 999px; background: linear-gradient(90deg, var(--roxo), var(--lilas)); box-shadow: 0 0 14px var(--roxo); }
+.tela ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.tela li { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; border: 1px solid var(--borda); background: rgba(255,255,255,.02); font-size: 13.5px; color: var(--suave); }
+.tela li.ok { color: var(--texto); background: rgba(124,92,246,.08); border-color: rgba(167,139,250,.25); }
+.tela li.ok { text-decoration: none; }
+.chk { width: 20px; height: 20px; flex: none; border-radius: 6px; border: 1px solid var(--borda-2); display: grid; place-items: center; font-size: 12px; font-weight: 700; }
+.tela li.ok .chk { background: var(--roxo); border-color: var(--roxo-2); color: #fff; box-shadow: 0 0 12px var(--brilho); }
+.flutuante { position: absolute; z-index: 2; display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 16px; background: rgba(20, 17, 32, .78); border: 1px solid var(--borda-2); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 20px 50px -20px rgba(0,0,0,.8); font-size: 13px; white-space: nowrap; }
+.flutuante b { font-weight: 600; }
+.flutuante .pt { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.f1 { left: -16%; top: 4%; } .f1 .pt { background: var(--verde); box-shadow: 0 0 10px var(--verde); }
+.f2 { right: -10%; bottom: -3%; } .f2 .pt { background: var(--alerta); box-shadow: 0 0 10px var(--alerta); }
+@media (prefers-reduced-motion: no-preference) { .f1 { animation: boia 6s ease-in-out infinite alternate; } .f2 { animation: boia 7s ease-in-out infinite alternate-reverse; } }
+@keyframes boia { to { transform: translateY(-10px); } }
 
-/* quiz como terminal */
-.quiz { max-width: 760px; margin: 0 auto; background: var(--vidro); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--linha-forte); border-radius: 18px; box-shadow: 0 0 60px -20px var(--brilho); overflow: hidden; }
-.quiz .topo-q { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 18px; border-bottom: 1px solid var(--linha); font: 600 13px var(--f-mono); letter-spacing: .1em; text-transform: uppercase; color: var(--roxo-l); }
-.quiz .topo-q .pontos { display: inline-flex; gap: 6px; margin-right: 10px; }
-.quiz .topo-q .pontos i { width: 10px; height: 10px; border-radius: 50%; background: var(--apagado); }
-.quiz .topo-q .pontos i:first-child { background: var(--alerta); }
-.quiz .barra-q { height: 3px; background: rgba(167, 139, 250, .12); }
-.quiz .barra-q i { display: block; height: 100%; width: 0; background: var(--roxo-neon); box-shadow: 0 0 12px var(--roxo-neon); transition: width .35s; }
-.quiz .corpo-q { padding: clamp(22px, 4vw, 34px); display: grid; gap: 18px; }
-.quiz h3 { margin: 0; font-family: var(--f-tit); font-weight: 700; font-size: clamp(26px, 3.4vw, 34px); line-height: 1.08; }
-.quiz h3::before { content: "> "; color: var(--roxo-neon); font-family: var(--f-mono); font-size: .7em; }
-.quiz .dica { margin: -6px 0 0; color: var(--cinza); font-size: 16px; }
-.opcoes { display: grid; gap: 10px; }
-.opcoes button { text-align: left; font: 600 18px var(--f-corpo); color: var(--texto); background: rgba(7, 6, 12, .55); border: 1px solid var(--linha-forte); border-radius: 12px; padding: 15px 18px; cursor: pointer; transition: border-color .12s, background .12s, box-shadow .12s; }
-.opcoes button::before { content: "[ ] "; font-family: var(--f-mono); color: var(--apagado); }
-.opcoes button:hover { border-color: var(--roxo-l); background: rgba(139, 92, 246, .14); box-shadow: 0 0 20px -6px var(--brilho); }
-.opcoes button:hover::before { content: "[x] "; color: var(--roxo-neon); }
-.opcoes button:focus-visible { outline: 2px solid var(--roxo-l); outline-offset: 2px; }
-.voltar { justify-self: start; background: none; border: 0; color: var(--cinza); font: 500 14px var(--f-mono); cursor: pointer; padding: 0; text-decoration: underline; }
-.inicio-q { text-align: center; justify-items: center; }
-.inicio-q h3::before { content: ""; }
-.resultado .nota-r { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
-.medidor { position: relative; width: 140px; height: 140px; flex: none; }
-.medidor svg { width: 100%; height: 100%; transform: rotate(-90deg); filter: drop-shadow(0 0 10px rgba(255, 77, 94, .35)); }
-.medidor b { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--f-tit); font-weight: 700; font-size: 42px; }
-.nivel { display: inline-block; font: 600 15px var(--f-mono); letter-spacing: .12em; text-transform: uppercase; padding: 6px 14px; border-radius: 8px; border: 1px solid currentColor; }
-.nivel.alto { color: var(--alerta); background: var(--alerta-soft); box-shadow: 0 0 20px -6px var(--alerta); }
-.nivel.medio { color: #FFC14D; background: rgba(255, 193, 77, .1); }
-.nivel.baixo { color: var(--ok); background: var(--ok-soft); }
-.portas { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
-.portas li { background: var(--alerta-soft); border: 1px solid rgba(255, 77, 94, .5); border-left: 3px solid var(--alerta); border-radius: 10px; padding: 12px 16px; display: grid; gap: 4px; }
-.portas li b { font-family: var(--f-tit); font-weight: 700; font-size: 20px; text-transform: uppercase; color: #FFD6DA; }
-.portas li span { font-size: 15px; color: var(--cinza); }
-.portas li.ok { background: var(--ok-soft); border-color: rgba(62, 224, 143, .5); border-left-color: var(--ok); }
+/* problema */
+.ameacas { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+.card { position: relative; background: var(--card); border: 1px solid var(--borda); border-radius: 22px; padding: 28px; overflow: hidden; }
+.card::before { content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px; background: linear-gradient(160deg, rgba(255,255,255,.14), transparent 40%); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+.ameaca h3 { font-size: 22px; letter-spacing: -.02em; margin-bottom: 8px; }
+.ameaca p { margin: 0; color: var(--suave); font-size: 15.5px; }
+.ameaca .tag { display: inline-block; font: 500 11px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--alerta); margin-bottom: 16px; }
+.frase { text-align: center; margin: clamp(56px, 7vw, 84px) auto 0; max-width: 860px; font-size: clamp(28px, 3.6vw, 44px); line-height: 1.15; letter-spacing: -.03em; font-weight: 500; }
 
-/* oferta */
-.sete { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; max-width: 980px; margin: 0 auto; }
-.porta { display: grid; grid-template-columns: 60px minmax(0, 1fr); gap: 16px; align-items: start; background: var(--vidro); border: 1px solid var(--linha); border-left: 3px solid var(--roxo); border-radius: 12px; padding: 18px 20px; }
-.porta .n { font-family: var(--f-mono); font-weight: 600; font-size: 26px; color: var(--roxo-neon); text-shadow: 0 0 14px var(--brilho); }
-.porta h3 { margin: 0 0 4px; font-family: var(--f-tit); font-weight: 700; font-size: 24px; text-transform: uppercase; }
-.porta p { margin: 0; color: var(--cinza); font-size: 16px; }
-.passos { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
-.passo { background: var(--vidro); border: 1px solid var(--linha); border-radius: 14px; padding: 22px; display: grid; gap: 8px; align-content: start; }
-.passo .n { font: 600 13px var(--f-mono); letter-spacing: .14em; color: var(--roxo-l); }
-.passo h3 { margin: 0; font-family: var(--f-tit); font-weight: 700; font-size: 24px; text-transform: uppercase; }
-.passo p { margin: 0; color: var(--cinza); font-size: 16px; }
-.ingresso { max-width: 440px; margin: 0 auto; background: linear-gradient(180deg, rgba(139, 92, 246, .16), rgba(14, 11, 24, .9)); border: 1px solid var(--roxo-l); border-radius: 20px; box-shadow: 0 0 70px -20px var(--brilho); overflow: hidden; }
-.ingresso .faixa-top { display: flex; justify-content: space-between; align-items: center; padding: 12px 20px; border-bottom: 1px solid var(--linha-forte); font: 600 13px var(--f-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--roxo-l); }
-.ingresso .faixa-top span:last-child { color: var(--ok); }
-.ingresso .corpo { padding: 24px; display: grid; gap: 16px; }
-.ingresso h3 { margin: 0; font-family: var(--f-tit); font-weight: 700; font-size: 32px; line-height: 1; text-transform: uppercase; }
-.ingresso .desc { margin: 0; color: var(--cinza); font-size: 16px; }
-.preco { display: flex; align-items: flex-end; gap: 10px; }
-.preco b { font-family: var(--f-tit); font-weight: 700; font-size: 86px; line-height: .82; color: #fff; text-shadow: 0 0 30px var(--brilho); }
-.preco b sup { font-size: .36em; vertical-align: top; position: relative; top: .25em; margin-right: 4px; color: var(--roxo-l); }
-.preco span { font: 500 13px var(--f-mono); color: var(--cinza); line-height: 1.4; padding-bottom: 6px; text-transform: uppercase; letter-spacing: .08em; }
-.leva { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 16px; font-weight: 500; }
-.leva li { display: flex; gap: 10px; }
-.leva li::before { content: "✓"; color: var(--ok); font-weight: 700; }
-.hash { font: 500 11px var(--f-mono); color: var(--apagado); letter-spacing: .06em; overflow-wrap: anywhere; }
-.bump { max-width: 640px; margin: 22px auto 0; text-align: center; border: 1px dashed var(--linha-forte); border-radius: 12px; padding: 14px 18px; font-size: 16px; color: var(--cinza); }
-.bump b { color: var(--texto); }
-.garantia-l { display: flex; gap: 16px; align-items: center; justify-content: center; margin-top: 22px; font-size: 15px; color: var(--cinza); text-align: left; }
-.garantia-l .sel { width: 72px; height: 72px; flex: none; border-radius: 50%; border: 1px solid var(--roxo-l); display: grid; place-items: center; font-family: var(--f-tit); font-weight: 700; font-size: 30px; line-height: .8; text-align: center; box-shadow: 0 0 24px -6px var(--brilho); }
-.garantia-l .sel small { display: block; font: 600 9px var(--f-mono); letter-spacing: .14em; }
-.aviso-seg { max-width: 780px; margin: 0 auto; border: 1px solid rgba(255, 77, 94, .5); background: var(--alerta-soft); border-radius: 14px; padding: 18px 22px; display: flex; gap: 16px; align-items: flex-start; font-size: 16px; color: var(--cinza); }
-.aviso-seg svg { width: 40px; height: 44px; flex: none; color: var(--alerta); }
-.aviso-seg b { display: block; font-family: var(--f-tit); font-size: 22px; text-transform: uppercase; color: var(--texto); }
+/* portas */
+.portas { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+.porta { display: grid; gap: 10px; align-content: start; transition: border-color .25s, background .25s; }
+.porta:hover { border-color: rgba(167,139,250,.35); background: rgba(124,92,246,.05); }
+.porta .ico { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; color: var(--lilas); background: linear-gradient(180deg, rgba(139,92,246,.22), rgba(139,92,246,.06)); border: 1px solid rgba(167,139,250,.28); box-shadow: 0 0 24px -8px var(--brilho); }
+.porta .ico svg { width: 22px; height: 22px; }
+.porta .num { position: absolute; top: 26px; right: 28px; font: 400 13px var(--mono); color: var(--apagado); }
+.porta h3 { font-size: 22px; letter-spacing: -.02em; margin-top: 8px; }
+.porta p { margin: 0; color: var(--suave); font-size: 15.5px; }
+
+/* entrega */
+.entrega { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+.item { display: grid; grid-template-columns: 46px minmax(0, 1fr); gap: 16px; align-items: start; }
+.item .ico { width: 46px; height: 46px; border-radius: 14px; display: grid; place-items: center; color: var(--lilas); border: 1px solid var(--borda-2); background: var(--card-2); }
+.item .ico svg { width: 22px; height: 22px; }
+.item h3 { font-size: 20px; letter-spacing: -.02em; margin-bottom: 4px; }
+.item p { margin: 0; color: var(--suave); font-size: 15.5px; }
+.passos { display: grid; grid-template-columns: minmax(0, 1fr); gap: 30px; counter-reset: p; margin-top: clamp(56px, 7vw, 80px); }
+.passo { display: grid; gap: 10px; padding-top: 22px; border-top: 1px solid var(--borda-2); }
+.passo span { font: 400 13px var(--mono); color: var(--roxo-2); letter-spacing: .1em; }
+.passo h3 { font-size: 22px; letter-spacing: -.02em; }
+.passo p { margin: 0; color: var(--suave); font-size: 15.5px; }
+
+/* família */
+.familia { display: grid; gap: 28px; align-items: center; padding: clamp(28px, 5vw, 56px); border-radius: 28px; background: radial-gradient(600px 300px at 0% 0%, rgba(139,92,246,.18), transparent 70%), var(--card); border: 1px solid var(--borda); }
+.familia .ico { width: 64px; height: 64px; border-radius: 20px; display: grid; place-items: center; color: var(--lilas); border: 1px solid rgba(167,139,250,.3); background: rgba(139,92,246,.12); }
+.familia .ico svg { width: 30px; height: 30px; }
+.familia h2 { font-size: clamp(30px, 3.6vw, 44px); }
+.familia p { margin: 12px 0 0; color: var(--suave); }
+.familia .preco-b { font: 500 14px var(--mono); color: var(--lilas); letter-spacing: .06em; }
+
+/* preço */
+.oferta { position: relative; max-width: 480px; margin: 0 auto; border-radius: 30px; padding: 1px; background: linear-gradient(160deg, rgba(215,204,255,.7), rgba(139,92,246,.35) 35%, rgba(255,255,255,.06) 70%, rgba(139,92,246,.4)); box-shadow: 0 30px 120px -30px rgba(124,92,246,.55); }
+.oferta .dentro { border-radius: 29px; background: radial-gradient(400px 220px at 50% 0%, rgba(139,92,246,.2), transparent 70%), #0B0A12; padding: clamp(28px, 4vw, 40px); display: grid; gap: 22px; }
+.oferta .topo-o { display: flex; justify-content: space-between; align-items: center; font: 500 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--suave); }
+.oferta .topo-o b { color: var(--verde); font-weight: 500; }
+.oferta h3 { font-size: 28px; letter-spacing: -.03em; }
+.preco { display: flex; align-items: flex-end; gap: 12px; }
+.preco b { font-size: 76px; font-weight: 600; letter-spacing: -.05em; line-height: .85; }
+.preco b sup { font-size: .32em; font-weight: 500; vertical-align: top; position: relative; top: .3em; margin-right: 4px; color: var(--suave); letter-spacing: 0; }
+.preco span { font-size: 14px; color: var(--suave); padding-bottom: 6px; line-height: 1.35; }
+.leva { list-style: none; margin: 0; padding: 22px 0 0; border-top: 1px solid var(--borda); display: grid; gap: 12px; font-size: 15.5px; }
+.leva li { display: flex; gap: 12px; align-items: flex-start; }
+.leva li::before { content: ""; flex: none; width: 18px; height: 18px; margin-top: 3px; border-radius: 50%; background: radial-gradient(circle, var(--roxo-2) 0 3px, transparent 4px), rgba(139,92,246,.18); border: 1px solid rgba(167,139,250,.4); }
+.garantia { display: flex; gap: 14px; align-items: center; font-size: 14px; color: var(--suave); padding-top: 4px; }
+.garantia .sel { width: 54px; height: 54px; flex: none; border-radius: 50%; border: 1px solid var(--borda-2); display: grid; place-items: center; text-align: center; font-size: 20px; font-weight: 600; line-height: .9; }
+.garantia .sel small { display: block; font: 500 8px var(--mono); letter-spacing: .14em; color: var(--suave); }
+.bump-n { text-align: center; margin: 26px auto 0; font-size: 15px; color: var(--suave); max-width: 520px; }
+.bump-n b { color: var(--texto); font-weight: 500; }
+
+/* aviso e faq */
+.aviso { display: flex; gap: 18px; align-items: flex-start; max-width: 820px; margin: 0 auto; padding: 24px 28px; border-radius: 22px; border: 1px solid rgba(255,92,108,.25); background: linear-gradient(180deg, rgba(255,92,108,.07), rgba(255,92,108,.02)); }
+.aviso svg { width: 30px; height: 34px; flex: none; color: var(--alerta); }
+.aviso b { display: block; font-weight: 600; font-size: 18px; letter-spacing: -.02em; margin-bottom: 4px; }
+.aviso p { margin: 0; color: var(--suave); font-size: 15.5px; }
 .faq { display: grid; gap: 40px; }
-.faq .lista { display: grid; gap: 10px; }
-.faq details { background: var(--vidro); border: 1px solid var(--linha); border-radius: 12px; padding: 0 20px; }
-.faq details[open] { border-color: var(--linha-forte); }
-.faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 18px 0; font-weight: 600; font-size: 18px; }
+.faq .lista { border-top: 1px solid var(--borda); }
+.faq details { border-bottom: 1px solid var(--borda); }
+.faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 22px 0; font-size: 17px; font-weight: 500; letter-spacing: -.01em; }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: "+"; font: 600 22px var(--f-mono); color: var(--roxo-neon); }
-.faq details[open] summary::after { content: "−"; }
-.faq details p { margin: 0 0 18px; color: var(--cinza); }
-.zap { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: var(--roxo-l); }
-.zap svg { width: 20px; height: 20px; fill: currentColor; }
-footer { padding: 36px 0 120px; font-size: 14px; color: var(--apagado); border-top: 1px solid var(--linha); }
-footer a { margin-right: 14px; }
-.barra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: rgba(7, 6, 12, .94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-top: 1px solid var(--linha-forte); padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); display: flex; gap: 12px; align-items: center; justify-content: space-between; transform: translateY(110%); transition: transform .25s; }
+.faq summary::after { content: "+"; font: 300 22px var(--f); color: var(--roxo-2); transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { margin: 0 0 22px; color: var(--suave); max-width: 640px; }
+.zap { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; color: var(--lilas); text-decoration: none; border-bottom: 1px solid rgba(215,204,255,.3); padding-bottom: 2px; }
+.zap svg { width: 18px; height: 18px; fill: currentColor; }
+.final { text-align: center; overflow: clip; }
+.final .acoes { justify-content: center; }
+footer { padding: 40px 0 110px; border-top: 1px solid var(--borda); font-size: 13px; color: var(--apagado); }
+footer p { margin: 0 0 8px; max-width: 760px; }
+footer a { margin-right: 16px; }
+.barra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); background: rgba(8, 7, 12, .86); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 1px solid var(--borda-2); transform: translateY(110%); transition: transform .3s; }
 .barra.visivel { transform: none; }
-.barra .p { font: 600 14px var(--f-mono); line-height: 1.3; color: var(--cinza); }
-.barra .p b { color: #fff; font-family: var(--f-tit); font-size: 22px; }
-.barra .btn { min-height: 48px; font-size: 18px; padding: 8px 18px; }
+.barra .p { font-size: 13px; color: var(--suave); line-height: 1.3; }
+.barra .p b { display: block; color: var(--texto); font-size: 18px; font-weight: 600; letter-spacing: -.02em; }
+.barra .btn { min-height: 46px; padding: 10px 20px; font-size: 15px; }
 
 @media (min-width: 900px) {
-  .heroi .grade { grid-template-columns: 1.05fr .95fr; }
-  .sete { grid-template-columns: 1fr 1fr; }
-  .passos { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .heroi .grade { grid-template-columns: 1.1fr .9fr; }
+  .ameacas { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .portas { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .porta.larga { grid-column: span 3; grid-template-columns: 46px minmax(0, 1fr); column-gap: 20px; }
+  .porta.larga h3 { margin-top: 0; }
+  .porta.larga .ico { grid-row: span 2; }
+  .entrega { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 40px; }
+  .passos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .familia { grid-template-columns: 64px minmax(0, 1fr) auto; }
   .faq { grid-template-columns: .8fr 1.2fr; align-items: start; }
   .barra { display: none; }
   footer { padding-bottom: 40px; }
 }
-@media (max-width: 899px) { .codigo { padding-left: 8%; color: rgba(185, 164, 255, .07); } .visual { width: min(100%, 360px); } }
-@media (prefers-reduced-motion: reduce) { .faixa div, .codigo span, .caco, .fone .scan, .glitch::before, .glitch::after, .fone .status::before { animation: none; } .btn, .barra { transition: none; } }
+@media (max-width: 899px) { .f1 { left: -2%; top: -3%; } .f2 { right: -2%; } .tela { min-height: 0; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn, .barra, .porta { transition: none; } }
 </style>
 </head>
 <body>
 
-<div class="faixa" aria-hidden="true"><div>
-  <span>Depois de todo grande ataque, vem a onda de golpes</span><i>●</i><span>Quiz grátis em 2 minutos</span><i>●</i><span>Sem pedir nenhum dado</span><i>●</i><span>Depois de todo grande ataque, vem a onda de golpes</span><i>●</i><span>Quiz grátis em 2 minutos</span><i>●</i><span>Sem pedir nenhum dado</span><i>●</i><span>Depois de todo grande ataque, vem a onda de golpes</span><i>●</i><span>Quiz grátis em 2 minutos</span><i>●</i><span>Sem pedir nenhum dado</span><i>●</i><span>Depois de todo grande ataque, vem a onda de golpes</span><i>●</i><span>Quiz grátis em 2 minutos</span><i>●</i><span>Sem pedir nenhum dado</span><i>●</i>
-</div></div>
+<div class="aviso-topo">Depois de todo grande ataque hacker, vem uma <b>onda de golpes</b>. Proteja-se antes dela.</div>
 
-<!-- herói -->
+<header class="env nav">
+  <a class="marca" href="#"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 3 59 13v20c0 18-11.5 31-27 36C16.5 64 5 51 5 33V13z" fill="none" stroke="currentColor" stroke-width="3.5"/><rect x="22" y="32" width="20" height="16" rx="3" fill="currentColor"/><path d="M26 32v-5a6 6 0 0112 0v5" fill="none" stroke="currentColor" stroke-width="3.5"/></svg>Blindagem Digital</a>
+  <a class="btn prim" href="#preco" data-checkout="kit">Proteger agora</a>
+</header>
+
 <section class="heroi">
-  <pre class="codigo" aria-hidden="true"><span>200  root auth sudo #
-201  token await return sudo
-202  ssh 0x7F sha256 [] rm } auth
-203  PIN return true rm =>
-204  root ssh [] token
-205  key -- null } null # rm token root
-206  ssh root =>
-207  scan ssh scan 0101 { sha256
-208  true fn token fn 1100
-209  rm # key // => await ping =>
-210  0101 rm } :: scan otp => otp
-211  0x7F sha256 rm
-212  null 2FA key } ssh 1100 return fn ::
-213  token ssh otp return otp ssh otp //
-214  ping await ssh => 0101 ssh pix true --
-215  { key if [] fn 1100 {
-216  [] ssh auth 0101 PIN
-217  PIN 2FA 0x7F 0x7F 0x7F {
-218  // fn $ null otp fn 2FA
-219  ssh ping => # => null 0101 ping $
-220  sha256 ping 0101
-221  scan PIN $ =>
-222  fn true true
-223  PIN sha256 ping true
-224  otp 0x7F otp 2FA
-225  sudo fn $ -- token scan PIN
-226  { key ssh # otp ping PIN rm key
-227  $ await rm => fn sudo
-228  pix rm 0x7F { 1100 # sudo
-229  PIN if PIN { if true
-230  sudo -- sha256
-231  0x7F => { key # 0101 return
-232  fn 2FA $
-233  true pix fn [] token if root
-234  :: await token 1100 -- PIN root -- sha256
-235  $ sudo auth await 2FA [] scan ping 0101
-236  => root #
-237  2FA { [] { } //
-238  $ key true if {
-239  root 2FA 2FA
-240  # await null ping ssh ::
-241  } if 0x7F otp
-242  1100 root 0101 0101 sudo // true
-243  [] key pix scan token // } ssh []
-244  :: token await sudo
-245  } key [] otp } root return return
-246  token :: auth { } $ await
-247  2FA } # sha256 root sudo null $ sha256
-248  [] sha256 otp 0101 sudo
-249  sudo otp ssh 0101 ping if true
-250  1100 [] sudo --
-251  return // await 1100 :: root token
-252  true # sha256 # await // null await root
-253  0x7F { sudo true
-254  null { auth
-255  fn otp token 2FA
-256  0x7F ssh } // ping
-257  token [] if //
-258  ping // PIN root # await --
-259  { true sudo root
-200  root auth sudo #
-201  token await return sudo
-202  ssh 0x7F sha256 [] rm } auth
-203  PIN return true rm =>
-204  root ssh [] token
-205  key -- null } null # rm token root
-206  ssh root =>
-207  scan ssh scan 0101 { sha256
-208  true fn token fn 1100
-209  rm # key // => await ping =>
-210  0101 rm } :: scan otp => otp
-211  0x7F sha256 rm
-212  null 2FA key } ssh 1100 return fn ::
-213  token ssh otp return otp ssh otp //
-214  ping await ssh => 0101 ssh pix true --
-215  { key if [] fn 1100 {
-216  [] ssh auth 0101 PIN
-217  PIN 2FA 0x7F 0x7F 0x7F {
-218  // fn $ null otp fn 2FA
-219  ssh ping => # => null 0101 ping $
-220  sha256 ping 0101
-221  scan PIN $ =>
-222  fn true true
-223  PIN sha256 ping true
-224  otp 0x7F otp 2FA
-225  sudo fn $ -- token scan PIN
-226  { key ssh # otp ping PIN rm key
-227  $ await rm => fn sudo
-228  pix rm 0x7F { 1100 # sudo
-229  PIN if PIN { if true
-230  sudo -- sha256
-231  0x7F => { key # 0101 return
-232  fn 2FA $
-233  true pix fn [] token if root
-234  :: await token 1100 -- PIN root -- sha256
-235  $ sudo auth await 2FA [] scan ping 0101
-236  => root #
-237  2FA { [] { } //
-238  $ key true if {
-239  root 2FA 2FA
-240  # await null ping ssh ::
-241  } if 0x7F otp
-242  1100 root 0101 0101 sudo // true
-243  [] key pix scan token // } ssh []
-244  :: token await sudo
-245  } key [] otp } root return return
-246  token :: auth { } $ await
-247  2FA } # sha256 root sudo null $ sha256
-248  [] sha256 otp 0101 sudo
-249  sudo otp ssh 0101 ping if true
-250  1100 [] sudo --
-251  return // await 1100 :: root token
-252  true # sha256 # await // null await root
-253  0x7F { sudo true
-254  null { auth
-255  fn otp token 2FA
-256  0x7F ssh } // ping
-257  token [] if //
-258  ping // PIN root # await --
-259  { true sudo root</span></pre>
+  <div class="luz" style="width: 620px; height: 620px; right: -120px; top: -80px; background: rgba(124, 92, 246, .22)"></div>
   <div class="env grade">
     <div class="txt">
-      <div class="marca"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 3 59 13v20c0 18-11.5 31-27 36C16.5 64 5 51 5 33V13z" fill="none" stroke="currentColor" stroke-width="4"/><rect x="21" y="32" width="22" height="18" rx="3" fill="currentColor"/><path d="M25 32v-6a7 7 0 0114 0v6" fill="none" stroke="currentColor" stroke-width="4"/></svg><b>Blindagem<br>Digital</b></div>
-      <h1 class="tit h1">Você está <span class="neon glitch" data-t="vulnerável?">vulnerável?</span></h1>
-      <p class="apoio">Descubra em 2 minutos quais portas do seu celular, do seu banco e do seu WhatsApp estão abertas para golpistas.</p>
-      <ul class="lista-v"><li>Quiz grátis</li><li>7 portas</li><li>30 minutos</li></ul>
-      <a class="btn" href="#quiz">Iniciar escaneamento <span aria-hidden="true">→</span></a>
-      <p class="nota">10 perguntas · sem cadastro · resultado na hora</p>
+      <span class="rotulo"><i></i>Guia de proteção · 30 minutos</span>
+      <h1><span class="grad">Feche as</span> <span class="serif grad-roxo">7 portas</span> <span class="grad">que os golpistas usam para tirar dinheiro da sua conta.</span></h1>
+      <p class="lead">Um passo a passo no seu celular, com prints de onde tocar no WhatsApp, no banco, no e-mail e na corretora. Sem precisar entender de tecnologia.</p>
+      <div class="acoes"><a class="btn prim" href="#preco" data-checkout="kit">Proteger minha conta <span class="seta" aria-hidden="true">→</span></a><a class="btn sec" href="#portas">Ver as 7 portas</a></div>
+      <div class="selos"><span>Sem instalar nada</span><span>iPhone e Android</span><span>7 dias de garantia</span></div>
     </div>
-    <div class="visual" aria-hidden="true">
-      <svg class="cacos" viewBox="0 0 600 700" aria-hidden="true">
-  <polygon class="caco c1" points="40,120 150,60 120,330 70,300"/>
-  <polygon class="caco c2" points="470,40 560,90 500,260"/>
-  <polygon class="caco c3" points="500,380 590,330 560,560 520,520"/>
-  <polygon class="caco c4" points="60,470 140,420 110,610"/>
-  <polygon class="caco c5" points="300,10 360,30 330,90"/>
-</svg>
-      <div class="fone"><div class="scan"></div><div class="escudo"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 3 59 13v20c0 18-11.5 31-27 36C16.5 64 5 51 5 33V13z" fill="none" stroke="currentColor" stroke-width="4"/><rect x="21" y="32" width="22" height="18" rx="3" fill="currentColor"/><path d="M25 32v-6a7 7 0 0114 0v6" fill="none" stroke="currentColor" stroke-width="4"/></svg></div><div class="status">escaneando</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- quiz -->
-<section class="secao escura" id="quiz">
-  <div class="env">
-    <div class="quiz" aria-live="polite">
-      <div class="topo-q"><span><span class="pontos"><i></i><i></i><i></i></span><span id="q-titulo">scan_vulnerabilidade.sh</span></span><span id="q-conta"></span></div>
-      <div class="barra-q"><i id="q-barra"></i></div>
-      <div class="corpo-q" id="q-corpo"></div>
+    <div class="previa" aria-label="Prévia do checklist no celular">
+      <div class="halo"></div>
+      <div class="fone"><div class="tela">
+        <span class="ilha"></span>
+        <div class="cab"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 3 59 13v20c0 18-11.5 31-27 36C16.5 64 5 51 5 33V13z" fill="none" stroke="currentColor" stroke-width="3.5"/><rect x="22" y="32" width="20" height="16" rx="3" fill="currentColor"/><path d="M26 32v-5a6 6 0 0112 0v5" fill="none" stroke="currentColor" stroke-width="3.5"/></svg><b>Blindagem Digital</b></div>
+        <div class="prog"><small>Seu progresso</small><strong>4 <span>de 7 portas fechadas</span></strong><div class="barra-p"><i></i></div></div>
+        <ul><li class="ok"><span class="chk">✓</span>Fechar a confirmação em duas etapas do WhatsApp</li><li class="ok"><span class="chk">✓</span>Baixar o limite de Pix à noite</li><li class="ok"><span class="chk">✓</span>Ligar o autenticador no e-mail</li><li class="ok"><span class="chk">✓</span>Trocar as senhas repetidas</li><li class=""><span class="chk"></span>Bloquear o celular e atualizar o sistema</li><li class=""><span class="chk"></span>Proteger a corretora</li><li class=""><span class="chk"></span>Treinar os golpes da vez</li></ul>
+      </div></div>
+      <div class="flutuante f1"><span class="pt"></span><span><b>WhatsApp</b> protegido</span></div>
+      <div class="flutuante f2"><span class="pt"></span><span><b>3 portas</b> ainda abertas</span></div>
     </div>
   </div>
 </section>
 
-<!-- oferta -->
-<section class="secao" id="oferta">
+<div class="linha-sep"></div>
+
+<section class="secao">
   <div class="env">
     <div class="cabeca">
-      <span class="rotulo">// Blindagem Digital em 30 min</span>
-      <h2 class="tit h2">Em 30 minutos, feche as <span class="neon">7 portas</span> que os golpistas usam para tirar dinheiro da sua conta.</h2>
-      <p class="apoio">Um passo a passo no seu celular, com prints de onde clicar no WhatsApp, no banco, no e-mail e na corretora. Sem saber nada de tecnologia.</p>
+      <span class="rotulo"><i></i>O problema</span>
+      <h2><span class="grad">Golpe não precisa de hacker.</span> <span class="serif grad-roxo">Precisa de uma porta aberta.</span></h2>
     </div>
-    <div class="sete"><div class="porta"><span class="n">01</span><div><h3>WhatsApp</h3><p>Verificação em duas etapas ligada e o que fazer se pedirem o código que chegou por SMS.</p></div></div><div class="porta"><span class="n">02</span><div><h3>Banco e Pix</h3><p>Limite de Pix à noite, aviso de toda transação e o celular cadastrado como o único que mexe na conta.</p></div></div><div class="porta"><span class="n">03</span><div><h3>E-mail</h3><p>A chave de todas as outras contas, protegida com aplicativo autenticador, não com SMS.</p></div></div><div class="porta"><span class="n">04</span><div><h3>Senhas</h3><p>Uma senha diferente para cada lugar sem decorar nada, e como ver se a sua já vazou.</p></div></div><div class="porta"><span class="n">05</span><div><h3>Celular</h3><p>Bloqueio, atualizações e por que nunca instalar aplicativo por link ou dar acesso remoto.</p></div></div><div class="porta"><span class="n">06</span><div><h3>Corretora e cripto</h3><p>Autenticador, lista de endereços de saque liberados e código anti-phishing nos e-mails.</p></div></div><div class="porta"><span class="n">07</span><div><h3>Golpes da vez</h3><p>Falsa central do banco, falso suporte, link de recuperação e a mão fantasma, com o que dizer e o que nunca fazer.</p></div></div></div>
+    <div class="ameacas">
+      <article class="card ameaca"><span class="tag">Ligação</span><h3>A falsa central do banco</h3><p>Sabem seu nome e seu CPF, falam de uma compra estranha e pedem para você "confirmar" dados ou instalar um aplicativo.</p></article>
+      <article class="card ameaca"><span class="tag">Mensagem</span><h3>O WhatsApp clonado</h3><p>Pedem o código de 6 dígitos que chegou por SMS. Minutos depois, estão pedindo Pix para os seus contatos.</p></article>
+      <article class="card ameaca"><span class="tag">Link</span><h3>A "recuperação" da conta</h3><p>Depois de toda notícia de ataque, chega um link oficial-falso pedindo para você proteger ou recuperar seus fundos.</p></article>
+    </div>
+    <p class="frase"><span class="grad">Nenhum desses golpes funciona</span> <span class="serif grad-roxo">quando as portas estão fechadas.</span></p>
   </div>
 </section>
 
-<section class="secao escura">
+<section class="secao" id="portas" style="padding-top: 0">
+  <div class="luz" style="width: 520px; height: 520px; left: -200px; top: 20%; background: rgba(124, 92, 246, .14)"></div>
   <div class="env">
-    <div class="cabeca"><span class="rotulo">// entrega</span><h2 class="tit h2">Como você <span class="neon">recebe</span></h2></div>
+    <div class="cabeca">
+      <span class="rotulo"><i></i>O que você fecha</span>
+      <h2><span class="grad">As</span> <span class="serif grad-roxo">7 portas</span><span class="grad">, uma por vez.</span></h2>
+      <p class="lead">Cada porta tem o passo a passo com prints, um vídeo curto e o tempo que leva. Somando tudo, cerca de 30 minutos.</p>
+    </div>
+    <div class="portas"><article class="card porta"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-3.9A8 8 0 1112 20a8 8 0 01-4.1-1.1z"/><path d="M9 11.5l2 2 4-4"/></svg></span><span class="num">01</span><h3>WhatsApp</h3><p>Confirmação em duas etapas ligada, e o que fazer quando pedirem o código que chegou por SMS.</p></article><article class="card porta"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-6 9 6"/><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 20h18"/></svg></span><span class="num">02</span><h3>Banco e Pix</h3><p>Limite de Pix à noite, aviso de toda transação e só o seu celular autorizado a mexer na conta.</p></article><article class="card porta"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span><span class="num">03</span><h3>E-mail</h3><p>A chave de todas as outras contas, protegida com autenticador, não com SMS.</p></article><article class="card porta"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3M15 8l2 2"/></svg></span><span class="num">04</span><h3>Senhas</h3><p>Uma senha diferente para cada lugar, sem decorar nada, e como saber se a sua já vazou.</p></article><article class="card porta"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg></span><span class="num">05</span><h3>Celular</h3><p>Bloqueio, atualizações e por que nunca instalar app por link ou aceitar acesso remoto.</p></article><article class="card porta"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 8h4a2 2 0 010 4h-4h4.5a2 2 0 010 4h-4.5V8M11 6.5V8M11 16v1.5"/></svg></span><span class="num">06</span><h3>Corretora e cripto</h3><p>Autenticador, lista de endereços de saque liberados e código anti-phishing nos e-mails.</p></article><article class="card porta larga"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg></span><span class="num">07</span><h3>Golpes da vez</h3><p>Falsa central do banco, falso suporte e link de recuperação: o que dizer e o que nunca fazer.</p></article></div>
+  </div>
+</section>
+
+<div class="linha-sep"></div>
+
+<section class="secao">
+  <div class="env">
+    <div class="cabeca">
+      <span class="rotulo"><i></i>O que você recebe</span>
+      <h2><span class="grad">Tudo no seu celular,</span> <span class="serif grad-roxo">no seu ritmo.</span></h2>
+    </div>
+    <div class="entrega">
+      <div class="item"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6h11M9 12h11M9 18h11"/><path d="M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg></span><div><h3>Checklist interativo</h3><p>Um passo por vez, com prints e uma barra mostrando quanto falta. Você marca e segue.</p></div></div>
+      <div class="item"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9.5v5l4.5-2.5z"/></svg></span><div><h3>Vídeos de 1 minuto</h3><p>Cada porta tem um vídeo curto mostrando exatamente onde tocar.</p></div></div>
+      <div class="item"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span><div><h3>Guia em PDF</h3><p>Para imprimir, guardar ou fazer junto com alguém da família.</p></div></div>
+      <div class="item"><span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18v-5a6 6 0 0112 0v5M4 18h16M12 3v1.5M4.2 6.2l1 1M19.8 6.2l-1 1"/></svg></span><div><h3>Plano de emergência</h3><p>O que fazer nos primeiros 30 minutos se você ou alguém próximo cair num golpe.</p></div></div>
+    </div>
     <div class="passos">
-      <div class="passo"><span class="n">01 / CHECKLIST</span><h3>No seu celular</h3><p>Um passo por vez, com prints e uma barra mostrando quanto falta.</p></div>
-      <div class="passo"><span class="n">02 / VÍDEOS</span><h3>De 1 minuto</h3><p>Cada porta tem um vídeo curto mostrando exatamente onde tocar.</p></div>
-      <div class="passo"><span class="n">03 / PDF</span><h3>Para imprimir</h3><p>Para guardar, ou para fazer junto com alguém da família.</p></div>
-      <div class="passo"><span class="n">04 / BÔNUS</span><h3>Plano de emergência</h3><p>O que fazer nos primeiros 30 minutos se você ou alguém da família cair num golpe.</p></div>
+      <div class="passo"><span>01</span><h3>Compre e acesse</h3><p>O acesso chega no seu e-mail assim que o pagamento é confirmado.</p></div>
+      <div class="passo"><span>02</span><h3>Siga o passo a passo</h3><p>Abra no celular e feche uma porta de cada vez, com o print do lado.</p></div>
+      <div class="passo"><span>03</span><h3>Fique protegido</h3><p>Em cerca de 30 minutos, as 7 portas estão fechadas.</p></div>
     </div>
-  </div>
-</section>
-
-<section class="secao" id="precos">
-  <div class="env">
-    <div class="cabeca"><h2 class="tit h2">Feche as portas <span class="neon">hoje</span></h2></div>
-    <article class="ingresso">
-      <div class="faixa-top"><span>Acesso · Blindagem Digital</span><span>● online</span></div>
-      <div class="corpo">
-        <h3>Checklist completo · 7 portas</h3>
-        <p class="desc">Para proteger celular, banco, WhatsApp, e-mail e corretora em 30 minutos.</p>
-        <div class="preco"><b><sup>R$</sup>27</b><span>pagamento<br>único</span></div>
-        <ul class="leva"><li>Checklist passo a passo com prints</li><li>Vídeos curtos de cada porta</li><li>PDF para imprimir</li><li>Plano de emergência se cair num golpe</li></ul>
-        <a class="btn largo" href="#precos" data-checkout="kit">Fechar as 7 portas<small>Acesso na hora, no seu e-mail</small></a>
-        <div class="hash">ACESSO: VITALÍCIO · ID 7F3A-29C1-BLD</div>
-      </div>
-    </article>
-    <p class="bump"><b>Proteja seus pais também:</b> no checkout, some o <b>Kit Família</b> por R$ 19,90, a versão mais simples para fazer junto com eles por telefone.</p>
-    <div class="garantia-l"><div class="sel">7<small>DIAS</small></div><p style="margin: 0; max-width: 420px"><b style="color: var(--texto)">7 dias de garantia.</b> Se achar que não valeu, pede o dinheiro de volta pela plataforma de pagamento, sem perguntas.</p></div>
   </div>
 </section>
 
 <section class="secao" style="padding-top: 0">
   <div class="env">
-    <div class="aviso-seg"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 3 59 13v20c0 18-11.5 31-27 36C16.5 64 5 51 5 33V13z" fill="none" stroke="currentColor" stroke-width="4"/><rect x="21" y="32" width="22" height="18" rx="3" fill="currentColor"/><path d="M25 32v-6a7 7 0 0114 0v6" fill="none" stroke="currentColor" stroke-width="4"/></svg><div><b>A gente nunca pede senha, código ou acesso ao seu celular.</b> Você faz tudo sozinho, no seu aparelho. Se alguém disser que é da Fábrica de Motion e pedir isso, é golpe.</div></div>
+    <div class="familia">
+      <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7v9a1 1 0 01-1 1h-5v-6H9v6H4a1 1 0 01-1-1z"/></svg></span>
+      <div><h2><span class="grad">Proteja também</span> <span class="serif grad-roxo">quem você ama.</span></h2><p>Pais e avós são o alvo preferido dos golpistas. O Kit Família traz uma versão ainda mais simples, para fazer junto com eles por telefone.</p></div>
+      <span class="preco-b">+ R$ 19,90 no checkout</span>
+    </div>
   </div>
 </section>
 
-<!-- perguntas -->
-<section class="secao escura">
+<section class="secao" id="preco" style="padding-top: 0">
+  <div class="luz" style="width: 640px; height: 640px; left: 50%; top: 10%; translate: -50% 0; background: rgba(124, 92, 246, .2)"></div>
+  <div class="env">
+    <div class="cabeca"><span class="rotulo"><i></i>Acesso</span><h2><span class="grad">Feche as portas</span> <span class="serif grad-roxo">hoje.</span></h2></div>
+    <div class="oferta"><div class="dentro">
+      <div class="topo-o"><span>Blindagem Digital</span><b>● Acesso imediato</b></div>
+      <h3>Checklist completo · 7 portas</h3>
+      <div class="preco"><b><sup>R$</sup>27</b><span>pagamento único<br>acesso vitalício</span></div>
+      <a class="btn prim largo" href="#preco" data-checkout="kit">Proteger minha conta <span class="seta" aria-hidden="true">→</span></a>
+      <ul class="leva"><li>Checklist interativo com prints</li><li>Vídeos curtos de cada porta</li><li>Guia em PDF para imprimir</li><li>Plano de emergência se cair num golpe</li></ul>
+      <div class="garantia"><span class="sel">7<small>DIAS</small></span><span><b style="color: var(--texto); font-weight: 500">Garantia de 7 dias.</b> Não valeu? Peça o dinheiro de volta pela plataforma de pagamento, sem perguntas.</span></div>
+    </div></div>
+    <p class="bump-n"><b>Kit Família:</b> some a versão para os seus pais por + R$ 19,90 no checkout.</p>
+  </div>
+</section>
+
+<section class="secao" style="padding-top: 0">
+  <div class="env">
+    <div class="aviso"><svg viewBox="0 0 64 72" aria-hidden="true"><path d="M32 3 59 13v20c0 18-11.5 31-27 36C16.5 64 5 51 5 33V13z" fill="none" stroke="currentColor" stroke-width="3.5"/><rect x="22" y="32" width="20" height="16" rx="3" fill="currentColor"/><path d="M26 32v-5a6 6 0 0112 0v5" fill="none" stroke="currentColor" stroke-width="3.5"/></svg><div><b>Nunca pedimos senha, código ou acesso ao seu celular.</b><p>Você faz tudo sozinho, no seu aparelho. Se alguém disser que é da nossa equipe e pedir isso, é golpe.</p></div></div>
+  </div>
+</section>
+
+<div class="linha-sep"></div>
+
+<section class="secao">
   <div class="env faq">
-    <div style="display: grid; gap: 18px; justify-items: start">
-      <span class="rotulo">// faq</span>
-      <h2 class="tit h2">As dúvidas <span class="neon">de todo mundo</span></h2>
-      <a class="btn" href="#precos" data-checkout="kit">Fechar as portas <span aria-hidden="true">→</span></a>
-      <a class="zap" href="#" data-link="whatsapp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 000-.4c0-.1-.6-1.3-.8-1.8s-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.8 11.9 11.9 0 004.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 001.8-1.3 2.3 2.3 0 00.2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Tirar uma dúvida no WhatsApp</a>
+    <div style="display: grid; gap: 20px; justify-items: start; align-content: start">
+      <span class="rotulo"><i></i>Perguntas</span>
+      <h2><span class="grad">Dúvidas</span> <span class="serif grad-roxo">frequentes</span></h2>
+      <a class="zap" href="#" data-link="whatsapp" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15.1L2 22l5-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-3.3-2.9c-.2-.4.2-.4.7-1.3a.4.4 0 000-.4c0-.1-.6-1.3-.8-1.8s-.4-.4-.6-.4h-.5a1 1 0 00-.7.3 3 3 0 00-.9 2.2 5.2 5.2 0 001.1 2.8 11.9 11.9 0 004.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 001.8-1.3 2.3 2.3 0 00.2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Falar com a gente no WhatsApp</a>
     </div>
     <div class="lista">
       <details><summary>Preciso entender de tecnologia?</summary><p>Não. Cada passo tem print de onde tocar e um vídeo curto. Se você usa WhatsApp e o app do banco, consegue.</p></details>
       <details><summary>Funciona no iPhone e no Android?</summary><p>Sim. Quando o caminho muda, o passo mostra os dois.</p></details>
-      <details><summary>Isso garante que eu nunca vou cair num golpe?</summary><p>Não. Ninguém pode garantir isso. O checklist fecha as brechas mais usadas pelos golpistas e te prepara para reconhecer os golpes da vez.</p></details>
-      <details><summary>Vocês têm acesso aos meus dados?</summary><p>Não. Você faz tudo no seu celular. O teste desta página não pede nem guarda nenhum dado seu.</p></details>
+      <details><summary>Isso garante que eu nunca vou cair num golpe?</summary><p>Não. Ninguém pode garantir isso. O guia fecha as brechas mais usadas pelos golpistas e te prepara para reconhecer os golpes da vez.</p></details>
+      <details><summary>Vocês têm acesso aos meus dados?</summary><p>Não. Você faz tudo no seu celular, sem instalar nada e sem passar nenhuma informação para nós.</p></details>
       <details><summary>Serve para os meus pais?</summary><p>Serve, e o Kit Família traz uma versão ainda mais simples, para fazer junto com eles por telefone.</p></details>
       <details><summary>Como recebo depois de pagar?</summary><p>O acesso chega no e-mail da compra assim que o pagamento é confirmado.</p></details>
     </div>
   </div>
 </section>
 
+<section class="secao final" style="padding-top: 40px">
+  <div class="luz" style="width: 700px; height: 400px; left: 50%; top: 30%; translate: -50% 0; background: rgba(124, 92, 246, .18)"></div>
+  <div class="env" style="display: grid; gap: 26px; justify-items: center">
+    <h2><span class="grad">A próxima onda de golpes</span> <span class="serif grad-roxo">já começou.</span></h2>
+    <p class="lead" style="text-align: center">Em 30 minutos, você fecha as portas antes que alguém tente abrir.</p>
+    <div class="acoes"><a class="btn prim" href="#preco" data-checkout="kit">Proteger minha conta por R$ 27 <span class="seta" aria-hidden="true">→</span></a></div>
+  </div>
+</section>
+
 <footer>
   <div class="env">
-    <p>Blindagem Digital é um material educativo independente da Fábrica de Motion, sem vínculo com bancos, corretoras ou aplicativos citados. Não pedimos senhas, códigos ou acesso a aparelhos, e nenhum material garante proteção total contra golpes.</p>
-    <p>© 2026 Fábrica de Motion · CNPJ 61.451.359/0001-70 · <a href="../politica.html">Políticas de privacidade</a><a href="../termos.html">Termos de uso</a></p>
+    <p>Blindagem Digital é um material educativo independente, sem vínculo com bancos, corretoras ou aplicativos citados. Não pedimos senhas, códigos ou acesso a aparelhos, e nenhum material garante proteção total contra golpes.</p>
+    <p>CNPJ 61.451.359/0001-70 · <a href="../politica.html">Políticas de privacidade</a><a href="../termos.html">Termos de uso</a></p>
   </div>
 </footer>
 
-<div class="barra barra-compra" id="barra-compra" aria-hidden="true">
-  <div class="p">BLINDAGEM DIGITAL<br><b>R$ 27</b> · 7 portas</div>
-  <a class="btn" href="#precos" data-checkout="kit" tabindex="-1">Quero agora</a>
+<div class="barra" id="barra-compra" aria-hidden="true">
+  <div class="p">Blindagem Digital<b>R$ 27</b></div>
+  <a class="btn prim" href="#preco" data-checkout="kit" tabindex="-1">Proteger agora</a>
 </div>
 
 <script>
@@ -451,10 +381,9 @@ footer a { margin-right: 14px; }
   document.querySelectorAll('[data-checkout]').forEach(a => {
     const url = CONFIG.checkout[a.dataset.checkout];
     if (url) a.href = link(url);
-    else { a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Oi! Quero o Blindagem Digital em 30 min (R$ 27)." + (ref ? "\n\n(anúncio: " + ref + ")" : "")); a.target = "_blank"; a.rel = "noopener"; }
+    else { a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Oi! Quero o Blindagem Digital (R$ 27)." + (ref ? "\n\n(anúncio: " + ref + ")" : "")); a.target = "_blank"; a.rel = "noopener"; }
   });
   document.querySelectorAll('[data-link="whatsapp"]').forEach(a => a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Oi! Tenho uma dúvida sobre o Blindagem Digital."));
-  const fbq_ = (...a) => { if (window.fbq) window.fbq(...a); };
   if (CONFIG.pixel) {
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', CONFIG.pixel); fbq('track', 'PageView');
@@ -463,82 +392,14 @@ footer a { margin-right: 14px; }
       if (CONFIG.checkout[a.dataset.checkout]) fbq('trackCustom', 'CliqueComprarBlindagem', d); else fbq('track', 'Contact', d);
     }));
   }
-
-  // ===== QUIZ =====
-  // cada resposta soma pontos de risco (0 = protegido, 2 = porta aberta) para uma das 7 portas
-  const PORTAS = {
-    whats: ["WhatsApp", "Ligue a verificação em duas etapas: Configurações › Conta › Confirmação em duas etapas."],
-    banco: ["Banco e Pix", "Reduza o limite de Pix à noite e ative aviso de toda transação no app do banco."],
-    email: ["E-mail", "Ative a verificação em duas etapas com aplicativo autenticador, não com SMS."],
-    senhas: ["Senhas", "Pare de repetir senha: comece pelo e-mail e pelo banco, com senhas diferentes."],
-    celular: ["Celular", "Use senha de bloqueio, atualize o sistema e nunca instale app por link."],
-    cripto: ["Corretora e cripto", "Ative autenticador, lista de endereços de saque e código anti-phishing."],
-    golpes: ["Golpes da vez", "Se alguém ligar dizendo ser do banco, desligue e ligue você no número do cartão."],
-  };
-  const PERGUNTAS = [
-    { p: "whats", q: "Seu WhatsApp tem confirmação em duas etapas (um PIN de 6 dígitos)?", o: [["Sim, está ligada", 0], ["Não", 2], ["Não sei", 2]] },
-    { p: "whats", q: "Se alguém pedisse o código de 6 dígitos que chegou por SMS no seu celular, você...", o: [["Não passaria de jeito nenhum", 0], ["Passaria se fosse um conhecido", 2], ["Depende de quem pedisse", 1]] },
-    { p: "senhas", q: "Você usa a mesma senha, ou uma parecida, em mais de um lugar?", o: [["Não, cada lugar tem a sua", 0], ["Sim, em vários", 2], ["Em alguns", 1]] },
-    { p: "email", q: "Seu e-mail principal pede um código além da senha para entrar?", o: [["Sim, por aplicativo autenticador", 0], ["Sim, por SMS", 1], ["Não", 2], ["Não sei", 2]] },
-    { p: "banco", q: "Você sabe qual é o seu limite de Pix à noite?", o: [["Sei, e deixei baixo", 0], ["Não sei", 2], ["Aumentei para facilitar", 2]] },
-    { p: "banco", q: "O app do banco te avisa no celular de toda transação?", o: [["Sim, de todas", 0], ["Só de algumas", 1], ["Não", 2]] },
-    { p: "celular", q: "Já instalou app por link, fora da loja oficial, ou deixou alguém acessar seu celular à distância?", o: [["Nunca", 0], ["Já", 2], ["Não tenho certeza", 1]] },
-    { p: "celular", q: "Seu celular tem senha de bloqueio e o sistema está atualizado?", o: [["Sim, os dois", 0], ["Só a senha", 1], ["Nenhum dos dois", 2]] },
-    { p: "golpes", q: "Alguém liga dizendo ser da central do banco e pede para você confirmar dados. Você...", o: [["Desligo e ligo no número do cartão", 0], ["Confirmo, se souberem meu nome", 2], ["Não sei o que faria", 2]] },
-    { p: "cripto", q: "Você tem dinheiro em corretora de cripto?", o: [["Não tenho", null], ["Tenho, com autenticador e lista de saque", 0], ["Tenho, só com senha", 2], ["Tenho, com código por SMS", 1]] },
-  ];
-  const corpo = document.getElementById("q-corpo"), barra = document.getElementById("q-barra"), conta = document.getElementById("q-conta");
-  let resp = [];
-  const el = (tag, attrs = {}, ...kids) => { const e = document.createElement(tag); for (const [k, v] of Object.entries(attrs)) { if (k === "text") e.textContent = v; else if (k.startsWith("on")) e.addEventListener(k.slice(2), v); else e.setAttribute(k, v); } e.append(...kids); return e; };
-  function inicio() {
-    barra.style.width = "0%"; conta.textContent = "";
-    corpo.className = "corpo-q inicio-q";
-    corpo.replaceChildren(
-      el("h3", { text: "10 perguntas sobre o seu celular, banco e WhatsApp." }),
-      el("p", { class: "dica", text: "Responda com sinceridade. Ninguém vê suas respostas: elas não saem do seu celular." }),
-      el("button", { class: "btn", type: "button", onclick: () => { resp = []; pergunta(0); fbq_('trackCustom', 'QuizIniciado'); } }, "Iniciar escaneamento ", el("span", { class: "seta", "aria-hidden": "true", text: "→" })));
-  }
-  function pergunta(i) {
-    const P = PERGUNTAS[i];
-    barra.style.width = (i / PERGUNTAS.length * 100) + "%"; conta.textContent = (i + 1) + "/" + PERGUNTAS.length;
-    corpo.className = "corpo-q";
-    const ops = el("div", { class: "opcoes" }, ...P.o.map(([t, v]) => el("button", { type: "button", onclick: () => { resp[i] = v; i + 1 < PERGUNTAS.length ? pergunta(i + 1) : resultado(); } }, t)));
-    corpo.replaceChildren(el("h3", { text: P.q }), ops, i ? el("button", { class: "voltar", type: "button", text: "← voltar", onclick: () => pergunta(i - 1) }) : "");
-    ops.querySelector("button").focus({ preventScroll: true });
-  }
-  function resultado() {
-    barra.style.width = "100%"; conta.textContent = "concluído";
-    const porPorta = {}; let pts = 0, max = 0;
-    PERGUNTAS.forEach((P, i) => { const v = resp[i]; if (v === null || v === undefined) return; pts += v; max += 2; porPorta[P.p] = (porPorta[P.p] || 0) + v; });
-    const nota = Math.round(pts / max * 100);
-    const nivel = nota >= 50 ? ["alto", "Risco alto"] : nota >= 20 ? ["medio", "Risco médio"] : ["baixo", "Risco baixo"];
-    const abertas = Object.entries(porPorta).filter(([, v]) => v > 0).sort((a, b) => b[1] - a[1]);
-    const C = 2 * Math.PI * 58, cor = nivel[0] === "alto" ? "var(--alerta)" : nivel[0] === "medio" ? "#FFC14D" : "var(--ok)";
-    const med = el("div", { class: "medidor" });
-    med.innerHTML = `<svg viewBox="0 0 140 140" aria-hidden="true"><circle cx="70" cy="70" r="58" fill="none" stroke="rgba(167,139,250,.15)" stroke-width="16"/><circle cx="70" cy="70" r="58" fill="none" stroke="${cor}" stroke-width="16" stroke-linecap="round" stroke-dasharray="${(C * nota / 100).toFixed(1)} ${C.toFixed(1)}"/></svg><b>${nota}%</b>`;
-    const lista = el("ul", { class: "portas" });
-    if (!abertas.length) lista.append(el("li", { class: "ok" }, el("b", { text: "Nenhuma porta aberta nas respostas." }), el("span", { text: "Ótimo começo. O checklist ajuda a manter assim e a proteger quem está perto de você." })));
-    abertas.slice(0, 3).forEach(([k]) => lista.append(el("li", {}, el("b", { text: "Porta aberta: " + PORTAS[k][0] }), el("span", { text: PORTAS[k][1] }))));
-    corpo.className = "corpo-q resultado";
-    corpo.replaceChildren(
-      el("div", { class: "nota-r" }, med, el("div", {}, el("span", { class: "nivel " + nivel[0], text: nivel[1] }), el("p", { class: "dica", style: "margin-top: 10px", text: abertas.length ? abertas.length + (abertas.length === 1 ? " porta aberta" : " portas abertas") + " de 7. As mais urgentes:" : "Suas respostas mostram um bom nível de cuidado." }))),
-      lista,
-      el("p", { class: "dica", style: "margin: 0", text: "Essas dicas são o primeiro passo. O checklist mostra, com prints, onde tocar em cada app para fechar as 7 portas em 30 minutos." }),
-      el("a", { class: "btn largo", href: "#oferta" }, "Quero fechar todas as portas ", el("span", { class: "seta", "aria-hidden": "true", text: "→" })),
-      el("button", { class: "voltar", type: "button", text: "Refazer o teste", onclick: inicio }));
-    fbq_('trackCustom', 'QuizConcluido', { nivel: nivel[0], nota });
-    document.getElementById("quiz").scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-  inicio();
-
-  // barra fixa: aparece depois do quiz e some no preço
+  // barra fixa no celular: aparece depois do topo e some na oferta
   (() => {
-    const barra = document.getElementById('barra-compra'), oferta = document.getElementById('oferta'), precos = document.getElementById('precos');
+    const barra = document.getElementById('barra-compra'), topo = document.querySelector('.heroi .acoes'), preco = document.getElementById('preco');
     if (!('IntersectionObserver' in window)) return;
     let passou = false, noPreco = false;
     const at = () => { const on = passou && !noPreco; barra.classList.toggle('visivel', on); barra.setAttribute('aria-hidden', on ? 'false' : 'true'); barra.querySelector('a').tabIndex = on ? 0 : -1; };
-    new IntersectionObserver(([e]) => { passou = e.boundingClientRect.top < 0; at(); }, { threshold: [0, 1] }).observe(oferta);
-    new IntersectionObserver(([e]) => { noPreco = e.isIntersecting; at(); }).observe(precos);
+    new IntersectionObserver(([e]) => { passou = !e.isIntersecting && e.boundingClientRect.top < 0; at(); }).observe(topo);
+    new IntersectionObserver(([e]) => { noPreco = e.isIntersecting; at(); }).observe(preco);
   })();
 </script>
 </body>
