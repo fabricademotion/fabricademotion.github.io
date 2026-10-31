@@ -10,12 +10,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
 <style>
-/* Identidade inspirada no lançamento "Ambicious Club": preto absoluto, cinzas, grade de linhas finas com "+" nas interseções,
-   cartões com cantos de mira roxos, títulos com degradê cinza→branco, monograma em serifa itálica com brilho,
-   pôsteres monocromáticos e palavras gigantes apagadas no fundo. Tema escuro único. */
+/* Sala de conselho secreta: preto profundo, luz de chama (âmbar) contra sombra, pergaminho no texto, granulado de filme.
+   Base no lançamento "Ambicious Club" (grade fina, cantos de mira, monograma em serifa itálica com brilho, palavras
+   gigantes apagadas), sem roxo. Imagens: pinturas de luz de vela em domínio público (The Met Open Access). */
+body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 40; opacity: .08; background-image: url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27160%27 height=%27160%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%27.9%27 numOctaves=%272%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27/%3E%3C/svg%3E"); }
 :root {
   --preto: #000; --p1: #0A0A0A; --p2: #111112; --p3: #18181A; --linha: rgba(255,255,255,.07); --linha-2: rgba(255,255,255,.13);
-  --branco: #F5F5F5; --cinza: #9A9AA0; --cinza-2: #6A6A70; --roxo: #7C5CFF; --roxo-l: #A28BFF; --verde: #34D17A;
+  --branco: #F2EBDD; --cinza: #A39A8B; --cinza-2: #6E665A; --roxo: #C9893B; --roxo-l: #E6B26A; --verde: #E6B26A; --chama: rgba(230, 150, 60, .55);
   --f: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; --serif: "Instrument Serif", "Didot", Georgia, serif;
   color-scheme: dark;
 }
@@ -28,8 +29,8 @@ a { color: inherit; }
 h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -.03em; line-height: 1.08; text-wrap: balance; }
 h1 { font-size: clamp(40px, 6vw, 72px); }
 h2 { font-size: clamp(30px, 4vw, 46px); }
-.grad { background: linear-gradient(90deg, #8E8E94 0%, #FFFFFF 55%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.grad-v { background: linear-gradient(180deg, #FFFFFF, #8E8E94); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.grad { background: linear-gradient(90deg, #8A7F6E 0%, #F2EBDD 60%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.grad-v { background: linear-gradient(180deg, #F2EBDD, #8A7F6E); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .serif { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
 .lead { font-size: clamp(15px, 1.4vw, 18px); color: var(--cinza); margin: 0; max-width: 560px; font-weight: 400; }
 .etq { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--cinza); }
@@ -59,7 +60,7 @@ h2 { font-size: clamp(30px, 4vw, 46px); }
 
 /* botões */
 .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 14px 28px; border-radius: 8px; text-decoration: none; font: 500 15px var(--f); cursor: pointer; transition: transform .2s, box-shadow .2s, filter .2s; }
-.btn.prim { color: #fff; background: linear-gradient(180deg, #A48BFF, #6A4CE0); border: 1px solid rgba(255,255,255,.18); box-shadow: 0 0 0 1px rgba(124,92,255,.45), 0 10px 36px -10px rgba(124,92,255,.7); }
+.btn.prim { color: #120C05; background: linear-gradient(180deg, #F0C47E, #B9772E); border: 1px solid rgba(255,230,180,.5); box-shadow: 0 0 0 1px rgba(201,137,59,.4), 0 10px 40px -10px var(--chama); font-weight: 600; }
 .btn.prim:hover { transform: translateY(-1px); filter: brightness(1.08); }
 .btn.sec { color: var(--branco); background: transparent; border: 1px solid var(--linha-2); }
 .btn.sec:hover { background: rgba(255,255,255,.05); }
@@ -69,22 +70,23 @@ h2 { font-size: clamp(30px, 4vw, 46px); }
 /* topo */
 .nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--linha); }
 .mono { display: inline-flex; align-items: baseline; gap: 12px; text-decoration: none; }
-.mono b { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 30px; line-height: 1; color: #fff; text-shadow: 0 0 18px rgba(255,255,255,.55); }
+.mono b { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 30px; line-height: 1; color: #FFE7C2; text-shadow: 0 0 18px rgba(255,190,110,.65); }
 .mono span { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--cinza); }
 .nav .btn { min-height: 40px; padding: 8px 18px; font-size: 13px; }
 .heroi { position: relative; padding: clamp(60px, 8vw, 100px) 0 clamp(80px, 9vw, 120px); overflow: clip; }
+.heroi-img { position: absolute; inset: 0; z-index: 0; background: linear-gradient(90deg, #000 18%, rgba(0,0,0,.55) 55%, rgba(0,0,0,.2)), linear-gradient(0deg, #000, transparent 30%), url("../assets/conselho/heroi.jpg") right 20% center / cover no-repeat; }
 .heroi .grid { display: grid; gap: 56px; align-items: center; }
 .heroi .txt { display: grid; gap: 24px; justify-items: start; }
 .acoes { display: flex; gap: 12px; flex-wrap: wrap; }
 .req { font-size: 13px; color: var(--cinza-2); margin: 0; }
 /* prévia da sessão */
-.sessao { background: linear-gradient(180deg, var(--p2), var(--p1)); border: 1px solid var(--linha-2); padding: 22px; display: grid; gap: 14px; box-shadow: 0 40px 100px -40px rgba(124,92,255,.35); }
+.sessao { background: linear-gradient(180deg, rgba(20,14,8,.92), rgba(8,6,4,.95)); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); border: 1px solid var(--linha-2); padding: 22px; display: grid; gap: 14px; box-shadow: 0 40px 100px -40px rgba(201,137,59,.35); }
 .sessao .top { display: flex; justify-content: space-between; align-items: center; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--cinza); padding-bottom: 12px; border-bottom: 1px solid var(--linha); }
 .sessao .top b { color: var(--verde); font-weight: 500; }
-.pergunta { font-size: 15px; padding: 12px 14px; border-radius: 6px; background: rgba(124,92,255,.1); border: 1px solid rgba(124,92,255,.3); }
+.pergunta { font-size: 15px; padding: 12px 14px; border-radius: 6px; background: rgba(201,137,59,.1); border: 1px solid rgba(201,137,59,.3); }
 .pergunta small { display: block; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--roxo-l); margin-bottom: 4px; }
 .fala { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; }
-.fala .av { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: #1C1C1F; border: 1px solid var(--linha-2); box-shadow: 0 0 14px -4px rgba(255,255,255,.3); }
+.fala .av { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; color: var(--branco); background: #1C1C1F; border: 1px solid var(--linha-2); box-shadow: 0 0 14px -4px rgba(255,255,255,.3); }
 .fala .av svg { width: 20px; height: 20px; }
 .fala b { font-size: 13px; font-weight: 600; }
 .fala p { margin: 2px 0 0; font-size: 13.5px; color: var(--cinza); line-height: 1.5; }
@@ -95,8 +97,9 @@ h2 { font-size: clamp(30px, 4vw, 46px); }
 .voto span b { color: var(--branco); }
 
 /* problema */
+.vela-bg { position: absolute; left: 0; top: 0; bottom: 0; width: 46%; z-index: 0; opacity: .45; background: linear-gradient(90deg, transparent, #000 95%), linear-gradient(0deg, #000, transparent 25%, transparent 75%, #000), url("../assets/conselho/vela.jpg") center 30% / cover no-repeat; }
 .cards3 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
-.cartao { background: var(--p1); border: 1px solid var(--linha-2); padding: 26px; display: grid; gap: 10px; align-content: start; }
+.cartao { background: rgba(10,8,6,.86); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); border: 1px solid var(--linha-2); padding: 26px; display: grid; gap: 10px; align-content: start; }
 .cartao svg { width: 22px; height: 22px; color: var(--roxo-l); }
 .cartao h3 { font-size: 18px; letter-spacing: -.01em; color: var(--roxo-l); font-weight: 600; }
 .cartao p { margin: 0; font-size: 14.5px; color: var(--cinza); }
@@ -111,13 +114,16 @@ h2 { font-size: clamp(30px, 4vw, 46px); }
 /* pôsteres */
 .trilho { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(250px, 290px); gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px max(20px, 4vw) 18px; scrollbar-width: none; }
 .trilho::-webkit-scrollbar { display: none; }
-.poster { scroll-snap-align: center; position: relative; aspect-ratio: 3 / 4.3; overflow: hidden; border: 1px solid var(--linha-2); background: radial-gradient(70% 55% at 50% 38%, #2A2A2E, #0B0B0C 70%), #0B0B0C; display: grid; align-content: end; padding: 22px; }
+.poster { scroll-snap-align: center; position: relative; aspect-ratio: 3 / 4.3; overflow: hidden; border: 1px solid var(--linha-2); background: #0B0907; display: grid; align-content: end; padding: 22px; isolation: isolate; }
+.poster .foto { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform .8s ease; filter: brightness(.9); }
+.poster::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(0,0,0,.05) 30%, rgba(0,0,0,.72) 62%, #000 96%); }
+.poster:hover .foto { transform: scale(1.04); }
 .poster .fundo-p { position: absolute; left: -6%; bottom: 18%; font-family: var(--serif); font-style: italic; font-size: 150px; line-height: 1; color: rgba(255,255,255,.05); white-space: nowrap; }
-.poster .glow-ico { position: absolute; left: 50%; top: 32%; translate: -50% -50%; width: 46%; color: #fff; filter: drop-shadow(0 0 10px rgba(255,255,255,.75)) drop-shadow(0 0 30px rgba(162,139,255,.55)); }
+.poster .glow-ico { position: absolute; left: 50%; top: 32%; translate: -50% -50%; width: 46%; color: var(--branco); filter: drop-shadow(0 0 10px rgba(255,255,255,.75)) drop-shadow(0 0 30px rgba(230,150,60,.55)); }
 .poster .glow-ico svg { width: 100%; height: auto; }
 .poster .pt { position: relative; display: grid; gap: 4px; text-align: center; }
 .poster h3.longo { font-size: 27px; }
-.poster h3 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 36px; letter-spacing: -.01em; line-height: 1; }
+.poster h3 { text-shadow: 0 2px 20px #000; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 36px; letter-spacing: -.01em; line-height: 1; }
 .poster .sub { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--roxo-l); }
 .poster p { margin: 6px 0 0; font-size: 13px; color: var(--cinza); line-height: 1.45; }
 .poster .marca-p { position: relative; margin-top: 16px; text-align: center; font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--cinza-2); }
@@ -135,13 +141,13 @@ h2 { font-size: clamp(30px, 4vw, 46px); }
 /* monograma com brilho sobre grade de ícones */
 .monograma { position: relative; height: clamp(320px, 44vw, 460px); display: grid; place-items: center; overflow: hidden; }
 .icones { position: absolute; inset: -10%; display: grid; grid-template-columns: repeat(10, 1fr); gap: 16px; align-content: center; transform: perspective(700px) rotateX(38deg); mask-image: radial-gradient(ellipse 60% 55% at 50% 50%, #000 10%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 50%, #000 10%, transparent 70%); }
-.icones span { aspect-ratio: 1; border-radius: 12px; background: #141416; border: 1px solid var(--linha); display: grid; place-items: center; color: #3A3A3F; }
+.icones span { aspect-ratio: 1; border-radius: 12px; background: #120F0B; border: 1px solid var(--linha); display: grid; place-items: center; color: #3E3529; }
 .icones svg { width: 55%; height: 55%; }
-.monograma b { position: relative; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(130px, 20vw, 240px); line-height: 1; color: #fff; text-shadow: 0 0 20px rgba(255,255,255,.9), 0 0 60px rgba(255,255,255,.55), 0 0 120px rgba(162,139,255,.6); }
+.monograma b { position: relative; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(130px, 20vw, 240px); line-height: 1; color: #FFF1DA; text-shadow: 0 0 20px rgba(255,220,170,.9), 0 0 60px rgba(255,170,80,.6), 0 0 140px rgba(230,120,40,.55); }
 
 /* bônus e preço */
 .bonus { display: grid; gap: 40px; align-items: center; }
-.selo-v { display: inline-flex; align-items: center; gap: 6px; background: var(--verde); color: #04140A; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 3px; }
+.selo-v { display: inline-flex; align-items: center; gap: 6px; background: var(--roxo-l); color: #120C05; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 3px; }
 .bonus h2 { font-size: clamp(28px, 3.4vw, 40px); }
 .bonus .lead { margin-top: 14px; }
 .lista-b { background: var(--p1); border: 1px solid var(--linha-2); padding: 26px; display: grid; gap: 12px; }
@@ -152,7 +158,7 @@ h2 { font-size: clamp(30px, 4vw, 46px); }
 .lista-b li::before { content: "✓"; color: var(--verde); font-weight: 700; }
 .cartao-preco li::before { content: "✓"; color: var(--branco); font-weight: 700; }
 .preco-wrap { display: grid; justify-items: center; gap: 18px; }
-.cartao-preco { width: min(100%, 440px); background: linear-gradient(180deg, #0E0D14, #060608); border: 1px solid rgba(124,92,255,.35); padding: 34px 30px; display: grid; gap: 14px; text-align: center; box-shadow: 0 0 80px -30px rgba(124,92,255,.6); }
+.cartao-preco { width: min(100%, 440px); background: linear-gradient(180deg, #120D07, #060504); border: 1px solid rgba(201,137,59,.35); padding: 34px 30px; display: grid; gap: 14px; text-align: center; box-shadow: 0 0 80px -30px rgba(201,137,59,.6); }
 .cartao-preco .de { font-size: 15px; color: var(--roxo-l); font-weight: 600; }
 .cartao-preco .valor { font-size: clamp(64px, 9vw, 84px); font-weight: 600; letter-spacing: -.04em; line-height: .95; }
 .cartao-preco .pag { font-size: 14px; color: var(--cinza); }
@@ -197,12 +203,13 @@ footer a { margin-right: 14px; }
 </header>
 
 <section class="heroi">
+  <div class="heroi-img" aria-hidden="true"></div>
   <div class="grade-bg"></div>
   <span class="palavra-bg" style="top: 8%">Conselho</span>
   <div class="env grid">
     <div class="txt">
       <span class="etq">Skill para o Claude</span>
-      <h1><span class="grad">Dez mentes.</span><br><span class="serif" style="color: #fff">Uma decisão.</span></h1>
+      <h1><span class="grad">Dez mentes.</span><br><span class="serif" style="color: var(--branco)">Uma decisão.</span></h1>
       <p class="lead">Leve qualquer decisão do seu negócio para um conselho de 10 conselheiros, cada um com um jeito de pensar. Eles debatem, discordam e votam, e você sai com a decisão escrita.</p>
       <div class="acoes"><a class="btn prim" href="#preco" data-checkout="skill">Convocar o conselho</a><a class="btn sec" href="#conselheiros">Conhecer os 10</a></div>
       <p class="req">Funciona no Claude Pro, no computador.</p>
@@ -220,6 +227,7 @@ footer a { margin-right: 14px; }
 <section class="secao">
   <div class="grade-bg"></div>
   <span class="palavra-bg" style="top: 30%">Sozinho</span>
+  <div class="vela-bg" aria-hidden="true"></div>
   <div class="env">
     <div class="cabeca">
       <h2 class="grad-v">Decidir sozinho custa caro:</h2>
@@ -246,8 +254,8 @@ footer a { margin-right: 14px; }
 </section>
 
 <section class="secao" id="conselheiros" style="padding-inline: 0">
-  <div class="env"><div class="cabeca"><span class="etq">Os conselheiros</span><h2><span class="grad">Conheça quem senta</span> <span class="serif" style="color: #fff">à sua mesa</span></h2><p class="lead">Quatro grandes pensadores da história e seis arquétipos inspirados em grandes estrategistas e empreendedores.</p></div></div>
-  <div class="trilho"><article class="poster"><span class="fundo-p">Sócrates</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 22c0-6 3.6-11 8-11s8 5 8 11"/><path d="M14 22h20M15 22c0 9 4 15 9 15s9-6 9-15"/><path d="M19 30c1.5 2 3 3 5 3s3.5-1 5-3M21 26h.01M27 26h.01"/><path d="M24 37v5M18 42h12"/></svg></span><div class="pt"><h3>Sócrates</h3><span class="sub">O questionador</span><p>Questiona as premissas e mostra qual é o problema de verdade.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Tzu</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5v38M24 9l-7 8h14z"/><path d="M12 30h24M14 30l-4 10M34 30l4 10"/><circle cx="24" cy="24" r="3"/></svg></span><div class="pt"><h3>Sun Tzu</h3><span class="sub">O estrategista</span><p>Concorrência, posicionamento e o momento certo de agir.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Aurélio</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="18" r="9"/><path d="M12 42c1-8 6-12 12-12s11 4 12 12"/><path d="M15 15c2-5 6-7 9-7s7 2 9 7M18 9l2 3M30 9l-2 3M24 7v3"/></svg></span><div class="pt"><h3>Marco Aurélio</h3><span class="sub">O estoico</span><p>Ética e cabeça fria quando a pressão aperta.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Maquiavel</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 20c4-8 24-8 28 0-4 8-24 8-28 0z"/><circle cx="24" cy="20" r="4"/><path d="M12 32h24M16 38h16"/><path d="M24 8V4M14 11l-3-3M34 11l3-3"/></svg></span><div class="pt"><h3>Maquiavel</h3><span class="sub">O político</span><p>Poder, negociação, sócios e interesses escondidos.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Engenheiro</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4l4 10H20z"/><path d="M20 14h8v16h-8z"/><path d="M20 22l-6 8v6l6-4M28 22l6 8v6l-6-4"/><path d="M22 34l2 8 2-8"/></svg></span><div class="pt"><h3>O Engenheiro</h3><span class="sub">Primeiros princípios</span><p>Pensa a partir do zero, mira 10x e corta o que sobra.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Arquiteto</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12"/><rect x="28" y="8" width="12" height="12"/><rect x="8" y="28" width="12" height="12"/><rect x="28" y="28" width="12" height="12"/><path d="M20 14h8M14 20v8M34 20v8M20 34h8"/></svg></span><div class="pt"><h3>O Arquiteto</h3><span class="sub">Plataforma e escala</span><p>Métricas, caixa e sempre um plano B.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Crescimento</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38l10-10 7 6 13-16"/><path d="M28 18h8v8"/><circle cx="16" cy="28" r="2"/><circle cx="23" cy="34" r="2"/></svg></span><div class="pt"><h3 class="longo">O Hacker de Crescimento</h3><span class="sub">Produto e testes</span><p>Lança rápido, mede e dobra o que funciona.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Designer</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6c8 0 14 6 14 14 0 10-14 22-14 22S10 30 10 20c0-8 6-14 14-14z"/><circle cx="24" cy="20" r="5"/></svg></span><div class="pt"><h3>O Designer</h3><span class="sub">Foco e marca</span><p>Qualidade, simplicidade e a coragem de dizer "não".</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Cliente</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="15" r="7"/><path d="M10 42c1-9 7-14 14-14s13 5 14 14"/><path d="M34 8l2 2 4-4"/></svg></span><div class="pt"><h3 class="longo">O Obcecado pelo Cliente</h3><span class="sub">Longo prazo</span><p>Separa decisão que tem volta da que não tem volta.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Investidores</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40h32M12 40V26M20 40V18M28 40V22M36 40V12"/><path d="M10 20l8-6 8 4 12-10"/></svg></span><div class="pt"><h3>Os Investidores</h3><span class="sub">Risco e dinheiro</span><p>O que te protege da concorrência e o que pode dar errado.</p></div><span class="marca-p">Conselho dos 10</span></article></div>
+  <div class="env"><div class="cabeca"><span class="etq">Os conselheiros</span><h2><span class="grad">Conheça quem senta</span> <span class="serif" style="color: var(--branco)">à sua mesa</span></h2><p class="lead">Quatro grandes pensadores da história e seis arquétipos inspirados em grandes estrategistas e empreendedores. Pinturas em domínio público.</p></div></div>
+  <div class="trilho"><article class="poster"><img class="foto" src="../assets/conselho/socrates.jpg" alt="" loading="lazy"><div class="pt"><h3>Sócrates</h3><span class="sub">O questionador</span><p>Questiona as premissas e mostra qual é o problema de verdade.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><img class="foto" src="../assets/conselho/suntzu.jpg" alt="" loading="lazy"><div class="pt"><h3>Sun Tzu</h3><span class="sub">O estrategista</span><p>Concorrência, posicionamento e o momento certo de agir.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><img class="foto" src="../assets/conselho/marco.jpg" alt="" loading="lazy"><div class="pt"><h3>Marco Aurélio</h3><span class="sub">O estoico</span><p>Ética e cabeça fria quando a pressão aperta.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><img class="foto" src="../assets/conselho/maquiavel.jpg" alt="" loading="lazy"><div class="pt"><h3>Maquiavel</h3><span class="sub">O político</span><p>Poder, negociação, sócios e interesses escondidos.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><img class="foto" src="../assets/conselho/engenheiro.jpg" alt="" loading="lazy"><div class="pt"><h3>O Engenheiro</h3><span class="sub">Primeiros princípios</span><p>Pensa a partir do zero, mira 10x e corta o que sobra.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><img class="foto" src="../assets/conselho/arquiteto.jpg" alt="" loading="lazy"><div class="pt"><h3>O Arquiteto</h3><span class="sub">Plataforma e escala</span><p>Métricas, caixa e sempre um plano B.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><img class="foto" src="../assets/conselho/hacker.jpg" alt="" loading="lazy"><div class="pt"><h3 class="longo">O Hacker de Crescimento</h3><span class="sub">Produto e testes</span><p>Lança rápido, mede e dobra o que funciona.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><img class="foto" src="../assets/conselho/designer.jpg" alt="" loading="lazy"><div class="pt"><h3>O Designer</h3><span class="sub">Foco e marca</span><p>Qualidade, simplicidade e a coragem de dizer "não".</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><img class="foto" src="../assets/conselho/cliente.jpg" alt="" loading="lazy"><div class="pt"><h3 class="longo">O Obcecado pelo Cliente</h3><span class="sub">Longo prazo</span><p>Separa decisão que tem volta da que não tem volta.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><img class="foto" src="../assets/conselho/investidores.jpg" alt="" loading="lazy"><div class="pt"><h3>Os Investidores</h3><span class="sub">Risco e dinheiro</span><p>O que te protege da concorrência e o que pode dar errado.</p></div><span class="marca-p">Conselho dos 10</span></article></div>
   <p class="arraste">← arraste para ver os 10 →</p>
 </section>
 
@@ -261,7 +269,7 @@ footer a { margin-right: 14px; }
 <section class="secao">
   <div class="grade-bg"></div>
   <div class="env bonus">
-    <div><span class="selo-v">★ Bônus de lançamento</span><h2 style="margin-top: 16px"><span class="grad">Entrando hoje,</span> <span style="color: #fff">você leva também:</span></h2><p class="lead">Perguntas prontas para as decisões que todo dono de negócio enfrenta, para usar com o conselho no primeiro dia.</p></div>
+    <div><span class="selo-v">★ Bônus de lançamento</span><h2 style="margin-top: 16px"><span class="grad">Entrando hoje,</span> <span style="color: var(--branco)">você leva também:</span></h2><p class="lead">Perguntas prontas para as decisões que todo dono de negócio enfrenta, para usar com o conselho no primeiro dia.</p></div>
     <div class="lista-b mira branca"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span>
       <span class="etq">Bônus</span><h3>50 perguntas de decisão</h3>
       <ul><li>Preço: quando subir, quanto e para quem</li><li>Equipe: contratar, terceirizar ou demitir</li><li>Sócios: entrada, divisão e saída</li><li>Dinheiro: investir, guardar ou cortar</li><li>Produto: lançar, pausar ou matar</li></ul>
@@ -300,7 +308,7 @@ footer a { margin-right: 14px; }
 
 <footer>
   <div class="env">
-    <p>Os conselheiros são personagens inspirados em formas de pensar e não representam, nem são endossados por, nenhuma pessoa real. Claude é marca da Anthropic; esta skill não é um produto oficial da Anthropic. O conselho não substitui orientação jurídica, contábil ou financeira profissional.</p>
+    <p>Os conselheiros são personagens inspirados em formas de pensar e não representam, nem são endossados por, nenhuma pessoa real. Imagens: pinturas e esculturas em domínio público do acervo do The Metropolitan Museum of Art. Claude é marca da Anthropic; esta skill não é um produto oficial da Anthropic. O conselho não substitui orientação jurídica, contábil ou financeira profissional.</p>
     <p>CNPJ 61.451.359/0001-70 · <a href="../politica.html">Políticas de privacidade</a><a href="../termos.html">Termos de uso</a></p>
   </div>
 </footer>
