@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Leve qualquer decisão do seu negócio para um conselho de 10 conselheiros dentro do seu Claude. Eles debatem, discordam, votam, e você sai com a decisão escrita.">
+<meta property="og:title" content="Conselho dos 10 · Dez mentes. Uma decisão.">
+<title>Conselho dos 10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* Identidade inspirada no lançamento "Ambicious Club": preto absoluto, cinzas, grade de linhas finas com "+" nas interseções,
+   cartões com cantos de mira roxos, títulos com degradê cinza→branco, monograma em serifa itálica com brilho,
+   pôsteres monocromáticos e palavras gigantes apagadas no fundo. Tema escuro único. */
+:root {
+  --preto: #000; --p1: #0A0A0A; --p2: #111112; --p3: #18181A; --linha: rgba(255,255,255,.07); --linha-2: rgba(255,255,255,.13);
+  --branco: #F5F5F5; --cinza: #9A9AA0; --cinza-2: #6A6A70; --roxo: #7C5CFF; --roxo-l: #A28BFF; --verde: #34D17A;
+  --f: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; --serif: "Instrument Serif", "Didot", Georgia, serif;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--preto); color: var(--branco); font-family: var(--f); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+a { color: inherit; }
+.env { width: min(1080px, 100% - 2 * max(20px, 4vw)); margin-inline: auto; position: relative; z-index: 1; }
+h1, h2, h3 { margin: 0; font-weight: 600; letter-spacing: -.03em; line-height: 1.08; text-wrap: balance; }
+h1 { font-size: clamp(40px, 6vw, 72px); }
+h2 { font-size: clamp(30px, 4vw, 46px); }
+.grad { background: linear-gradient(90deg, #8E8E94 0%, #FFFFFF 55%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.grad-v { background: linear-gradient(180deg, #FFFFFF, #8E8E94); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.serif { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
+.lead { font-size: clamp(15px, 1.4vw, 18px); color: var(--cinza); margin: 0; max-width: 560px; font-weight: 400; }
+.etq { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--cinza); }
+.etq::before { content: "★"; font-size: 10px; color: var(--branco); }
+.cabeca { display: grid; gap: 14px; justify-items: center; text-align: center; margin: 0 auto clamp(40px, 6vw, 64px); max-width: 720px; }
+.secao { position: relative; padding: clamp(80px, 10vw, 130px) 0; overflow: clip; }
+
+/* grade de linhas com "+" nas interseções */
+.grade-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image: linear-gradient(var(--linha) 1px, transparent 1px), linear-gradient(90deg, var(--linha) 1px, transparent 1px);
+  background-size: 100% 220px, 270px 100%; background-position: 0 0, calc(50% - 135px) 0;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 85%); -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, #000 30%, transparent 85%); }
+.cruz { position: absolute; width: 11px; height: 11px; pointer-events: none; z-index: 1; }
+.cruz::before, .cruz::after { content: ""; position: absolute; background: rgba(255,255,255,.45); }
+.cruz::before { left: 5px; top: 0; width: 1px; height: 11px; }
+.cruz::after { top: 5px; left: 0; height: 1px; width: 11px; }
+.palavra-bg { position: absolute; left: 50%; translate: -50% 0; font-family: var(--serif); font-style: italic; font-size: clamp(120px, 20vw, 300px); line-height: 1; color: rgba(255,255,255,.035); white-space: nowrap; pointer-events: none; z-index: 0; }
+
+/* cantos de mira */
+.mira { position: relative; }
+.mira > .c { position: absolute; width: 14px; height: 14px; border-color: var(--roxo); border-style: solid; pointer-events: none; }
+.mira > .c1 { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+.mira > .c2 { top: -1px; right: -1px; border-width: 2px 2px 0 0; }
+.mira > .c3 { bottom: -1px; left: -1px; border-width: 0 0 2px 2px; }
+.mira > .c4 { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+.mira.branca > .c { border-color: rgba(255,255,255,.8); }
+
+/* botões */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 14px 28px; border-radius: 8px; text-decoration: none; font: 500 15px var(--f); cursor: pointer; transition: transform .2s, box-shadow .2s, filter .2s; }
+.btn.prim { color: #fff; background: linear-gradient(180deg, #A48BFF, #6A4CE0); border: 1px solid rgba(255,255,255,.18); box-shadow: 0 0 0 1px rgba(124,92,255,.45), 0 10px 36px -10px rgba(124,92,255,.7); }
+.btn.prim:hover { transform: translateY(-1px); filter: brightness(1.08); }
+.btn.sec { color: var(--branco); background: transparent; border: 1px solid var(--linha-2); }
+.btn.sec:hover { background: rgba(255,255,255,.05); }
+.btn:focus-visible { outline: 2px solid var(--roxo-l); outline-offset: 3px; }
+.btn.largo { width: 100%; }
+
+/* topo */
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 22px 0; border-bottom: 1px solid var(--linha); }
+.mono { display: inline-flex; align-items: baseline; gap: 12px; text-decoration: none; }
+.mono b { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 30px; line-height: 1; color: #fff; text-shadow: 0 0 18px rgba(255,255,255,.55); }
+.mono span { font-size: 13px; letter-spacing: .2em; text-transform: uppercase; color: var(--cinza); }
+.nav .btn { min-height: 40px; padding: 8px 18px; font-size: 13px; }
+.heroi { position: relative; padding: clamp(60px, 8vw, 100px) 0 clamp(80px, 9vw, 120px); overflow: clip; }
+.heroi .grid { display: grid; gap: 56px; align-items: center; }
+.heroi .txt { display: grid; gap: 24px; justify-items: start; }
+.acoes { display: flex; gap: 12px; flex-wrap: wrap; }
+.req { font-size: 13px; color: var(--cinza-2); margin: 0; }
+/* prévia da sessão */
+.sessao { background: linear-gradient(180deg, var(--p2), var(--p1)); border: 1px solid var(--linha-2); padding: 22px; display: grid; gap: 14px; box-shadow: 0 40px 100px -40px rgba(124,92,255,.35); }
+.sessao .top { display: flex; justify-content: space-between; align-items: center; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--cinza); padding-bottom: 12px; border-bottom: 1px solid var(--linha); }
+.sessao .top b { color: var(--verde); font-weight: 500; }
+.pergunta { font-size: 15px; padding: 12px 14px; border-radius: 6px; background: rgba(124,92,255,.1); border: 1px solid rgba(124,92,255,.3); }
+.pergunta small { display: block; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--roxo-l); margin-bottom: 4px; }
+.fala { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; }
+.fala .av { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; color: #fff; background: #1C1C1F; border: 1px solid var(--linha-2); box-shadow: 0 0 14px -4px rgba(255,255,255,.3); }
+.fala .av svg { width: 20px; height: 20px; }
+.fala b { font-size: 13px; font-weight: 600; }
+.fala p { margin: 2px 0 0; font-size: 13.5px; color: var(--cinza); line-height: 1.5; }
+.voto { display: grid; gap: 8px; padding-top: 12px; border-top: 1px solid var(--linha); }
+.voto .bar { display: flex; height: 8px; border-radius: 99px; overflow: hidden; background: #222; }
+.voto .bar i { background: linear-gradient(90deg, var(--roxo), var(--roxo-l)); width: 70%; }
+.voto span { font-size: 12.5px; color: var(--cinza); }
+.voto span b { color: var(--branco); }
+
+/* problema */
+.cards3 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; }
+.cartao { background: var(--p1); border: 1px solid var(--linha-2); padding: 26px; display: grid; gap: 10px; align-content: start; }
+.cartao svg { width: 22px; height: 22px; color: var(--roxo-l); }
+.cartao h3 { font-size: 18px; letter-spacing: -.01em; color: var(--roxo-l); font-weight: 600; }
+.cartao p { margin: 0; font-size: 14.5px; color: var(--cinza); }
+
+/* passos */
+.passos { display: grid; grid-template-columns: minmax(0, 1fr); border-top: 1px solid var(--linha-2); }
+.passo { padding: 28px 0; border-bottom: 1px solid var(--linha-2); display: grid; grid-template-columns: 70px minmax(0, 1fr); gap: 18px; align-items: start; }
+.passo .n { font-family: var(--serif); font-style: italic; font-size: 44px; line-height: .9; color: rgba(255,255,255,.35); }
+.passo h3 { font-size: 21px; margin-bottom: 6px; }
+.passo p { margin: 0; color: var(--cinza); font-size: 15px; }
+
+/* pôsteres */
+.trilho { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(250px, 290px); gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 4px max(20px, 4vw) 18px; scrollbar-width: none; }
+.trilho::-webkit-scrollbar { display: none; }
+.poster { scroll-snap-align: center; position: relative; aspect-ratio: 3 / 4.3; overflow: hidden; border: 1px solid var(--linha-2); background: radial-gradient(70% 55% at 50% 38%, #2A2A2E, #0B0B0C 70%), #0B0B0C; display: grid; align-content: end; padding: 22px; }
+.poster .fundo-p { position: absolute; left: -6%; bottom: 18%; font-family: var(--serif); font-style: italic; font-size: 150px; line-height: 1; color: rgba(255,255,255,.05); white-space: nowrap; }
+.poster .glow-ico { position: absolute; left: 50%; top: 32%; translate: -50% -50%; width: 46%; color: #fff; filter: drop-shadow(0 0 10px rgba(255,255,255,.75)) drop-shadow(0 0 30px rgba(162,139,255,.55)); }
+.poster .glow-ico svg { width: 100%; height: auto; }
+.poster .pt { position: relative; display: grid; gap: 4px; text-align: center; }
+.poster h3.longo { font-size: 27px; }
+.poster h3 { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 36px; letter-spacing: -.01em; line-height: 1; }
+.poster .sub { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--roxo-l); }
+.poster p { margin: 6px 0 0; font-size: 13px; color: var(--cinza); line-height: 1.45; }
+.poster .marca-p { position: relative; margin-top: 16px; text-align: center; font-family: var(--serif); font-style: italic; font-size: 13px; color: var(--cinza-2); }
+.arraste { text-align: center; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--cinza-2); margin: 6px 0 0; }
+
+/* exemplos */
+.exemplos { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(250px, 300px); gap: 14px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 14px max(20px, 4vw) 18px; scrollbar-width: none; }
+.exemplos::-webkit-scrollbar { display: none; }
+.exemplo { scroll-snap-align: center; background: var(--p2); border: 1px solid var(--linha); padding: 22px; display: grid; gap: 12px; align-content: start; opacity: .6; }
+.exemplo.meio { opacity: 1; background: var(--p3); outline: 1px solid var(--linha-2); }
+.tag-ex { font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--cinza-2); }
+.exemplo .q { margin: 0; font-size: 15px; color: var(--branco); }
+.exemplo .v { margin: 0; font-size: 13.5px; color: var(--roxo-l); padding-top: 12px; border-top: 1px solid var(--linha); }
+
+/* monograma com brilho sobre grade de ícones */
+.monograma { position: relative; height: clamp(320px, 44vw, 460px); display: grid; place-items: center; overflow: hidden; }
+.icones { position: absolute; inset: -10%; display: grid; grid-template-columns: repeat(10, 1fr); gap: 16px; align-content: center; transform: perspective(700px) rotateX(38deg); mask-image: radial-gradient(ellipse 60% 55% at 50% 50%, #000 10%, transparent 70%); -webkit-mask-image: radial-gradient(ellipse 60% 55% at 50% 50%, #000 10%, transparent 70%); }
+.icones span { aspect-ratio: 1; border-radius: 12px; background: #141416; border: 1px solid var(--linha); display: grid; place-items: center; color: #3A3A3F; }
+.icones svg { width: 55%; height: 55%; }
+.monograma b { position: relative; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: clamp(130px, 20vw, 240px); line-height: 1; color: #fff; text-shadow: 0 0 20px rgba(255,255,255,.9), 0 0 60px rgba(255,255,255,.55), 0 0 120px rgba(162,139,255,.6); }
+
+/* bônus e preço */
+.bonus { display: grid; gap: 40px; align-items: center; }
+.selo-v { display: inline-flex; align-items: center; gap: 6px; background: var(--verde); color: #04140A; font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 3px; }
+.bonus h2 { font-size: clamp(28px, 3.4vw, 40px); }
+.bonus .lead { margin-top: 14px; }
+.lista-b { background: var(--p1); border: 1px solid var(--linha-2); padding: 26px; display: grid; gap: 12px; }
+.lista-b .etq { color: var(--cinza-2); }
+.lista-b h3 { font-size: 24px; color: var(--verde); }
+.lista-b ul, .cartao-preco ul { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 10px; font-size: 14px; color: #D6D6DA; }
+.lista-b li, .cartao-preco li { display: flex; gap: 10px; }
+.lista-b li::before { content: "✓"; color: var(--verde); font-weight: 700; }
+.cartao-preco li::before { content: "✓"; color: var(--branco); font-weight: 700; }
+.preco-wrap { display: grid; justify-items: center; gap: 18px; }
+.cartao-preco { width: min(100%, 440px); background: linear-gradient(180deg, #0E0D14, #060608); border: 1px solid rgba(124,92,255,.35); padding: 34px 30px; display: grid; gap: 14px; text-align: center; box-shadow: 0 0 80px -30px rgba(124,92,255,.6); }
+.cartao-preco .de { font-size: 15px; color: var(--roxo-l); font-weight: 600; }
+.cartao-preco .valor { font-size: clamp(64px, 9vw, 84px); font-weight: 600; letter-spacing: -.04em; line-height: .95; }
+.cartao-preco .pag { font-size: 14px; color: var(--cinza); }
+.cartao-preco ul { text-align: left; padding: 16px 0; border-block: 1px solid var(--linha); margin: 6px 0; }
+.cartao-preco .nota { font-size: 12.5px; color: var(--cinza-2); }
+
+/* faq */
+.faq { display: grid; gap: 36px; }
+.faq .lista { border-top: 1px solid var(--linha-2); }
+.faq details { border-bottom: 1px solid var(--linha-2); }
+.faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 14px; padding: 20px 0; font-size: 16px; font-weight: 500; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; font-size: 20px; font-weight: 300; color: var(--cinza); transition: transform .2s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { margin: 0 0 20px; color: var(--cinza); font-size: 15px; max-width: 620px; }
+footer { border-top: 1px solid var(--linha); padding: 36px 0 110px; font-size: 12.5px; color: var(--cinza-2); }
+footer p { margin: 0 0 8px; max-width: 760px; }
+footer a { margin-right: 14px; }
+.barra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: flex; gap: 12px; align-items: center; justify-content: space-between; padding: 12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); background: rgba(0,0,0,.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-top: 1px solid var(--linha-2); transform: translateY(110%); transition: transform .3s; }
+.barra.visivel { transform: none; }
+.barra .p { font-size: 12px; color: var(--cinza); line-height: 1.3; }
+.barra .p b { display: block; font-size: 18px; color: var(--branco); }
+.barra .btn { min-height: 44px; padding: 10px 18px; font-size: 14px; }
+
+@media (min-width: 900px) {
+  .heroi .grid { grid-template-columns: 1.05fr .95fr; }
+  .cards3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .passos { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; }
+  .bonus { grid-template-columns: .9fr 1.1fr; }
+  .faq { grid-template-columns: .8fr 1.2fr; align-items: start; }
+  .barra { display: none; }
+  footer { padding-bottom: 40px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .btn, .barra { transition: none; } }
+</style>
+</head>
+<body>
+
+<header class="env nav">
+  <a class="mono" href="#"><b>C10</b><span>Conselho dos 10</span></a>
+  <a class="btn prim" href="#preco" data-checkout="skill">Convocar o conselho</a>
+</header>
+
+<section class="heroi">
+  <div class="grade-bg"></div>
+  <span class="palavra-bg" style="top: 8%">Conselho</span>
+  <div class="env grid">
+    <div class="txt">
+      <span class="etq">Skill para o Claude</span>
+      <h1><span class="grad">Dez mentes.</span><br><span class="serif" style="color: #fff">Uma decisão.</span></h1>
+      <p class="lead">Leve qualquer decisão do seu negócio para um conselho de 10 conselheiros, cada um com um jeito de pensar. Eles debatem, discordam e votam, e você sai com a decisão escrita.</p>
+      <div class="acoes"><a class="btn prim" href="#preco" data-checkout="skill">Convocar o conselho</a><a class="btn sec" href="#conselheiros">Conhecer os 10</a></div>
+      <p class="req">Funciona no Claude Pro, no computador.</p>
+    </div>
+    <div class="sessao mira" aria-label="Exemplo de sessão do conselho">
+      <span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span>
+      <div class="top"><span>Sessão do conselho</span><b>● ao vivo</b></div>
+      <div class="pergunta"><small>Sua pergunta</small>Contrato alguém agora para dar conta da demanda?</div>
+      <div class="fala"><span class="av"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 22c0-6 3.6-11 8-11s8 5 8 11"/><path d="M14 22h20M15 22c0 9 4 15 9 15s9-6 9-15"/><path d="M19 30c1.5 2 3 3 5 3s3.5-1 5-3M21 26h.01M27 26h.01"/><path d="M24 37v5M18 42h12"/></svg></span><div><b>Sócrates</b><p>O que você chama de "crescer" aqui? Mais clientes ou mais lucro? A resposta muda tudo.</p></div></div><div class="fala"><span class="av"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40h32M12 40V26M20 40V18M28 40V22M36 40V12"/><path d="M10 20l8-6 8 4 12-10"/></svg></span><div><b>Os Investidores</b><p>Contratar agora prende R$ 4 mil por mês. Quanto tempo de caixa sobra se as vendas caírem 30%?</p></div></div><div class="fala"><span class="av"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38l10-10 7 6 13-16"/><path d="M28 18h8v8"/><circle cx="16" cy="28" r="2"/><circle cx="23" cy="34" r="2"/></svg></span><div><b>O Hacker de Crescimento</b><p>Teste antes: um freelancer por 30 dias. Se dobrar a entrega, contrata.</p></div></div><div class="fala"><span class="av"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6c8 0 14 6 14 14 0 10-14 22-14 22S10 30 10 20c0-8 6-14 14-14z"/><circle cx="24" cy="20" r="5"/></svg></span><div><b>O Designer</b><p>Ou corte metade dos serviços e não precise de ninguém.</p></div></div>
+      <div class="voto"><div class="bar"><i></i></div><span><b>Votação: 7 a 3</b> · Testar com freelancer por 30 dias antes de contratar.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="secao">
+  <div class="grade-bg"></div>
+  <span class="palavra-bg" style="top: 30%">Sozinho</span>
+  <div class="env">
+    <div class="cabeca">
+      <h2 class="grad-v">Decidir sozinho custa caro:</h2>
+      <p class="lead">As piores decisões de um negócio não vêm da falta de informação. Vêm da falta de alguém para discordar de você.</p>
+    </div>
+    <div class="cards3">
+      <article class="cartao mira"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-5 4-7 8-7s7 2 8 7"/></svg><h3>Você decide sozinho</h3><p>Ninguém para questionar a premissa antes de você colocar dinheiro e tempo nela.</p></article>
+      <article class="cartao mira"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 11l3 3 7-7"/><path d="M21 12a9 9 0 11-4-7.5"/></svg><h3>A IA concorda com tudo</h3><p>Pergunte a um assistente comum e ele tende a dar razão a você. Aqui, dez visões se enfrentam.</p></article>
+      <article class="cartao mira"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg><h3>Nada fica registrado</h3><p>Cada sessão termina numa ata: a decisão, os riscos e o próximo passo, para você consultar depois.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="secao" style="padding-top: 0">
+  <div class="env">
+    <div class="cabeca"><span class="etq">Como funciona</span><h2 class="grad-v">Uma sessão em quatro atos</h2></div>
+    <div class="passos">
+      <div class="passo"><span class="n">01</span><div><h3>Você leva a pergunta</h3><p>Qualquer decisão: contratar, mudar o preço, aceitar um sócio, investir, largar algo.</p></div></div>
+      <div class="passo"><span class="n">02</span><div><h3>Os 10 dão a opinião</h3><p>Cada conselheiro responde do seu jeito, e eles discordam entre si.</p></div></div>
+      <div class="passo"><span class="n">03</span><div><h3>O advogado do diabo ataca</h3><p>A opinião mais votada é testada contra o que pode dar errado.</p></div></div>
+      <div class="passo"><span class="n">04</span><div><h3>Votação e ata</h3><p>O conselho vota e entrega a decisão escrita, com riscos e próximo passo.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="conselheiros" style="padding-inline: 0">
+  <div class="env"><div class="cabeca"><span class="etq">Os conselheiros</span><h2><span class="grad">Conheça quem senta</span> <span class="serif" style="color: #fff">à sua mesa</span></h2><p class="lead">Quatro grandes pensadores da história e seis arquétipos inspirados em grandes estrategistas e empreendedores.</p></div></div>
+  <div class="trilho"><article class="poster"><span class="fundo-p">Sócrates</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 22c0-6 3.6-11 8-11s8 5 8 11"/><path d="M14 22h20M15 22c0 9 4 15 9 15s9-6 9-15"/><path d="M19 30c1.5 2 3 3 5 3s3.5-1 5-3M21 26h.01M27 26h.01"/><path d="M24 37v5M18 42h12"/></svg></span><div class="pt"><h3>Sócrates</h3><span class="sub">O questionador</span><p>Questiona as premissas e mostra qual é o problema de verdade.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Tzu</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5v38M24 9l-7 8h14z"/><path d="M12 30h24M14 30l-4 10M34 30l4 10"/><circle cx="24" cy="24" r="3"/></svg></span><div class="pt"><h3>Sun Tzu</h3><span class="sub">O estrategista</span><p>Concorrência, posicionamento e o momento certo de agir.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Aurélio</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="18" r="9"/><path d="M12 42c1-8 6-12 12-12s11 4 12 12"/><path d="M15 15c2-5 6-7 9-7s7 2 9 7M18 9l2 3M30 9l-2 3M24 7v3"/></svg></span><div class="pt"><h3>Marco Aurélio</h3><span class="sub">O estoico</span><p>Ética e cabeça fria quando a pressão aperta.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Maquiavel</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 20c4-8 24-8 28 0-4 8-24 8-28 0z"/><circle cx="24" cy="20" r="4"/><path d="M12 32h24M16 38h16"/><path d="M24 8V4M14 11l-3-3M34 11l3-3"/></svg></span><div class="pt"><h3>Maquiavel</h3><span class="sub">O político</span><p>Poder, negociação, sócios e interesses escondidos.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Engenheiro</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4l4 10H20z"/><path d="M20 14h8v16h-8z"/><path d="M20 22l-6 8v6l6-4M28 22l6 8v6l-6-4"/><path d="M22 34l2 8 2-8"/></svg></span><div class="pt"><h3>O Engenheiro</h3><span class="sub">Primeiros princípios</span><p>Pensa a partir do zero, mira 10x e corta o que sobra.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Arquiteto</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12"/><rect x="28" y="8" width="12" height="12"/><rect x="8" y="28" width="12" height="12"/><rect x="28" y="28" width="12" height="12"/><path d="M20 14h8M14 20v8M34 20v8M20 34h8"/></svg></span><div class="pt"><h3>O Arquiteto</h3><span class="sub">Plataforma e escala</span><p>Métricas, caixa e sempre um plano B.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Crescimento</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38l10-10 7 6 13-16"/><path d="M28 18h8v8"/><circle cx="16" cy="28" r="2"/><circle cx="23" cy="34" r="2"/></svg></span><div class="pt"><h3 class="longo">O Hacker de Crescimento</h3><span class="sub">Produto e testes</span><p>Lança rápido, mede e dobra o que funciona.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Designer</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6c8 0 14 6 14 14 0 10-14 22-14 22S10 30 10 20c0-8 6-14 14-14z"/><circle cx="24" cy="20" r="5"/></svg></span><div class="pt"><h3>O Designer</h3><span class="sub">Foco e marca</span><p>Qualidade, simplicidade e a coragem de dizer "não".</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Cliente</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="15" r="7"/><path d="M10 42c1-9 7-14 14-14s13 5 14 14"/><path d="M34 8l2 2 4-4"/></svg></span><div class="pt"><h3 class="longo">O Obcecado pelo Cliente</h3><span class="sub">Longo prazo</span><p>Separa decisão que tem volta da que não tem volta.</p></div><span class="marca-p">Conselho dos 10</span></article><article class="poster"><span class="fundo-p">Investidores</span><span class="glow-ico"><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40h32M12 40V26M20 40V18M28 40V22M36 40V12"/><path d="M10 20l8-6 8 4 12-10"/></svg></span><div class="pt"><h3>Os Investidores</h3><span class="sub">Risco e dinheiro</span><p>O que te protege da concorrência e o que pode dar errado.</p></div><span class="marca-p">Conselho dos 10</span></article></div>
+  <p class="arraste">← arraste para ver os 10 →</p>
+</section>
+
+<section class="secao" style="padding-top: 0; padding-inline: 0">
+  <div class="env"><div class="cabeca"><h2 class="grad-v">Decisões que passaram pelo conselho</h2><p class="lead">Exemplos de sessões, para você ver o tipo de resposta que sai.</p></div></div>
+  <div class="exemplos"><article class="exemplo"><span class="tag-ex">Exemplo de sessão</span><p class="q">"Devo contratar meu primeiro funcionário?"</p><p class="v">7 votos a 3: testar com freelancer por 30 dias antes de contratar.</p></article><article class="exemplo"><span class="tag-ex">Exemplo de sessão</span><p class="q">"Aumento o preço do meu serviço em 40%?"</p><p class="v">6 a 4: aumentar só para clientes novos e medir por 60 dias.</p></article><article class="exemplo meio"><span class="tag-ex">Exemplo de sessão</span><p class="q">"Aceito um sócio que quer 50% do negócio?"</p><p class="v">9 a 1: não nesses termos. Contraproposta com vesting e cláusula de saída.</p></article><article class="exemplo"><span class="tag-ex">Exemplo de sessão</span><p class="q">"Largo o emprego para focar no negócio?"</p><p class="v">8 a 2: só quando o negócio pagar 6 meses do seu custo de vida.</p></article><article class="exemplo"><span class="tag-ex">Exemplo de sessão</span><p class="q">"Invisto R$ 10 mil em tráfego pago agora?"</p><p class="v">6 a 4: começar com R$ 2 mil e só escalar o que der lucro.</p></article></div>
+</section>
+
+<section class="monograma" aria-hidden="true"><div class="icones"><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 22c0-6 3.6-11 8-11s8 5 8 11"/><path d="M14 22h20M15 22c0 9 4 15 9 15s9-6 9-15"/><path d="M19 30c1.5 2 3 3 5 3s3.5-1 5-3M21 26h.01M27 26h.01"/><path d="M24 37v5M18 42h12"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5v38M24 9l-7 8h14z"/><path d="M12 30h24M14 30l-4 10M34 30l4 10"/><circle cx="24" cy="24" r="3"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="18" r="9"/><path d="M12 42c1-8 6-12 12-12s11 4 12 12"/><path d="M15 15c2-5 6-7 9-7s7 2 9 7M18 9l2 3M30 9l-2 3M24 7v3"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 20c4-8 24-8 28 0-4 8-24 8-28 0z"/><circle cx="24" cy="20" r="4"/><path d="M12 32h24M16 38h16"/><path d="M24 8V4M14 11l-3-3M34 11l3-3"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4l4 10H20z"/><path d="M20 14h8v16h-8z"/><path d="M20 22l-6 8v6l6-4M28 22l6 8v6l-6-4"/><path d="M22 34l2 8 2-8"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12"/><rect x="28" y="8" width="12" height="12"/><rect x="8" y="28" width="12" height="12"/><rect x="28" y="28" width="12" height="12"/><path d="M20 14h8M14 20v8M34 20v8M20 34h8"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38l10-10 7 6 13-16"/><path d="M28 18h8v8"/><circle cx="16" cy="28" r="2"/><circle cx="23" cy="34" r="2"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6c8 0 14 6 14 14 0 10-14 22-14 22S10 30 10 20c0-8 6-14 14-14z"/><circle cx="24" cy="20" r="5"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="15" r="7"/><path d="M10 42c1-9 7-14 14-14s13 5 14 14"/><path d="M34 8l2 2 4-4"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40h32M12 40V26M20 40V18M28 40V22M36 40V12"/><path d="M10 20l8-6 8 4 12-10"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 22c0-6 3.6-11 8-11s8 5 8 11"/><path d="M14 22h20M15 22c0 9 4 15 9 15s9-6 9-15"/><path d="M19 30c1.5 2 3 3 5 3s3.5-1 5-3M21 26h.01M27 26h.01"/><path d="M24 37v5M18 42h12"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5v38M24 9l-7 8h14z"/><path d="M12 30h24M14 30l-4 10M34 30l4 10"/><circle cx="24" cy="24" r="3"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="18" r="9"/><path d="M12 42c1-8 6-12 12-12s11 4 12 12"/><path d="M15 15c2-5 6-7 9-7s7 2 9 7M18 9l2 3M30 9l-2 3M24 7v3"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 20c4-8 24-8 28 0-4 8-24 8-28 0z"/><circle cx="24" cy="20" r="4"/><path d="M12 32h24M16 38h16"/><path d="M24 8V4M14 11l-3-3M34 11l3-3"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4l4 10H20z"/><path d="M20 14h8v16h-8z"/><path d="M20 22l-6 8v6l6-4M28 22l6 8v6l-6-4"/><path d="M22 34l2 8 2-8"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12"/><rect x="28" y="8" width="12" height="12"/><rect x="8" y="28" width="12" height="12"/><rect x="28" y="28" width="12" height="12"/><path d="M20 14h8M14 20v8M34 20v8M20 34h8"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38l10-10 7 6 13-16"/><path d="M28 18h8v8"/><circle cx="16" cy="28" r="2"/><circle cx="23" cy="34" r="2"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6c8 0 14 6 14 14 0 10-14 22-14 22S10 30 10 20c0-8 6-14 14-14z"/><circle cx="24" cy="20" r="5"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="15" r="7"/><path d="M10 42c1-9 7-14 14-14s13 5 14 14"/><path d="M34 8l2 2 4-4"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40h32M12 40V26M20 40V18M28 40V22M36 40V12"/><path d="M10 20l8-6 8 4 12-10"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 22c0-6 3.6-11 8-11s8 5 8 11"/><path d="M14 22h20M15 22c0 9 4 15 9 15s9-6 9-15"/><path d="M19 30c1.5 2 3 3 5 3s3.5-1 5-3M21 26h.01M27 26h.01"/><path d="M24 37v5M18 42h12"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5v38M24 9l-7 8h14z"/><path d="M12 30h24M14 30l-4 10M34 30l4 10"/><circle cx="24" cy="24" r="3"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="18" r="9"/><path d="M12 42c1-8 6-12 12-12s11 4 12 12"/><path d="M15 15c2-5 6-7 9-7s7 2 9 7M18 9l2 3M30 9l-2 3M24 7v3"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 20c4-8 24-8 28 0-4 8-24 8-28 0z"/><circle cx="24" cy="20" r="4"/><path d="M12 32h24M16 38h16"/><path d="M24 8V4M14 11l-3-3M34 11l3-3"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4l4 10H20z"/><path d="M20 14h8v16h-8z"/><path d="M20 22l-6 8v6l6-4M28 22l6 8v6l-6-4"/><path d="M22 34l2 8 2-8"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12"/><rect x="28" y="8" width="12" height="12"/><rect x="8" y="28" width="12" height="12"/><rect x="28" y="28" width="12" height="12"/><path d="M20 14h8M14 20v8M34 20v8M20 34h8"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38l10-10 7 6 13-16"/><path d="M28 18h8v8"/><circle cx="16" cy="28" r="2"/><circle cx="23" cy="34" r="2"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6c8 0 14 6 14 14 0 10-14 22-14 22S10 30 10 20c0-8 6-14 14-14z"/><circle cx="24" cy="20" r="5"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="15" r="7"/><path d="M10 42c1-9 7-14 14-14s13 5 14 14"/><path d="M34 8l2 2 4-4"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40h32M12 40V26M20 40V18M28 40V22M36 40V12"/><path d="M10 20l8-6 8 4 12-10"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M16 22c0-6 3.6-11 8-11s8 5 8 11"/><path d="M14 22h20M15 22c0 9 4 15 9 15s9-6 9-15"/><path d="M19 30c1.5 2 3 3 5 3s3.5-1 5-3M21 26h.01M27 26h.01"/><path d="M24 37v5M18 42h12"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5v38M24 9l-7 8h14z"/><path d="M12 30h24M14 30l-4 10M34 30l4 10"/><circle cx="24" cy="24" r="3"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="18" r="9"/><path d="M12 42c1-8 6-12 12-12s11 4 12 12"/><path d="M15 15c2-5 6-7 9-7s7 2 9 7M18 9l2 3M30 9l-2 3M24 7v3"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M10 20c4-8 24-8 28 0-4 8-24 8-28 0z"/><circle cx="24" cy="20" r="4"/><path d="M12 32h24M16 38h16"/><path d="M24 8V4M14 11l-3-3M34 11l3-3"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4l4 10H20z"/><path d="M20 14h8v16h-8z"/><path d="M20 22l-6 8v6l6-4M28 22l6 8v6l-6-4"/><path d="M22 34l2 8 2-8"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12"/><rect x="28" y="8" width="12" height="12"/><rect x="8" y="28" width="12" height="12"/><rect x="28" y="28" width="12" height="12"/><path d="M20 14h8M14 20v8M34 20v8M20 34h8"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 38l10-10 7 6 13-16"/><path d="M28 18h8v8"/><circle cx="16" cy="28" r="2"/><circle cx="23" cy="34" r="2"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6c8 0 14 6 14 14 0 10-14 22-14 22S10 30 10 20c0-8 6-14 14-14z"/><circle cx="24" cy="20" r="5"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="15" r="7"/><path d="M10 42c1-9 7-14 14-14s13 5 14 14"/><path d="M34 8l2 2 4-4"/></svg></span><span><svg viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40h32M12 40V26M20 40V18M28 40V22M36 40V12"/><path d="M10 20l8-6 8 4 12-10"/></svg></span></div><b>C10</b></section>
+
+<section class="secao">
+  <div class="grade-bg"></div>
+  <div class="env bonus">
+    <div><span class="selo-v">★ Bônus de lançamento</span><h2 style="margin-top: 16px"><span class="grad">Entrando hoje,</span> <span style="color: #fff">você leva também:</span></h2><p class="lead">Perguntas prontas para as decisões que todo dono de negócio enfrenta, para usar com o conselho no primeiro dia.</p></div>
+    <div class="lista-b mira branca"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span>
+      <span class="etq">Bônus</span><h3>50 perguntas de decisão</h3>
+      <ul><li>Preço: quando subir, quanto e para quem</li><li>Equipe: contratar, terceirizar ou demitir</li><li>Sócios: entrada, divisão e saída</li><li>Dinheiro: investir, guardar ou cortar</li><li>Produto: lançar, pausar ou matar</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="secao" id="preco" style="padding-top: 0">
+  <span class="palavra-bg" style="bottom: 0">Conselho</span>
+  <div class="env preco-wrap">
+    <span class="etq">Acesso imediato</span>
+    <div class="cartao-preco mira"><span class="c c1"></span><span class="c c2"></span><span class="c c3"></span><span class="c c4"></span>
+      <span class="de">Conselho dos 10</span>
+      <span class="valor grad-v">R$47</span>
+      <span class="pag">pagamento único · sem mensalidade</span>
+      <ul><li>Skill com os 10 conselheiros</li><li>Sessões com debate, advogado do diabo e votação</li><li>Ata da decisão salva em cada sessão</li><li>Vídeo de instalação para Windows e Mac</li><li>Bônus: 50 perguntas de decisão</li></ul>
+      <a class="btn prim largo" href="#preco" data-checkout="skill">Convocar o conselho</a>
+      <span class="nota">Precisa do Claude Pro (pago) e de um computador. 7 dias de garantia.</span>
+    </div>
+  </div>
+</section>
+
+<section class="secao" style="padding-top: 0">
+  <div class="env faq">
+    <div style="display: grid; gap: 16px; align-content: start"><span class="etq">Dúvidas</span><h2 class="grad-v">Perguntas frequentes</h2></div>
+    <div class="lista">
+      <details><summary>O que é uma skill?</summary><p>É um pacote de instruções que você instala no seu Claude. Depois disso, é só chamar o conselho numa conversa.</p></details>
+      <details><summary>Preciso pagar o Claude?</summary><p>Sim. A skill roda no Claude Pro ou superior, no computador (Windows ou Mac).</p></details>
+      <details><summary>Os conselheiros são as pessoas de verdade?</summary><p>Não. São personagens inspirados em formas de pensar: quatro pensadores históricos e seis arquétipos. Nenhuma pessoa real participa, representa ou endossa o produto.</p></details>
+      <details><summary>Serve para qualquer negócio?</summary><p>Serve para qualquer decisão de negócio ou carreira: preço, equipe, sócios, investimento, produto.</p></details>
+      <details><summary>O conselho decide por mim?</summary><p>Não. Ele te dá dez pontos de vista, testa a ideia mais forte e registra tudo. A decisão final é sua.</p></details>
+      <details><summary>O pagamento é único?</summary><p>Sim. Você paga uma vez, sem mensalidade, e tem 7 dias de garantia.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="env">
+    <p>Os conselheiros são personagens inspirados em formas de pensar e não representam, nem são endossados por, nenhuma pessoa real. Claude é marca da Anthropic; esta skill não é um produto oficial da Anthropic. O conselho não substitui orientação jurídica, contábil ou financeira profissional.</p>
+    <p>CNPJ 61.451.359/0001-70 · <a href="../politica.html">Políticas de privacidade</a><a href="../termos.html">Termos de uso</a></p>
+  </div>
+</footer>
+
+<div class="barra" id="barra-compra" aria-hidden="true">
+  <div class="p">Conselho dos 10<b>R$ 47</b></div>
+  <a class="btn prim" href="#preco" data-checkout="skill" tabindex="-1">Convocar o conselho</a>
+</div>
+
+<script>
+  // ===== CONFIG =====
+  const CONFIG = {
+    checkout: { skill: "" },   // link da Kiwify do Conselho dos 10 (R$ 47)
+    whatsapp: "5511968155528",
+    pixel: "1106806325550548",
+  };
+  const RASTRO = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id', 'fbclid', 'src', 'sck'];
+  let rastro = {};
+  const daUrl = new URLSearchParams(location.search);
+  RASTRO.forEach(k => { if (daUrl.get(k)) rastro[k] = daUrl.get(k); });
+  try {
+    if (Object.keys(rastro).length) localStorage.setItem('fm_rastro_conselho', JSON.stringify({t: Date.now(), p: rastro}));
+    else { const g = JSON.parse(localStorage.getItem('fm_rastro_conselho') || 'null'); if (g && Date.now() - g.t < 7 * 864e5) rastro = g.p; }
+  } catch (e) {}
+  const ref = [rastro.utm_campaign, rastro.utm_content].filter(Boolean).join(" / ");
+  const link = url => { const u = new URL(url); Object.entries(rastro).forEach(([k, v]) => u.searchParams.set(k, v)); return u.toString(); };
+  document.querySelectorAll('[data-checkout]').forEach(a => {
+    const url = CONFIG.checkout[a.dataset.checkout];
+    if (url) a.href = link(url);
+    else { a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Oi! Quero o Conselho dos 10 (R$ 47)." + (ref ? "\n\n(anúncio: " + ref + ")" : "")); a.target = "_blank"; a.rel = "noopener"; }
+  });
+  if (CONFIG.pixel) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', CONFIG.pixel); fbq('track', 'PageView');
+    document.querySelectorAll('[data-checkout]').forEach(a => a.addEventListener('click', () => {
+      const d = {content_name: 'Conselho dos 10', value: 47, currency: 'BRL'};
+      if (CONFIG.checkout[a.dataset.checkout]) fbq('trackCustom', 'CliqueComprarConselho', d); else fbq('track', 'Contact', d);
+    }));
+  }
+  // carrosséis começam no cartão do meio
+  document.querySelectorAll('.trilho, .exemplos').forEach(t => { if (t.scrollWidth > t.clientWidth) t.scrollLeft = (t.scrollWidth - t.clientWidth) / 2; });
+  // barra fixa no celular
+  (() => {
+    const barra = document.getElementById('barra-compra'), topo = document.querySelector('.heroi .acoes'), preco = document.getElementById('preco');
+    if (!('IntersectionObserver' in window)) return;
+    let passou = false, noPreco = false;
+    const at = () => { const on = passou && !noPreco; barra.classList.toggle('visivel', on); barra.setAttribute('aria-hidden', on ? 'false' : 'true'); barra.querySelector('a').tabIndex = on ? 0 : -1; };
+    new IntersectionObserver(([e]) => { passou = !e.isIntersecting && e.boundingClientRect.top < 0; at(); }).observe(topo);
+    new IntersectionObserver(([e]) => { noPreco = e.isIntersecting; at(); }).observe(preco);
+  })();
+</script>
+</body>
+</html>
