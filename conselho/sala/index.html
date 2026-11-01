@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>A Sala · Conselho dos 10</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+/* A sala do conselho vista de cima: piso de pedra, cortinas no fundo, quatro tochas, mesa redonda com vela no centro e os
+   10 conselheiros em volta. O visitante anda até a cadeira vazia, senta e convoca a mesa. Tudo em proporção, então a sala
+   escala do celular ao computador. Demonstração com respostas roteirizadas. */
+:root {
+  --preto: #050403; --painel: #0D0A07; --linha: rgba(242,235,221,.09); --linha-2: rgba(242,235,221,.16);
+  --texto: #F2EBDD; --cinza: #A39A8B; --apagado: #6E665A; --ambar: #E6B26A; --ambar-d: #B9772E; --chama: rgba(255,170,80,.55);
+  --sim: #9BD48A; --nao: #E8796B;
+  --f: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif; --serif: "Instrument Serif", Georgia, serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body { background: var(--preto); color: var(--texto); font-family: var(--f); font-size: 15px; line-height: 1.5; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+button { font: inherit; color: inherit; cursor: pointer; }
+.app { display: grid; grid-template-columns: minmax(0, 1fr); min-height: 100%; }
+.topo { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px max(16px, env(safe-area-inset-right, 0px)) 14px max(16px, env(safe-area-inset-left, 0px)); border-bottom: 1px solid var(--linha); }
+.mono { font-family: var(--serif); font-style: italic; font-size: 26px; color: #FFE7C2; text-shadow: 0 0 16px rgba(255,190,110,.6); text-decoration: none; }
+.mono small { font-family: var(--f); font-style: normal; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--cinza); margin-left: 10px; text-shadow: none; }
+.demo { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--ambar); border: 1px solid rgba(230,178,106,.35); padding: 5px 10px; border-radius: 999px; }
+
+/* sala */
+.palco { min-width: 0; padding: 16px max(16px, env(safe-area-inset-right, 0px)) 16px max(16px, env(safe-area-inset-left, 0px)); display: grid; place-items: center; }
+.sala { position: relative; width: min(100%, 980px); aspect-ratio: 10 / 7.4; border-radius: 18px; overflow: hidden; border: 1px solid var(--linha-2); cursor: pointer; isolation: isolate;
+  background:
+    radial-gradient(60% 55% at 50% 50%, rgba(120,70,25,.35), transparent 75%),
+    repeating-linear-gradient(0deg, rgba(0,0,0,.35) 0 2px, transparent 2px 9.5%),
+    repeating-linear-gradient(90deg, rgba(0,0,0,.35) 0 2px, transparent 2px 7%),
+    linear-gradient(180deg, #1A140E, #0E0B08); box-shadow: 0 40px 120px -40px rgba(230,140,50,.35); }
+.sala::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 8; background: radial-gradient(75% 70% at 50% 52%, transparent 45%, rgba(0,0,0,.75)); }
+.cortina { position: absolute; left: 0; right: 0; top: 0; height: 13%; z-index: 1; background: repeating-linear-gradient(90deg, #2A0E0B 0 1.6%, #451812 1.6% 3%, #2A0E0B 3% 4%); box-shadow: 0 12px 30px rgba(0,0,0,.8); }
+.cortina::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.55), transparent 50%, rgba(0,0,0,.4)); }
+.porta-s { position: absolute; left: 44%; width: 12%; bottom: 0; height: 2.4%; background: #3A2A18; border-top: 1px solid rgba(230,178,106,.4); z-index: 1; }
+.tocha { position: absolute; width: 3.4%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, #FFE9B8 0 20%, #FF9A3C 40%, #A33C0A 65%, transparent 70%); z-index: 3; filter: drop-shadow(0 0 8px #FF9A3C); }
+.luz-t { position: absolute; width: 40%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(255,160,70,.32), rgba(255,140,50,.08) 45%, transparent 70%); translate: -50% -50%; z-index: 2; pointer-events: none; mix-blend-mode: screen; }
+@media (prefers-reduced-motion: no-preference) { .tocha, .luz-t, .vela { animation: tremula 2.2s ease-in-out infinite alternate; } .luz-t:nth-of-type(2n) { animation-duration: 1.7s; } }
+@keyframes tremula { 0% { opacity: .85; transform: scale(.97); } 40% { opacity: 1; transform: scale(1.03); } 70% { opacity: .9; } 100% { opacity: 1; transform: scale(1); } }
+.mesa { position: absolute; left: 50%; top: 54%; width: 36%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; z-index: 4;
+  background: radial-gradient(circle at 45% 40%, #5A3A20, #3A2414 55%, #24160C 75%); box-shadow: 0 0 0 6px #1C1209, 0 0 0 7px rgba(230,178,106,.25), 0 30px 60px rgba(0,0,0,.8), inset 0 0 40px rgba(0,0,0,.6); }
+.mesa::before { content: ""; position: absolute; inset: 12%; border-radius: 50%; border: 1px solid rgba(230,178,106,.18); }
+.vela { position: absolute; left: 50%; top: 50%; width: 10%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; background: radial-gradient(circle, #FFF4D6 0 22%, #FFB357 40%, transparent 70%); filter: drop-shadow(0 0 16px #FFB357); }
+.luz-m { position: absolute; left: 50%; top: 50%; width: 170%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; background: radial-gradient(circle, rgba(255,180,90,.22), transparent 60%); pointer-events: none; }
+.placar { position: absolute; left: 50%; top: 68%; translate: -50% 0; font-family: var(--serif); font-style: italic; font-size: clamp(14px, 2.4vw, 26px); color: #FFE7C2; text-shadow: 0 0 12px #000; white-space: nowrap; opacity: 0; transition: opacity .4s; }
+.placar.on { opacity: 1; }
+.titulo-mesa { position: absolute; left: 50%; top: 24%; translate: -50% 0; width: 70%; text-align: center; font-size: clamp(9px, 1.15vw, 13px); line-height: 1.35; color: var(--texto); opacity: 0; transition: opacity .4s; text-shadow: 0 1px 6px #000; }
+.titulo-mesa.on { opacity: .95; }
+
+.cons { position: absolute; width: 8.6%; aspect-ratio: 1; translate: -50% -50%; z-index: 6; border: 0; padding: 0; background: none; }
+.cons img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 2px solid #3A2A18; box-shadow: 0 6px 16px rgba(0,0,0,.8); filter: brightness(.82) saturate(.9); transition: filter .3s, border-color .3s, box-shadow .3s, transform .3s; }
+.cons:hover img, .cons:focus-visible img { filter: brightness(1.05); border-color: var(--ambar); }
+.cons:focus-visible { outline: none; }
+.cons.fala img { filter: brightness(1.15) saturate(1.05); border-color: #FFD58F; box-shadow: 0 0 0 3px rgba(255,200,120,.25), 0 0 28px 6px var(--chama); transform: scale(1.12); }
+.cons .nome { position: absolute; left: 50%; top: 103%; translate: -50% 0; white-space: nowrap; font-size: clamp(8px, 1vw, 11px); color: var(--cinza); background: rgba(0,0,0,.6); padding: 1px 6px; border-radius: 4px; pointer-events: none; }
+.cons.fala .nome { color: #FFE7C2; }
+.voto { position: absolute; right: -8%; top: -8%; width: 38%; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; font-size: clamp(9px, 1.2vw, 13px); font-weight: 700; border: 2px solid #0D0A07; opacity: 0; transform: scale(.4); transition: opacity .25s, transform .25s; }
+.voto.on { opacity: 1; transform: scale(1); }
+.voto.s { background: var(--sim); color: #10200A; }
+.voto.n { background: var(--nao); color: #2A0905; }
+.balao { position: absolute; z-index: 9; left: 50%; top: 40%; translate: -50% -50%; width: 30%; text-align: center; padding: 8px 11px; border-radius: 10px; background: rgba(14,10,6,.94); border: 1px solid rgba(230,178,106,.45); font-size: clamp(9px, 1.15vw, 13px); line-height: 1.4; box-shadow: 0 10px 30px rgba(0,0,0,.7); pointer-events: none; opacity: 0; transition: opacity .25s; }
+.balao.on { opacity: 1; }
+.balao b { display: block; color: var(--ambar); font-weight: 600; margin-bottom: 2px; }
+
+.cadeira { position: absolute; width: 6.5%; aspect-ratio: 1; translate: -50% -50%; border-radius: 50%; border: 2px dashed rgba(230,178,106,.55); z-index: 5; }
+.cadeira.ocupada { border-color: transparent; }
+@media (prefers-reduced-motion: no-preference) { .cadeira:not(.ocupada) { animation: pulsa 1.6s ease-in-out infinite; } }
+@keyframes pulsa { 50% { box-shadow: 0 0 0 6px rgba(230,178,106,.12); } }
+.voce { position: absolute; width: 6.6%; aspect-ratio: 1; translate: -50% -50%; z-index: 7; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 40% 35%, #F0C47E, #9A5E22); border: 2px solid #FFE7C2; box-shadow: 0 0 22px rgba(255,190,110,.6), 0 6px 14px rgba(0,0,0,.7); font-size: clamp(7px, .95vw, 11px); font-weight: 700; letter-spacing: .06em; color: #1A0F05; transition: left .7s cubic-bezier(.4,.1,.3,1), top .7s cubic-bezier(.4,.1,.3,1); }
+.dica-s { position: absolute; left: 50%; bottom: 4.5%; translate: -50% 0; z-index: 9; font-size: clamp(10px, 1.3vw, 13px); color: var(--texto); background: rgba(0,0,0,.65); border: 1px solid var(--linha-2); padding: 6px 12px; border-radius: 999px; white-space: nowrap; pointer-events: none; transition: opacity .3s; }
+
+/* painel */
+.painel { min-width: 0; overflow: hidden; border-top: 1px solid var(--linha); background: var(--painel); display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr) auto; min-height: 420px; }
+.painel header { padding: 16px 18px; border-bottom: 1px solid var(--linha); display: grid; gap: 4px; }
+.painel header h2 { margin: 0; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 26px; }
+.painel header p { margin: 0; font-size: 13px; color: var(--cinza); }
+.painel > * { min-width: 0; }
+.log { grid-template-columns: minmax(0, 1fr); overflow-y: auto; overflow-x: hidden; padding: 16px 18px; display: grid; gap: 12px; align-content: start; max-height: 52vh; }
+.msg { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: 10px; align-items: start; }
+.msg img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; border: 1px solid var(--linha-2); }
+.msg b { font-size: 13px; color: var(--ambar); font-weight: 600; }
+.msg p { margin: 1px 0 0; font-size: 14px; color: #DCD3C3; }
+.msg.voce-m { grid-template-columns: minmax(0, 1fr); justify-items: end; }
+.msg.voce-m p { background: rgba(230,178,106,.12); border: 1px solid rgba(230,178,106,.3); padding: 8px 12px; border-radius: 12px 12px 2px 12px; color: var(--texto); }
+.msg.sistema { grid-template-columns: minmax(0, 1fr); text-align: center; }
+.msg.sistema p { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--apagado); }
+.ata { border: 1px solid rgba(230,178,106,.4); background: linear-gradient(180deg, rgba(40,26,12,.8), rgba(14,10,6,.9)); border-radius: 12px; padding: 16px; display: grid; gap: 8px; }
+.ata h3 { margin: 0; font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 22px; color: #FFE7C2; }
+.ata dl { margin: 0; display: grid; gap: 6px; font-size: 13.5px; }
+.ata dt { font-size: 10px; letter-spacing: .16em; text-transform: uppercase; color: var(--ambar); }
+.ata dd { margin: 0 0 4px; color: #DCD3C3; }
+.acoes-p { border-top: 1px solid var(--linha); padding: 14px 18px calc(14px + env(safe-area-inset-bottom, 0px)); display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1px solid var(--linha-2); background: rgba(255,255,255,.03); border-radius: 999px; padding: 7px 12px; font-size: 13px; text-align: left; }
+.chip:hover { border-color: var(--ambar); }
+.chip[aria-pressed="true"] { border-color: var(--ambar); background: rgba(230,178,106,.14); color: #FFE7C2; }
+.campo { display: flex; gap: 8px; }
+.campo input { flex: 1; min-width: 0; background: rgba(255,255,255,.04); border: 1px solid var(--linha-2); border-radius: 10px; padding: 11px 12px; color: var(--apagado); font: inherit; font-size: 14px; }
+.btn { border: 0; border-radius: 10px; padding: 12px 16px; font-weight: 600; font-size: 14px; color: #120C05; background: linear-gradient(180deg, #F0C47E, #B9772E); box-shadow: 0 8px 26px -8px var(--chama); white-space: nowrap; }
+.btn:disabled { opacity: .45; cursor: default; box-shadow: none; }
+.btn.sec { color: var(--texto); background: transparent; border: 1px solid var(--linha-2); box-shadow: none; }
+.nota { font-size: 12px; color: var(--apagado); margin: 0; }
+:focus-visible { outline: 2px solid var(--ambar); outline-offset: 2px; }
+@media (min-width: 1100px) {
+  .app { grid-template-columns: minmax(0, 1fr) minmax(0, 400px); grid-template-rows: auto minmax(0, 1fr); height: 100vh; }
+  .topo { grid-column: 1 / -1; }
+  .palco { padding: 24px; }
+  .painel { border-top: 0; border-left: 1px solid var(--linha); min-height: 0; }
+  .log { max-height: none; }
+}
+@media (prefers-reduced-motion: reduce) { .voce { transition: none; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topo"><a class="mono" href="../">C10<small>A sala</small></a><span class="demo">Demonstração</span></header>
+  <main class="palco">
+    <div class="sala" id="sala" role="application" aria-label="Sala do conselho. Toque no chão para andar e na cadeira vazia para sentar.">
+      <div class="cortina"></div><div class="porta-s"></div>
+      <div class="mesa" id="mesa"><div class="luz-m"></div><div class="vela"></div><div class="titulo-mesa" id="titulo-mesa"></div><div class="placar" id="placar"></div></div>
+      <div class="dica-s" id="dica">Toque no chão para andar · sente na cadeira vazia</div>
+    </div>
+  </main>
+  <aside class="painel" aria-label="Conversa com o conselho">
+    <header><h2 id="p-titulo">A sala do conselho</h2><p id="p-sub">Entre e sente-se na cadeira vazia para começar.</p></header>
+    <div class="log" id="log" aria-live="polite"></div>
+    <div class="acoes-p">
+      <div class="chips" id="chips" role="group" aria-label="Perguntas de exemplo"></div>
+      <div class="campo"><input id="campo" type="text" disabled placeholder="Na versão completa, você escreve sua pergunta aqui"><button class="btn" id="convocar" disabled>Convocar a mesa</button></div>
+      <p class="nota">Demonstração com respostas de exemplo. Os conselheiros são personagens inspirados em formas de pensar.</p>
+    </div>
+  </aside>
+</div>
+
+<script>
+(() => {
+  const A = "../../assets/conselho/av/";
+  const C = [
+    ["socrates", "Sócrates", "O questionador"], ["suntzu", "Sun Tzu", "O estrategista"], ["marco", "Marco Aurélio", "O estoico"],
+    ["maquiavel", "Maquiavel", "O político"], ["engenheiro", "O Engenheiro", "Primeiros princípios"], ["arquiteto", "O Arquiteto", "Plataforma e escala"],
+    ["hacker", "O Hacker de Crescimento", "Produto e testes"], ["designer", "O Designer", "Foco e marca"], ["cliente", "O Obcecado pelo Cliente", "Longo prazo"],
+    ["investidores", "Os Investidores", "Risco e dinheiro"],
+  ];
+  // [fala de cada conselheiro na ordem de C, voto (1 = a favor da proposta vencedora)]
+  const SESSOES = [
+    { q: "Contrato alguém agora para dar conta da demanda?", proposta: "Testar com freelancer por 30 dias",
+      falas: [
+        ["O que você chama de demanda? Clientes que pagam bem ou pedidos que só ocupam seu tempo?", 1],
+        ["Contratar é mostrar suas cartas. Primeiro entenda se a demanda dura ou é uma onda.", 1],
+        ["Não decida com medo de perder clientes. Decida com o que está sob seu controle: o caixa.", 1],
+        ["Quem você contratar vai conhecer seus clientes. Garanta que o contrato proteja isso.", 0],
+        ["Antes de contratar, corte as etapas que nem precisavam existir. Talvez sobre tempo.", 1],
+        ["Monte o processo escrito primeiro. Sem ele, contratar só multiplica a bagunça.", 1],
+        ["Teste: um freelancer por 30 dias. Se dobrar a entrega, você contrata com dados.", 1],
+        ["Ou corte metade dos serviços e fique só com o que é excelente. Talvez não precise de ninguém.", 0],
+        ["O cliente sente atraso antes de sentir qualquer outra coisa. Não deixe a fila crescer.", 0],
+        ["Contratar prende um custo fixo todo mês. Quantos meses de caixa sobram se as vendas caírem 30%?", 1],
+      ],
+      advogado: [9, "E se a demanda cair no mês 2? O freelancer não resolve isso, mas pelo menos não deixa um custo fixo para trás."],
+      ata: { decisao: "Testar com um freelancer por 30 dias antes de contratar.", riscos: "Perder qualidade no período de teste; vazamento de clientes sem contrato.", passo: "Escrever o processo de entrega e contratar o freelancer com contrato de confidencialidade." } },
+    { q: "Aumento o preço do meu serviço em 40%?", proposta: "Aumentar só para clientes novos",
+      falas: [
+        ["Por que 40% e não 20% ou 60%? De onde veio esse número?", 1],
+        ["Veja o preço dos concorrentes. Se você é o melhor, ser o mais barato é um erro de posição.", 1],
+        ["Os clientes atuais confiaram em você. Respeite o acordo que fizeram.", 1],
+        ["Preço alto filtra cliente ruim. Mas anuncie de um jeito que pareça escassez, não ganância.", 0],
+        ["Quanto custa entregar, de verdade? Recalcule do zero antes de decidir o preço.", 1],
+        ["Crie um plano mais caro em vez de subir o atual. Quem quiser mais paga mais.", 0],
+        ["Teste o preço novo só com quem chega. Em 60 dias você tem a resposta.", 1],
+        ["Preço comunica qualidade. Se o serviço é premium, o preço precisa dizer isso.", 0],
+        ["O cliente atual vai comparar. Dê a ele um motivo para ficar, não um susto.", 1],
+        ["Se 30% dos clientes saírem, você ainda lucra mais? Faça essa conta antes.", 0],
+      ],
+      advogado: [0, "E se o preço novo só funcionar porque é novidade? Meça por 60 dias, não por uma semana."],
+      ata: { decisao: "Aumentar 40% só para clientes novos e medir por 60 dias.", riscos: "Clientes antigos descobrirem e cobrarem o mesmo; queda na conversão de novos.", passo: "Atualizar a proposta comercial e acompanhar a taxa de fechamento semana a semana." } },
+    { q: "Aceito um sócio que quer 50% do negócio?", proposta: "Não nesses termos: fazer uma contraproposta",
+      falas: [
+        ["O que esse sócio traz que você não consegue comprar? Se for só dinheiro, por que metade?", 1],
+        ["Quem tem 50% tem poder de travar tudo. Nunca entregue o empate.", 1],
+        ["Escolha o sócio pelo caráter, não pela pressa. Sociedade é casamento sem divórcio fácil.", 1],
+        ["Descubra o que ele quer de verdade. Quem pede metade raramente quer só lucro.", 1],
+        ["Pense do zero: quanto vale o que ele entrega? Pague isso em participação, não mais.", 1],
+        ["Defina papéis e números antes. Sociedade sem regra escrita vira briga.", 1],
+        ["Teste trabalhar junto 3 meses num projeto, antes de assinar qualquer coisa.", 1],
+        ["Pergunte se ele ama o produto tanto quanto você. Senão, diga não.", 1],
+        ["Se ele trouxer clientes que você não alcança, eu aceitaria. O cliente vale mais que o percentual.", 0],
+        ["Peça vesting: ele ganha a participação aos poucos, e tem cláusula de saída.", 1],
+      ],
+      advogado: [3, "E se ele recusar e for montar um concorrente? Então ele nunca foi sócio. Foi um negociador."],
+      ata: { decisao: "Não aceitar 50%. Contraproposta com vesting e cláusula de saída.", riscos: "Perder o sócio e o que ele traria; conflito por decisão travada.", passo: "Calcular quanto vale a contribuição dele e levar uma proposta escrita com um advogado." } },
+  ];
+
+  const sala = document.getElementById("sala"), log = document.getElementById("log"), chips = document.getElementById("chips");
+  const btn = document.getElementById("convocar"), dica = document.getElementById("dica"), placar = document.getElementById("placar"), tmesa = document.getElementById("titulo-mesa");
+  const CX = 50, CY = 54, R = 30, RY = 30 * 10 / 7.4; // centro da mesa e raio dos assentos em % da sala
+  const N = C.length + 1, pos = [];
+  for (let i = 0; i < N; i++) { const ang = Math.PI / 2 + (2 * Math.PI * i) / N; pos.push([CX + Math.cos(ang) * R * 0.98, CY + Math.sin(ang) * RY * 0.98]); }
+  const seat = pos[0]; // assento do visitante: embaixo, perto da porta
+  const el = (t, a = {}, ...k) => { const e = document.createElement(t); for (const [x, v] of Object.entries(a)) { if (x === "text") e.textContent = v; else if (x.startsWith("on")) e.addEventListener(x.slice(2), v); else e.setAttribute(x, v); } e.append(...k); return e; };
+  const place = (e, x, y) => { e.style.left = x + "%"; e.style.top = y + "%"; };
+
+  // tochas
+  [[7, 18], [93, 18], [7, 90], [93, 90]].forEach(([x, y]) => { const t = el("div", { class: "tocha" }), l = el("div", { class: "luz-t" }); place(t, x - 1.7, y - 2.3); place(l, x, y); sala.append(l, t); });
+  const cadeira = el("div", { class: "cadeira", "aria-hidden": "true" }); place(cadeira, ...seat); sala.append(cadeira);
+  const tokens = C.map(([k, nome, papel], i) => {
+    const b = el("button", { class: "cons", type: "button", "aria-label": nome + ", " + papel }, el("img", { src: A + k + ".jpg", alt: "" }), el("span", { class: "nome", text: nome.replace(/^O[s]? /, "") }), el("span", { class: "voto" }));
+    place(b, ...pos[i + 1]);
+    b.addEventListener("click", ev => { ev.stopPropagation(); falarSo(i); });
+    sala.append(b); return b;
+  });
+  const voce = el("div", { class: "voce", "aria-hidden": "true", text: "VOCÊ" }); let P = [50, 95]; place(voce, ...P); sala.append(voce);
+  const balao = el("div", { class: "balao", role: "presentation" }); sala.append(balao);
+
+  // andar: toque no chão; a mesa é um obstáculo, então o destino fica fora dela
+  let sentado = false, ocupado = false, atual = 0;
+  function andarPara(x, y) {
+    if (sentado || ocupado) return;
+    const dx = x - CX, dy = (y - CY) * 7.4 / 10, d = Math.hypot(dx, dy), raio = 21;
+    if (d < raio) { const k = raio / (d || 1); x = CX + dx * k; y = CY + dy * k * 10 / 7.4; }
+    x = Math.min(95, Math.max(5, x)); y = Math.min(96, Math.max(17, y));
+    P = [x, y]; place(voce, x, y);
+    if (Math.hypot(x - seat[0], (y - seat[1]) * 7.4 / 10) < 7) setTimeout(sentar, 650);
+  }
+  sala.addEventListener("click", ev => {
+    const r = sala.getBoundingClientRect();
+    andarPara((ev.clientX - r.left) / r.width * 100, (ev.clientY - r.top) / r.height * 100);
+  });
+  document.addEventListener("keydown", ev => {
+    const m = { ArrowUp: [0, -4], ArrowDown: [0, 4], ArrowLeft: [-3, 0], ArrowRight: [3, 0] }[ev.key];
+    if (!m || sentado || document.activeElement.tagName === "INPUT") return;
+    ev.preventDefault(); andarPara(P[0] + m[0], P[1] + m[1]);
+  });
+  function sentar() {
+    if (sentado) return; sentado = true; place(voce, ...seat); cadeira.classList.add("ocupada"); dica.style.opacity = 0;
+    document.getElementById("p-titulo").textContent = "Você está à mesa";
+    document.getElementById("p-sub").textContent = "Escolha uma pergunta e convoque o conselho. Ou toque num conselheiro para ouvir só ele.";
+    msg("sistema", null, "O conselho está reunido"); btn.disabled = false; escolher(0);
+  }
+  // perguntas de exemplo
+  SESSOES.forEach((s, i) => chips.append(el("button", { class: "chip", type: "button", "aria-pressed": "false", text: s.q, onclick: () => { if (!sentado) sentar(); escolher(i); } })));
+  function escolher(i) {
+    if (ocupado) return; atual = i;
+    [...chips.children].forEach((c, k) => c.setAttribute("aria-pressed", String(k === i)));
+    limparMesa(); tmesa.textContent = SESSOES[i].q; tmesa.classList.add("on");
+  }
+  function limparMesa() { tokens.forEach(t => { t.classList.remove("fala"); const v = t.querySelector(".voto"); v.className = "voto"; v.textContent = ""; }); placar.classList.remove("on"); balao.classList.remove("on"); }
+
+  function msg(tipo, i, texto) {
+    let m;
+    if (tipo === "sistema") m = el("div", { class: "msg sistema" }, el("p", { text: texto }));
+    else if (tipo === "voce") m = el("div", { class: "msg voce-m" }, el("p", { text: texto }));
+    else m = el("div", { class: "msg" }, el("img", { src: A + C[i][0] + ".jpg", alt: "" }), el("div", {}, el("b", { text: C[i][1] }), el("p", { text: texto })));
+    log.append(m); log.scrollTop = log.scrollHeight; return m;
+  }
+  function mostrarBalao(i, texto) {
+    balao.replaceChildren(el("b", { text: C[i][1] }), texto);
+    tmesa.classList.remove("on"); balao.classList.add("on");
+  }
+  const espera = ms => new Promise(r => setTimeout(r, matchMedia("(prefers-reduced-motion: reduce)").matches ? Math.min(ms, 400) : ms));
+  async function fala(i, texto, ms = 2300) {
+    tokens.forEach(t => t.classList.remove("fala")); tokens[i].classList.add("fala"); mostrarBalao(i, texto); msg("cons", i, texto); await espera(ms);
+  }
+  async function falarSo(i) {
+    if (!sentado) { andarPara(...seat); return; }
+    if (ocupado) return; ocupado = true; limparMesa();
+    await fala(i, SESSOES[atual].falas[i][0], 2600); tokens[i].classList.remove("fala"); balao.classList.remove("on"); tmesa.classList.add("on"); ocupado = false;
+  }
+  btn.addEventListener("click", async () => {
+    if (ocupado || !sentado) return; ocupado = true; btn.disabled = true; [...chips.children].forEach(c => c.disabled = true);
+    const S = SESSOES[atual]; limparMesa(); tmesa.classList.add("on");
+    msg("voce", null, S.q); msg("sistema", null, "Ato 1 · As opiniões");
+    for (let i = 0; i < C.length; i++) await fala(i, S.falas[i][0]);
+    msg("sistema", null, "Ato 2 · O advogado do diabo"); await fala(S.advogado[0], S.advogado[1], 2800);
+    tokens.forEach(t => t.classList.remove("fala")); balao.classList.remove("on"); tmesa.classList.add("on");
+    msg("sistema", null, "Ato 3 · Votação: " + S.proposta);
+    let sim = 0;
+    for (let i = 0; i < C.length; i++) { const v = tokens[i].querySelector(".voto"), s = S.falas[i][1]; sim += s; v.textContent = s ? "✓" : "✕"; v.className = "voto on " + (s ? "s" : "n"); await espera(260); }
+    tmesa.classList.remove("on"); placar.textContent = sim + " a " + (C.length - sim); placar.classList.add("on");
+    await espera(700); msg("sistema", null, "Ato 4 · A ata");
+    const ata = el("div", { class: "ata" }, el("h3", { text: "Ata da sessão" }), el("dl", {},
+      el("dt", { text: "Pergunta" }), el("dd", { text: S.q }), el("dt", { text: "Decisão (" + sim + " a " + (C.length - sim) + ")" }), el("dd", { text: S.ata.decisao }),
+      el("dt", { text: "Riscos" }), el("dd", { text: S.ata.riscos }), el("dt", { text: "Próximo passo" }), el("dd", { text: S.ata.passo })));
+    log.append(ata); log.scrollTop = log.scrollHeight;
+    ocupado = false; btn.disabled = false; btn.textContent = "Convocar de novo"; [...chips.children].forEach(c => c.disabled = false);
+  });
+  msg("sistema", null, "Toque no chão para andar até a mesa");
+})();
+</script>
+</body>
+</html>
