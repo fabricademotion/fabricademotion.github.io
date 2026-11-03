@@ -238,8 +238,8 @@ body { padding-bottom: 84px; }
 .requisitos { width: 100%; text-align: left; background: rgba(8,7,13,.45); border: 1px solid rgba(255,255,255,.16); border-radius: 12px; padding: 16px 16px 6px; }
 .requisitos h4 { margin: 0 0 4px; font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
 .requisitos .checks li { font-size: 13.5px; }
-.aviso-topo { font-size: 13px; color: var(--muted); max-width: 46ch; text-align: center; }
-.aviso-topo b { color: var(--ink); font-weight: 600; }
+.aviso-topo { font-size: 14px; line-height: 1.45; color: #FEF3C7; max-width: 46ch; text-align: center; background: rgba(250,204,21,.10); border: 1.5px solid rgba(250,204,21,.6); border-radius: 12px; padding: 10px 14px; }
+.aviso-topo b { color: #FDE047; font-weight: 700; }
 .plano .cta { width: 100%; }
 
 /* 7. garantia */
@@ -315,7 +315,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
     <div class="compra">
       <a class="cta" href="#planos" data-link="checkout">Quero a skill agora</a>
       <span class="seguro"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Compra segura</span>
-      <span class="aviso-topo">Precisa de <b>computador</b> e do <b>Claude Pro</b> (pago à parte). Não é um pack de CapCut.</span>
+      <span class="aviso-topo">Precisa de <b>computador</b> e do <b>Claude Pro ou Max</b> oficial (pago à parte). <b>Não funciona no plano gratuito.</b> Não é um pack de CapCut.</span>
     </div>
   </div>
 </section>
@@ -451,7 +451,8 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
             <h4>Antes de comprar, confira</h4>
             <ul class="checks">
               <li><span class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Computador com Windows ou Mac.</b> A skill não funciona no celular.</span></li>
-              <li><span class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Claude Pro (pago).</b> A skill roda dentro do Claude, que tem assinatura própria, a partir de US$ 20 por mês, cobrada à parte.</span></li>
+              <li><span class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Claude Pro ou Max (pago).</b> A skill roda dentro do Claude, que tem assinatura própria, a partir de US$ 20 por mês, cobrada à parte. <b>Não funciona no plano gratuito.</b></span></li>
+              <li><span class="ok"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><span><b>Só no Claude oficial.</b> Não funciona no ChatGPT, no Gemini nem com API de revenda ou de terceiros.</span></li>
               <li><span class="ok x"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span><b>Não é um pack de CapCut.</b> É uma skill do Claude que monta os vídeos para você, por código.</span></li>
             </ul>
           </div>
@@ -501,7 +502,8 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
     <div class="faq">
       <h2>Perguntas Frequentes</h2>
       <details><summary>Por que somente R$37?</summary><p>É o preço de lançamento. Queremos que mais gente comece a entregar motions de cliente com a skill, e um único motion vendido já paga o valor.</p></details>
-      <details><summary>Preciso ter o Claude pago?</summary><p>Sim. A skill roda dentro do Claude e precisa do plano Pro ou superior. A assinatura do Claude é separada da skill: custa a partir de US$ 20 por mês e é cobrada pela Anthropic.</p></details>
+      <details><summary>Preciso ter o Claude pago?</summary><p>Sim. A skill roda dentro do Claude e precisa do plano Pro ou Max. <b>O plano gratuito não funciona.</b> A assinatura do Claude é separada da skill: custa a partir de US$ 20 por mês e é cobrada pela Anthropic.</p></details>
+      <details><summary>Funciona no ChatGPT, no Gemini ou com API de revenda?</summary><p>Não. A skill funciona só no Claude oficial, com o plano Pro ou Max, usado pelo Claude Code no computador. Ela não roda no ChatGPT nem no Gemini, e não funciona com acessos de API vendidos por terceiros.</p></details>
       <details><summary>Funciona no celular?</summary><p>Não. A skill precisa de um computador com Windows ou Mac. O vídeo de instalação mostra o passo a passo nos dois.</p></details>
       <details><summary>É um pack de vídeos para o CapCut?</summary><p>Não. É uma skill do Claude: você manda o material do cliente e ela faz o roteiro, a narração e monta o vídeo por código, no Remotion. Não é um arquivo para editar no CapCut.</p></details>
       <details><summary>É seguro instalar no meu computador?</summary><p>Sim. A instalação coloca no seu computador a pasta da skill, com as instruções para o Claude, e programas gratuitos e conhecidos que ela usa para montar os vídeos: Node.js, Python, FFmpeg e Remotion. O painel abre no seu navegador num endereço local, que só o seu computador acessa. A aula de instalação mostra cada passo, e você pode apagar a pasta da skill quando quiser.</p></details>
