@@ -253,6 +253,11 @@ body { padding-bottom: 84px; }
 .checks .x svg { stroke: #fff; }
 .mais-bonus { font-family: var(--display); font-weight: 700; font-size: 20px; }
 .plano.top .cta { width: 100%; }
+.confirmacao-compra { width: 100%; padding: 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); text-align: left; scroll-margin-block: 100px; }
+.confirmacao-compra label { display: flex; align-items: flex-start; gap: 12px; font-size: 16px; line-height: 1.5; cursor: pointer; }
+.confirmacao-compra input { flex: 0 0 22px; width: 22px; height: 22px; margin-top: 2px; accent-color: var(--accent); }
+.confirmacao-compra.erro { border: 2px solid #ff7178; }
+.confirmacao-compra .aviso { margin: 8px 0 0; color: #ff9298; font-size: 14px; }
 .requisitos { width: 100%; text-align: left; background: rgba(8,7,13,.45); border: 1px solid rgba(255,255,255,.16); border-radius: 12px; padding: 16px 16px 6px; }
 .requisitos h4 { margin: 0 0 4px; font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
 .requisitos .checks li { font-size: 13.5px; }
@@ -308,7 +313,7 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
 @media (max-width: 480px) { .bonus-cards { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: reduce) { .onda i, .video-v .linha-t i { animation: none; } .fita .trilho { animation: none; } .cta { transition: none; } .cta:hover { transform: none; } }
 </style>
-<!-- Utmify: guarda as UTMs do anúncio e repassa para o checkout da Kiwify (script da Utmify, opção "Outra"; é o mesmo que o código embaralhado que ela gera) -->
+<!-- Utmify: guarda as UTMs do anúncio e repassa para o checkout da Cakto (script da Utmify, opção "Outra"; é o mesmo que o código embaralhado que ela gera) -->
 <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids async defer></script>
 </head>
 <body>
@@ -469,6 +474,10 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
               <li><span class="ok x"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></span><span><b>Não é um pack de CapCut.</b> É uma skill do Claude que monta os vídeos para você, por código.</span></li>
             </ul>
           </div>
+          <div class="confirmacao-compra" id="confirmacao-compra">
+            <label for="confirma-requisitos"><input type="checkbox" id="confirma-requisitos" required aria-describedby="aviso-compra"><span>Confirmo que tenho computador (Windows ou Mac) e Claude Pro ou Max, ou vou assinar.</span></label>
+            <p class="aviso" id="aviso-compra" role="alert" hidden>Marque para continuar</p>
+          </div>
           <a class="cta" href="#planos" data-link="checkout">Quero a skill agora</a>
           <span class="seguro"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Compra segura</span>
         </div>
@@ -545,11 +554,11 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
 <script>
   // ===== CONFIG: preencha antes de subir a página =====
   const CONFIG = {
-    checkout: "https://pay.kiwify.com.br/5FbH3XS",   // link do checkout da Kiwify / Hotmart / Cakto (ex.: "https://pay.kiwify.com.br/XXXX")
+    checkout: "https://pay.cakto.com.br/yvg2u76_1286535",   // link do checkout da Cakto
     whatsapp: "5511968155528",   // número do suporte só com dígitos, com DDI e DDD (ex.: "5511999999999")
     pixel: "1106806325550548",      // ID do pixel do Meta (ex.: "123456789012345")
   };
-  // repassa a origem do anúncio (UTMs/fbclid) para o checkout, para a Kiwify mostrar de onde veio cada venda; guarda por 7 dias para quem volta depois direto
+  // repassa a origem do anúncio (UTMs/fbclid) para o checkout, para a Cakto mostrar de onde veio cada venda; guarda por 7 dias para quem volta depois direto
   const RASTRO = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id', 'fbclid', 'src', 'sck'];
   let rastro = {};
   const daUrl = new URLSearchParams(location.search);
@@ -559,13 +568,40 @@ footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px
     else { const g = JSON.parse(localStorage.getItem('fm_rastro') || 'null'); if (g && Date.now() - g.t < 7 * 864e5) rastro = g.p; }
   } catch (e) {}
   const linkCheckout = () => { const u = new URL(CONFIG.checkout); Object.entries(rastro).forEach(([k, v]) => u.searchParams.set(k, v)); return u.toString(); };
-  document.querySelectorAll('[data-link="checkout"]').forEach(a => { if (CONFIG.checkout) a.href = linkCheckout(); });
+  const confirmaRequisitos = document.getElementById('confirma-requisitos');
+  const confirmacaoCompra = document.getElementById('confirmacao-compra');
+  const avisoCompra = document.getElementById('aviso-compra');
+  const atualizaCheckout = () => {
+    document.querySelectorAll('[data-link="checkout"]').forEach(a => {
+      a.href = confirmaRequisitos.checked && CONFIG.checkout ? linkCheckout() : '#confirmacao-compra';
+    });
+    if (confirmaRequisitos.checked) {
+      confirmacaoCompra.classList.remove('erro');
+      avisoCompra.hidden = true;
+      confirmaRequisitos.removeAttribute('aria-invalid');
+    }
+  };
+  confirmaRequisitos.addEventListener('change', atualizaCheckout);
+  window.addEventListener('pageshow', atualizaCheckout);
+  atualizaCheckout();
+  document.querySelectorAll('[data-link="checkout"]').forEach(a => a.addEventListener('click', e => {
+    if (!confirmaRequisitos.checked) {
+      e.preventDefault();
+      confirmacaoCompra.classList.add('erro');
+      avisoCompra.hidden = false;
+      confirmaRequisitos.setAttribute('aria-invalid', 'true');
+      confirmaRequisitos.focus({preventScroll: true});
+      confirmacaoCompra.scrollIntoView({behavior: 'smooth', block: 'center'});
+      return;
+    }
+    if (CONFIG.pixel && typeof fbq === 'function') fbq('trackCustom', 'CliqueComprar', {value: 37, currency: 'BRL'});
+  }));
   document.querySelectorAll('[data-link="whatsapp"]').forEach(a => { if (CONFIG.whatsapp) a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Oi! Tenho uma dúvida sobre a skill da Fábrica de Motion."); });
   if (CONFIG.pixel) {
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', CONFIG.pixel); fbq('track', 'PageView');
-    // o InitiateCheckout fica só com a Kiwify (dispara quando o checkout abre); aqui o clique no botão vira um evento próprio, para não contar a mesma pessoa duas vezes
-    document.querySelectorAll('[data-link="checkout"]').forEach(a => a.addEventListener('click', () => fbq('trackCustom', 'CliqueComprar', {value: 37, currency: 'BRL'})));
+    // o InitiateCheckout fica só com a Cakto (dispara quando o checkout abre); aqui o clique no botão vira um evento próprio, para não contar a mesma pessoa duas vezes
+
   }
 
   // faixas: a logo repetida, duas vezes seguidas para o loop não ter emenda
