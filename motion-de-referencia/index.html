@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="120 motions reais para sair do pedido genérico e orientar sua criação com IA. Biblioteca de referências da Fábrica de Motion por R$ 27.">
+<meta property="og:title" content="Motion de Referência | 120 motions por R$ 27">
+<meta property="og:description" content="120 motions reais para sair do pedido genérico e orientar sua criação com IA. Biblioteca de referências da Fábrica de Motion por R$ 27.">
+<meta property="og:image" content="https://fabricademotion.github.io/motion-de-referencia/og.jpg">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1080">
+<style>html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Motion de Referência | 120 motions por R$ 27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: cópia da estrutura da página do Box do Editor, bloco por bloco e na mesma ordem (topo com vídeo, faixas cruzadas,
+   grade 3x3, prova, bônus em linhas e cards, dois planos, garantia, quem é, suporte + perguntas, rodapé).
+   Identidade do vídeo novo da skill: fundo quase preto, texto branco, destaque roxo, brilho roxo no pé. Tema escuro único. */
+:root {
+  color-scheme: dark;
+  --bg: #08070D;
+  --band: #0E0C16;
+  --surface: #14121E;
+  --surface-2: #1B1830;
+  --line: rgba(242, 240, 250, 0.09);
+  --ink: #F2F0FA;
+  --muted: #9C97B5;
+  --accent: #7C66FF;
+  --accent-deep: #4B32D6;
+  --accent-soft: rgba(124, 102, 255, 0.15);
+  --glow: rgba(110, 80, 255, 0.35);
+  --ok: #25D366;
+  --compra: #1FB85A;
+  --compra-brilho: rgba(31, 184, 90, 0.45);
+  --risco: #FF4D57;
+  --display: "Montserrat", "Arial", system-ui, sans-serif;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img, video { max-width: 100%; display: block; }
+a { color: inherit; }
+.wrap { width: 100%; max-width: 860px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+section { position: relative; padding-block: clamp(56px, 9vw, 96px); }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; letter-spacing: -0.025em; line-height: 1.12; margin: 0; text-wrap: balance; }
+h1 { font-size: clamp(28px, 4.6vw, 40px); }
+h2 { font-size: clamp(28px, 4.6vw, 42px); }
+p { margin: 0; }
+.hl { color: var(--accent); }
+.centro { text-align: center; display: grid; justify-items: center; gap: 16px; }
+.sub { color: var(--muted); font-size: clamp(16px, 1.9vw, 18px); max-width: 56ch; }
+.selo-topo { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); background: var(--surface); border: 1px solid var(--line); padding: 7px 14px; border-radius: 8px; }
+.selo-topo i { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 10px var(--accent); }
+
+.cta { display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 30px; border-radius: 10px; background: var(--compra); color: #fff; text-decoration: none; font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .04em; text-transform: uppercase; box-shadow: 0 0 0 1px rgba(255,255,255,.18) inset, 0 16px 44px -14px var(--compra-brilho); transition: transform .15s ease, filter .15s ease; }
+.cta:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.cta:focus-visible, summary:focus-visible, .play:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.seguro { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+.seguro svg { width: 14px; height: 14px; stroke: var(--muted); fill: none; stroke-width: 2; }
+
+/* 1. topo: logo, título, vídeo, preço, botão */
+.topo { padding-block: clamp(36px, 6vw, 60px) clamp(56px, 8vw, 80px); overflow: hidden; }
+.topo::after { content: ""; position: absolute; left: 50%; bottom: -220px; width: min(900px, 150vw); height: 380px; transform: translateX(-50%); background: radial-gradient(closest-side, var(--glow), transparent); pointer-events: none; }
+.topo .wrap { position: relative; z-index: 1; }
+.topo .logo { width: 170px; }
+.player { position: relative; width: 100%; aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; background: #000; border: 1px solid var(--line); box-shadow: 0 40px 90px -30px var(--glow); margin-top: 12px; }
+.player video { width: 100%; height: 100%; object-fit: cover; }
+.play { position: absolute; inset: 0; border: 0; cursor: pointer; background: linear-gradient(180deg, rgba(8,7,13,0) 40%, rgba(8,7,13,.75)); display: grid; place-items: center; color: var(--ink); font: 600 15px var(--body); }
+.play span { display: grid; justify-items: center; gap: 12px; }
+.play b { width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,.14); backdrop-filter: blur(6px); display: grid; place-items: center; }
+.play svg { width: 26px; height: 26px; fill: #fff; margin-left: 4px; }
+.player.tocando .play { display: none; }
+.play .som { position: absolute; left: 50%; bottom: 16px; translate: -50% 0; display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; background: var(--compra); color: #fff; font: 700 14px var(--display); letter-spacing: .04em; text-transform: uppercase; box-shadow: 0 12px 30px -10px var(--compra-brilho); animation: pulsa 1.6s ease-in-out infinite; }
+.play .som svg { width: 20px; height: 20px; margin: 0; fill: #fff; }
+.play .som .onda { fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; }
+.play .pausado { display: none; }
+.player.parado .play .som { display: none; }
+.player.parado .play .pausado { display: grid; }
+.player:not(.parado) .play { background: linear-gradient(180deg, rgba(8,7,13,0) 60%, rgba(8,7,13,.55)); }
+@keyframes pulsa { 50% { scale: 1.06; } }
+@media (prefers-reduced-motion: reduce) { .play .som { animation: none; } }
+.precos { display: grid; justify-items: center; gap: 6px; margin-top: 18px; }
+.de { color: var(--muted); font-size: 15px; }
+.de s { color: var(--risco); text-decoration-thickness: 2px; }
+.valor { font-family: var(--display); font-weight: 800; font-size: clamp(54px, 9vw, 76px); letter-spacing: -0.04em; line-height: 1; color: var(--ink); }
+.economia { font-size: 14px; color: var(--muted); }
+.compra { display: grid; justify-items: center; gap: 10px; margin-top: 14px; width: min(100%, 360px); }
+.compra .cta { width: 100%; }
+.cta-meio { display: grid; justify-items: center; gap: 10px; margin: 36px auto 0; width: min(100%, 380px); }
+.cta-meio .cta { width: 100%; text-align: center; }
+.cta-meio.esq { justify-items: start; margin-left: 0; }
+.barra-compra { position: fixed; left: 0; right: 0; bottom: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 12px max(16px, env(safe-area-inset-right, 0px)) calc(12px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); background: rgba(8,7,13,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-top: 1px solid var(--line); transform: translateY(110%); transition: transform .25s ease; }
+.barra-compra.on { transform: none; }
+.bc-preco { display: grid; line-height: 1.1; }
+.bc-preco b { font-family: var(--display); font-weight: 800; font-size: 22px; color: var(--ink); }
+.bc-preco span { font-size: 12px; color: var(--muted); }
+.barra-compra .cta { min-height: 50px; padding: 0 22px; font-size: 14px; flex: 1; max-width: 260px; }
+@media (min-width: 761px) { .barra-compra { justify-content: center; gap: 28px; } }
+body { padding-bottom: 84px; }
+
+.extrato { padding-block: 0 clamp(56px, 8vw, 80px); }
+.telas-pix { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 1fr); gap: 14px; margin-top: 32px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; scrollbar-color: var(--accent) transparent; }
+.telas-pix img { width: 100%; height: 420px; object-fit: cover; object-position: top; border-radius: 18px; border: 1px solid var(--line); scroll-snap-align: start; box-shadow: 0 30px 70px -40px var(--glow); }
+/* 2. faixas cruzadas com a logo */
+.faixas { position: relative; height: 150px; overflow: hidden; }
+.fita { position: absolute; left: -10%; width: 120%; height: 44px; background: var(--accent); display: flex; align-items: center; overflow: hidden; box-shadow: 0 10px 30px -10px var(--glow); }
+.fita.um { top: 30px; transform: rotate(-4deg); }
+.fita.dois { top: 72px; transform: rotate(3deg); background: var(--accent-deep); }
+.fita .trilho { display: flex; gap: 38px; align-items: center; flex: none; animation: corre 26s linear infinite; padding-right: 38px; }
+.fita.dois .trilho { animation-direction: reverse; }
+.fita img { height: 18px; width: auto; flex: none; opacity: .95; filter: brightness(0) invert(1); }
+@keyframes corre { to { transform: translateX(-50%); } }
+
+/* 3. um pouco de tudo */
+.req { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 36px; }
+.req-col { border-radius: 20px; padding: 26px 26px 28px; background: var(--surface); }
+.req-col.sim { border: 2px solid rgba(37, 211, 102, .55); box-shadow: 0 24px 60px -30px rgba(37, 211, 102, .45); }
+.req-col.nao { border: 2px solid rgba(229, 72, 77, .55); box-shadow: 0 24px 60px -30px rgba(229, 72, 77, .45); }
+.req-col h3 { display: flex; align-items: center; gap: 12px; margin: 0 0 18px; font-size: 24px; letter-spacing: -.01em; }
+.req-col.sim h3 { color: var(--ok); }
+.req-col.nao h3 { color: #F87171; }
+.req-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.req-col li { display: flex; align-items: flex-start; gap: 12px; font-size: 17px; line-height: 1.35; }
+.req-col li b { display: block; color: var(--ink); font-weight: 700; }
+.req-col li em { display: block; font-style: normal; font-size: 14px; color: var(--muted); }
+.req-col .ic { flex: none; width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; }
+.req-col h3 .ic { width: 32px; height: 32px; }
+.req-col.sim .ic { background: var(--ok); }
+.req-col.nao .ic { background: #E5484D; }
+.req-col .ic svg { width: 62%; height: 62%; fill: none; stroke: #fff; stroke-width: 3.2; stroke-linecap: round; stroke-linejoin: round; }
+.req-col.nao li b { color: rgba(242, 240, 250, .82); }
+@media (max-width: 640px) { .req { grid-template-columns: minmax(0, 1fr); } .req-col { padding: 22px 20px 24px; } }
+.grade { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(260px, 300px); gap: 12px; margin-top: 36px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-block: 6px 12px; scrollbar-color: var(--accent) transparent; }
+.grade .card { scroll-snap-align: start; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 10px 10px 22px; display: grid; gap: 8px; align-content: start; transition: border-color .2s ease, transform .2s ease; }
+.card:hover { border-color: rgba(124,102,255,.45); transform: translateY(-3px); }
+.card h3 { font-size: 18px; padding: 10px 12px 0; }
+.card p { color: var(--muted); font-size: 14.5px; padding: 0 12px; }
+.vis { position: relative; height: 168px; border-radius: 12px; overflow: hidden; background: radial-gradient(120% 90% at 50% 120%, rgba(110,80,255,.28), transparent 60%), var(--band); border: 1px solid var(--line); display: grid; place-items: center; }
+.vis .n { position: absolute; top: 10px; left: 10px; font-family: var(--display); font-weight: 700; font-size: 11px; letter-spacing: .08em; color: var(--muted); background: rgba(8,7,13,.6); border: 1px solid var(--line); padding: 3px 8px; border-radius: 999px; }
+.marca-v { display: flex; align-items: center; gap: 18px; }
+.marca-v .aa { font-family: Georgia, "Times New Roman", serif; font-size: 58px; line-height: 1; color: var(--ink); }
+.marca-v .cores { display: grid; gap: 8px; }
+.marca-v .cores span { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.marca-v .cores i { width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(255,255,255,.15); }
+.marca-v .tag { position: absolute; bottom: 12px; right: 12px; font-size: 11px; color: var(--ink); background: var(--accent-soft); border: 1px solid rgba(124,102,255,.4); padding: 4px 9px; border-radius: 999px; }
+.roteiro-v { width: calc(100% - 28px); display: grid; gap: 6px; font-size: 11.5px; }
+.roteiro-v div { display: grid; grid-template-columns: 38px 70px minmax(0, 1fr); gap: 8px; padding: 7px 10px; border-radius: 8px; background: rgba(255,255,255,.04); color: var(--muted); }
+.roteiro-v div b { color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
+.roteiro-v div em { font-style: normal; color: var(--ink); }
+.roteiro-v div.on { background: var(--accent-soft); outline: 1px solid rgba(124,102,255,.4); }
+.voz-v { display: grid; justify-items: center; gap: 14px; width: 100%; }
+.onda { display: flex; align-items: center; gap: 3px; height: 54px; }
+.onda i { width: 4px; border-radius: 2px; background: var(--accent); animation: onda 1.1s ease-in-out infinite alternate; }
+@keyframes onda { from { transform: scaleY(.35); } to { transform: scaleY(1); } }
+.voz-v code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: 11.5px; color: var(--muted); background: rgba(255,255,255,.04); padding: 6px 10px; border-radius: 8px; }
+.voz-v code b { color: var(--accent); font-weight: 500; }
+.video-v video { width: 78px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 10px; border: 3px solid #0B0A12; box-shadow: 0 20px 40px -14px rgba(0,0,0,.8), 0 0 0 1px var(--line); transform: rotate(-4deg); }
+.video-v .linha-t { position: absolute; left: 14px; right: 14px; bottom: 12px; height: 4px; border-radius: 2px; background: rgba(255,255,255,.08); overflow: hidden; }
+.video-v .linha-t i { display: block; height: 100%; width: 40%; background: var(--accent); animation: corre-t 3s linear infinite; }
+@keyframes corre-t { from { transform: translateX(-100%); } to { transform: translateX(250%); } }
+.trilha-v { width: calc(100% - 28px); display: grid; gap: 8px; font-size: 10.5px; color: var(--muted); }
+.trilha-v .pista { display: grid; grid-template-columns: 46px minmax(0, 1fr); align-items: center; gap: 8px; }
+.trilha-v .pista div { position: relative; height: 18px; border-radius: 5px; background: rgba(255,255,255,.04); }
+.trilha-v .pista div i { position: absolute; top: 2px; bottom: 2px; border-radius: 4px; background: var(--accent); opacity: .85; }
+.trilha-v .pista div i.l { background: linear-gradient(90deg, var(--accent-deep), var(--accent)); }
+.painel-v { width: calc(100% - 24px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; font-size: 10px; color: var(--muted); }
+.painel-v .col { display: grid; gap: 5px; align-content: start; }
+.painel-v .col > span { font-weight: 600; letter-spacing: .02em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.painel-v .c { padding: 7px; border-radius: 6px; background: rgba(255,255,255,.05); color: var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.painel-v .c.voce { background: var(--accent-soft); outline: 1px solid rgba(124,102,255,.5); }
+.painel-v .c.ok::before { content: "✓ "; color: var(--ok); }
+
+.passos { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(280px, 340px); gap: 14px; margin-top: 36px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-block: 6px 12px; scrollbar-color: var(--accent) transparent; }
+.passo { scroll-snap-align: start; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 10px 10px 22px; display: grid; gap: 8px; align-content: start; }
+.passo .foto-p { position: relative; aspect-ratio: 1 / 1; border-radius: 12px; overflow: hidden; border: 1px solid var(--line); background: var(--band); }
+.passo .foto-p img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.passo .np { position: absolute; top: 10px; left: 10px; font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: .06em; color: #fff; background: var(--accent); padding: 5px 11px; border-radius: 999px; box-shadow: 0 6px 18px -6px var(--glow); }
+.passo h3 { font-size: 18px; padding: 10px 12px 0; }
+.passo p { color: var(--muted); font-size: 14.5px; padding: 0 12px; }
+.passo p b { color: var(--ink); font-weight: 600; }
+/* 4. ainda está com dúvidas: vídeos entregues */
+.prova { background: var(--band); border-block: 1px solid var(--line); }
+.carrossel { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(180px, 220px); gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 12px; margin-top: 36px; scrollbar-color: var(--accent) transparent; }
+.carrossel figure { margin: 0; scroll-snap-align: start; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 10px; display: grid; gap: 10px; }
+.carrossel video { width: 100%; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 10px; background: #000; }
+.carrossel figcaption { display: grid; gap: 2px; padding: 0 4px 4px; }
+.carrossel figcaption b { font-size: 14px; }
+.carrossel figcaption span { font-size: 13px; color: var(--muted); }
+
+.prints-wrap { position: relative; margin-top: 32px; }
+.prints { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 280px); gap: 14px; align-items: start; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-bottom: 12px; scrollbar-color: var(--accent) transparent; }
+.prints figure { scroll-snap-align: start; margin: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 8px; display: grid; gap: 8px; }
+.prints img { width: 100%; max-height: 420px; object-fit: cover; object-position: top; border-radius: 10px; }
+.prints figcaption { font-size: 13px; color: var(--muted); padding: 0 6px 4px; }
+.prints figcaption b { color: var(--ink); font-weight: 600; }
+.setas { display: flex; justify-content: center; gap: 10px; margin-top: 14px; }
+.setas button { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer; display: grid; place-items: center; }
+.setas button:hover { border-color: var(--accent); }
+.setas button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.setas svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+/* 5. bônus */
+.bonus-linha { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; margin-top: 16px; }
+.bonus-linha .txt { padding: clamp(22px, 4vw, 32px); display: grid; gap: 10px; align-content: center; justify-items: start; min-width: 0; }
+.bonus-linha .midia { min-height: 220px; background: var(--band); }
+.bonus-linha .midia img, .bonus-linha .midia video { width: 100%; height: 100%; object-fit: cover; }
+.marca { width: 26px; height: 26px; border-radius: 7px; background: var(--accent); display: grid; place-items: center; }
+.marca svg { width: 15px; height: 15px; fill: none; stroke: #fff; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.bonus-linha h3, .bonus-card h3 { font-size: 22px; font-weight: 600; }
+.valor-b { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; }
+.valor-b s { color: var(--muted); }
+.valor-b b { font-family: var(--display); font-weight: 700; font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: #fff; background: var(--accent); padding: 4px 10px; border-radius: 999px; }
+.disp { font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); padding: 6px 10px; border-radius: 6px; }
+.bonus-linha p, .bonus-card p { color: var(--muted); font-size: 14.5px; }
+.bonus-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+.bonus-card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 10px 10px 24px; display: grid; gap: 10px; align-content: start; justify-items: start; }
+.bonus-card > :not(.vis) { margin-inline: 14px; }
+.bonus-card .vis { width: 100%; height: 200px; margin-bottom: 6px; }
+.bonus-card .vis video { height: 170px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 12px; border: 3px solid #0B0A12; box-shadow: 0 20px 40px -14px rgba(0,0,0,.8); }
+.precos-v { width: calc(100% - 40px); display: grid; gap: 8px; }
+.precos-v div { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 10px; background: rgba(255,255,255,.04); font-size: 14px; color: var(--muted); }
+.precos-v div b { font-family: var(--display); color: var(--ink); font-variant-numeric: tabular-nums; }
+.precos-v div.top { background: var(--accent-soft); outline: 1px solid rgba(124,102,255,.45); color: var(--ink); }
+
+/* 6. planos */
+.controles { display: inline-flex; gap: 4px; padding: 5px 10px; border-radius: 6px; background: var(--surface); border: 1px solid var(--line); }
+.controles svg { width: 12px; height: 12px; fill: var(--muted); }
+.planos { display: grid; grid-template-columns: minmax(0, 1fr); max-width: 460px; margin: 36px auto 0; }
+.plano { border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+.plano .aba { background: var(--surface-2); text-align: center; font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; padding: 10px; color: var(--muted); }
+.plano.top { border-color: var(--accent); background: linear-gradient(180deg, var(--accent-deep) 0%, #2A1C8A 55%, var(--surface) 100%); }
+.plano.top .aba { background: var(--ink); color: var(--accent-deep); }
+.plano .corpo { padding: 26px 24px 28px; display: grid; gap: 18px; justify-items: center; text-align: center; }
+.plano .nome { font-family: var(--display); font-weight: 500; font-size: clamp(26px, 3.6vw, 32px); letter-spacing: .01em; text-transform: uppercase; }
+.plano hr { width: 60%; border: 0; border-top: 1px solid rgba(255,255,255,.2); margin: 0; }
+.plano .por { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: rgba(242,240,250,.8); }
+.plano .por s { color: var(--risco); text-decoration-thickness: 2px; }
+.plano .num { font-family: var(--display); font-weight: 500; font-size: 30px; line-height: 1; }
+.plano .num b { font-weight: 800; font-size: 60px; letter-spacing: -0.03em; }
+.mockup { position: relative; width: 100%; height: 210px; }
+.mockup video { will-change: transform; background: #0B0A12; position: absolute; top: 10px; width: 108px; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 12px; border: 3px solid #0B0A12; box-shadow: 0 20px 40px -14px rgba(0,0,0,.7); }
+.mockup video:nth-child(1) { left: calc(50% - 150px); transform: rotate(-9deg); }
+.mockup video:nth-child(2) { left: calc(50% - 54px); top: 0; z-index: 2; }
+.mockup video:nth-child(3) { left: calc(50% + 42px); transform: rotate(9deg); }
+.checks { list-style: none; margin: 0; padding: 0; display: grid; width: 100%; text-align: left; }
+.checks li { display: grid; grid-template-columns: 18px minmax(0, 1fr); gap: 10px; padding-block: 11px; border-bottom: 1px solid rgba(255,255,255,.12); font-size: 14px; color: rgba(242,240,250,.85); }
+.checks li:last-child { border-bottom: 0; }
+.checks b { color: var(--ink); }
+.checks .ok { width: 16px; height: 16px; margin-top: 2px; border-radius: 4px; background: var(--ok); display: grid; place-items: center; }
+.checks .ok svg { width: 11px; height: 11px; stroke: #062; fill: none; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+.checks .x { background: #E5484D; }
+.checks .x svg { stroke: #fff; }
+.mais-bonus { font-family: var(--display); font-weight: 700; font-size: 20px; }
+.plano.top .cta { width: 100%; }
+.confirmacao-compra { width: 100%; padding: 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); text-align: left; scroll-margin-block: 100px; }
+.confirmacao-compra label { display: flex; align-items: flex-start; gap: 12px; font-size: 16px; line-height: 1.5; cursor: pointer; }
+.confirmacao-compra input { flex: 0 0 22px; width: 22px; height: 22px; margin-top: 2px; accent-color: var(--accent); }
+.confirmacao-compra.erro { border: 2px solid #ff7178; }
+.confirmacao-compra .aviso { margin: 8px 0 0; color: #ff9298; font-size: 14px; }
+.requisitos { width: 100%; text-align: left; background: rgba(8,7,13,.45); border: 1px solid rgba(255,255,255,.16); border-radius: 12px; padding: 16px 16px 6px; }
+.requisitos h4 { margin: 0 0 4px; font-family: var(--display); font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
+.requisitos .checks li { font-size: 13.5px; }
+.aviso-topo { font-size: 14px; line-height: 1.45; color: #FEF3C7; max-width: 46ch; text-align: center; background: rgba(250,204,21,.10); border: 1.5px solid rgba(250,204,21,.6); border-radius: 12px; padding: 10px 14px; }
+.aviso-topo b { color: #FDE047; font-weight: 700; }
+.plano .cta { width: 100%; }
+
+/* 7. garantia */
+.garantia { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(24px, 5vw, 48px); align-items: center; }
+.selo { justify-self: center; width: min(100%, 300px); aspect-ratio: 1; border-radius: 50%; display: grid; place-content: center; text-align: center; background: radial-gradient(circle, var(--surface-2) 0%, var(--band) 70%); border: 1px solid var(--line); box-shadow: inset 0 0 0 14px var(--bg), inset 0 0 0 15px var(--accent); }
+.selo b { font-family: var(--display); font-weight: 800; font-size: 96px; line-height: .9; letter-spacing: -0.04em; }
+.selo span { font-size: 13px; font-weight: 700; letter-spacing: .2em; color: var(--accent); }
+.garantia .txt { display: grid; gap: 14px; }
+.garantia .txt p { color: var(--muted); }
+
+/* 8. quem é */
+.quem { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 5vw, 48px); align-items: center; }
+.quem .foto { justify-self: center; width: min(100%, 340px); aspect-ratio: 3 / 4; border-radius: 22px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 40px 90px -40px var(--glow); }
+.quem .foto img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
+.quem .nome { display: grid; gap: 2px; padding-top: 4px; border-top: 1px solid var(--line); }
+.quem .nome b { font-family: var(--display); font-weight: 700; font-size: 17px; padding-top: 12px; }
+.quem .nome span { font-size: 14px; color: var(--muted); }
+.quem .txt { display: grid; gap: 14px; min-width: 0; }
+.quem .txt p { color: var(--muted); }
+.assina { display: flex; align-items: center; gap: 14px; margin-top: 6px; }
+.assina img { width: 120px; }
+.assina i { flex: 1; height: 1px; background: var(--line); }
+
+/* 9. suporte + perguntas */
+.ajuda { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 24px; align-items: start; }
+.suporte { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 28px 24px; display: grid; gap: 16px; justify-items: center; text-align: center; }
+.suporte img { width: 160px; }
+.suporte p { color: var(--muted); font-size: 14.5px; }
+.zap { display: inline-flex; align-items: center; gap: 10px; min-height: 50px; padding: 0 22px; border-radius: 10px; background: var(--ok); color: #04210f; text-decoration: none; font-weight: 700; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; }
+.zap svg { width: 18px; height: 18px; fill: #04210f; }
+.faq { display: grid; gap: 8px; }
+.faq h2 { font-size: 26px; margin-bottom: 12px; }
+.faq details { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 0 16px; }
+.faq summary { cursor: pointer; list-style: none; padding-block: 15px; font-size: 14.5px; font-weight: 500; display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; flex: none; width: 20px; height: 20px; border-radius: 4px; background: var(--accent); color: #fff; display: grid; place-items: center; font-weight: 700; line-height: 1; }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { color: var(--muted); padding-bottom: 16px; font-size: 14.5px; }
+
+footer { border-top: 1px solid var(--line); padding-block: 28px; }
+footer .wrap { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; font-size: 13px; color: var(--muted); }
+
+@media (max-width: 760px) {
+  .bonus-cards { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .planos, .garantia, .quem, .ajuda, .bonus-linha { grid-template-columns: minmax(0, 1fr); }
+  .bonus-linha .midia { min-height: 200px; }
+}
+@media (max-width: 480px) { .bonus-cards { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .onda i, .video-v .linha-t i { animation: none; } .fita .trilho { animation: none; } .cta { transition: none; } .cta:hover { transform: none; } }
+</style>
+<!-- Utmify: guarda as UTMs do anúncio e repassa para o checkout da Cakto (script da Utmify, opção "Outra"; é o mesmo que o código embaralhado que ela gera) -->
+
+<style>
+html{scroll-behavior:smooth;scroll-padding-top:24px}.selo-topo,.seguro,.plano .aba,.plano .por{font-size:14px}.hero-art{width:100%;display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:630px;padding:24px 32px 0;align-items:center}.hero-art img{width:100%;aspect-ratio:9/14;object-fit:cover;border:1px solid #62528f;border-radius:16px;box-shadow:0 25px 65px #0009}.hero-art img:first-child{transform:rotate(-7deg)}.hero-art img:last-child{transform:rotate(7deg)}.hero-art img:nth-child(2){transform:translateY(-12px);z-index:1}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:30px 0}.stat{padding:22px 10px;border:1px solid var(--line);border-radius:16px;background:var(--surface);text-align:center}.stat b{display:block;font:800 clamp(27px,5vw,40px) var(--display);color:var(--accent)}.stat span{font-size:15px;color:var(--muted)}.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}.step{padding:26px;border:1px solid var(--line);border-radius:18px;background:var(--surface)}.step h3{font-size:20px;margin-bottom:12px}.step p{color:var(--muted)}.tag-row{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:25px 0}.tag-row span{border:1px solid var(--line);background:var(--surface);padding:8px 14px;border-radius:99px;font-size:14px}.prompt-box{margin-top:28px;padding:28px;border:1px solid var(--accent);border-radius:18px;background:var(--surface)}.prompt-box p{margin:14px 0;color:var(--muted)}.prompt-box blockquote{margin:16px 0;font-size:18px}.secondary{background:var(--surface-2);color:var(--ink);border:1px solid var(--accent);padding:12px 18px;border-radius:8px;cursor:pointer;font:600 16px var(--body)}.plain-list{padding-left:22px;text-align:left;display:grid;gap:12px}.note{font-size:15px;color:var(--muted);max-width:64ch}.cta{text-align:center}.prints img{max-height:none;object-fit:contain}.product-note{color:var(--ink);background:var(--surface);padding:16px;border-radius:10px;text-align:left;font-size:16px}.topo .aviso-topo{font-size:14px;line-height:1.6}.skip{position:absolute;left:10px;top:-100px;z-index:100}.skip:focus{top:10px;background:var(--surface);padding:16px}.checkout-status{padding:16px;border:1px solid var(--accent);border-radius:10px;font-size:16px}.req-col p{margin-top:14px;color:var(--muted)}.req-col h3{font-size:22px}@media(max-width:600px){.steps-grid{grid-template-columns:1fr}.stats{gap:8px}.stat{padding:18px 8px}.stat span{font-size:14px}.hero-art{padding:22px 12px 0;gap:7px}.hero-art img{border-radius:10px}.prompt-box{padding:22px}.topo h1{font-size:32px}.plano .corpo{padding:26px 18px}.barra-compra .cta{padding:0 12px;font-size:13px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style><style>
+/* Mural: 24 capas extraídas de vídeos distintos do catálogo. */
+.motion-mural{position:relative;isolation:isolate;width:100%;height:490px;margin-top:12px;overflow:hidden;border-radius:24px;background:#100d1d;border:1px solid rgba(124,102,255,.25)}
+.mural-grid{position:absolute;width:112%;left:-6%;top:-94px;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;transform:rotate(-8deg);pointer-events:none}
+.mural-grid img{width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;border-radius:10px;border:1px solid #8274a580;box-shadow:0 8px 20px #0008}
+.motion-mural::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(ellipse at 50% 48%,rgba(8,7,13,.88) 0%,rgba(8,7,13,.57) 30%,rgba(8,7,13,.08) 64%),linear-gradient(0deg,#08070d 0%,transparent 27%,transparent 85%,#08070d70)}
+.mural-title{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;text-align:center;text-shadow:0 4px 24px #000}
+.mural-title strong{font:800 clamp(100px,18vw,156px)/.9 var(--display);letter-spacing:-.075em;color:#fff;padding-right:.075em}
+.mural-title>span{font:800 clamp(20px,4vw,30px)/1.2 var(--display);letter-spacing:.09em;margin-top:14px;color:#c4baff}
+.mural-title p{font-size:16px;margin-top:14px;color:#f2f0fa}
+.mural-tags{position:absolute;bottom:22px;left:12px;right:12px;z-index:2;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.mural-tags span{font-size:14px;color:#e6e1f7;background:#171222e8;border:1px solid #62528f80;border-radius:99px;padding:6px 12px}
+@media(max-width:600px){.motion-mural{height:395px;border-radius:18px}.mural-grid{width:740px;left:50%;margin-left:-370px;top:-56px;gap:9px}.mural-title{padding:14px}.mural-title strong{font-size:112px}.mural-title>span{font-size:22px}.mural-title p{font-size:15px}.mural-tags{gap:5px;bottom:18px}.mural-tags span{font-size:12px;padding:6px 9px}}
+</style><style>
+.mural-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;pointer-events:none;transition:opacity .4s ease}
+.motion-mural.is-playing .mural-video,.motion-mural.has-played .mural-video{opacity:1}
+.motion-mural.has-played .mural-grid{visibility:hidden}
+.mural-toggle{position:absolute;right:12px;top:12px;z-index:3;min-height:44px;padding:8px 14px;border:1px solid #8274a580;border-radius:99px;background:#100d1ded;color:#fff;font:600 14px var(--body);cursor:pointer}
+.mural-toggle:focus-visible{outline:2px solid white;outline-offset:3px}
+@media(max-width:600px){.mural-video{width:580px;max-width:none;left:50%;transform:translateX(-50%);object-fit:cover}}
+</style><style>.topo .headline-curta{font-size:clamp(16px,4.3vw,38px);width:100%;line-height:1.16;letter-spacing:-.035em;text-wrap:initial}.headline-curta>span{display:block;white-space:nowrap}</style><style>
+/* Composição do topo alinhada à página da Skill. */
+.topo .wrap{container-type:inline-size;gap:22px}
+.topo .logo{margin-bottom:0}
+.topo .headline-curta{font-size:clamp(17px,5.9cqw,44px);line-height:1.14;letter-spacing:-.035em}
+.topo .sub{max-width:64ch;margin-top:2px}
+.topo .motion-mural{height:auto;aspect-ratio:16/9;margin-top:12px;border-radius:18px;box-shadow:0 40px 90px -30px var(--glow)}
+.topo .mural-video{width:100%;max-width:100%;height:100%;left:0;transform:none;object-fit:cover}
+.topo .precos{margin-top:18px;gap:8px}
+.topo .mural-title strong{font-size:clamp(64px,17cqw,140px)}
+.topo .mural-title>span{font-size:clamp(16px,3.6cqw,28px);margin-top:8px}
+.topo .mural-title p{font-size:14px;margin-top:8px}
+@media(max-width:600px){.topo .wrap{gap:18px}.topo .mural-tags,.topo .mural-title p{display:none}.topo .mural-toggle{top:8px;right:8px;padding:6px 10px;font-size:12px}.topo .mural-title{padding:12px}.topo .note{font-size:13px}}
+</style><style>.mockup img{height:170px;width:auto;aspect-ratio:9/16;object-fit:cover;border-radius:12px;border:3px solid #0b0a12}.passo .foto-p img{object-fit:contain;background:#08070d}.setas button{font-size:26px}.prints img{max-height:420px;object-fit:cover;object-position:top}</style><style>
+/* correções 24/11: miniaturas do card de preço (o markup usa img, o CSS antigo mirava video) */
+.mockup{height:210px}
+.mockup img{position:absolute;top:10px;width:108px;height:auto;aspect-ratio:9/16;object-fit:cover;border-radius:12px;border:3px solid #0b0a12;box-shadow:0 20px 40px -14px rgba(0,0,0,.7);background:#0b0a12}
+.mockup img:nth-child(1){left:calc(50% - 150px);transform:rotate(-9deg)}
+.mockup img:nth-child(2){left:calc(50% - 54px);top:0;z-index:2}
+.mockup img:nth-child(3){left:calc(50% + 42px);transform:rotate(9deg)}
+/* cards do Como usar: imagem vertical preenchendo o quadro, sem faixa preta */
+.passo .foto-p{aspect-ratio:4/5}
+.passo .foto-p img{object-fit:cover;object-position:center top;background:none}
+/* respiro do logo no topo do celular */
+@media(max-width:600px){.topo{padding-top:32px}.topo .logo{width:150px}}
+</style><style>
+/* Como usar sem miniaturas: grade simples, sem carrossel (os vídeos ficam só na seção de trabalhos reais) */
+.passos{grid-auto-flow:row;grid-template-columns:repeat(3,1fr);grid-auto-columns:auto;overflow:visible;scroll-snap-type:none}
+.passo{padding:20px 18px 22px;gap:10px}
+.passo .np{position:static;justify-self:start}
+.passo h3,.passo p{padding:0}
+@media(max-width:860px){.passos{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.passos{grid-template-columns:1fr}}
+</style><style>.headline-curta>span{white-space:normal;text-wrap:balance}</style><style>section.extrato{padding-top:clamp(56px,8vw,88px)}section.extrato .selo-topo{margin-bottom:14px}</style><style>
+/* botões redondos com brilho passando */
+.cta{border-radius:999px;position:relative;overflow:hidden;isolation:isolate}
+.cta::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:brilho 3.2s ease-in-out infinite;pointer-events:none;z-index:-1}
+@keyframes brilho{0%,55%{left:-60%}100%{left:130%}}
+/* headline da prova com hierarquia de título de seção */
+.h-prova{font-size:clamp(32px,5.4vw,52px);line-height:1.08}
+/* card final do carrossel */
+.mais-refs{display:grid;align-content:center;justify-items:center;gap:6px;text-align:center;text-decoration:none;color:var(--ink);background:linear-gradient(160deg,var(--accent),#3b2bb3);border-radius:16px;padding:18px;scroll-snap-align:start;min-height:100%}
+.mais-refs b{font-family:var(--display);font-size:clamp(46px,7vw,64px);line-height:1}
+.mais-refs span{font-size:15px;font-weight:600}
+.mais-refs em{font-style:normal;font-size:13px;margin-top:10px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.16)}
+</style><style>.mockup video{position:absolute;top:10px;width:108px;height:auto;aspect-ratio:9/16;object-fit:cover;border-radius:12px;border:3px solid #0b0a12;box-shadow:0 20px 40px -14px rgba(0,0,0,.7);background:#0b0a12}.mockup video:nth-child(1){left:calc(50% - 150px);transform:rotate(-9deg)}.mockup video:nth-child(2){left:calc(50% - 54px);top:0;z-index:2}.mockup video:nth-child(3){left:calc(50% + 42px);transform:rotate(9deg)}</style></head><body><a class="skip" href="#conteudo">Pular para o conteúdo</a><main id="conteudo">
+<section class="topo"><div class="wrap centro">
+<img class="logo" src="../assets/logo-branco.png" alt="Fábrica de Motion">
+<h1 class="headline-curta"><span>Pare de criar motion genérico no ChatGPT ou no Claude.</span><span class="hl">Use 120 referências feitas com IA.</span></h1>
+<p class="sub">A Fábrica já faturou <b>R$ 18 mil</b> com <b>mais de 450 motions</b> entregues a clientes. Agora você usa 120 deles como referência.</p>
+<div class="motion-mural" aria-label="Biblioteca de 120 motions com trechos reais ao fundo"><video class="mural-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-mural-src="mural-loop.mp4"></video><button class="mural-toggle" type="button" aria-label="Reproduzir animação de fundo" hidden>Reproduzir</button><div class="mural-grid" aria-hidden="true"><img src="capas/001.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/006.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/011.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/017.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/023.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/029.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/034.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/039.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/043.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/050.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/054.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/059.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/065.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/070.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/075.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/080.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/085.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/090.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/094.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/099.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/103.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/108.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/114.jpg" alt="" width="240" height="426" decoding="async"><img src="capas/119.jpg" alt="" width="240" height="426" decoding="async"></div><div class="mural-title"><strong>120</strong><span>MOTIONS REAIS</span><p>Uma referência para cada nova ideia.</p></div><div class="mural-tags"><span>120 clientes reais</span><span>107 verticais</span><span>Média de 48 s</span></div></div>
+<div class="precos"><span class="de">120 motions · pagamento único</span><span class="valor">R$27,00</span><span class="economia">Sem mensalidade · 7 dias de garantia</span></div>
+<div class="compra"><a class="cta" href="#planos" data-link="checkout">Quero minhas referências</a></div>
+<p class="note">R$ 18 mil em faturamento da Fábrica com a venda de motions. Esse resultado não é uma promessa de ganho para quem compra a biblioteca.</p></div></section>
+<section class="extrato">
+  <div class="wrap">
+    <div class="centro">
+      <span class="selo-topo"><i></i>Prova real</span>
+      <h2 class="h-prova">Motions de R$ 57<br><span class="hl">caindo na conta</span></h2>
+      <p class="sub">Pagamentos reais do serviço da Fábrica, com nomes borrados. Não é promessa de ganho para quem compra.</p>
+    </div>
+    <div class="telas-pix">
+      <img src="../assets/pix1.jpg" alt="Notificações do Nubank: transferências de R$ 57 e R$ 67 recebidas" loading="lazy">
+      <img src="../assets/pix2.jpg" alt="Mais notificações de transferências de R$ 57 e R$ 67" loading="lazy">
+      <img src="../assets/pix3.jpg" alt="Notificações de transferências de R$ 57, R$ 67 e R$ 114" loading="lazy">
+    </div>
+    <div class="cta-meio"><a class="cta" href="#planos" data-link="checkout">Quero minhas referências</a><span class="seguro"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>Pagamento único de R$ 27 · 7 dias de garantia</span></div>
+  </div>
+</section>
+<div class="faixas" aria-hidden="true">
+  <div class="fita um"><div class="trilho"><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""></div></div>
+  <div class="fita dois"><div class="trilho"><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""><img src="../assets/logo-branco.png" alt=""></div></div>
+</div>
+
+
+
+<section class="prova" id="exemplos">
+  <div class="wrap">
+    <div class="centro">
+      <span class="selo-topo"><i></i>Vídeos entregues para clientes reais</span>
+      <h2>Referências que vêm de<br><span class="hl">trabalhos de verdade.</span></h2>
+    </div>
+    <p class="sub" style="margin:20px auto;text-align:center">Alguns dos motions que estão na biblioteca.</p><div class="carrossel">
+      <figure><video data-lazy poster="videos/ensaio.jpg" data-src="videos/ensaio.mp4" autoplay muted loop playsinline preload="none" disablepictureinpicture></video><figcaption><b>Ensaio de Aniversário</b><span>Ensaio fotográfico</span></figcaption></figure><figure><video data-lazy poster="videos/ame.jpg" data-src="videos/ame.mp4" autoplay muted loop playsinline preload="none" disablepictureinpicture></video><figcaption><b>AME</b><span>Evento de empreendedoras</span></figcaption></figure><figure><video data-lazy poster="videos/pizzella.jpg" data-src="videos/pizzella.mp4" autoplay muted loop playsinline preload="none" disablepictureinpicture></video><figcaption><b>Pizzella</b><span>Pizzaria</span></figcaption></figure><figure><video data-lazy poster="videos/sergio.jpg" data-src="videos/sergio.mp4" autoplay muted loop playsinline preload="none" disablepictureinpicture></video><figcaption><b>Sérgio Galpão</b><span>Imobiliária</span></figcaption></figure><figure><video data-lazy poster="videos/falcon.jpg" data-src="videos/falcon.mp4" autoplay muted loop playsinline preload="none" disablepictureinpicture></video><figcaption><b>Academia Falcon</b><span>Academia</span></figcaption></figure><figure><video data-lazy poster="videos/clickmagico.jpg" data-src="videos/clickmagico.mp4" autoplay muted loop playsinline preload="none" disablepictureinpicture></video><figcaption><b>Click Mágico</b><span>Eventos</span></figcaption></figure><figure><video data-lazy poster="videos/giromoney.jpg" data-src="videos/giromoney.mp4" autoplay muted loop playsinline preload="none" disablepictureinpicture></video><figcaption><b>Giro Money</b><span>Consórcio</span></figcaption></figure><figure><video data-lazy poster="videos/woman.jpg" data-src="videos/woman.mp4" autoplay muted loop playsinline preload="none" disablepictureinpicture></video><figcaption><b>Woman Experience</b><span>Evento feminino</span></figcaption></figure><a class="mais-refs" href="#planos"><b>+112</b><span>referências na biblioteca</span><em>Ver a oferta →</em></a>
+    </div>
+    <div class="centro" style="margin-top: 80px">
+      <h2 style="font-size: clamp(24px, 3.4vw, 32px)">E o que os clientes disseram <span class="hl">quando receberam</span></h2>
+      <p class="sub">Depoimentos de clientes do serviço de produção de motions da Fábrica. Eles mostram a experiência com nossos trabalhos; não são avaliações desta biblioteca.</p>
+    </div>
+    <div class="prints-wrap">
+    <div class="prints" id="prints">
+      <figure><img src="../assets/p01.jpg" alt="Conversa no WhatsApp com o cliente PSD de Elite" loading="lazy"><figcaption><b>PSD de Elite</b> · anúncio de produto digital</figcaption></figure>
+      <figure><img src="../assets/p02.jpg" alt="Conversa no WhatsApp com o cliente Giro Money" loading="lazy"><figcaption><b>Giro Money</b> · vídeo de consórcio</figcaption></figure>
+      <figure><img src="../assets/p03.jpg" alt="Conversa no WhatsApp com o cliente House Cleaning" loading="lazy"><figcaption><b>House Cleaning</b> · reação aos exemplos</figcaption></figure>
+      <figure><img src="../assets/p04.jpg" alt="Conversa no WhatsApp com o cliente Othon" loading="lazy"><figcaption><b>Othon</b> · duas versões do anúncio</figcaption></figure>
+      <figure><img src="../assets/p05.jpg" alt="Conversa no WhatsApp com o cliente Hippos" loading="lazy"><figcaption><b>Hippos</b> · vídeo para tráfego pago</figcaption></figure>
+      <figure><img src="../assets/p06.jpg" alt="Conversa no WhatsApp com o cliente Tauros Produções" loading="lazy"><figcaption><b>Tauros Produções</b> · anúncio da produtora</figcaption></figure>
+      <figure><img src="../assets/p07.jpg" alt="Conversa no WhatsApp com o cliente House Cleaning" loading="lazy"><figcaption><b>House Cleaning</b> · vídeo entregue</figcaption></figure>
+      <figure><img src="../assets/p08.jpg" alt="Conversa no WhatsApp com o cliente House Cleaning" loading="lazy"><figcaption><b>House Cleaning</b> · vídeo entregue</figcaption></figure>
+      <figure><img src="../assets/p09.jpg" alt="Conversa no WhatsApp com o cliente Corte Jesus" loading="lazy"><figcaption><b>Corte Jesus</b> · corte final</figcaption></figure>
+      <figure><img src="../assets/p10.jpg" alt="Conversa no WhatsApp com o cliente Cesar Imports" loading="lazy"><figcaption><b>Cesar Imports</b> · anúncio da loja</figcaption></figure>
+      <figure><img src="../assets/p11.jpg" alt="Conversa no WhatsApp com o cliente Evolua" loading="lazy"><figcaption><b>Evolua</b> · criativos para anúncio</figcaption></figure>
+    </div>
+    <div class="setas"><button type="button" id="ant" aria-label="Prints anteriores"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button><button type="button" id="prox" aria-label="Próximos prints"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button></div>
+    </div>
+  </div>
+</section>
+<section class="prova"><div class="wrap"><div class="centro"><h2>Para comprar <span class="hl">sabendo o que leva.</span></h2></div><div class="req"><div class="req-col sim"><h3>É para você que…</h3><p>Já cria ou está aprendendo a criar com IA e precisa de referências visuais para orientar seus pedidos.</p><p>Trabalha com conteúdo, design ou social media e quer consultar motions de negócios reais.</p></div><div class="req-col nao"><h3>O que não está incluído</h3><p>Projetos editáveis, código-fonte, templates de CapCut, assinatura de IA ou a Skill Fábrica de Motion.</p><p>Os originais são para estudo e referência. Não são vídeos para revender ou apresentar como trabalho seu.</p></div></div></div></section>
+<section id="planos"><div class="wrap"><div class="centro"><h2>Leve boas referências para<br><span class="hl">a sua próxima criação.</span></h2></div><div class="planos"><div class="plano top"><div class="aba">120 motions reais</div><div class="corpo"><span class="nome">Motion de Referência</span><hr><span class="por">Pagamento único de</span><span class="num">R$<b>27</b>,00</span><div class="mockup" aria-hidden="true"><video data-lazy poster="videos/m-unno.jpg" data-src="videos/m-unno.mp4" autoplay muted loop playsinline preload="none" disablepictureinpicture></video><video data-lazy poster="videos/m-tauros.jpg" data-src="videos/m-tauros.mp4" autoplay muted loop playsinline preload="none" disablepictureinpicture></video><video data-lazy poster="videos/m-upvideos.jpg" data-src="videos/m-upvideos.mp4" autoplay muted loop playsinline preload="none" disablepictureinpicture></video></div><ul class="plain-list"><li><b>120 vídeos finalizados</b> para estudo e referência.</li><li><b>Catálogo numerado</b> com cliente, duração e formato.</li><li><b>107 motions verticais</b> e 13 em outros formatos.</li><li><b>7 dias de garantia</b> para conhecer o material.</li></ul><div class="product-note">Use como referência para orientar suas criações. Não inclui arquivos editáveis ou uma ferramenta de geração de vídeos.</div><a class="cta" href="#planos" data-link="checkout">Quero minhas referências</a><p id="checkout-status" class="checkout-status" role="status" hidden>O checkout deste produto ainda está em preparação. Nenhuma cobrança foi iniciada.</p><span class="seguro">Pagamento único · Sem mensalidade</span></div></div></div></div></section>
+<section><div class="wrap garantia"><div class="selo"><b>7</b><span>DIAS DE GARANTIA</span></div><div class="txt"><h2>Conheça a biblioteca <span class="hl">com tranquilidade.</span></h2><p>Você tem 7 dias a partir da compra para conferir o material. Se não fizer sentido para você, solicite o reembolso dentro desse prazo pelo suporte.</p><p>Devolvemos 100% do valor pago.</p><div class="cta-meio esq"><a class="cta" href="#planos" data-link="checkout">Quero minhas referências</a></div></div></div></section>
+<section class="prova"><div class="wrap quem"><div class="foto"><img src="../assets/caique.jpg" alt="Caique Cesar, fundador da Fábrica de Motion" loading="lazy"></div><div class="txt"><h2>Referências de quem<br><span class="hl">produz todos os dias.</span></h2><p>Eu sou o Caique Cesar, videomaker, editor e fundador da Fábrica de Motion. Já entregamos mais de 450 motions para mais de 120 clientes.</p><p>Selecionei 120 motions finais para transformar esse repertório em uma biblioteca que você pode consultar ao planejar suas próprias criações.</p><div class="nome"><b>Caique Cesar</b><span>Fundador da Fábrica de Motion</span></div></div></div></section>
+<section><div class="wrap ajuda"><div class="suporte"><h3>Ficou alguma dúvida?</h3><p>Fale com a Fábrica de Motion antes de comprar e confira se a biblioteca faz sentido para o seu momento.</p><a class="zap" href="https://wa.me/5511968155528?text=Oi%21%20Tenho%20uma%20d%C3%BAvida%20sobre%20o%20Motion%20de%20Refer%C3%AAncia." target="_blank" rel="noopener">Falar com o suporte</a></div><div class="faq"><h2>Perguntas frequentes</h2>
+<details><summary>O que recebo por R$ 27?</summary><p>120 motions finalizados para estudo e referência, com catálogo numerado que identifica cliente, duração e formato. O pagamento é único.</p></details><details><summary>Os vídeos são editáveis?</summary><p>Não. São vídeos finais. Não inclui projetos de After Effects, CapCut, arquivos de código ou a Skill Fábrica de Motion.</p></details><details><summary>Como uso com Claude ou ChatGPT?</summary><p>Use imagens das cenas e uma descrição do movimento para explicar a referência na conversa. Informe sua marca, oferta e objetivo. Recursos e limites dependem da ferramenta e do plano usados; o produto não inclui assinaturas de IA.</p></details><details><summary>Preciso da Skill? Posso consultar no celular?</summary><p>Não é necessário comprar a Skill para estudar as referências. Os vídeos podem ser consultados no celular. A produção e a exportação de um novo motion dependem das ferramentas que você escolher e podem exigir computador.</p></details><details><summary>Posso revender os vídeos ou garantir um resultado igual?</summary><p>Os vídeos originais são para estudo e referência, não para revenda, redistribuição ou uso como portfólio próprio. Crie com sua identidade e materiais autorizados. Uma referência orienta a criação, mas não garante um resultado idêntico.</p></details><details><summary>E se o material não servir para mim?</summary><p>Você tem 7 dias a partir da compra para solicitar ao suporte o reembolso de 100% do valor pago.</p></details></div></div></section></main><div class="barra-compra" id="barra-compra" aria-hidden="true"><div class="bc-preco"><b>R$ 27</b><span>120 motions</span></div><a class="cta" href="#planos" data-link="checkout" tabindex="-1">Quero as referências</a></div><footer>
+  <div class="wrap">
+    <span>© 2026 Fábrica de Motion · CNPJ 61.451.359/0001-70</span>
+    <a href="politica.html">Políticas de privacidade</a>
+    <a href="termos.html">Termos de uso</a>
+    <span style="flex-basis:100%;text-align:center;font-size:14px">Biblioteca independente de referências. Não afiliada à Anthropic ou à OpenAI. Os vídeos originais mantêm as marcas de seus clientes.</span>
+  </div>
+</footer>
+
+<script>
+  // ===== CONFIG: preencha antes de subir a página =====
+  const CONFIG = {
+    checkout: "",   // INSERIR o checkout exclusivo do Motion de Referência (R$ 27); nunca usar o da Skill
+    whatsapp: "5511968155528",   // número do suporte só com dígitos, com DDI e DDD (ex.: "5511999999999")
+    pixel: "1106806325550548",      // pixel da Fábrica de Motion (o mesmo da skill)
+  };
+  // repassa a origem do anúncio (UTMs/fbclid) para o checkout, para a Cakto mostrar de onde veio cada venda; guarda por 7 dias para quem volta depois direto
+  const RASTRO = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'utm_id', 'fbclid', 'src', 'sck'];
+  let rastro = {};
+  const daUrl = new URLSearchParams(location.search);
+  RASTRO.forEach(k => { if (daUrl.get(k)) rastro[k] = daUrl.get(k); });
+  try {
+    if (Object.keys(rastro).length) localStorage.setItem('fm_referencias_rastro', JSON.stringify({t: Date.now(), p: rastro}));
+    else { const g = JSON.parse(localStorage.getItem('fm_referencias_rastro') || 'null'); if (g && Date.now() - g.t < 7 * 864e5) rastro = g.p; }
+  } catch (e) {}
+  const linkCheckout = () => { const u = new URL(CONFIG.checkout); Object.entries(rastro).forEach(([k, v]) => u.searchParams.set(k, v)); return u.toString(); };
+  document.querySelectorAll('[data-link="checkout"]').forEach(a => { if (CONFIG.checkout) a.href = linkCheckout(); });
+  document.querySelectorAll('[data-link="checkout"]').forEach(a => a.addEventListener('click', e => {
+    if (!CONFIG.checkout) { e.preventDefault(); const status = document.getElementById('checkout-status'); status.hidden = false; status.scrollIntoView({behavior: 'smooth', block: 'center'}); return; }
+    if (CONFIG.pixel && typeof fbq === 'function') fbq('trackCustom', 'CliqueComprar', {value: 27, currency: 'BRL'});
+  }));
+  document.querySelectorAll('[data-link="whatsapp"]').forEach(a => { if (CONFIG.whatsapp) a.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent("Oi! Tenho uma dúvida sobre o Motion de Referência."); });
+  if (CONFIG.pixel) {
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;var go=function(){s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)};if(b.readyState==='complete')setTimeout(go,800);else f.addEventListener('load',function(){setTimeout(go,800)})}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', CONFIG.pixel); fbq('track', 'PageView');
+    // o InitiateCheckout fica só com a Cakto (dispara quando o checkout abre); aqui o clique no botão vira um evento próprio, para não contar a mesma pessoa duas vezes
+
+  }
+
+  const pr = document.getElementById("prints");
+  document.getElementById("ant").addEventListener("click", () => pr.scrollBy({left: -300, behavior: "smooth"}));
+  document.getElementById("prox").addEventListener("click", () => pr.scrollBy({left: 300, behavior: "smooth"}));
+  const videoObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+    const video = entry.target;
+    if (entry.isIntersecting) {
+      if (!video.getAttribute('src')) video.src = video.dataset.src;
+      video.muted = true; video.play().catch(() => {});
+    } else video.pause();
+  }), {rootMargin:'300px'});
+  document.querySelectorAll('video[data-lazy]').forEach(video => videoObserver.observe(video));
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) document.querySelectorAll('video[data-lazy][src]').forEach(v => { const r = v.getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight) v.play().catch(() => {}); }); });
+</script>
+<script>
+(() => {
+  const barra = document.getElementById('barra-compra');
+  const topo = document.querySelector('.topo .compra');
+  const plano = document.querySelector('#planos .cta');
+  if (!barra || !topo || !('IntersectionObserver' in window)) return;
+  let passouTopo = false, planoVisivel = false;
+  const atualiza = () => { const on = passouTopo && !planoVisivel; barra.classList.toggle('on', on); barra.setAttribute('aria-hidden', on ? 'false' : 'true'); barra.querySelector('a').tabIndex = on ? 0 : -1; };
+  new IntersectionObserver(([e]) => { passouTopo = !e.isIntersecting && e.boundingClientRect.top < 0; atualiza(); }).observe(topo);
+  if (plano) new IntersectionObserver(([e]) => { planoVisivel = e.isIntersecting; atualiza(); }).observe(plano);
+})();
+</script>
+
+<script>
+(() => {
+  const mural = document.querySelector('.motion-mural');
+  const video = mural.querySelector('.mural-video');
+  const toggle = mural.querySelector('.mural-toggle');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const connection = navigator.connection;
+  let visible = false, userPaused = false, userRequested = false;
+  const allowed = () => userRequested || (!reduced.matches && !connection?.saveData);
+  const label = () => {
+    toggle.textContent = video.paused ? 'Reproduzir' : 'Pausar';
+    toggle.setAttribute('aria-label', video.paused ? 'Reproduzir animação de fundo' : 'Pausar animação de fundo');
+  };
+  const sync = () => {
+    if (!visible || document.hidden || userPaused || !allowed()) { video.pause(); return; }
+    if (!video.getAttribute('src')) video.src = video.dataset.muralSrc;
+    video.muted = true;
+    video.play().catch(() => { label(); });
+  };
+  toggle.hidden = false;
+  toggle.addEventListener('click', () => {
+    if (!video.paused) { userPaused = true; video.pause(); }
+    else { userPaused = false; userRequested = true; sync(); }
+  });
+  video.addEventListener('playing', () => { mural.classList.add('is-playing','has-played'); label(); });
+  video.addEventListener('pause', () => { mural.classList.remove('is-playing'); label(); });
+  video.addEventListener('error', () => { mural.classList.remove('is-playing','has-played'); toggle.hidden = true; });
+  new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); }, {threshold:.05}).observe(mural);
+  document.addEventListener('visibilitychange',sync);
+  reduced.addEventListener('change', () => { userRequested = false; sync(); });
+  if (connection?.addEventListener) connection.addEventListener('change',sync);
+})();
+</script>
+<script>
+</script></body>
+</html>
