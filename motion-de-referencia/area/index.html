@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Motion de Referência · Biblioteca</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+<style>
+:root{
+  --bg:#0A0A0C;--side:#0E0E11;--surface:#141418;--surface-2:#1B1B21;--hover:#202027;
+  --line:rgba(255,255,255,.07);--line-2:rgba(255,255,255,.12);
+  --ink:#EDEDF0;--muted:#8B8B96;--dim:#5E5E68;
+  --accent:#7C66FF;--accent-soft:rgba(124,102,255,.14);--ok:#2FD47A;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit}
+svg{flex:none}
+
+/* estrutura */
+.app{display:grid;grid-template-columns:232px minmax(0,1fr);min-height:100vh}
+.side{background:var(--side);border-right:1px solid var(--line);padding:20px 14px;position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column;gap:22px}
+.logo{display:flex;align-items:center;gap:10px;padding:0 6px}
+.logo i{width:28px;height:28px;border-radius:8px;background:linear-gradient(135deg,#9B89FF,#5B3FE6);display:grid;place-items:center;font:700 13px var(--sans);font-style:normal;color:#fff}
+.logo b{font-weight:600;font-size:14px;line-height:1.15}.logo small{display:block;color:var(--muted);font-weight:400;font-size:12px}
+.grupo h3{margin:0 0 6px;padding:0 8px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--dim)}
+.op{display:flex;align-items:center;justify-content:space-between;width:100%;background:none;border:0;border-radius:8px;padding:7px 8px;cursor:pointer;color:var(--muted);text-align:left}
+.op:hover{background:var(--surface);color:var(--ink)}
+.op.on{background:var(--surface-2);color:var(--ink)}
+.op span{display:flex;align-items:center;gap:9px}
+.op em{font-style:normal;font-size:12px;color:var(--dim);font-variant-numeric:tabular-nums}
+.op .fmt{width:14px;height:14px;border:1.5px solid currentColor;border-radius:3px;opacity:.8}
+.ajuda{margin-top:auto;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;font-size:12.5px;color:var(--muted)}
+.ajuda b{color:var(--ink);display:block;margin-bottom:6px;font-weight:600;font-size:13px}
+.ajuda ol{margin:0;padding-left:18px}.ajuda li{margin:3px 0}
+
+.main{min-width:0;padding:22px 28px 60px}
+.topo{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.topo h1{margin:0;font-size:20px;font-weight:600;letter-spacing:-.01em;margin-right:auto}
+.busca{position:relative;flex:0 1 300px;min-width:0}
+.busca svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--dim)}
+.busca input{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:9px;color:var(--ink);padding:8px 12px 8px 34px;font:inherit;outline:none}
+.busca input:focus{border-color:var(--line-2)}
+.seg{display:flex;background:var(--surface);border:1px solid var(--line);border-radius:9px;padding:2px}
+.seg button{background:none;border:0;border-radius:7px;padding:6px 10px;cursor:pointer;color:var(--muted);font-size:13px;display:flex;align-items:center;gap:6px}
+.seg button.on{background:var(--surface-2);color:var(--ink)}
+select.ord{background:var(--surface);border:1px solid var(--line);border-radius:9px;color:var(--ink);padding:7px 10px;font:inherit;outline:none;cursor:pointer}
+
+/* vitrine */
+.hero{position:relative;display:grid;grid-template-columns:minmax(260px,380px) minmax(0,1fr);gap:28px;align-items:center;padding:26px 0 26px 28px;margin:0 0 18px;border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  background:radial-gradient(120% 140% at 0% 0%,rgba(124,102,255,.22),transparent 55%),radial-gradient(90% 120% at 100% 100%,rgba(255,92,170,.10),transparent 60%),var(--surface)}
+.hero.oculto{display:none}
+.kicker{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#B9ADFF}
+.kicker i{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(47,212,122,.6);animation:pulso 2s infinite}
+@keyframes pulso{70%{box-shadow:0 0 0 8px rgba(47,212,122,0)}100%{box-shadow:0 0 0 0 rgba(47,212,122,0)}}
+.hero h2{margin:12px 0 16px;font-size:clamp(26px,3vw,38px);line-height:1.08;letter-spacing:-.03em;font-weight:700}
+.hero h2 em{font-style:normal;background:linear-gradient(90deg,#B9ADFF,#FF8AC8);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stats{display:flex;flex-wrap:wrap;gap:6px 18px;margin-bottom:18px}
+.stat{display:flex;align-items:baseline;gap:6px}
+.stat b{font-size:17px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat span{font-size:12.5px;color:var(--muted)}
+.vitrine{display:flex;gap:12px;overflow:hidden;padding-right:28px;mask-image:linear-gradient(90deg,transparent,#000 6%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 88%,transparent)}
+.vit{flex:0 0 auto;width:150px;aspect-ratio:9/16;border-radius:14px;overflow:hidden;position:relative;background:#000;border:1px solid var(--line-2);cursor:pointer;padding:0;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+.vit:nth-child(even){transform:translateY(14px)}
+.vit:hover{transform:translateY(-4px) scale(1.03);box-shadow:0 18px 40px -12px rgb(var(--c,124 102 255) / .7)}
+.vit video,.vit img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.vit span{position:absolute;left:0;right:0;bottom:0;padding:22px 10px 9px;font-size:12px;font-weight:600;text-align:left;background:linear-gradient(transparent,rgba(0,0,0,.8))}
+/* nichos */
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 0 18px;padding:2px 0}
+.chip{flex:none;display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--surface);color:var(--muted);border-radius:999px;padding:7px 14px;cursor:pointer;font-size:13px;transition:.15s}
+.chip:hover{color:var(--ink);border-color:var(--line-2)}
+.chip.on{color:#fff;background:linear-gradient(135deg,#8B76FF,#6247F0);border-color:transparent;box-shadow:0 6px 18px -6px rgba(124,102,255,.7)}
+.chip em{font-style:normal;font-size:11.5px;opacity:.65}
+
+/* grade */
+.grade{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--col,190px),1fr));gap:14px}
+.tile{background:none;border:0;padding:0;text-align:left;cursor:pointer;min-width:0}
+.thumb{position:relative;aspect-ratio:9/14;border-radius:12px;overflow:hidden;background:#000;border:1px solid var(--line);transition:border-color .15s,transform .15s}
+.tile:hover .thumb,.tile:focus-visible .thumb{border-color:var(--line-2);transform:translateY(-2px)}
+.tile:focus-visible{outline:none}
+.thumb .fundo{position:absolute;inset:-20px;background-size:cover;background-position:center;filter:blur(18px) brightness(.45);transform:scale(1.1)}
+.thumb img,.thumb video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.thumb video{opacity:0;transition:opacity .2s}
+.thumb.toca video{opacity:1}
+.selo{position:absolute;top:8px;left:8px;background:rgba(10,10,12,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-radius:6px;padding:2px 7px;font-size:11px;font-weight:600;font-variant-numeric:tabular-nums}
+.dur{left:auto;right:8px}
+.legenda{padding:9px 2px 0}
+.legenda b{display:block;font-weight:500;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.legenda span{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vazio{grid-column:1/-1;text-align:center;color:var(--muted);padding:70px 0}
+.nota{color:var(--dim);font-size:12px;margin-top:28px}
+
+/* detalhe */
+.veu{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:20;opacity:0;pointer-events:none;transition:opacity .2s}
+.veu.on{opacity:1;pointer-events:auto}
+.det{position:fixed;top:0;right:0;bottom:0;width:min(1040px,100vw);background:var(--side);border-left:1px solid var(--line);z-index:21;transform:translateX(100%);transition:transform .25s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+.det.on{transform:none}
+.det-topo{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.det-topo .t{margin-right:auto;font-weight:600;font-size:15px;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.det-topo .t small{color:var(--muted);font-weight:500;margin-right:6px}
+.ic{width:32px;height:32px;border-radius:8px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;cursor:pointer;color:var(--muted)}
+.ic:hover{color:var(--ink);border-color:var(--line-2)}
+.det-corpo{flex:1;min-height:0;display:grid;grid-template-columns:minmax(260px,360px) minmax(0,1fr)}
+.det-video{background:#000;display:flex;align-items:center;justify-content:center;padding:16px;border-right:1px solid var(--line);min-height:0}
+.det-video video{max-width:100%;max-height:100%;border-radius:10px;display:block}
+.det-info{min-width:0;display:flex;flex-direction:column;min-height:0}
+.det-cab{padding:18px 20px 14px;border-bottom:1px solid var(--line)}
+.det-cab p{margin:0 0 12px;color:var(--muted)}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.pill{font-size:12px;color:var(--muted);background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:2px 8px}
+.acoes{display:flex;gap:8px;flex-wrap:wrap}
+.bt{display:inline-flex;align-items:center;gap:7px;border-radius:9px;padding:8px 13px;font-weight:500;font-size:13.5px;cursor:pointer;border:1px solid var(--line);background:var(--surface);color:var(--ink);text-decoration:none;white-space:nowrap}
+.bt:hover{border-color:var(--line-2);background:var(--hover)}
+.bt.pri{background:var(--accent);border-color:var(--accent);color:#fff}
+.bt.pri:hover{filter:brightness(1.08)}
+.bt.feito{background:var(--ok);border-color:var(--ok);color:#06210f}
+.cod{flex:1;min-height:0;display:flex;flex-direction:column;background:#0B0B0E}
+.abas{display:flex;align-items:center;gap:2px;padding:6px 10px;border-bottom:1px solid var(--line)}
+.abas .nomes{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none;min-width:0;margin-right:auto}
+.aba{background:none;border:0;color:var(--muted);font:500 12px var(--mono);padding:6px 10px;border-radius:7px;cursor:pointer;white-space:nowrap}
+.aba:hover{color:var(--ink)}.aba.on{color:var(--ink);background:var(--surface-2)}
+.abas .bt{padding:5px 10px;font-size:12.5px}
+.cod pre{margin:0;flex:1;min-height:0;overflow:auto;padding:14px 18px;font:12.5px/1.6 var(--mono);tab-size:2}
+.cod pre code.hljs{background:none;padding:0}
+.troca{padding:9px 18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.troca code{font-family:var(--mono);font-size:12px;color:var(--ink);background:var(--surface);border-radius:4px;padding:1px 5px}
+
+/* celular */
+.so-cel{display:none}
+@media (max-width:980px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:820px){
+  .app{grid-template-columns:1fr}
+  .side{position:static;height:auto;flex-direction:row;overflow-x:auto;padding:10px 16px;gap:6px;border-right:0;border-bottom:1px solid var(--line);scrollbar-width:none}
+  .side .logo,.side .ajuda,.grupo h3{display:none}
+  .grupo{display:flex;gap:6px}
+  .op{white-space:nowrap;width:auto;border:1px solid var(--line);border-radius:999px;padding:6px 12px;gap:8px}
+  .op em{margin-left:6px}
+  .main{padding:16px 16px 50px}
+  .topo h1{width:100%}
+  .busca{flex:1 1 auto}
+  .grade{--col:150px !important;gap:12px}
+  .det-corpo{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);overflow-y:auto}
+  .det-video{border-right:0;border-bottom:1px solid var(--line);max-height:52vh}
+  .det-video video{max-height:calc(52vh - 32px)}
+  .cod{min-height:60vh}
+  .so-cel{display:inline-flex}
+  .seg{display:none}
+  .stat{padding:10px 12px}.stat b{font-size:18px}
+}
+@media (max-width:420px){.grade{--col:140px !important}.seg .txt{display:none}}
+/* acabamento */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.app{position:relative;z-index:1}
+.tile{animation:sobe .45s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0) * 28ms)}
+@keyframes sobe{from{opacity:0;transform:translateY(12px)}}
+.thumb{transition:border-color .2s,transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s;background:linear-gradient(110deg,#121216 30%,#1d1d24 50%,#121216 70%) 0 0/250% 100%;animation:brilho 1.4s linear infinite}
+.thumb.pronta{animation:none;background:#000}
+@keyframes brilho{to{background-position:-150% 0}}
+.thumb img{opacity:0;transition:opacity .3s}.thumb.pronta img{opacity:1}
+.thumb .fundo{opacity:0;transition:opacity .3s}.thumb.pronta .fundo{opacity:1}
+.tile:hover .thumb,.tile:focus-visible .thumb,.tile.foco .thumb{transform:translateY(-4px) scale(1.025);border-color:rgb(var(--c,124 102 255) / .55);box-shadow:0 16px 38px -14px rgb(var(--c,124 102 255) / .75)}
+.fav{position:absolute;right:8px;bottom:8px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(10,10,12,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#fff;opacity:0;transform:scale(.85);transition:.18s;cursor:pointer}
+.tile:hover .fav,.fav.on,.tile.foco .fav{opacity:1;transform:none}
+.fav.on{color:#FF5C8A}.fav.on svg{fill:currentColor}
+.fav:hover{background:rgba(10,10,12,.85)}
+.bt.pri{background:linear-gradient(135deg,#8E7BFF,#6142F0);border-color:transparent;position:relative;overflow:hidden;box-shadow:0 8px 22px -10px rgba(124,102,255,.9)}
+.bt.pri::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s}
+.bt.pri:hover::after{transform:translateX(120%)}
+.bt.feito{background:var(--ok);box-shadow:none}
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);background:#1E1E25;border:1px solid var(--line-2);color:var(--ink);padding:10px 16px;border-radius:12px;font-weight:500;z-index:40;opacity:0;pointer-events:none;transition:.25s cubic-bezier(.2,.8,.2,1);box-shadow:0 14px 40px -10px rgba(0,0,0,.6);display:flex;gap:8px;align-items:center}
+.toast.on{opacity:1;transform:translate(-50%,0)}.toast svg{color:var(--ok)}
+.det{background:radial-gradient(90% 60% at 0% 0%,rgb(var(--c,124 102 255) / .22),transparent 60%),var(--side);transition:transform .25s cubic-bezier(.2,.8,.2,1),background .4s}
+.det-video{background:radial-gradient(80% 60% at 50% 50%,rgb(var(--c,124 102 255) / .35),#000 75%)}
+.det-video video{box-shadow:0 20px 60px -20px rgb(var(--c,124 102 255) / .8)}
+.det-cab .fav{position:static;opacity:1;transform:none;width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:var(--surface)}
+@media (max-width:980px){.hero{grid-template-columns:1fr;padding:22px}.vitrine{padding-right:0;margin-right:-22px}}
+@media (max-width:820px){.hero{border-radius:16px;padding:18px 16px;gap:16px}.vit{width:118px}.vitrine{margin-right:-16px}.hero h2{font-size:26px}.chips{margin-left:-16px;margin-right:-16px;padding:2px 16px}}
+@media (prefers-reduced-motion:reduce){.tile,.thumb,.kicker i{animation:none!important}}
+/* barra lateral no estilo da vitrine */
+.side{background:radial-gradient(140% 40% at 0% 0%,rgba(124,102,255,.16),transparent 60%),radial-gradient(120% 30% at 100% 100%,rgba(255,92,170,.07),transparent 60%),var(--side);gap:20px}
+.logo{display:block;padding:4px 8px 14px;border-bottom:1px solid var(--line)}
+.logo img{display:block;width:150px;height:auto}
+.logo span{display:inline-flex;align-items:center;gap:7px;margin-top:10px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#B9ADFF}
+.logo span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px rgba(47,212,122,.7)}
+.grupo h3{color:#8C80C9;letter-spacing:.08em}
+.op{position:relative;overflow:hidden;border:1px solid transparent;transition:color .15s,background .15s,border-color .15s}
+.op::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.18) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s;pointer-events:none}
+.op:hover::after{transform:translateX(120%)}
+.op:hover{background:rgba(124,102,255,.08);border-color:rgba(124,102,255,.18);color:var(--ink)}
+.op.on{color:#fff;background:linear-gradient(135deg,rgba(142,123,255,.22),rgba(97,66,240,.08));border-color:rgba(142,123,255,.32);box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.op.on::before{content:"";position:absolute;left:0;top:50%;width:3px;height:16px;transform:translateY(-50%);border-radius:0 3px 3px 0;background:linear-gradient(#B9ADFF,#7C66FF)}
+.op em{min-width:26px;text-align:center;padding:1px 7px;border-radius:999px;background:rgba(255,255,255,.05)}
+.op.on em{color:#CFC6FF;background:rgba(142,123,255,.18)}
+.op .fmt{border-radius:3px}
+.ajuda{position:relative;overflow:hidden;border:1px solid rgba(124,102,255,.22);background:radial-gradient(120% 120% at 0% 0%,rgba(124,102,255,.2),transparent 60%),radial-gradient(90% 90% at 100% 100%,rgba(255,92,170,.1),transparent 60%),var(--surface)}
+.ajuda b{background:linear-gradient(90deg,#CFC6FF,#FF9ACF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ajuda ol{list-style:none;padding:0;counter-reset:p}
+.ajuda li{counter-increment:p;display:flex;gap:9px;margin:7px 0;line-height:1.4}
+.ajuda li::before{content:counter(p);flex:none;width:18px;height:18px;border-radius:50%;display:grid;place-items:center;font-size:10.5px;font-weight:700;color:#fff;background:linear-gradient(135deg,#8E7BFF,#6142F0)}
+@media (max-width:820px){.op.on::before{display:none}.op:hover{background:var(--surface)}}
+.semcod{display:none;margin:16px;padding:14px 16px;border:1px dashed rgba(255,255,255,.18);border-radius:10px;color:rgba(255,255,255,.7);font-size:14px;line-height:1.5}
+.det.sem .semcod{display:block}.det.sem .cod,.det.sem #dPrompt{display:none}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="logo"><img src="../../assets/logo-branco.png" alt="Fábrica de Motion" width="680" height="189"><span>Motion de Referência</span></div>
+    <div class="grupo" id="fColecao"></div>
+    <div class="grupo" id="fFormato"><h3>Formato</h3></div>
+    <div class="grupo" id="fDuracao"><h3>Duração</h3></div>
+    <div class="ajuda"><b>Como usar</b><ol><li>Abra um motion</li><li>Copie o prompt (o código vai junto)</li><li>Cole no Claude Code ou no Codex e troque pela sua marca</li></ol></div>
+  </aside>
+
+  <main class="main">
+    <div class="topo">
+      <h1>Biblioteca</h1>
+      <label class="busca"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="busca" type="search" placeholder="Procurar nicho, cliente ou estilo" aria-label="Procurar"></label>
+      <select class="ord" id="ord" aria-label="Ordenar"><option value="n">Número</option><option value="curto">Mais curtos</option><option value="longo">Mais longos</option></select>
+      <div class="seg" id="dens" aria-label="Tamanho da grade">
+        <button data-c="150" title="Mais vídeos por linha"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="5" height="5" rx="1"/><rect x="10" y="3" width="5" height="5" rx="1"/><rect x="17" y="3" width="5" height="5" rx="1"/><rect x="3" y="10" width="5" height="5" rx="1"/><rect x="10" y="10" width="5" height="5" rx="1"/><rect x="17" y="10" width="5" height="5" rx="1"/><rect x="3" y="17" width="5" height="5" rx="1"/><rect x="10" y="17" width="5" height="5" rx="1"/><rect x="17" y="17" width="5" height="5" rx="1"/></svg></button>
+        <button data-c="210" class="on" title="Vídeos maiores"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="8" height="8" rx="1.5"/><rect x="13" y="3" width="8" height="8" rx="1.5"/><rect x="3" y="13" width="8" height="8" rx="1.5"/><rect x="13" y="13" width="8" height="8" rx="1.5"/></svg></button>
+      </div>
+    </div>
+    <section class="hero" id="hero">
+      <div class="hero-txt">
+        <span class="kicker"><i></i>Biblioteca completa</span>
+        <h2>120 motions reais.<br><em>Copie o código, troque a marca.</em></h2>
+        <div class="stats" id="stats"></div>
+        <div class="hero-bts"><button class="bt pri" id="surpresa"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>Me surpreenda</button></div>
+      </div>
+      <div class="vitrine" id="vitrine"></div>
+    </section>
+    <div class="chips" id="chips"></div>
+    <div class="grade" id="grade"></div>
+    <p class="nota">Passe o mouse para ver o movimento; clique para abrir o vídeo, o código e o prompt. Telefones e @ dos clientes foram trocados por genéricos no código.</p>
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="veu" id="veu"></div>
+<section class="det" id="det" aria-hidden="true" role="dialog" aria-label="Detalhe do motion">
+  <div class="det-topo">
+    <div class="t" id="dTitulo"></div>
+    <button class="ic" id="dAnt" title="Anterior (←)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg></button>
+    <button class="ic" id="dProx" title="Próximo (→)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m9 18 6-6-6-6"/></svg></button>
+    <button class="ic" id="dFechar" title="Fechar (Esc)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="det-corpo">
+    <div class="det-video"><video id="dVideo" controls playsinline></video></div>
+    <div class="det-info">
+      <div class="det-cab">
+        <div class="pills" id="dPills"></div>
+        <p id="dEstilo"></p>
+        <div class="acoes">
+          <button class="bt pri" id="dPrompt"></button>
+          <a class="bt" id="dBaixar" target="_blank" rel="noopener"></a>
+          <button class="fav" id="dFav" aria-label="Favoritar" title="Favoritar"></button>
+        </div>
+      </div>
+      <div class="cod">
+        <div class="abas"><div class="nomes" id="dAbas"></div><button class="bt" id="dCopiar"></button></div>
+        <pre><code id="dCode" class="language-typescript"></code></pre>
+        <div class="troca" id="dTroca"></div>
+      </div>
+      <div class="semcod" id="dSemCod">Este motion não tem o código guardado. Use o vídeo como referência visual: baixe em alta e peça ao Claude ou ChatGPT para recriar o estilo.</div>
+    </div>
+  </div>
+</section>
+
+<script src="data.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+<script>
+const VID = "https://fabricademotion.github.io/motion-ref-videos/videos/"; // vídeos leves ficam no repositório motion-ref-videos
+const DRIVE = "https://drive.google.com/drive/folders/1ul2RtFPSdS2mEc9y-Vkgj7LAYZbjG2SD";
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const I = {
+  copiar: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>',
+  baixar: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-5-5m5 5 5-5M4 19h16"/></svg>',
+  ok: '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>',
+};
+const FORMATOS = ["Vertical 9:16", "Feed 4:5", "Quadrado 1:1", "Horizontal 16:9"];
+const DURACOES = [["Até 15 s", 0, 15], ["15 a 30 s", 15, 30.99], ["31 a 60 s", 31, 60], ["Mais de 1 min", 60.01, 1e9]];
+const curto = (f) => f.split(" ")[0];
+const pastas = (m) => [...new Set(m.assets.map((a) => a.split("/")[0]))];
+
+function prompt(m) {
+  const arqs = m.arquivos.map((f) => `===== ${f.nome} =====\n${f.codigo}`).join("\n\n");
+  const pub = (m.publicos || []).map((a) => `   - public/${a}`).join("\n");
+  const temImg = (m.publicos || []).length > 0;
+  return `Quero criar um motion em Remotion usando este como referência.
+
+REFERÊNCIA: motion ${m.n} do Motion de Referência (${m.formato}, ${m.seg} s, ${m.w}×${m.h}). Estilo: ${m.estilo}.
+
+MINHA VERSÃO:
+- Marca/cliente: [nome da marca]
+- O que vende: [produto ou serviço, com preço se tiver]
+- Cores: [cores da marca]
+- Chamada final: [ex.: chame no WhatsApp, link na bio, compre no site]
+- Contato que aparece no vídeo: [WhatsApp, @ ou site; ou "nenhum"]
+- Textos de cada cena: [cole o roteiro, ou escreva "crie você e me mostre antes"]
+- Logo e imagens: [diga onde estão os arquivos, ou "não tenho, desenhe um logo simples com o nome"]
+
+COMO FAZER:
+1. Projeto (se ainda não houver um nesta pasta):
+   npx create-video@latest --yes --blank meu-video
+   cd meu-video
+   npm i @remotion/google-fonts@$(node -p "require('remotion/package.json').version")
+   Precisa de uns 600 MB livres em disco; o primeiro render baixa o Chrome sozinho.
+2. Apague src/index.ts, src/Root.tsx e src/Composition.tsx do modelo em branco (se ficarem, o Remotion mostra a composição errada). Coloque em src/ os arquivos do código abaixo; o index.tsx é a entrada. Pode (e deve) renomear arquivos, componentes e o id da composição para o nome da minha marca, ajustando os imports.
+3. Imagens: ${temImg ? `o código carrega estes arquivos, que NÃO vêm junto (eram do cliente original):
+${pub}
+   Troque cada um por uma imagem minha com a mesma função (logo com fundo transparente, foto de produto etc.). Se eu não tiver alguma, desenhe no próprio código: logo = forma + nome da marca; mascote ou foto de produto = o meu produto desenhado em SVG; print de site = a tela do meu canal de contato (WhatsApp, Instagram ou site), em vez de deixar o arquivo faltando, senão o render quebra com erro 404. Pode renomear a pasta para public/marca/ e ajustar o caminho no código.` : "não há uma lista fixa de imagens. Se o código chamar staticFile(...) em algum ponto, esses arquivos eram do cliente original e não vêm junto: troque pelos meus ou desenhe no código, senão o render quebra com erro 404."}
+4. Mantenha a estrutura de cenas, o ritmo e o tipo de movimento da referência. Troque textos, cores (inclusive as escritas em rgba e hexadecimal no meio do código), ícones e nomes que eram do cliente original. Não deixe sobrar nada do cliente original (nome, telefone, @, produtos, apps citados). Pode mudar a quantidade de itens (palavras de uma lista, dígitos, benefícios, cartões) para caber a minha mensagem. Se a cena final mostra site ou endereço, ela vira o meu canal da chamada final.
+   Contraste: se a minha cor de destaque for clara (amarelo, verde-limão, branco), troque o texto branco que fica em cima dela (pílulas, botões, teclas, ícones, fundos em degradê) por uma cor escura.
+5. Os tempos das cenas foram feitos para a locução do cliente original, que não vem junto. Se eu não mandar locução, pode manter os tempos ou encurtar as esperas. Arquivos tipo mapa-*.json só remapeiam o tempo para tirar pausas da voz original: pode manter como estão.
+6. Textos novos têm tamanhos diferentes dos originais: ajuste o tamanho da fonte para nada passar das bordas nem ser cortado, com margem de pelo menos 80 px.
+7. Antes do render final, olhe as cenas: o jeito mais simples é renderizar um rascunho rápido (npx remotion render --scale=0.5) e tirar um quadro a cada 1,5 s com npx remotion ffmpeg (o Remotion já traz o ffmpeg), ou usar npx remotion still --frame=N. Quadros perto de um corte mostram a transição (círculos, faixas, tela vazia): isso não é erro, confira um quadro mais para dentro da cena. Corrija o que estiver cortado, ilegível ou com pouco contraste. Depois renderize em MP4 (${m.w}×${m.h}) em out/video.mp4.
+
+CÓDIGO DA REFERÊNCIA:
+
+${arqs}`;
+}
+async function copiar(texto, bt, rotulo) {
+  try { await navigator.clipboard.writeText(texto); }
+  catch { const t = document.createElement("textarea"); t.value = texto; t.style.cssText = "position:fixed;opacity:0"; document.body.appendChild(t); t.select(); document.execCommand("copy"); t.remove(); }
+  const antes = bt.innerHTML; bt.classList.add("feito"); bt.innerHTML = I.ok + "Copiado";
+  setTimeout(() => { bt.classList.remove("feito"); bt.innerHTML = antes; }, 1800);
+  toast(rotulo);
+}
+let tt;
+function toast(txt) { const t = $("toast"); t.innerHTML = I.ok + esc(txt); t.classList.add("on"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("on"), 2400); }
+
+// ---------- cor de cada motion (tirada da capa) ----------
+const COR = {};
+function corDe(img) {
+  try {
+    const c = document.createElement("canvas"); c.width = c.height = 24; const x = c.getContext("2d", { willReadFrequently: true });
+    x.drawImage(img, 0, 0, 24, 24); const d = x.getImageData(0, 0, 24, 24).data;
+    let r = 0, g = 0, b = 0, p = 0;
+    for (let i = 0; i < d.length; i += 4) { const mx = Math.max(d[i], d[i + 1], d[i + 2]), mn = Math.min(d[i], d[i + 1], d[i + 2]); const w = ((mx - mn) / 255) ** 2 * (mx / 255) + 0.002; r += d[i] * w; g += d[i + 1] * w; b += d[i + 2] * w; p += w; }
+    r /= p; g /= p; b /= p;
+    // realça: leva o tom para saturação e brilho bons de brilho/sombra
+    const mx = Math.max(r, g, b), mn = Math.min(r, g, b), f = mx - mn < 18 ? 0 : 1;
+    if (!f) return "124 102 255";
+    const k = 210 / mx; r = Math.min(255, (r - mn * 0.55) * k); g = Math.min(255, (g - mn * 0.55) * k); b = Math.min(255, (b - mn * 0.55) * k);
+    return `${r | 0} ${g | 0} ${b | 0}`;
+  } catch { return "124 102 255"; }
+}
+function pronta(img) {
+  const t = img.closest(".tile, .vit"); img.parentElement.classList.add("pronta");
+  const n = t && t.dataset.n; if (!n) return;
+  if (!COR[n]) COR[n] = corDe(img);
+  t.style.setProperty("--c", COR[n]);
+}
+
+// ---------- favoritos e vistos (só neste navegador) ----------
+const ler = (k) => { try { return JSON.parse(localStorage.getItem(k)) || []; } catch { return []; } };
+const gravar = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch {} };
+let FAV = new Set(ler("mr-fav")), VISTOS = ler("mr-vistos");
+const IC_FAV = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.4-9.2-9A5 5 0 0 1 12 6a5 5 0 0 1 9.2 5C19 15.6 12 20 12 20Z"/></svg>';
+function alternarFav(n) {
+  FAV.has(n) ? FAV.delete(n) : FAV.add(n); gravar("mr-fav", [...FAV]);
+  document.querySelectorAll(`.fav[data-fav="${n}"]`).forEach((b) => b.classList.toggle("on", FAV.has(n)));
+  toast(FAV.has(n) ? "Salvo nos favoritos" : "Removido dos favoritos");
+  if (st.col === "fav") render(); else filtros();
+}
+
+// ---------- nichos ----------
+const CATS = [
+  ["Igrejas", /igreja|religios/i], ["Marketing e agências", /marketing|agência|tráfego|design|produtora|publicidade|criativos|psd/i],
+  ["Educação", /educa|escola|curso|ebook|livro|concurso|infoproduto|comunidade|formação/i], ["Academia e esporte", /academia|corrida|futebol|games/i],
+  ["Saúde", /saúde|fisio|odonto|nutri|terap|hipno|medic|vacina/i], ["Beleza e moda", /moda|beleza|cosmét|perfume|salão|tranças|tatua|autocuidado|camiseta|crochê/i],
+  ["Comida", /hambúrg|hamburg|bebida|cardápio|delivery|cozinha/i], ["Finanças", /finan|consórcio|crédito|empréstimo|pagamento|fintech/i],
+  ["Tecnologia e apps", /tecnolog|app|software|sistema|telefone|streaming|tv|crm|ia /i], ["Casa, obra e imóveis", /imóve|constru|reforma|móveis|climatiza|esquadria|solar|piscin|quadros|pneu/i],
+];
+const catDe = (m) => (m._cat ||= (CATS.find(([, re]) => re.test(m.nicho)) || ["Serviços e eventos"])[0]);
+const NOMES_CAT = [...CATS.map((c) => c[0]), "Serviços e eventos"];
+
+// ---------- estado e filtros ----------
+const st = { formato: null, dur: null, q: "", ord: "n", cat: null, col: null };
+function passa(m, ign) {
+  if (ign !== "cat" && st.cat && catDe(m) !== st.cat) return false;
+  if (ign !== "col" && st.col === "fav" && !FAV.has(m.n)) return false;
+  if (ign !== "col" && st.col === "vistos" && !VISTOS.includes(m.n)) return false;
+  if (ign !== "formato" && st.formato && m.formato !== st.formato) return false;
+  if (ign !== "dur" && st.dur != null) { const [, a, b] = DURACOES[st.dur]; if (m.seg < a || m.seg > b) return false; }
+  if (st.q && ![m.n, m.titulo, m.nicho, m.estilo, m.formato].join(" ").toLowerCase().includes(st.q)) return false;
+  return true;
+}
+function filtros() {
+  const conta = (fn, ign) => MOTIONS.filter((m) => passa(m, ign) && fn(m)).length;
+  const op = (on, attr, rot, n, icone = "") => `<button class="op ${on ? "on" : ""}" ${attr}><span>${icone}${rot}</span><em>${n}</em></button>`;
+  const fmtIc = (f) => { const [w, h] = { "Vertical 9:16": [9, 14], "Feed 4:5": [11, 14], "Quadrado 1:1": [13, 13], "Horizontal 16:9": [15, 9] }[f]; return `<i class="fmt" style="width:${w}px;height:${h}px"></i>`; };
+  $("fFormato").innerHTML = "<h3>Formato</h3>" + op(!st.formato, 'data-f=""', "Todos", conta(() => true, "formato")) +
+    FORMATOS.map((f) => op(st.formato === f, `data-f="${f}"`, f, conta((m) => m.formato === f, "formato"), fmtIc(f))).join("");
+  $("fDuracao").innerHTML = "<h3>Duração</h3>" + op(st.dur == null, 'data-d=""', "Qualquer", conta(() => true, "dur")) +
+    DURACOES.map(([r, a, b], i) => op(st.dur === i, `data-d="${i}"`, r, conta((m) => m.seg >= a && m.seg <= b, "dur"))).join("");
+  const icCol = { "": '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>',
+    fav: IC_FAV, vistos: '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>' };
+  $("fColecao").innerHTML = "<h3>Coleção</h3>" + [["", "Todos"], ["fav", "Favoritos"], ["vistos", "Vistos recentes"]]
+    .map(([k, r]) => op((st.col || "") === k, `data-c="${k}"`, r, conta((m) => !k || (k === "fav" ? FAV.has(m.n) : VISTOS.includes(m.n)), "col"), icCol[k])).join("");
+  $("chips").innerHTML = `<button class="chip ${!st.cat ? "on" : ""}" data-cat="">Todos os nichos <em>${conta(() => true, "cat")}</em></button>` +
+    NOMES_CAT.map((c) => [c, conta((m) => catDe(m) === c, "cat")]).filter(([c, n]) => n || st.cat === c)
+      .map(([c, n]) => `<button class="chip ${st.cat === c ? "on" : ""}" data-cat="${esc(c)}">${esc(c)} <em>${n}</em></button>`).join("");
+}
+$("fColecao").addEventListener("click", (e) => { const b = e.target.closest(".op"); if (!b) return; st.col = b.dataset.c || null; render(); });
+$("chips").addEventListener("click", (e) => { const b = e.target.closest(".chip"); if (!b) return; st.cat = b.dataset.cat || null; render(); });
+$("surpresa").addEventListener("click", () => { const l = visiveis.length ? visiveis : MOTIONS; abrir(l[Math.floor(Math.random() * l.length)].n); });
+$("fFormato").addEventListener("click", (e) => { const b = e.target.closest(".op"); if (!b) return; st.formato = b.dataset.f || null; render(); });
+$("fDuracao").addEventListener("click", (e) => { const b = e.target.closest(".op"); if (!b) return; st.dur = b.dataset.d === "" ? null : +b.dataset.d; render(); });
+$("busca").addEventListener("input", (e) => { st.q = e.target.value.trim().toLowerCase(); render(); });
+$("ord").addEventListener("change", (e) => { st.ord = e.target.value; render(); });
+$("dens").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return;
+  $("dens").querySelectorAll("button").forEach((x) => x.classList.toggle("on", x === b));
+  $("grade").style.setProperty("--col", b.dataset.c + "px"); try { localStorage.setItem("mr-dens", b.dataset.c); } catch {} });
+try { const d = localStorage.getItem("mr-dens"); const b = d && $("dens").querySelector(`[data-c="${d}"]`); if (b) b.click(); } catch {}
+
+let visiveis = [];
+function render() {
+  filtros();
+  visiveis = MOTIONS.filter((m) => passa(m));
+  if (st.ord === "curto") visiveis.sort((a, b) => a.seg - b.seg);
+  else if (st.ord === "longo") visiveis.sort((a, b) => b.seg - a.seg);
+  const tot = visiveis.reduce((s, m) => s + m.seg, 0);
+  const filtrando = st.formato || st.dur != null || st.q || st.cat || st.col;
+  $("hero").classList.toggle("oculto", !!filtrando);
+  $("stats").innerHTML = [
+    [MOTIONS.length, "motions"],
+    [Math.round(MOTIONS.reduce((s, m) => s + m.linhas, 0) / 1000) + " mil", "linhas de código"],
+    [Math.round(MOTIONS.reduce((s, m) => s + m.seg, 0) / 60) + " min", "de vídeo"],
+    [new Set(MOTIONS.map(catDe)).size, "nichos"],
+  ].map(([v, r]) => `<div class="stat"><b>${v}</b><span>${r}</span></div>`).join("");
+  $("grade").innerHTML = visiveis.length ? visiveis.map((m, i) => `
+    <button class="tile" data-n="${m.n}" style="--i:${Math.min(i, 24)}${COR[m.n] ? `;--c:${COR[m.n]}` : ""}">
+      <div class="thumb"><div class="fundo" style="background-image:url(capas/${m.n}.jpg)"></div><img src="capas/${m.n}.jpg" alt="" loading="lazy" onload="pronta(this)" onerror="this.parentElement.classList.add('pronta')"><video muted loop playsinline preload="none" data-src="${VID}${m.n}.mp4"></video>
+        <span class="selo">#${m.n}</span><span class="selo dur">${m.seg}s</span>
+        <span class="fav ${FAV.has(m.n) ? "on" : ""}" data-fav="${m.n}" role="button" aria-label="Favoritar" title="Favoritar">${IC_FAV}</span></div>
+      <div class="legenda"><b>${esc(m.titulo)}</b><span>${esc(m.nicho)} · ${curto(m.formato)}</span></div>
+    </button>`).join("") : `<div class="vazio">${st.col === "fav" ? "Nenhum favorito ainda. Toque no coração de um motion para guardar aqui." : st.col === "vistos" ? "Você ainda não abriu nenhum motion." : "Nenhum motion com esses filtros."}</div>`;
+  if (!temMouse) observarCel();
+}
+
+// ---------- vitrine do topo ----------
+const DESTAQUES = ["002", "085", "009", "108", "036", "003", "071", "030"];
+$("vitrine").innerHTML = DESTAQUES.map((n) => MOTIONS.find((m) => m.n === n)).filter(Boolean).map((m) =>
+  `<button class="vit" data-n="${m.n}"><img src="capas/${m.n}.jpg" alt="" onload="pronta(this)"><video muted loop playsinline preload="none" data-src="${VID}${m.n}.mp4"></video><span>${esc(m.titulo)}</span></button>`).join("");
+$("vitrine").addEventListener("click", (e) => { const b = e.target.closest(".vit"); if (b) abrir(b.dataset.n); });
+const obsVit = new IntersectionObserver((es) => es.forEach((e) => { const v = e.target.querySelector("video");
+  if (e.isIntersecting) { if (!v.src) v.src = v.dataset.src; v.play().catch(() => {}); } else v.pause(); }), { threshold: 0.4 });
+document.querySelectorAll(".vit").forEach((b) => obsVit.observe(b));
+
+// ---------- no celular: o card do meio da tela toca sozinho ----------
+let obsCel;
+function observarCel() {
+  if (obsCel) obsCel.disconnect();
+  obsCel = new IntersectionObserver((es) => es.forEach((e) => { const t = e.target, v = t.querySelector("video"), th = t.querySelector(".thumb");
+    if (e.isIntersecting) { t.classList.add("foco"); if (!v.src) v.src = v.dataset.src; v.play().then(() => th.classList.add("toca")).catch(() => {}); }
+    else { t.classList.remove("foco"); th.classList.remove("toca"); v.pause(); } }), { rootMargin: "-42% 0px -42% 0px" });
+  document.querySelectorAll(".tile").forEach((t) => obsCel.observe(t));
+}
+
+// prévia no hover (só onde existe mouse)
+const temMouse = matchMedia("(hover:hover)").matches;
+if (temMouse) {
+  $("grade").addEventListener("mouseover", (e) => { const t = e.target.closest(".tile"); if (!t || t.contains(e.relatedTarget)) return;
+    const v = t.querySelector("video"); if (!v.src) v.src = v.dataset.src; v.currentTime = 0;
+    v.play().then(() => t.querySelector(".thumb").classList.add("toca")).catch(() => {}); });
+  $("grade").addEventListener("mouseout", (e) => { const t = e.target.closest(".tile"); if (!t || t.contains(e.relatedTarget)) return;
+    t.querySelector(".thumb").classList.remove("toca"); t.querySelector("video").pause(); });
+}
+$("grade").addEventListener("click", (e) => { const f = e.target.closest(".fav"); if (f) { e.stopPropagation(); alternarFav(f.dataset.fav); return; }
+  const t = e.target.closest(".tile"); if (t) abrir(t.dataset.n); });
+
+// ---------- detalhe ----------
+let atual = null, aba = 0;
+function abrir(n) {
+  const m = MOTIONS.find((x) => x.n === n); if (!m) return;
+  atual = m; aba = 0;
+  document.querySelectorAll(".thumb video").forEach((v) => v.pause());
+  $("dTitulo").innerHTML = `<small>#${m.n}</small>${esc(m.titulo)}`;
+  $("dPills").innerHTML = [m.nicho, m.formato, `${m.seg} s`, `${m.w}×${m.h}`, m.linhas ? `${m.linhas} linhas` : ""].filter(Boolean).map((p) => `<span class="pill">${esc(p)}</span>`).join("");
+  $("dEstilo").textContent = m.estilo;
+  $("dPrompt").innerHTML = I.copiar + "Copiar prompt + código";
+  $("dBaixar").href = DRIVE; $("dBaixar").innerHTML = I.baixar + "Baixar em alta";
+  $("dCopiar").innerHTML = I.copiar + "Copiar arquivo";
+  $("det").classList.toggle("sem", !m.arquivos.length);
+  $("dFav").dataset.fav = m.n; $("dFav").classList.toggle("on", FAV.has(m.n));
+  if (COR[m.n]) $("det").style.setProperty("--c", COR[m.n]);
+  else { $("det").style.removeProperty("--c"); const im = new Image(); im.onload = () => { COR[m.n] = corDe(im); if (atual === m) $("det").style.setProperty("--c", COR[m.n]); }; im.src = `capas/${m.n}.jpg`; }
+  VISTOS = [m.n, ...VISTOS.filter((x) => x !== m.n)].slice(0, 30); gravar("mr-vistos", VISTOS);
+  $("dAbas").innerHTML = m.arquivos.map((f, i) => `<button class="aba" data-i="${i}">${esc(f.nome)}</button>`).join("");
+  $("dTroca").style.display = pastas(m).length ? "" : "none";
+  $("dTroca").innerHTML = `Imagens e vídeos que o código usa: ${pastas(m).map((p) => `<code>public/${esc(p)}/</code>`).join(" ")}. Troque pelos da sua marca.`;
+  const v = $("dVideo"); v.poster = `capas/${m.n}.jpg`; v.src = `${VID}${m.n}.mp4`; v.play().catch(() => {});
+  if (m.arquivos.length) carregarCodigo(m).then(() => { if (atual === m) mostrarAba(0); });
+  $("det").classList.add("on"); $("veu").classList.add("on"); $("det").setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+const cacheCod = {};
+function carregarCodigo(m) {
+  if (m.arquivos[0] && m.arquivos[0].codigo != null) return Promise.resolve();
+  $("dCode").textContent = "Carregando código…";
+  return (cacheCod[m.n] ||= fetch(`codigo/${m.n}.json`).then((r) => r.json()).then((a) => { m.arquivos = a; m.linhas = a.reduce((s, f) => s + f.codigo.split("\n").length - 1, 0); })
+    .catch(() => { delete cacheCod[m.n]; $("dCode").textContent = "Não foi possível carregar o código. Recarregue a página."; throw 0; }));
+}
+function mostrarAba(i) {
+  aba = i; const f = atual.arquivos[i], c = $("dCode"); if (f.codigo == null) return;
+  $("dAbas").querySelectorAll(".aba").forEach((b) => b.classList.toggle("on", +b.dataset.i === i));
+  c.className = f.nome.endsWith(".json") ? "language-json" : "language-typescript";
+  c.textContent = f.codigo; delete c.dataset.highlighted;
+  if (window.hljs) hljs.highlightElement(c);
+  c.parentElement.scrollTop = 0;
+}
+function fechar() {
+  $("det").classList.remove("on"); $("veu").classList.remove("on"); $("det").setAttribute("aria-hidden", "true");
+  $("dVideo").pause(); document.body.style.overflow = ""; atual = null;
+}
+function andar(d) { if (!atual) return; const i = visiveis.findIndex((m) => m.n === atual.n); const p = visiveis[(i + d + visiveis.length) % visiveis.length]; if (p) abrir(p.n); }
+$("dAbas").addEventListener("click", (e) => { const b = e.target.closest(".aba"); if (b) mostrarAba(+b.dataset.i); });
+$("dPrompt").addEventListener("click", (e) => { const b = e.currentTarget, m = atual; carregarCodigo(m).then(() => copiar(prompt(m), b, "Copiado! Cole no Claude Code ou Codex")).catch(() => {}); });
+$("dCopiar").addEventListener("click", (e) => { const f = atual.arquivos[aba]; if (f && f.codigo != null) copiar(f.codigo, e.currentTarget, "Copiado"); });
+$("dFechar").addEventListener("click", fechar); $("veu").addEventListener("click", fechar);
+$("dAnt").addEventListener("click", () => andar(-1)); $("dProx").addEventListener("click", () => andar(1));
+document.addEventListener("keydown", (e) => { if (!atual) return; if (e.key === "Escape") fechar(); if (e.key === "ArrowLeft") andar(-1); if (e.key === "ArrowRight") andar(1); });
+
+$("dFav").innerHTML = IC_FAV;
+$("dFav").addEventListener("click", (e) => alternarFav(e.currentTarget.dataset.fav));
+render();
+</script>
+</body>
+</html>
