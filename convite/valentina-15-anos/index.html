@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Valentina 15 anos · Convite</title>
+<meta name="description" content="Convite interativo dos 15 anos da Valentina. Toque para abrir.">
+<meta property="og:title" content="Valentina · Meus 15 anos">
+<meta property="og:description" content="Toque para abrir o meu convite.">
+<meta property="og:image" content="../assets/debutante.webp">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/convite.css">
+</head>
+<body>
+<main class="palco"></main>
+<script>
+window.CONVITE = {
+  titulo: '15 anos da Valentina',
+  demo: 'MODELO DE DEMONSTRAÇÃO',
+  iniciais: 'V',
+  data: '2027-03-20T21:00:00-03:00',
+  local: 'Espaço Cristal, Av. das Flores, 500, São Paulo, SP',
+  musica: '../assets/musica-quinze.mp3',
+  transicao: 'zoom',
+  particulas: 'brilho',
+  tema: { fundo: '#2c0e19', tinta: '#f7e9de', destaque: '#e0a9a4', ouro: '#d8b26e', lacre: '#c9a25a', 'lacre-escuro': '#8a6a2f', script: "'Great Vibes', cursive" },
+  abertura: { tipo: 'portas', fundo: '../assets/portas.webp', etiqueta: 'toque para entrar' },
+  paginas: [
+    {
+      fundo: '../assets/debutante.webp',
+      veu: 'linear-gradient(180deg, rgba(44,14,25,0) 45%, rgba(44,14,25,.92) 82%)',
+      justifica: 'flex-end',
+      classe: 'claro',
+      kb: 'out',
+      transicao: 'cortina',
+      html: `<div class="pre entra a-desce">Meus</div>
+             <div class="save entra a-zoom" style="font-size:30cqw;line-height:.85">15</div>
+             <div class="pre entra a-blur">anos</div>
+             <div class="nomes entra a-letras" style="font-size:20cqw;color:#f3d3a0">Valentina</div>`
+    },
+    {
+      fundo: '../assets/moldura-rosas.webp',
+      kb: 'in',
+      transicao: 'zoom',
+      html: `<div style="padding:0 21cqw">
+             <div class="pre entra a-blur" style="font-size:2.4cqw;color:#f3d3a0">Com a bênção de Deus<br>e de meus pais</div>
+             <div class="nomes entra a-letras" style="font-size:12.5cqw;color:#f3d3a0">Valentina</div>
+             <div class="texto entra a-blur" style="font-size:3.6cqw">tem a alegria de convidar você para celebrar os seus 15 anos</div>
+             <div class="linha entra a-linha"></div>
+             <div class="entra a-pop"><div class="data-grande" style="font-size:6.6cqw">20 | 03 | 2027</div><div class="dia" style="font-size:3cqw">Sábado, às 21h</div></div>
+             <div class="linha entra a-linha"></div>
+             <div class="local entra a-desce" style="font-size:2.8cqw">Espaço Cristal<br>São Paulo · SP</div>
+             </div>`
+    },
+    {
+      fundo: '../assets/salao.webp',
+      veu: 'rgba(30, 8, 16, .45)',
+      classe: 'claro',
+      kb: 'esq',
+      transicao: 'deslize',
+      html: `<div class="save"><div class="entra a-esq">SAVE</div><em class="entra a-pop" style="color:#f3d3a0">the</em><div class="entra a-dir">DATE</div></div>
+             <div class="linha entra a-linha" style="background:#fff"></div>
+             <div class="data-grande entra a-blur">20 . MARÇO . 2027</div>`
+    },
+    {
+      fundo: '../assets/salao.webp',
+      veu: 'linear-gradient(180deg, rgba(30,8,16,.1), rgba(30,8,16,.5))',
+      justifica: 'flex-end',
+      kb: 'dir',
+      transicao: 'zoom',
+      html: `<div class="painel entra a-desce" style="background:rgba(44,14,25,.6)">
+               <div class="pre">Toque nos ícones</div>
+               <div class="nomes" style="color:#f3d3a0">para interagir</div>
+               {{icones}}
+             </div>`
+    },
+    {
+      cor: 'var(--fundo)',
+      justifica: 'flex-end',
+      html: `<div class="fim-foto" style="background-image:url(../assets/debutante.webp)"></div>
+             <div class="fim-texto">
+               <div class="pre entra">Faltam</div>
+               {{contagem}}
+               <div class="nomes entra a-letras" style="font-size:13cqw;color:#f3d3a0">Te espero lá!</div>
+               <div class="pre entra" style="font-size:2.8cqw;opacity:.7">Valentina · 20.03.2027</div>
+             </div>`
+    }
+  ],
+  icones: [
+    { id: 'mapa', rotulo: 'Como chegar' },
+    { id: 'presentes', rotulo: 'Sugestão de presentes' },
+    { id: 'rsvp', rotulo: 'Confirmar presença' },
+    { id: 'traje', rotulo: 'Traje' },
+    { id: 'agenda', rotulo: 'Salvar na agenda' }
+  ],
+  rsvp: { prazo: '1º de março de 2027', para: 'a Valentina', evento: 'nos 15 anos da Valentina', obrigado: 'Vai ser uma noite inesquecível com você lá!', whatsapp: null },
+  folhas: {
+    mapa: `<h3>Como chegar</h3>
+      <p><b>Espaço Cristal</b><br>Av. das Flores, 500<br>São Paulo · SP</p>
+      <p style="font-size:3.8cqw;opacity:.75">Manobrista no local. A recepção começa às 21h.</p>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=S%C3%A3o+Paulo+SP" target="_blank" rel="noopener">Abrir no Google Maps</a>
+      <a class="btn leve" href="https://waze.com/ul?q=S%C3%A3o%20Paulo" target="_blank" rel="noopener">Abrir no Waze</a>`,
+    presentes: `<h3>Sugestão de presentes</h3>
+      <p>Sua presença já é o melhor presente! Mas, se quiser me mimar:</p>
+      <ul>
+        <li><b>Viagem dos 15</b>Contribuição para a minha viagem</li>
+        <li><b>Loja preferida</b>Vale-presente da minha loja favorita</li>
+      </ul>
+      <p style="font-size:3.6cqw;opacity:.75">Pix</p>
+      <div class="pix" id="pix">valentina15@email.com</div>
+      <button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('pix').textContent);this.textContent='Chave copiada ✓'">Copiar chave Pix</button>`,
+    traje: `<h3>Traje</h3>
+      <p><b>Passeio completo</b></p>
+      <p>Uma noite de gala! Capriche no look.</p>
+      <div class="cores"><i style="background:#1f1f1f"></i><i style="background:#3b5168"></i><i style="background:#c9a25a"></i><i style="background:#e8d9c8"></i></div>
+      <p style="font-size:3.8cqw;opacity:.75">O rosé é a cor da debutante, por favor evite 💗</p>`
+  }
+};
+</script>
+<script src="../assets/convite.js"></script>
+</body>
+</html>

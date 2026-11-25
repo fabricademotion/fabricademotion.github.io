@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Helena & Rafael · Convite de Casamento</title>
+<meta name="description" content="Convite de casamento interativo de Helena e Rafael. Toque no lacre para abrir.">
+<meta property="og:title" content="Helena & Rafael · Você está convidado!">
+<meta property="og:description" content="Toque para abrir o nosso convite de casamento.">
+<meta property="og:image" content="../assets/casal.webp">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/convite.css">
+</head>
+<body>
+<main class="palco"></main>
+<script>
+window.CONVITE = {
+  titulo: 'Casamento de Helena & Rafael',
+  demo: 'MODELO DE DEMONSTRAÇÃO',
+  iniciais: 'H<span style="font-size:.6em">&</span>R',
+  data: '2027-05-15T17:00:00-03:00',
+  local: 'Villa Oliveira, Estrada das Palmeiras, 1200, Itaipava, RJ',
+  musica: '../assets/musica-casamento.mp3',
+  transicao: 'livro',
+  particulas: 'petalas',
+  tema: { fundo: '#f6f3ea', tinta: '#3b4630', destaque: '#5f7140', ouro: '#b89458', lacre: '#748548', 'lacre-escuro': '#4a5729' },
+  abertura: { fundo: null, aba: '#f4f0e5', texturaAba: '../assets/papel-oliva.webp', bolso: '#efe9da' },
+  paginas: [
+    {
+      cor: 'var(--fundo)',
+      justifica: 'flex-start',
+      transicao: 'livro',
+      html: `<div class="foto-baixa" style="background-image:url(../assets/casal.webp)"></div>
+             <div style="position:relative">
+             <div class="monograma entra a-gira">H<i>&</i>R</div>
+             <div class="pre entra a-blur">Convidamos você para o nosso casamento</div>
+             <div class="nomes entra a-letras" style="font-size:13cqw">Helena <small style="display:inline;font-size:.7em">&</small> Rafael</div>
+             </div>`
+    },
+    {
+      fundo: '../assets/envelope-oliva.webp',
+      veu: 'rgba(38, 44, 26, .55)',
+      classe: 'claro',
+      kb: 'out',
+      transicao: 'zoom',
+      html: `<div class="save entra a-zoom">SAVE<em>the</em>DATE</div>
+             <div class="linha entra a-linha" style="background:#fff"></div>
+             <div class="data-grande entra a-blur">15 . MAIO . 2027</div>`
+    },
+    {
+      fundo: '../assets/papel-oliva.webp',
+      kb: 'nada',
+      transicao: 'deslize',
+      html: `<div class="monograma entra a-pop">H<i>&</i>R</div>
+             <div class="pre entra a-desce" style="font-size:3cqw">Com a bênção de seus pais</div>
+             <div class="nomes entra a-letras">Helena <small>e</small> Rafael</div>
+             <div class="pre entra a-blur" style="margin-top:2cqw">têm a alegria de convidar para a cerimônia de casamento</div>
+             <div class="linha entra a-linha"></div>
+             <div class="entra"><div class="data-grande entra a-esq" style="transition-delay:1.1s">15 | 05 | 2027</div><div class="dia entra a-dir" style="transition-delay:1.3s">Sábado, às 17h</div></div>
+             <div class="linha entra a-linha"></div>
+             <div class="local entra a-blur">Villa Oliveira · Itaipava, RJ</div>`
+    },
+    {
+      fundo: '../assets/casal.webp',
+      veu: 'linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(30,34,22,.35))',
+      justifica: 'flex-end',
+      kb: 'sobe',
+      transicao: 'cortina',
+      html: `<div class="painel entra a-pop">
+               <div class="pre">Toque nos ícones</div>
+               <div class="nomes">para interagir</div>
+               {{icones}}
+             </div>`
+    },
+    {
+      cor: 'var(--fundo)',
+      justifica: 'flex-end',
+      html: `<div class="fim-foto" style="background-image:url(../assets/casal.webp)"></div>
+             <div class="fim-texto">
+               <div class="pre entra">Faltam</div>
+               {{contagem}}
+               <div class="nomes entra a-letras" style="font-size:12cqw">Esperamos por você</div>
+               <div class="pre entra" style="font-size:2.8cqw;opacity:.7">Helena & Rafael · 15.05.2027</div>
+             </div>`
+    }
+  ],
+  icones: [
+    { id: 'mapa', rotulo: 'Como chegar' },
+    { id: 'presentes', rotulo: 'Lista de presentes' },
+    { id: 'rsvp', rotulo: 'Confirmar presença' },
+    { id: 'traje', rotulo: 'Dress code' },
+    { id: 'manual', rotulo: 'Manual do convidado' },
+    { id: 'agenda', rotulo: 'Salvar na agenda' }
+  ],
+  rsvp: { prazo: '15 de abril de 2027', para: 'os noivos', evento: 'no casamento de Helena e Rafael', obrigado: 'Mal podemos esperar para celebrar com você!', whatsapp: null },
+  folhas: {
+    mapa: `<h3>Como chegar</h3>
+      <p><b>Villa Oliveira</b><br>Estrada das Palmeiras, 1200<br>Itaipava, Petrópolis · RJ</p>
+      <p style="font-size:3.8cqw;opacity:.75">Estacionamento no local. A cerimônia começa pontualmente às 17h.</p>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Itaipava+Petr%C3%B3polis+RJ" target="_blank" rel="noopener">Abrir no Google Maps</a>
+      <a class="btn leve" href="https://waze.com/ul?q=Itaipava%20Petr%C3%B3polis" target="_blank" rel="noopener">Abrir no Waze</a>`,
+    presentes: `<h3>Lista de presentes</h3>
+      <p>Sua presença é o nosso maior presente! Se quiser nos presentear, escolha uma das opções:</p>
+      <ul>
+        <li><b>Lua de mel</b>Ajude a gente a conhecer a Itália</li>
+        <li><b>Casa nova</b>Itens para o nosso primeiro lar</li>
+      </ul>
+      <p style="font-size:3.6cqw;opacity:.75">Pix dos noivos</p>
+      <div class="pix" id="pix">helenaerafael@email.com</div>
+      <button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('pix').textContent);this.textContent='Chave copiada ✓'">Copiar chave Pix</button>`,
+    traje: `<h3>Dress code</h3>
+      <p><b>Esporte fino</b></p>
+      <p>Cerimônia ao ar livre, no fim de tarde. Sugerimos tons claros e terrosos.</p>
+      <div class="cores"><i style="background:#e9e2cf"></i><i style="background:#b9b48f"></i><i style="background:#7d8a5a"></i><i style="background:#c9a77c"></i></div>
+      <p style="font-size:3.8cqw;opacity:.75">Por favor, evite branco e off-white: são cores da noiva 🤍</p>`,
+    manual: `<h3>Manual do convidado</h3>
+      <ul>
+        <li><b>Horário</b>Chegue com 30 minutos de antecedência.</li>
+        <li><b>Fotos</b>Durante a cerimônia, deixe o celular guardado: teremos fotógrafo!</li>
+        <li><b>Crianças</b>Os pequenos são muito bem-vindos.</li>
+        <li><b>Confirmação</b>Confirme sua presença até 15 de abril.</li>
+        <li><b>Hospedagem</b>Pousadas parceiras em Itaipava com desconto: fale com os noivos.</li>
+      </ul>`
+  }
+};
+</script>
+<script src="../assets/convite.js"></script>
+</body>
+</html>
