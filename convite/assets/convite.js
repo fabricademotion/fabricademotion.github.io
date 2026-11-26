@@ -101,7 +101,18 @@
   if (C.abertura.aba) ab.style.setProperty('--papel-aba', C.abertura.aba);
   if (C.abertura.texturaAba) ab.style.setProperty('--textura-aba', `url(${C.abertura.texturaAba})`);
   if (C.abertura.bolso) ab.style.setProperty('--papel-bolso', C.abertura.bolso);
-  ab.innerHTML = `<div class="sombra-bolso"><div class="bolso"></div></div><div class="aba"></div>
+  if (C.abertura.tipo === 'sol' && C.abertura.video) {
+    ab.classList.add('com-video');
+    ab.style.setProperty('--sx', (C.abertura.solX ?? 50) + '%'); ab.style.setProperty('--sy', (C.abertura.solY ?? 40) + '%');
+    ab.innerHTML = `<video class="video-fundo" src="${C.abertura.video}" poster="${C.abertura.poster || ''}" muted autoplay loop playsinline preload="auto"></video>
+    <div class="sol-topo">${C.abertura.topo || ''}</div>
+    <button class="lacre" aria-label="Abrir o convite"><i></i><i></i></button>
+    <div class="etiqueta">${C.abertura.etiqueta || 'toque no sol'}</div><div class="clarao"></div>`;
+  } else if (C.abertura.tipo === 'sol') ab.innerHTML = `<div class="ceu"></div><div class="mar"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    <div class="sol-topo">${C.abertura.topo || ''}</div>
+    <div class="horizonte"><button class="lacre" aria-label="Abrir o convite"></button></div>
+    <div class="etiqueta">${C.abertura.etiqueta || 'toque no sol'}</div><div class="clarao"></div>`;
+  else ab.innerHTML = `<div class="sombra-bolso"><div class="bolso"></div></div><div class="aba"></div>
     <button class="lacre" aria-label="Abrir o convite"><span>${C.iniciais}</span></button>
     <div class="etiqueta">${C.abertura.etiqueta || 'toque aqui'}</div>
     <svg class="mao" viewBox="0 0 24 24" fill="#fff" stroke="#333" stroke-width="1"><path d="M9 11V5.5a1.5 1.5 0 0 1 3 0V10l4.6.9c1 .2 1.6 1.1 1.5 2.1l-.6 5A3 3 0 0 1 14.5 21H11a3 3 0 0 1-2.3-1.1L5.4 16a1.4 1.4 0 0 1 2-2L9 15.5z"/></svg>`;

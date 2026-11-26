@@ -349,3 +349,63 @@ canvas.particulas { position: absolute; inset: 0; width: 100%; height: 100%; z-i
 .pagina.virada { pointer-events: none; }
 
 .palavra { display: inline-block; white-space: nowrap; }
+
+/* ================= abertura: pôr do sol ================= */
+.abertura.sol { background: #1c2340; overflow: hidden; }
+.abertura.sol::before { display: none; }
+.abertura.sol .ceu { position: absolute; left: 0; right: 0; top: 0; height: 64%;
+  background: linear-gradient(180deg, #1c2340 0%, #3b3557 30%, #8a4f5e 58%, #e0794c 84%, #f6b874 100%); }
+.abertura.sol .mar { position: absolute; left: 0; right: 0; top: 64%; bottom: 0;
+  background: linear-gradient(180deg, #4a3a52 0%, #2a2a46 40%, #171b33 100%); }
+.abertura.sol .mar i { position: absolute; left: 50%; height: .7cqw; border-radius: 1cqw; background: #ffd29a; opacity: .0;
+  transform: translateX(-50%); animation: reflexo 3.2s ease-in-out infinite; filter: blur(.3cqw); }
+.abertura.sol .mar i:nth-child(1) { top: 3%;  width: 34cqw; animation-delay: 0s; }
+.abertura.sol .mar i:nth-child(2) { top: 9%;  width: 26cqw; animation-delay: .4s; }
+.abertura.sol .mar i:nth-child(3) { top: 16%; width: 30cqw; animation-delay: .8s; }
+.abertura.sol .mar i:nth-child(4) { top: 24%; width: 18cqw; animation-delay: 1.2s; }
+.abertura.sol .mar i:nth-child(5) { top: 33%; width: 22cqw; animation-delay: 1.6s; }
+.abertura.sol .mar i:nth-child(6) { top: 44%; width: 12cqw; animation-delay: 2s; }
+.abertura.sol .mar i:nth-child(7) { top: 57%; width: 8cqw;  animation-delay: 2.4s; }
+@keyframes reflexo { 0%,100% { opacity: .35; transform: translateX(-50%) scaleX(.7); } 50% { opacity: 1; transform: translateX(-50%) scaleX(1); } }
+.abertura.sol .horizonte { position: absolute; left: 0; right: 0; top: 0; height: 64%; overflow: hidden; z-index: 3; }
+.abertura.sol .lacre { position: absolute; left: 50%; top: auto; bottom: -15cqw; width: 30cqw; height: 30cqw; padding: 0;
+  transform: translateX(-50%); border-radius: 50%; animation: solpulsa 3s ease-in-out infinite;
+  background: radial-gradient(circle, #fff6dc 0%, #ffd27f 45%, #f59a4a 100%);
+  box-shadow: 0 0 6cqw 2cqw rgba(255,190,110,.55), 0 0 22cqw 8cqw rgba(255,140,70,.35); }
+.abertura.sol .lacre::after { display: none; }
+@keyframes solpulsa { 0%,100% { box-shadow: 0 0 6cqw 2cqw rgba(255,190,110,.5), 0 0 20cqw 6cqw rgba(255,140,70,.3); } 50% { box-shadow: 0 0 9cqw 4cqw rgba(255,200,120,.75), 0 0 30cqw 12cqw rgba(255,150,80,.45); } }
+.abertura.sol .sol-topo { position: absolute; left: 0; right: 0; top: 17%; z-index: 4; text-align: center; color: #fbe9d4; pointer-events: none; }
+.abertura.sol .etiqueta { left: 0; right: 0; top: 74%; transform: none; background: none; box-shadow: none; padding: 0; text-align: center;
+  color: rgba(251,233,212,.85); font-size: 2.8cqw; letter-spacing: .3em; animation: respira 2.4s ease-in-out infinite; }
+@keyframes respira { 0%,100% { opacity: .45; } 50% { opacity: 1; } }
+.abertura.sol .clarao { position: absolute; inset: 0; z-index: 6; pointer-events: none; opacity: 0;
+  background: radial-gradient(circle at 50% 64%, #fff8e6 0%, #ffd9a0 35%, #f3a865 70%); transition: opacity .9s ease .35s; }
+.abertura.sol.abrindo { transform: none; opacity: 0; transition: opacity .9s ease 1.5s; }
+.abertura.sol.abrindo .lacre { animation: none; opacity: 1; transform: translateX(-50%) translateY(-40cqw) scale(5);
+  transition: transform 1.4s cubic-bezier(.5,0,.3,1); }
+.abertura.sol.abrindo .clarao { opacity: 1; }
+.abertura.sol.abrindo .sol-topo, .abertura.sol.abrindo .etiqueta { opacity: 0; transition: opacity .4s; }
+
+/* transição suave: troca por esmaecimento, sem cortar nada */
+.pagina.t-suave { transition: opacity 1s ease, transform 1.2s cubic-bezier(.2,.8,.2,1); transform-origin: center; }
+.pagina.t-suave.virada { opacity: 0; transform: translateY(-2%); }
+.pagina.t-suave.voltando { transition: opacity .8s ease, transform 1s cubic-bezier(.2,.8,.2,1); }
+.pagina.t-suave.virada::after { background: none; }
+.bg.kb-leve { transform: scale(1.04); } .pagina.ativa .bg.kb-leve { transform: scale(1); }
+
+/* pôr do sol com vídeo de fundo: o toque é no sol do vídeo */
+.abertura.sol.com-video .video-fundo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.abertura.sol.com-video::after { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(15,10,20,.25) 0%, rgba(15,10,20,0) 25%, rgba(15,10,20,0) 55%, rgba(15,10,20,.6) 100%); }
+.abertura.sol.com-video .sol-topo { top: auto; bottom: 9%; z-index: 4; text-shadow: 0 2px 14px rgba(0,0,0,.35); }
+.abertura.sol.com-video .lacre { left: var(--sx); top: var(--sy); bottom: auto; width: 16cqw; height: 16cqw; z-index: 5;
+  transform: translate(-50%, -50%); background: radial-gradient(circle, rgba(255,240,200,.95) 0%, rgba(255,200,120,.55) 35%, rgba(255,170,90,0) 70%);
+  box-shadow: none; animation: none; }
+.abertura.sol.com-video .lacre i { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(255,236,200,.8);
+  animation: onda 2.6s ease-out infinite; }
+.abertura.sol.com-video .lacre i + i { animation-delay: 1.3s; }
+@keyframes onda { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(2.6); opacity: 0; } }
+.abertura.sol.com-video .etiqueta { top: calc(var(--sy) + 9cqw); z-index: 4; color: #fff3e2; text-shadow: 0 1px 8px rgba(0,0,0,.45); }
+.abertura.sol.com-video .clarao { background: radial-gradient(circle at var(--sx) var(--sy), #fff8e6 0%, #ffd9a0 35%, #f3a865 75%); }
+.abertura.sol.com-video.abrindo .lacre { transform: translate(-50%, -50%) scale(14); opacity: 1; transition: transform 1.5s cubic-bezier(.5,0,.3,1); }
+.abertura.sol.com-video.abrindo .lacre i { display: none; }
