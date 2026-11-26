@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Marina & Thiago · Convite de Casamento</title>
+<meta name="description" content="Convite de casamento interativo de Marina e Thiago. Toque no lacre para abrir.">
+<meta property="og:title" content="Marina & Thiago · Você está convidado!">
+<meta property="og:description" content="Toque para abrir o nosso convite de casamento.">
+<meta property="og:image" content="hortensias.webp">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/convite.css?v=7">
+<style>
+  .monograma { font-family: var(--script); font-size: 20cqw; letter-spacing: 0; line-height: 1; color: var(--destaque); }
+  .monograma i { font-size: .5em; vertical-align: .4em; font-style: normal; }
+  .painel { background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); }
+</style>
+</head>
+<body>
+<main class="palco"></main>
+<script>
+window.CONVITE = {
+  titulo: 'Casamento de Marina & Thiago',
+  demo: 'MODELO DE DEMONSTRAÇÃO · ESSENCIAL',
+  iniciais: 'M<span style="font-size:.6em">&</span>T',
+  data: '2027-03-20T16:00:00-03:00',
+  local: 'Espaço Jardim Azul, Rua das Hortênsias, 85, Campinas, SP',
+  musica: null,
+  transicao: 'livro',
+  particulas: null,
+  tema: { fundo: '#f5f3ee', tinta: '#2f3e52', destaque: '#4a6280', ouro: '#8fa3bb', lacre: '#5a7393', 'lacre-escuro': '#34485f', script: "'Great Vibes', cursive" },
+  abertura: { fundo: 'hortensias.webp', aba: '#fbfaf6', bolso: '#eceae3', etiqueta: 'toque no lacre' },
+  paginas: [
+    {
+      fundo: 'hortensias.webp',
+      kb: 'leve',
+      html: `<div class="pre entra a-blur" style="font-size:3cqw">vamos casar</div>
+             <div class="nomes entra a-letras" style="font-size:17cqw;line-height:1.05;margin:3cqw 0">Marina<br><small style="display:block;font-size:.5em;line-height:1.2">&</small>Thiago</div>
+             <div class="linha entra a-linha"></div>
+             <div class="pre entra a-desce" style="font-size:3.4cqw">20 · 03 · 2027</div>`
+    },
+    {
+      fundo: 'hortensias.webp',
+      veu: 'radial-gradient(ellipse at 50% 50%, rgba(250,248,243,.92) 35%, rgba(250,248,243,.55) 75%)',
+      kb: 'nada',
+      transicao: 'zoom',
+      html: `<div class="monograma entra a-pop">M<i>&</i>T</div>
+             <div class="pre entra a-blur" style="font-size:3cqw;margin-top:2cqw">Com a bênção de Deus e de nossos pais</div>
+             <div class="nomes entra a-letras" style="font-size:11.5cqw;white-space:nowrap">Marina <small style="display:inline;font-size:.6em">e</small> Thiago</div>
+             <div class="texto entra a-blur" style="font-size:4.4cqw">convidam você para celebrar o seu casamento</div>
+             <div class="linha entra a-linha"></div>
+             <div class="entra a-desce"><div class="data-grande" style="font-size:8.5cqw">20 de março de 2027</div><div class="dia" style="font-size:3.6cqw">Sábado, às 16h</div></div>
+             <div class="linha entra a-linha"></div>
+             <div class="local entra a-blur" style="font-size:3.4cqw">Espaço Jardim Azul<br>Campinas · SP</div>`
+    },
+    {
+      cor: 'radial-gradient(circle at 50% 10%, #5a7393, #2f3e52 80%)',
+      classe: 'claro',
+      transicao: 'deslize',
+      html: `<div class="painel entra a-desce">
+               <div class="pre">Toque nos ícones</div>
+               <div class="nomes" style="font-size:11cqw">para interagir</div>
+               {{icones}}
+             </div>
+             <div class="nomes entra a-letras" style="font-size:12cqw;margin-top:8cqw">Contamos com você!</div>
+             <div class="pre entra a-blur" style="font-size:2.8cqw;opacity:.75">Marina & Thiago · 20.03.2027</div>`
+    }
+  ],
+  icones: [
+    { id: 'mapa', rotulo: 'Como chegar' },
+    { id: 'rsvp', rotulo: 'Confirmar presença' },
+    { id: 'agenda', rotulo: 'Salvar na agenda' }
+  ],
+  rsvp: { prazo: '1º de março de 2027', para: 'os noivos', evento: 'no casamento de Marina e Thiago', obrigado: 'Que alegria! Mal podemos esperar para celebrar com você.', whatsapp: null },
+  folhas: {
+    mapa: `<h3>Como chegar</h3>
+      <p><b>Espaço Jardim Azul</b><br>Rua das Hortênsias, 85<br>Campinas · SP</p>
+      <p style="font-size:3.8cqw;opacity:.75">Estacionamento no local. A cerimônia começa às 16h.</p>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Campinas+SP" target="_blank" rel="noopener">Abrir no Google Maps</a>
+      <a class="btn leve" href="https://waze.com/ul?q=Campinas" target="_blank" rel="noopener">Abrir no Waze</a>`
+  }
+};
+</script>
+<script src="../assets/convite.js?v=7"></script>
+</body>
+</html>
