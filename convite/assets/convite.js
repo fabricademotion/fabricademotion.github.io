@@ -84,7 +84,7 @@
   const btnMusica = el('button', 'musica', '<span class="barras"><i></i><i></i><i></i></span>');
   btnMusica.setAttribute('aria-label', 'Ligar ou desligar a música');
   if (C.musica) {
-    audio = new Audio(C.musica); audio.loop = true; audio.volume = .55; audio.preload = 'auto';
+    audio = new Audio(); audio.preload = 'none'; audio.loop = true; audio.volume = .55; audio.src = C.musica; // só baixa quando a pessoa toca no lacre
     palco.appendChild(btnMusica);
     btnMusica.addEventListener('click', e => {
       e.stopPropagation();
