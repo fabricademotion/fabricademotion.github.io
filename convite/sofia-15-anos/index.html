@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sofia 15 anos · Convite</title>
+<meta name="description" content="Convite interativo dos 15 anos da Sofia. Toque para entrar no castelo.">
+<meta property="og:title" content="Sofia · Meus 15 anos">
+<meta property="og:description" content="Toque para entrar no meu castelo.">
+<meta property="og:image" content="../assets/castelo.webp">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Parisienne&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/convite.css?v=3">
+<style>
+  .moldura { position: relative; padding: 16cqw 6cqw 12cqw; border: 1px solid rgba(230,211,255,.5); border-radius: 50cqw 50cqw 3cqw 3cqw; }
+  .moldura::before { content: ''; position: absolute; inset: 2cqw; border: 1px solid rgba(230,211,255,.25); border-radius: 48cqw 48cqw 2cqw 2cqw; pointer-events: none; }
+  .coroa { font-size: 9cqw; line-height: 1; filter: drop-shadow(0 0 3cqw rgba(230,211,255,.8)); }
+  .quinze { font-family: var(--caps); font-size: 34cqw; line-height: .8; letter-spacing: -.02em;
+    background: linear-gradient(180deg, #ffffff, #d9c2ff 55%, #a77fe0); -webkit-background-clip: text; background-clip: text; color: transparent;
+    filter: drop-shadow(0 1cqw 4cqw rgba(30,10,60,.6)); }
+  .pagina.ativa .cintila { animation: cintila 3s ease-in-out 1.5s infinite; }
+  @keyframes cintila { 0%,100% { filter: drop-shadow(0 0 0 rgba(230,211,255,0)); } 50% { filter: drop-shadow(0 0 4cqw rgba(230,211,255,.9)); } }
+  .painel { background: rgba(42,29,63,.62); }
+  .icone b { border-color: #e6d3ff; background: rgba(201,167,240,.15); }
+  .folha { background: #2a1d3f; color: #f4ecff; }
+  .folha li { border-color: rgba(255,255,255,.12); }
+  .folha .alca { background: rgba(255,255,255,.25); }
+  .btn { color: #2a1d3f; }
+  .btn.leve { color: #c9a7f0; }
+  .escolha span { box-shadow: inset 0 0 0 1px rgba(255,255,255,.3); }
+  .escolha input:checked + span { color: #2a1d3f; }
+</style>
+</head>
+<body>
+<main class="palco"></main>
+<script>
+window.CONVITE = {
+  titulo: '15 anos da Sofia',
+  demo: 'MODELO DE DEMONSTRAÇÃO',
+  iniciais: 'S',
+  data: '2027-08-28T21:00:00-03:00',
+  local: 'Palácio dos Cristais, Alameda Real, 800, Curitiba, PR',
+  musica: '../assets/musica-quinze2.mp3',
+  transicao: 'zoom',
+  particulas: 'brilho',
+  coresParticulas: ['#ffffff', '#e6d3ff', '#c9a7f0', '#ffd6f5'],
+  tema: { fundo: '#2a1d3f', tinta: '#f4ecff', destaque: '#c9a7f0', ouro: '#e6d3ff', lacre: '#b48ee0', 'lacre-escuro': '#6c4a9e', script: "'Parisienne', cursive" },
+  abertura: { tipo: 'portas', fundo: '../assets/castelo.webp', etiqueta: 'entre no castelo' },
+  paginas: [
+    {
+      fundo: '../assets/castelo.webp',
+      veu: 'linear-gradient(180deg, rgba(42,29,63,.15) 0%, rgba(42,29,63,0) 35%, rgba(42,29,63,.9) 85%)',
+      justifica: 'flex-end',
+      classe: 'claro',
+      kb: 'sobe',
+      transicao: 'zoom',
+      html: `<div class="coroa entra a-desce">👑</div>
+             <div class="quinze entra a-zoom cintila">15</div>
+             <div class="nomes entra a-letras" style="font-size:22cqw;color:#f3e6ff">Sofia</div>
+             <div class="pre entra a-blur" style="font-size:3cqw">um conto de fadas</div>`
+    },
+    {
+      cor: 'radial-gradient(circle at 50% 20%, #4a3470, #2a1d3f 70%)',
+      transicao: 'cortina',
+      html: `<div class="moldura">
+               <div class="pre entra a-blur" style="font-size:3.4cqw;color:#e6d3ff">Era uma vez uma menina<br>que virou princesa</div>
+               <div class="nomes entra a-letras" style="font-size:19cqw;color:#f3e6ff">Sofia</div>
+               <div class="texto entra a-blur" style="font-size:5cqw">convida você para o baile dos seus 15 anos</div>
+               <div class="linha entra a-linha"></div>
+               <div class="entra a-pop"><div class="data-grande" style="font-size:9.5cqw">28 · 08 · 2027</div><div class="dia" style="font-size:3.8cqw">Sábado, às 21h</div></div>
+               <div class="linha entra a-linha"></div>
+               <div class="local entra a-desce" style="font-size:3.8cqw">Palácio dos Cristais<br>Curitiba · PR</div>
+             </div>`
+    },
+    {
+      fundo: '../assets/castelo.webp',
+      veu: 'rgba(42, 29, 63, .6)',
+      classe: 'claro',
+      kb: 'in',
+      transicao: 'deslize',
+      html: `<div class="pre entra a-blur" style="font-size:3.4cqw">Reserve a data</div>
+             <div class="save" style="margin:4cqw 0"><div class="entra a-esq">BAILE</div><em class="entra a-pop" style="color:#e6d3ff">da</em><div class="entra a-dir">SOFIA</div></div>
+             <div class="linha entra a-linha" style="background:#fff"></div>
+             <div class="data-grande entra a-blur">28 . AGOSTO . 2027</div>`
+    },
+    {
+      fundo: '../assets/castelo.webp',
+      veu: 'linear-gradient(180deg, rgba(42,29,63,.1), rgba(42,29,63,.55))',
+      justifica: 'flex-end',
+      kb: 'esq',
+      transicao: 'zoom',
+      html: `<div class="painel entra a-desce">
+               <div class="pre">Toque nos ícones</div>
+               <div class="nomes" style="color:#f3e6ff">para interagir</div>
+               {{icones}}
+             </div>`
+    },
+    {
+      cor: 'var(--fundo)',
+      justifica: 'flex-end',
+      html: `<div class="fim-foto" style="background-image:url(../assets/castelo.webp)"></div>
+             <div class="fim-texto">
+               <div class="pre entra">Faltam</div>
+               {{contagem}}
+               <div class="nomes entra a-letras" style="font-size:13cqw;color:#f3e6ff">Te espero no baile!</div>
+               <div class="pre entra" style="font-size:2.8cqw;opacity:.7">Sofia · 28.08.2027</div>
+             </div>`
+    }
+  ],
+  icones: [
+    { id: 'mapa', rotulo: 'Como chegar' },
+    { id: 'presentes', rotulo: 'Lista de presentes' },
+    { id: 'rsvp', rotulo: 'Confirmar presença' },
+    { id: 'traje', rotulo: 'Traje' },
+    { id: 'agenda', rotulo: 'Salvar na agenda' }
+  ],
+  rsvp: { prazo: '10 de agosto de 2027', para: 'a Sofia', evento: 'nos 15 anos da Sofia', obrigado: 'Que alegria! O baile vai ser ainda mais mágico com você ✨', whatsapp: null },
+  folhas: {
+    mapa: `<h3>Como chegar</h3>
+      <p><b>Palácio dos Cristais</b><br>Alameda Real, 800<br>Curitiba · PR</p>
+      <p style="font-size:3.8cqw;opacity:.75">Manobrista no local. A recepção começa às 21h.</p>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Curitiba+PR" target="_blank" rel="noopener">Abrir no Google Maps</a>
+      <a class="btn leve" href="https://waze.com/ul?q=Curitiba" target="_blank" rel="noopener">Abrir no Waze</a>`,
+    presentes: `<h3>Lista de presentes</h3>
+      <p>Sua presença é o meu maior presente! Se quiser me presentear:</p>
+      <ul>
+        <li><b>Viagem dos sonhos</b>Ajude na minha viagem de 15 anos</li>
+        <li><b>Maquiagem e skincare</b>Minhas marcas favoritas estão na lista</li>
+        <li><b>Livros</b>Romance e fantasia</li>
+      </ul>
+      <p style="font-size:3.6cqw;opacity:.75">Pix</p>
+      <div class="pix" id="pix">sofia15anos@email.com</div>
+      <button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('pix').textContent);this.textContent='Chave copiada ✓'">Copiar chave Pix</button>`,
+    traje: `<h3>Traje</h3>
+      <p><b>Esporte fino</b></p>
+      <p>Um baile de conto de fadas! Brilho é muito bem-vindo.</p>
+      <div class="cores"><i style="background:#1d1d2b"></i><i style="background:#3f4f7a"></i><i style="background:#c0c0cc"></i><i style="background:#f1e9dc"></i></div>
+      <p style="font-size:3.8cqw;opacity:.75">O lilás é a cor da debutante, por favor evite 💜</p>`
+  }
+};
+</script>
+<script src="../assets/convite.js?v=3"></script>
+</body>
+</html>

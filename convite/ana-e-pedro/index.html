@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ana & Pedro · Convite de Casamento</title>
+<meta name="description" content="Convite de casamento interativo de Ana e Pedro. Toque no lacre para abrir.">
+<meta property="og:title" content="Ana & Pedro · Você está convidado!">
+<meta property="og:description" content="Toque para abrir o nosso convite de casamento.">
+<meta property="og:image" content="../assets/igreja.webp">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Alex+Brush&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/convite.css?v=3">
+<style>
+  .ouro-txt { background: linear-gradient(100deg, #8f6a2e, #e2c27d 45%, #a8834a 60%, #d9b56b); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .arco { position: relative; padding: 10cqw 6cqw 8cqw; background: rgba(251,248,242,.94); border-radius: 46cqw 46cqw 2cqw 2cqw;
+    box-shadow: 0 0 0 1px rgba(168,131,74,.4), 0 0 0 2.5cqw rgba(251,248,242,.5), 0 0 0 calc(2.5cqw + 1px) rgba(168,131,74,.35); }
+  .bloco { padding: 5cqw 0; }
+  .bloco + .bloco { border-top: 1px solid rgba(168,131,74,.3); }
+  .bloco .pre { color: #a8834a; }
+  .bloco .data-grande { font-size: 7cqw; }
+  .monograma { font-family: var(--script); font-size: 22cqw; letter-spacing: 0; }
+  .monograma i { font-size: .5em; vertical-align: .4em; }
+  .painel { background: rgba(60,45,25,.55); }
+</style>
+</head>
+<body>
+<main class="palco"></main>
+<script>
+window.CONVITE = {
+  titulo: 'Casamento de Ana & Pedro',
+  demo: 'MODELO DE DEMONSTRAÇÃO',
+  iniciais: 'A<span style="font-size:.6em">&</span>P',
+  data: '2027-10-09T16:30:00-03:00',
+  local: 'Paróquia Nossa Senhora da Luz, Praça da Matriz, 50, Belo Horizonte, MG',
+  musica: '../assets/musica-casamento2.mp3',
+  transicao: 'livro',
+  particulas: 'petalas',
+  coresParticulas: ['#ffffff', '#fbf3e4', '#f1e2c6', '#fdf8ee'],
+  tema: { fundo: '#fbf8f2', tinta: '#4a3b2a', destaque: '#a8834a', ouro: '#c9a45c', lacre: '#b8934f', 'lacre-escuro': '#7d5f2c', script: "'Alex Brush', cursive" },
+  abertura: { fundo: '../assets/igreja.webp', aba: '#fffdf8', bolso: '#f5efe2', etiqueta: 'toque no lacre' },
+  paginas: [
+    {
+      cor: 'var(--fundo)',
+      justifica: 'flex-start',
+      transicao: 'livro',
+      html: `<div class="foto-baixa" style="background-image:url(../assets/igreja.webp)"></div>
+             <div style="position:relative">
+             <div class="monograma entra a-gira ouro-txt" style="margin-top:6cqw">A<i>&</i>P</div>
+             <div class="pre entra a-blur">Juntos para sempre</div>
+             <div class="nomes entra a-letras" style="font-size:14cqw;white-space:nowrap">Ana <small style="display:inline;font-size:.6em">&</small> Pedro</div>
+             <div class="pre entra a-desce" style="font-size:3cqw;opacity:.75">09 · 10 · 2027</div>
+             </div>`
+    },
+    {
+      fundo: '../assets/igreja.webp',
+      veu: 'rgba(40, 30, 15, .5)',
+      classe: 'claro',
+      kb: 'sobe',
+      transicao: 'zoom',
+      html: `<div class="pre entra a-blur" style="font-size:3cqw">“O amor é paciente, o amor é bondoso”</div>
+             <div class="pre entra a-blur" style="font-size:2.4cqw;opacity:.8;margin-top:1cqw">1 Coríntios 13:4</div>
+             <div class="linha entra a-linha" style="background:#fff"></div>
+             <div class="nomes entra a-letras" style="font-size:15cqw;white-space:nowrap">Ana <small style="display:inline;font-size:.6em">e</small> Pedro</div>
+             <div class="texto entra a-blur" style="font-size:4.2cqw">com a bênção de Deus e de seus pais, convidam você para o seu casamento</div>`
+    },
+    {
+      cor: 'radial-gradient(circle at 50% 0%, #ffffff, #f3ebdc 80%)',
+      transicao: 'deslize',
+      html: `<div class="arco">
+               <div class="bloco entra a-desce">
+                 <div class="pre" style="font-size:3cqw">Cerimônia</div>
+                 <div class="data-grande">09 de outubro de 2027</div>
+                 <div class="dia" style="font-size:3.2cqw">Sábado, às 16h30</div>
+                 <div class="local" style="font-size:3cqw;margin-top:2cqw">Paróquia Nossa Senhora da Luz<br>Belo Horizonte · MG</div>
+               </div>
+               <div class="bloco entra a-pop">
+                 <div class="pre" style="font-size:3cqw">Recepção</div>
+                 <div class="data-grande">logo após a cerimônia</div>
+                 <div class="local" style="font-size:3cqw;margin-top:2cqw">Casa Jardim dos Ipês<br>Nova Lima · MG</div>
+               </div>
+             </div>`
+    },
+    {
+      fundo: '../assets/igreja.webp',
+      veu: 'linear-gradient(180deg, rgba(60,45,25,.05), rgba(60,45,25,.45))',
+      justifica: 'flex-end',
+      kb: 'in',
+      transicao: 'zoom',
+      html: `<div class="painel entra a-desce">
+               <div class="pre">Toque nos ícones</div>
+               <div class="nomes">para interagir</div>
+               {{icones}}
+             </div>`
+    },
+    {
+      cor: 'var(--fundo)',
+      justifica: 'flex-end',
+      html: `<div class="fim-foto" style="background-image:url(../assets/igreja.webp)"></div>
+             <div class="fim-texto">
+               <div class="pre entra">Faltam</div>
+               {{contagem}}
+               <div class="nomes entra a-letras" style="font-size:14cqw">Contamos com você!</div>
+               <div class="pre entra" style="font-size:2.8cqw;opacity:.7">Ana & Pedro · 09.10.2027</div>
+             </div>`
+    }
+  ],
+  icones: [
+    { id: 'mapa', rotulo: 'Como chegar' },
+    { id: 'presentes', rotulo: 'Lista de presentes' },
+    { id: 'rsvp', rotulo: 'Confirmar presença' },
+    { id: 'traje', rotulo: 'Traje' },
+    { id: 'manual', rotulo: 'Manual do convidado' },
+    { id: 'agenda', rotulo: 'Salvar na agenda' }
+  ],
+  rsvp: { prazo: '10 de setembro de 2027', para: 'os noivos', evento: 'no casamento de Ana e Pedro', obrigado: 'Que alegria! Mal podemos esperar para celebrar com você.', whatsapp: null },
+  folhas: {
+    mapa: `<h3>Como chegar</h3>
+      <p><b>Cerimônia</b><br>Paróquia Nossa Senhora da Luz<br>Praça da Matriz, 50 · Belo Horizonte</p>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=Belo+Horizonte+MG" target="_blank" rel="noopener">Igreja no Google Maps</a>
+      <p style="margin-top:6cqw"><b>Recepção</b><br>Casa Jardim dos Ipês<br>Nova Lima · MG</p>
+      <a class="btn leve" href="https://www.google.com/maps/search/?api=1&query=Nova+Lima+MG" target="_blank" rel="noopener">Recepção no Google Maps</a>`,
+    presentes: `<h3>Lista de presentes</h3>
+      <p>Sua presença é o nosso maior presente. Se quiser nos presentear:</p>
+      <ul>
+        <li><b>Lua de mel</b>Ajude na nossa viagem</li>
+        <li><b>Casa nova</b>Itens para o nosso lar</li>
+        <li><b>Jantar a dois</b>Uma noite especial depois do casamento</li>
+      </ul>
+      <p style="font-size:3.6cqw;opacity:.75">Pix dos noivos</p>
+      <div class="pix" id="pix">anaepedro@email.com</div>
+      <button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('pix').textContent);this.textContent='Chave copiada ✓'">Copiar chave Pix</button>`,
+    traje: `<h3>Traje</h3>
+      <p><b>Social</b></p>
+      <p>Cerimônia ao fim da tarde. Tons claros e neutros combinam com a nossa festa.</p>
+      <div class="cores"><i style="background:#2b2b33"></i><i style="background:#6d7b8f"></i><i style="background:#b9a68a"></i><i style="background:#e9dfcf"></i></div>
+      <p style="font-size:3.8cqw;opacity:.75">O branco é da noiva, por favor evite 🤍</p>`,
+    manual: `<h3>Manual do convidado</h3>
+      <ul>
+        <li><b>Pontualidade</b>A cerimônia começa às 16h30 em ponto</li>
+        <li><b>Crianças</b>São muito bem-vindas! Teremos espaço kids</li>
+        <li><b>Fotos</b>Durante a cerimônia, deixe o celular guardado</li>
+        <li><b>Hospedagem</b>Sugestões de hotéis em Nova Lima no grupo dos convidados</li>
+      </ul>`
+  }
+};
+</script>
+<script src="../assets/convite.js?v=3"></script>
+</body>
+</html>

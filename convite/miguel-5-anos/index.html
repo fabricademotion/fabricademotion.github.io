@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Miguel 5 anos · Convite</title>
+<meta name="description" content="Convite interativo do aniversário de 5 anos do Miguel. Toque para abrir.">
+<meta property="og:title" content="Miguel faz 5 anos! 🦖">
+<meta property="og:description" content="Toque para abrir o meu convite.">
+<meta property="og:image" content="../assets/dino.webp">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/convite.css?v=3">
+<style>
+  .pre { letter-spacing: .06em; font-weight: 600; }
+  .nomes { font-weight: 700; letter-spacing: -.01em; }
+  .kid-nome { font-family: var(--caps); font-weight: 700; font-size: 24cqw; line-height: .9; color: #ffc93c;
+    -webkit-text-stroke: 1.2cqw #2f4a1e; paint-order: stroke fill; text-shadow: 0 1.6cqw 0 #2f4a1e; }
+  .kid-idade { display: inline-grid; place-items: center; width: 30cqw; height: 30cqw; border-radius: 50%;
+    background: #ff7a29; color: #fff; font-family: var(--caps); font-weight: 700; font-size: 20cqw; line-height: 1;
+    box-shadow: 0 1.6cqw 0 #c24e0b, 0 0 0 1.6cqw #fff; margin: 4cqw 0 2cqw; }
+  .kid-idade small { display: block; font-size: 4cqw; margin-top: -3cqw; letter-spacing: .1em; }
+  .cartao { background: #fff; border-radius: 6cqw; padding: 8cqw 6cqw; color: #2f4a1e; box-shadow: 0 2cqw 0 rgba(47,74,30,.25); }
+  .cartao .linha { background: #7bc043; opacity: .6; height: .8cqw; border-radius: 1cqw; width: 30%; }
+  .faixa { display: inline-block; background: #ff7a29; color: #fff; font-family: var(--caps); font-weight: 700; font-size: 5cqw;
+    padding: 2cqw 6cqw; border-radius: 10cqw; transform: rotate(-3deg); box-shadow: 0 1.2cqw 0 #c24e0b; }
+  .rawr { font-family: var(--caps); font-weight: 700; font-size: 26cqw; line-height: .85; color: #fff;
+    -webkit-text-stroke: 1.4cqw #2f4a1e; paint-order: stroke fill; text-shadow: 0 2cqw 0 #2f4a1e; }
+  .pagina.ativa .pula { animation: pula 1.4s cubic-bezier(.3,1.6,.5,1) 1.2s infinite; }
+  @keyframes pula { 0%,100% { transform: translateY(0); } 30% { transform: translateY(-3cqw); } 60% { transform: translateY(0); } }
+  .painel { background: rgba(47,74,30,.72); }
+  .icone b { background: #ff7a29; border-color: #fff; }
+  .folha h3 { font-weight: 700; }
+  .contagem strong { color: #ff7a29; font-family: var(--caps); font-weight: 700; }
+</style>
+</head>
+<body>
+<main class="palco"></main>
+<script>
+window.CONVITE = {
+  titulo: 'Aniversário de 5 anos do Miguel',
+  demo: 'MODELO DE DEMONSTRAÇÃO',
+  iniciais: '<span style="font-family:Fredoka,sans-serif;font-weight:700;font-size:1.5em">5</span>',
+  data: '2027-06-12T15:00:00-03:00',
+  local: 'Buffet Mundo Jurássico, Rua das Palmeiras, 300, São Paulo, SP',
+  musica: '../assets/musica-infantil.mp3',
+  transicao: 'deslize',
+  particulas: 'confete',
+  tema: { fundo: '#fff4d6', tinta: '#2f4a1e', destaque: '#ff7a29', ouro: '#ffc93c', lacre: '#ff7a29', 'lacre-escuro': '#c24e0b',
+          script: "'Fredoka', sans-serif", caps: "'Fredoka', sans-serif", serif: "'Fredoka', sans-serif" },
+  abertura: { fundo: '../assets/dino.webp', aba: '#ffc93c', bolso: '#7bc043', etiqueta: 'toque aqui!' },
+  paginas: [
+    {
+      fundo: '../assets/dino.webp',
+      veu: 'linear-gradient(180deg, rgba(47,74,30,0) 50%, rgba(47,74,30,.85) 88%)',
+      justifica: 'flex-end',
+      classe: 'claro',
+      kb: 'in',
+      transicao: 'deslize',
+      html: `<div class="faixa entra a-pop">Vem pra festa!</div>
+             <div class="kid-nome entra a-zoom" style="margin-top:5cqw">Miguel</div>
+             <div class="pre entra a-desce" style="font-size:5cqw;margin-top:3cqw">faz 5 anos 🦖</div>`
+    },
+    {
+      cor: 'radial-gradient(circle at 50% 0%, #a6d96a, #5fa830 70%)',
+      transicao: 'zoom',
+      html: `<div class="cartao entra a-pop">
+               <div class="pre" style="font-size:4cqw;color:#5fa830">Prepare-se para uma</div>
+               <div class="nomes" style="font-size:12cqw;color:#ff7a29;margin:1cqw 0 3cqw">aventura jurássica!</div>
+               <div class="texto" style="font-size:4.4cqw">O Miguel vai completar</div>
+               <div class="kid-idade pula">5<small>ANINHOS</small></div>
+               <div class="linha"></div>
+               <div class="data-grande" style="font-weight:700;font-size:9cqw">12 | 06 | 2027</div>
+               <div class="dia" style="font-weight:600">Sábado, às 15h</div>
+               <div class="linha"></div>
+               <div class="local" style="font-weight:600">Buffet Mundo Jurássico<br>São Paulo · SP</div>
+             </div>`
+    },
+    {
+      fundo: '../assets/dino.webp',
+      veu: 'rgba(255, 122, 41, .55)',
+      classe: 'claro',
+      kb: 'sobe',
+      transicao: 'cortina',
+      html: `<div class="rawr entra a-gira">RAWR!</div>
+             <div class="pre entra a-blur" style="font-size:5.4cqw;margin-top:6cqw">Te espero no dia</div>
+             <div class="faixa entra a-pop" style="font-size:8cqw;margin-top:3cqw;background:#2f4a1e;box-shadow:0 1.2cqw 0 #1b2c10">12 de junho</div>`
+    },
+    {
+      fundo: '../assets/dino.webp',
+      veu: 'linear-gradient(180deg, rgba(47,74,30,.05), rgba(47,74,30,.4))',
+      justifica: 'flex-end',
+      kb: 'dir',
+      transicao: 'zoom',
+      html: `<div class="painel entra a-desce">
+               <div class="pre">Toque nos ícones</div>
+               <div class="nomes">para participar</div>
+               {{icones}}
+             </div>`
+    },
+    {
+      cor: 'var(--fundo)',
+      justifica: 'flex-end',
+      html: `<div class="fim-foto" style="background-image:url(../assets/dino.webp)"></div>
+             <div class="fim-texto">
+               <div class="pre entra">Faltam</div>
+               {{contagem}}
+               <div class="nomes entra a-pop" style="font-size:11cqw;color:#ff7a29">Não falta, hein!</div>
+               <div class="pre entra" style="font-size:3cqw;opacity:.7">Miguel · 5 anos · 12.06.2027</div>
+             </div>`
+    }
+  ],
+  icones: [
+    { id: 'mapa', rotulo: 'Como chegar' },
+    { id: 'presentes', rotulo: 'Ideias de presente' },
+    { id: 'rsvp', rotulo: 'Confirmar presença' },
+    { id: 'traje', rotulo: 'Vem fantasiado?' },
+    { id: 'agenda', rotulo: 'Salvar na agenda' }
+  ],
+  rsvp: { prazo: '1º de junho de 2027', para: 'o Miguel', evento: 'no aniversário do Miguel', obrigado: 'Oba! O Miguel vai amar ter você na festa! 🦖', whatsapp: null },
+  folhas: {
+    mapa: `<h3>Como chegar</h3>
+      <p><b>Buffet Mundo Jurássico</b><br>Rua das Palmeiras, 300<br>São Paulo · SP</p>
+      <p style="font-size:3.8cqw;opacity:.75">Estacionamento no local. A festa vai das 15h às 19h.</p>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=S%C3%A3o+Paulo+SP" target="_blank" rel="noopener">Abrir no Google Maps</a>
+      <a class="btn leve" href="https://waze.com/ul?q=S%C3%A3o%20Paulo" target="_blank" rel="noopener">Abrir no Waze</a>`,
+    presentes: `<h3>Ideias de presente</h3>
+      <p>O mais importante é você estar lá! Se quiser levar um mimo:</p>
+      <ul>
+        <li><b>Roupa</b>Tamanho 6</li>
+        <li><b>Calçado</b>Número 28</li>
+        <li><b>Ele ama</b>Dinossauros, Lego e livros de colorir</li>
+      </ul>
+      <p style="font-size:3.6cqw;opacity:.75">Prefere Pix?</p>
+      <div class="pix" id="pix">festadomiguel@email.com</div>
+      <button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('pix').textContent);this.textContent='Chave copiada ✓'">Copiar chave Pix</button>`,
+    traje: `<h3>Vem fantasiado?</h3>
+      <p>Quem vier de <b>dinossauro</b> ou de <b>explorador</b> ganha uma surpresa! 🦕</p>
+      <p>Para as crianças, roupa confortável: vai ter piscina de bolinhas e pula-pula.</p>
+      <div class="cores"><i style="background:#7bc043"></i><i style="background:#ff7a29"></i><i style="background:#ffc93c"></i><i style="background:#3ec1d3"></i></div>`
+  }
+};
+</script>
+<script src="../assets/convite.js?v=3"></script>
+</body>
+</html>

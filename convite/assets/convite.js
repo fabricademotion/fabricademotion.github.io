@@ -47,10 +47,16 @@
       const parte = node => [...node.childNodes].forEach(c => {
         if (c.nodeType === 3) {
           const frag = document.createDocumentFragment();
-          [...c.textContent].forEach(ch => {
-            const sp = el('span', 'letra', ch === ' ' ? '&nbsp;' : ch);
-            sp.style.transitionDelay = (0.35 + k++ * 0.06) + 's';
-            frag.appendChild(sp);
+          c.textContent.split(/(\s+)/).forEach(pal => {
+            if (!pal) return;
+            if (/^\s+$/.test(pal)) { frag.appendChild(document.createTextNode(' ')); k++; return; }
+            const w = el('span', 'palavra');
+            [...pal].forEach(ch => {
+              const sp = el('span', 'letra', ch);
+              sp.style.transitionDelay = (0.35 + k++ * 0.06) + 's';
+              w.appendChild(sp);
+            });
+            frag.appendChild(w);
           });
           c.replaceWith(frag);
         } else if (c.nodeType === 1) parte(c);
@@ -144,9 +150,9 @@
     const cx = cv.getContext('2d'); let W, H, dpr = Math.min(2, devicePixelRatio || 1);
     const tam = () => { W = cv.width = palco.clientWidth * dpr; H = cv.height = palco.clientHeight * dpr; };
     tam(); addEventListener('resize', tam);
-    const brilho = C.particulas === 'brilho';
-    const cores = C.coresParticulas || (brilho ? ['#ffe3a3', '#fff4d6', '#f3c27a'] : ['#f4efe2', '#e8dcc0', '#c9d1ad', '#ffffff']);
-    const ps = Array.from({ length: brilho ? 45 : 22 }, () => novo(true));
+    const brilho = C.particulas === 'brilho', confete = C.particulas === 'confete';
+    const cores = C.coresParticulas || (brilho ? ['#ffe3a3', '#fff4d6', '#f3c27a'] : confete ? ['#ff5a5f', '#ffc93c', '#3ec1d3', '#7bd389', '#a66cff', '#ff8c42'] : ['#f4efe2', '#e8dcc0', '#c9d1ad', '#ffffff']);
+    const ps = Array.from({ length: brilho ? 45 : confete ? 34 : 22 }, () => novo(true));
     function novo(ini) {
       return { x: Math.random() * W, y: ini ? Math.random() * H : -20 * dpr, r: (brilho ? 1 + Math.random() * 2.2 : 4 + Math.random() * 5) * dpr,
         vy: (brilho ? .15 + Math.random() * .35 : .4 + Math.random() * .6) * dpr, vx: (Math.random() - .5) * .4 * dpr,
@@ -163,6 +169,10 @@
           cx.globalAlpha = pis; cx.fillStyle = p.c; cx.shadowColor = p.c; cx.shadowBlur = 8 * dpr;
           cx.beginPath(); cx.arc(0, 0, p.r, 0, 6.28); cx.fill();
           if (p.r > 2.4 * dpr) { cx.fillRect(-p.r * 3, -.4 * dpr, p.r * 6, .8 * dpr); cx.fillRect(-.4 * dpr, -p.r * 3, .8 * dpr, p.r * 6); }
+        } else if (confete) {
+          cx.globalAlpha = .9; cx.fillStyle = p.c;
+          cx.scale(1, Math.sin(t / 260 + p.f));
+          cx.fillRect(-p.r * .45, -p.r * .9, p.r * .9, p.r * 1.8);
         } else {
           cx.globalAlpha = .85; cx.fillStyle = p.c;
           cx.scale(1, .55 + .45 * Math.sin(t / 400 + p.f));
