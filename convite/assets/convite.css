@@ -409,3 +409,25 @@ canvas.particulas { position: absolute; inset: 0; width: 100%; height: 100%; z-i
 .abertura.sol.com-video .clarao { background: radial-gradient(circle at var(--sx) var(--sy), #fff8e6 0%, #ffd9a0 35%, #f3a865 75%); }
 .abertura.sol.com-video.abrindo .lacre { transform: translate(-50%, -50%) scale(14); opacity: 1; transition: transform 1.5s cubic-bezier(.5,0,.3,1); }
 .abertura.sol.com-video.abrindo .lacre i { display: none; }
+
+/* ---------- página "Nossa história" (linha do tempo, plano Exclusivo) ---------- */
+.tempo { position: relative; display: flex; flex-direction: column; gap: 4.5cqw; margin-top: 5cqw; }
+.tempo::before { content: ''; position: absolute; left: 50%; top: 2cqw; bottom: 2cqw; width: 1px; background: currentColor; opacity: .28;
+  transform: scaleY(0); transform-origin: top; transition: transform 2.4s cubic-bezier(.4,0,.2,1) .3s; }
+.pagina.ativa .tempo::before { transform: scaleY(1); }
+.marco { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 9cqw; align-items: center; }
+.marco::after { content: ''; position: absolute; left: 50%; top: 50%; width: 2.4cqw; height: 2.4cqw; margin: -1.2cqw 0 0 -1.2cqw; border-radius: 50%;
+  background: var(--destaque); box-shadow: 0 0 0 1.4cqw var(--fundo); }
+.marco img { width: 30cqw; aspect-ratio: 1; object-fit: cover; border-radius: 50%; justify-self: end; display: block;
+  box-shadow: 0 0 0 1.2cqw rgba(255,255,255,.7), 0 2cqw 5cqw rgba(0,0,0,.18); }
+.marco .txt { text-align: left; }
+.marco.inv img { order: 2; justify-self: start; }
+.marco.inv .txt { order: 1; text-align: right; }
+.marco .ano { font-family: var(--serif); font-size: 6.4cqw; line-height: 1; color: var(--destaque); }
+.marco .tit { font-family: var(--caps); font-size: 2.5cqw; letter-spacing: .2em; text-transform: uppercase; margin: 1.2cqw 0 1cqw; }
+.marco p { font-size: 3.5cqw; line-height: 1.38; margin: 0; opacity: .85; }
+.pagina.ativa .tempo .marco.entra:nth-child(1) { transition-delay: .6s; }
+.pagina.ativa .tempo .marco.entra:nth-child(2) { transition-delay: 1.2s; }
+.pagina.ativa .tempo .marco.entra:nth-child(3) { transition-delay: 1.8s; }
+.pagina.ativa .tempo .marco.entra:nth-child(4) { transition-delay: 2.4s; }
+.pagina.ativa .tempo .marco.entra:nth-child(5) { transition-delay: 3s; }

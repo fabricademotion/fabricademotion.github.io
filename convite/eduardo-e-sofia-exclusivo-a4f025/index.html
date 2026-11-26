@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eduardo & Sofia · 12.12.2026</title>
+<meta name="description" content="Convite de casamento de Eduardo Henrique e Sofia Hermano. Toque no sol para abrir.">
+<meta property="og:title" content="Eduardo & Sofia · Vamos casar!">
+<meta property="og:description" content="Toque no sol para abrir o nosso convite.">
+<meta property="og:image" content="img/veu-por-do-sol.webp">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400&family=Allura&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/convite.css?v=8">
+<style>
+  .pre { font-weight: 300; letter-spacing: .32em; font-size: 2.6cqw; }
+  .local, .dia { font-weight: 300; letter-spacing: .22em; }
+  .nomes { line-height: 1; }
+  .ampersand { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: .45em; display: block; margin: -1cqw 0 1cqw; opacity: .85; }
+  .data-fina { font-family: var(--serif); font-weight: 300; font-size: 8.5cqw; letter-spacing: .12em; }
+  .fio { width: 10cqw; height: 1px; background: currentColor; opacity: .5; margin: 5cqw auto; }
+  .texto { font-weight: 300; font-size: 4.6cqw; line-height: 1.55; }
+  .foto { width: 100%; border-radius: 2.4cqw; display: block; box-shadow: 0 2cqw 6cqw rgba(61,43,31,.18); }
+  .citacao { font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 5.2cqw; line-height: 1.45; }
+  .hora { display: inline-flex; gap: 6cqw; justify-content: center; margin-top: 2cqw; }
+  .hora div { text-align: center; }
+  .hora strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 8cqw; line-height: 1; }
+  .hora span { font-family: var(--caps); font-weight: 300; font-size: 2.2cqw; letter-spacing: .2em; opacity: .75; }
+  .sol-topo .nomes { color: #fbe9d4; font-size: 15cqw; margin: 0; }
+  .sol-topo .pre { color: #f3cfa8; }
+  .painel { background: rgba(61,43,31,.5); }
+  .contagem strong { font-weight: 400; }
+  .pagina { padding: 12cqw 8cqw; }
+  .fim-foto { height: 62%; }
+  .fim-foto::after { background: linear-gradient(180deg, transparent 45%, var(--fundo) 98%); }
+</style>
+</head>
+<body>
+<main class="palco"></main>
+<script>
+window.CONVITE = {
+  titulo: 'Casamento de Eduardo & Sofia',
+  iniciais: '',
+  data: '2026-12-12T15:00:00-03:00',
+  local: 'São José da Coroa Grande, PE',
+  musica: 'musica.mp3',
+  transicao: 'suave',
+  particulas: null,
+  tema: { fundo: '#f6efe6', tinta: '#3d2b1f', destaque: '#b8693a', ouro: '#e3a857', lacre: '#f5a04f', 'lacre-escuro': '#c9763a',
+          script: "'Allura', cursive", caps: "'Montserrat', sans-serif", serif: "'Cormorant Garamond', Georgia, serif" },
+  abertura: { tipo: 'sol', video: 'img/por-do-sol.mp4', poster: 'img/por-do-sol-capa.jpg', solX: 48, solY: 36, etiqueta: 'TOQUE NO SOL',
+    topo: `<div class="pre">vamos casar</div><div class="nomes">Eduardo<span class="ampersand">&</span>Sofia</div><div class="pre" style="margin-top:2cqw">12 . 12 . 2026</div>` },
+  paginas: [
+    {
+      fundo: 'img/veu-por-do-sol.webp',
+      veu: 'linear-gradient(180deg, rgba(20,14,10,.45) 0%, rgba(20,14,10,0) 38%)',
+      justifica: 'flex-start',
+      classe: 'claro',
+      kb: 'leve',
+      html: `<div style="height:6cqw"></div>
+             <div class="nomes entra a-blur" style="font-size:15cqw">Eduardo<span class="ampersand">&</span>Sofia</div>
+             <div class="pre entra a-desce" style="margin-top:2cqw">12 . 12 . 2026</div>`
+    },
+    {
+      cor: 'var(--fundo)',
+      html: `<div class="pre entra a-blur">Com a bênção de Deus e de nossas famílias</div>
+             <div class="fio entra a-linha"></div>
+             <div class="nomes entra a-blur" style="font-size:13cqw">Eduardo Henrique</div>
+             <div class="ampersand entra a-blur" style="font-size:7cqw">&</div>
+             <div class="nomes entra a-blur" style="font-size:13cqw">Sofia Hermano</div>
+             <div class="fio entra a-linha"></div>
+             <div class="texto entra a-desce">convidam você para o seu casamento, à <span style="white-space:nowrap">beira-mar</span>, ao pôr do sol</div>`
+    },
+    {
+      fundo: 'img/silhueta.webp',
+      veu: 'linear-gradient(180deg, rgba(20,14,10,0) 45%, rgba(20,14,10,.8) 85%)',
+      classe: 'claro',
+      justifica: 'flex-end',
+      kb: 'leve',
+      html: `<div class="pre entra a-blur">sábado</div>
+             <div class="data-fina entra a-blur" style="margin:3cqw 0">12 de dezembro</div>
+             <div class="fio entra a-linha"></div>
+             <div class="hora entra a-desce"><div><strong>15h às 16h</strong><span>CERIMÔNIA AO PÔR DO SOL</span></div></div>
+             <div class="local entra a-desce" style="font-size:2.8cqw;margin-top:6cqw">SÃO JOSÉ DA COROA GRANDE · PE</div><div style="height:6cqw"></div>`
+    },
+    {
+      cor: 'radial-gradient(circle at 50% 0%, #fbf6ef, var(--fundo) 70%)',
+      html: `<div class="pre entra a-blur">o nosso caminho até aqui</div>
+             <div class="nomes entra a-blur" style="font-size:13cqw;margin-top:1cqw">Nossa história</div>
+             <div class="tempo">
+               <div class="marco entra a-esq"><img src="img/praia.webp" alt=""><div class="txt"><div class="ano">2019</div><div class="tit">O encontro</div><p>Num fim de tarde na praia, um amigo em comum nos apresentou.</p></div></div>
+               <div class="marco inv entra a-dir"><img src="img/maos.webp" alt=""><div class="txt"><div class="ano">2020</div><div class="tit">O namoro</div><p>O pôr do sol virou o nosso programa favorito.</p></div></div>
+               <div class="marco entra a-esq"><img src="img/anel-areia.webp" alt=""><div class="txt"><div class="ano">2025</div><div class="tit">O pedido</div><p>Na areia, com o sol se pondo, veio o sim.</p></div></div>
+               <div class="marco inv entra a-dir"><img src="img/aliancas.webp" alt=""><div class="txt"><div class="ano">12.12.26</div><div class="tit">O casamento</div><p>E agora queremos você com a gente.</p></div></div>
+             </div>`
+    },
+    {
+      fundo: 'img/sol-no-mar.webp',
+      veu: 'rgba(30,18,12,.25)',
+      kb: 'leve',
+      justifica: 'flex-end',
+      html: `<div class="painel entra a-desce" style="margin-bottom:6cqw">
+               <div class="pre">toque nos ícones</div>
+               <div class="nomes" style="font-size:11cqw">para interagir</div>
+               {{icones}}
+             </div>`
+    },
+    {
+      cor: 'var(--fundo)',
+      justifica: 'flex-end',
+      html: `<div class="fim-foto" style="background-image:url(img/anel-por-do-sol.webp);background-position:center 45%"></div>
+             <div class="fim-texto">
+               <div class="pre entra">faltam</div>
+               {{contagem}}
+               <div class="nomes entra a-blur" style="font-size:12cqw">Esperamos você lá!</div>
+               <div class="pre entra" style="opacity:.7;margin-top:2cqw">Eduardo & Sofia · 12.12.2026</div>
+             </div>`
+    }
+  ],
+  icones: [
+    { id: 'mapa', rotulo: 'Como chegar' },
+    { id: 'presentes', rotulo: 'Lista de presentes' },
+    { id: 'rsvp', rotulo: 'Confirmar presença' },
+    { id: 'traje', rotulo: 'Traje' },
+    { id: 'manual', rotulo: 'Dicas' },
+    { id: 'agenda', rotulo: 'Salvar na agenda' }
+  ],
+  rsvp: { prazo: '1º de dezembro de 2026', para: 'os noivos', evento: 'no casamento de Eduardo e Sofia', obrigado: 'Que alegria! Vai ser lindo ter você com a gente no pôr do sol.', whatsapp: null },
+  folhas: {
+    mapa: `<h3>Como chegar</h3>
+      <p><b>São José da Coroa Grande · PE</b><br>Litoral sul de Pernambuco, divisa com Alagoas</p>
+      <p style="font-size:3.8cqw;opacity:.75">Cerca de 2h de carro de Recife ou de Maceió.</p>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=S%C3%A3o+Jos%C3%A9+da+Coroa+Grande+PE" target="_blank" rel="noopener">Abrir no Google Maps</a>
+      <a class="btn leve" href="https://waze.com/ul?q=S%C3%A3o%20Jos%C3%A9%20da%20Coroa%20Grande" target="_blank" rel="noopener">Abrir no Waze</a>`,
+    presentes: `<h3>Lista de presentes</h3>
+      <p>Sua presença é o nosso maior presente. Se quiser nos presentear:</p>
+      <ul>
+        <li><b>Lua de mel</b>Ajude na nossa viagem</li>
+        <li><b>Casa nova</b>Itens para o nosso lar</li>
+      </ul>
+      <p style="font-size:3.6cqw;opacity:.75">Pix dos noivos</p>
+      <div class="pix" id="pix">eduardoesofia@email.com</div>
+      <button class="btn" onclick="navigator.clipboard.writeText(document.getElementById('pix').textContent);this.textContent='Chave copiada ✓'">Copiar chave Pix</button>`,
+    traje: `<h3>Traje</h3>
+      <p><b>Esporte fino (praia)</b></p>
+      <p>Tecidos leves e tons claros. A cerimônia é na areia: prefira sandália ou rasteirinha.</p>
+      <div class="cores"><i style="background:#f3e7d6"></i><i style="background:#d9b48f"></i><i style="background:#b8693a"></i><i style="background:#8a9a8a"></i></div>
+      <p style="font-size:3.8cqw;opacity:.75">O branco é da noiva, por favor evite 🤍</p>`,
+    manual: `<h3>Dicas</h3>
+      <ul>
+        <li><b>Horário</b>Chegue até as 14h30. A cerimônia começa às 15h em ponto</li>
+        <li><b>Clima</b>Dezembro é quente: protetor solar e óculos escuros ajudam</li>
+        <li><b>Hospedagem</b>Há pousadas em São José da Coroa Grande e em Maragogi, que fica bem perto</li>
+      </ul>`
+  }
+};
+</script>
+<script src="../assets/convite.js?v=8"></script>
+</body>
+</html>
