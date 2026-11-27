@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Acesso vitalício · Motion de Referência</title>
+<link rel="icon" href="../../assets/logo-branco.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<!-- Upsell da Black Friday (28/11 a 30/11): a Cakto manda o comprador para cá depois de pagar o Motion de Referência.
+     O botão de aceitar vem do "Gerador de Upsell" da Cakto (cobra com um clique no cartão ou gera um Pix novo).
+     Recusar leva para a área de membros. -->
+<style>
+:root{--noite:#07060B;--sup:#17142A;--perola:#F7F5FD;--roxo:#7C66FF;--fundo:#3A22B8;--cinza:#9C97B5;--lilas:#E2DAFF;--ok:#2FD47A}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--noite);color:var(--perola);font-family:"Montserrat",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+body{background:radial-gradient(60% 40% at 50% 0%,rgba(124,102,255,.28),transparent 70%),var(--noite);min-height:100vh}
+.wrap{max-width:560px;margin:0 auto;padding:22px 16px 48px}
+.ok{display:flex;align-items:center;gap:10px;justify-content:center;padding:12px 16px;border-radius:14px;background:rgba(47,212,122,.1);border:1px solid rgba(47,212,122,.35);font-size:14px;font-weight:600}
+.ok i{width:22px;height:22px;border-radius:50%;background:var(--ok);color:#06210f;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:13px;flex:none}
+.passo{margin:22px 0 8px;text-align:center;font:500 12px "JetBrains Mono",monospace;letter-spacing:.16em;text-transform:uppercase;color:var(--lilas)}
+h1{margin:0;text-align:center;font-weight:300;font-size:clamp(28px,7.4vw,40px);line-height:1.12;letter-spacing:-.03em}
+h1 b{font-weight:700;background:linear-gradient(180deg,#E2DAFF,#7C66FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub b{color:#fff;font-weight:700}.sub{margin:14px auto 0;max-width:470px;text-align:center;color:#CFCAE3;font-size:16px;line-height:1.55}
+.vid{position:relative;margin:24px auto 0;height:230px;overflow:hidden}
+.vid img{position:absolute;top:8px;width:116px;height:206px;object-fit:cover;border-radius:16px;border:3px solid #120f20;box-shadow:0 24px 50px -18px rgba(0,0,0,.85)}
+.vid img:nth-child(2){left:calc(50% - 168px);top:20px;transform:rotate(-9deg);opacity:.85}
+.vid img:nth-child(3){left:calc(50% - 58px);z-index:2}
+.vid img:nth-child(4){left:calc(50% + 52px);top:20px;transform:rotate(9deg);opacity:.85}
+.vid .novo{position:absolute;z-index:3;left:50%;top:0;transform:translateX(-50%);padding:6px 12px;border-radius:99px;background:var(--roxo);font-size:12px;font-weight:700;white-space:nowrap;box-shadow:0 10px 30px -8px rgba(124,102,255,.9)}
+.card{margin-top:22px;padding:22px 20px;border-radius:22px;background:var(--sup);border:1px solid rgba(226,218,255,.12)}
+.card ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.card li{display:flex;gap:12px;font-size:15px;line-height:1.45}
+.card li::before{content:"✓";flex:none;width:24px;height:24px;border-radius:50%;background:rgba(124,102,255,.2);color:var(--lilas);display:grid;place-items:center;font-weight:800;font-size:13px}
+.preco{margin-top:22px;text-align:center}
+.preco .de{color:var(--cinza);font-size:14px}
+.preco .valor{display:block;margin-top:4px;font-weight:800;font-size:46px;letter-spacing:-.03em}
+.preco .valor small{font-size:20px;font-weight:600;color:var(--cinza)}
+.preco .nota{display:block;margin-top:4px;color:var(--cinza);font-size:13px}
+.black{margin:18px auto 0;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:12px;background:rgba(124,102,255,.12);border:1px solid rgba(124,102,255,.4);font-size:13px;font-weight:600;text-align:center}
+#cakto-upsell{margin-top:20px}
+cakto-upsell-buttons,cakto-upsell-accept,cakto-upsell-reject{display:block;width:100%}
+cakto-upsell-accept::part(button){width:100%;border:0;outline:0;padding:18px 16px;border-radius:16px;background:linear-gradient(135deg,#9B89FF,#6142F0);font:800 18px "Montserrat",sans-serif;box-shadow:0 20px 50px -16px rgba(124,102,255,.9)}
+cakto-upsell-reject::part(button){border:0;margin:6px auto 0;background:none;color:#9C97B5;font:500 14px "Montserrat",sans-serif;text-decoration:underline}
+.previa-sim{display:block;width:100%;padding:18px 16px;border:0;border-radius:16px;background:linear-gradient(135deg,#9B89FF,#6142F0);color:#fff;font:800 18px "Montserrat",sans-serif;cursor:pointer;box-shadow:0 20px 50px -16px rgba(124,102,255,.9)}
+.nao{display:block;margin:16px auto 0;text-align:center;color:var(--cinza);font-size:14px;text-decoration:underline}
+.letras{margin-top:26px;text-align:center;color:#6F6A86;font-size:12px;line-height:1.5}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="ok"><i>✓</i>Pedido recebido. O acesso aos 120 motions vai para o seu e-mail.</div>
+
+  <p class="passo">Antes de entrar · oferta só para quem acabou de comprar</p>
+  <h1><b>Acesso vitalício</b> a todos os motions novos</h1>
+  <p class="sub">Cerca de <b>50 a 100 motions novos por mês</b> entram no seu painel, com o código de cada um. Para sempre, sem mensalidade.</p>
+
+  <div class="vid" aria-hidden="true">
+    <span class="novo">Novos motions</span>
+    <img src="../capas/034.jpg" alt=""><img src="../capas/080.jpg" alt=""><img src="../capas/059.jpg" alt="">
+  </div>
+
+  <div class="card">
+    <ul>
+      <li>Todos os motions novos que lançarmos, para sempre, sem renovar e sem mensalidade</li>
+      <li>Cada um com o código para copiar e recriar no Claude Code ou no ChatGPT com a sua marca</li>
+      <li>Entram direto na aba “Novos motions” do mesmo painel, no mesmo login</li>
+    </ul>
+  </div>
+
+  <div class="preco">
+    <span class="de">Acrescente ao seu pedido</span>
+    <span class="valor">+ R$ 37 <small>pagamento único</small></span>
+    <span class="nota">Pix ou cartão · 7 dias de garantia</span>
+  </div>
+  <div class="black">Preço de Black Friday, válido até segunda, 30/11</div>
+
+  <div id="cakto-upsell">
+    <!-- botões gerados no "Gerador de Upsell" da Cakto (oferta 9zuk5zf, R$ 37); destino trocado de "members_area"
+         (que manda para o login da própria Cakto) para a nossa área -->
+    <cakto-upsell-buttons>
+      <cakto-upsell-accept bg-color="#7c66ffff" text-color="#ffffff" upsell-accept-url="https://motion-ref.abrica--onexao.workers.dev/entrar" offer-id="9zuk5zf"
+        app-base-url="https://app.cakto.com.br" offer-type="upsell" upsell-reject-url="https://motion-ref.abrica--onexao.workers.dev/entrar">Sim, quero o acesso vitalício</cakto-upsell-accept>
+      <cakto-upsell-reject upsell-reject-url="https://motion-ref.abrica--onexao.workers.dev/entrar">Não, quero só os 120 motions</cakto-upsell-reject>
+    </cakto-upsell-buttons>
+    <script type="text/javascript" src="https://caktoscripts.nyc3.cdn.digitaloceanspaces.com/upsell.js"></script>
+  </div>
+
+  <p class="letras">Os motions novos são referências com código, como os 120 da biblioteca: você recria no Claude Code ou no ChatGPT. Não é vídeo pronto.</p>
+</div>
+</body>
+</html>

@@ -387,7 +387,16 @@ html{scroll-behavior:smooth;scroll-padding-top:24px}.selo-topo,.seguro,.plano .a
 .mais-refs b{font-family:var(--display);font-size:clamp(46px,7vw,64px);line-height:1}
 .mais-refs span{font-size:15px;font-weight:600}
 .mais-refs em{font-style:normal;font-size:13px;margin-top:10px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.16)}
-</style><style>.mockup video{position:absolute;top:10px;width:108px;height:auto;aspect-ratio:9/16;object-fit:cover;border-radius:12px;border:3px solid #0b0a12;box-shadow:0 20px 40px -14px rgba(0,0,0,.7);background:#0b0a12}.mockup video:nth-child(1){left:calc(50% - 150px);transform:rotate(-9deg)}.mockup video:nth-child(2){left:calc(50% - 54px);top:0;z-index:2}.mockup video:nth-child(3){left:calc(50% + 42px);transform:rotate(9deg)}</style></head><body><a class="skip" href="#conteudo">Pular para o conteúdo</a><main id="conteudo">
+</style><style>.mockup video{position:absolute;top:10px;width:108px;height:auto;aspect-ratio:9/16;object-fit:cover;border-radius:12px;border:3px solid #0b0a12;box-shadow:0 20px 40px -14px rgba(0,0,0,.7);background:#0b0a12}.mockup video:nth-child(1){left:calc(50% - 150px);transform:rotate(-9deg)}.mockup video:nth-child(2){left:calc(50% - 54px);top:0;z-index:2}.mockup video:nth-child(3){left:calc(50% + 42px);transform:rotate(9deg)}</style><style>/* faixa Black Friday (28/11 a 30/11): some sozinha depois de 30/11 23h59 de Brasília */
+.black-faixa{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:4px 12px;padding:9px 16px;background:linear-gradient(90deg,#3A22B8,#7C66FF);color:#fff;font:600 14px/1.3 var(--display);text-align:center;box-shadow:0 8px 24px -12px rgba(0,0,0,.7)}
+.black-faixa b{font-weight:800}
+.black-faixa .bf-tempo{font:600 13px ui-monospace,Menlo,Consolas,monospace;padding:3px 8px;border-radius:8px;background:rgba(7,6,11,.35);white-space:nowrap}
+</style></head><body><a class="skip" href="#conteudo">Pular para o conteúdo</a><div class="black-faixa" id="blackFaixa" role="note"><span><b>Preço de Black Friday</b> até segunda, 30/11 · R$ 27</span><span class="bf-tempo" id="bfTempo" hidden></span></div>
+<script>(function(){var fim=Date.parse("2026-11-30T23:59:59-03:00"),f=document.getElementById("blackFaixa"),t=document.getElementById("bfTempo");
+function tic(){var r=fim-Date.now();if(r<=0){f.remove();return false}var d=Math.floor(r/864e5),h=Math.floor(r/36e5)%24,m=Math.floor(r/6e4)%60,s=Math.floor(r/1e3)%60,p=function(n){return(n<10?"0":"")+n};
+t.textContent="termina em "+(d?d+"d ":"")+p(h)+"h "+p(m)+"m "+p(s)+"s";t.hidden=false;return true}
+if(tic())setInterval(tic,1000)})();</script>
+<main id="conteudo">
 <section class="topo"><div class="wrap centro">
 <img class="logo" src="../assets/logo-branco.png" alt="Fábrica de Motion">
 <h1 class="headline-curta"><span>Pare de criar motion genérico no ChatGPT ou no Claude.</span><span class="hl">Use 120 referências feitas com IA.</span></h1>
