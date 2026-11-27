@@ -41,9 +41,13 @@ h1 b{font-weight:700;background:linear-gradient(180deg,#E2DAFF,#7C66FF);-webkit-
 .black{margin:18px auto 0;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border-radius:12px;background:rgba(124,102,255,.12);border:1px solid rgba(124,102,255,.4);font-size:13px;font-weight:600;text-align:center}
 #cakto-upsell{margin-top:20px}
 cakto-upsell-buttons,cakto-upsell-accept,cakto-upsell-reject{display:block;width:100%}
-cakto-upsell-accept::part(button){width:100%;border:0;outline:0;padding:18px 16px;border-radius:16px;background:linear-gradient(135deg,#9B89FF,#6142F0);font:800 18px "Montserrat",sans-serif;box-shadow:0 20px 50px -16px rgba(124,102,255,.9)}
+cakto-upsell-accept::part(button){width:100%;min-height:58px;padding:0 30px;border:0;outline:0;border-radius:999px;background:#1FB85A;color:#fff;font-family:"Montserrat","Arial",system-ui,sans-serif;font-weight:700;font-size:15px;letter-spacing:.04em;text-transform:uppercase;box-shadow:0 0 0 1px rgba(255,255,255,.18) inset,0 16px 44px -14px rgba(31,184,90,.45);position:relative;overflow:hidden;isolation:isolate;transition:transform .15s ease,filter .15s ease}
+cakto-upsell-accept::part(button):hover{transform:translateY(-2px);filter:brightness(1.08)}
+cakto-upsell-accept::part(button)::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:brilho 3.2s ease-in-out infinite;pointer-events:none;z-index:-1}
+@keyframes brilho{0%,55%{left:-60%}100%{left:130%}}
+@media (prefers-reduced-motion:reduce){cakto-upsell-accept::part(button)::after{animation:none}}
 cakto-upsell-reject::part(button){border:0;margin:6px auto 0;background:none;color:#9C97B5;font:500 14px "Montserrat",sans-serif;text-decoration:underline}
-.previa-sim{display:block;width:100%;padding:18px 16px;border:0;border-radius:16px;background:linear-gradient(135deg,#9B89FF,#6142F0);color:#fff;font:800 18px "Montserrat",sans-serif;cursor:pointer;box-shadow:0 20px 50px -16px rgba(124,102,255,.9)}
+.previa-sim-sem-uso{display:block;width:100%;padding:18px 16px;border:0;border-radius:16px;background:linear-gradient(135deg,#9B89FF,#6142F0);color:#fff;font:800 18px "Montserrat",sans-serif;cursor:pointer;box-shadow:0 20px 50px -16px rgba(124,102,255,.9)}
 .nao{display:block;margin:16px auto 0;text-align:center;color:var(--cinza);font-size:14px;text-decoration:underline}
 .letras{margin-top:26px;text-align:center;color:#6F6A86;font-size:12px;line-height:1.5}
 </style>
@@ -80,7 +84,7 @@ cakto-upsell-reject::part(button){border:0;margin:6px auto 0;background:none;col
     <!-- botões gerados no "Gerador de Upsell" da Cakto (oferta 9zuk5zf, R$ 37); destino trocado de "members_area"
          (que manda para o login da própria Cakto) para a nossa área -->
     <cakto-upsell-buttons>
-      <cakto-upsell-accept bg-color="#7c66ffff" text-color="#ffffff" upsell-accept-url="https://motion-ref.abrica--onexao.workers.dev/entrar" offer-id="9zuk5zf"
+      <cakto-upsell-accept bg-color="#1FB85A" text-color="#ffffff" upsell-accept-url="https://motion-ref.abrica--onexao.workers.dev/entrar" offer-id="9zuk5zf"
         app-base-url="https://app.cakto.com.br" offer-type="upsell" upsell-reject-url="https://motion-ref.abrica--onexao.workers.dev/entrar">Sim, quero o acesso vitalício</cakto-upsell-accept>
       <cakto-upsell-reject upsell-reject-url="https://motion-ref.abrica--onexao.workers.dev/entrar">Não, quero só os 120 motions</cakto-upsell-reject>
     </cakto-upsell-buttons>
